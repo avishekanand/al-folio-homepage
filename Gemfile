@@ -5,7 +5,7 @@ group :jekyll_plugins do
     gem 'classifier-reborn'
     gem 'jekyll', '~> 4.2.0'
     gem 'bundler', '~> 2.5.7'
-    gem 'jekyll-archives'
+    gem 'jekyll-archives', '~> 2.2.1'
     gem 'jekyll-email-protect'
     gem 'jekyll-feed'
     gem 'jekyll-get-json'

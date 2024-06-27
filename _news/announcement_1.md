@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-A simple inline announcement.
+Talk at Bloomberg on "Explainable Information Retrieval"

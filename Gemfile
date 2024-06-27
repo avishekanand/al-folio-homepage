@@ -4,8 +4,10 @@ ruby '3.1.2'
 group :jekyll_plugins do
     gem 'classifier-reborn'
     gem 'jekyll', '~> 4.2.0'
-    gem 'bundler', '~> 2.5.7'
     gem 'jekyll-archives', '~> 2.2.1'
+    gem 'jekyll-sass-converter', '~> 2.0'
+    gem 'sass-embedded', '~> 1.0'
+    gem 'bundler', '~> 2.5.7'
     gem 'jekyll-email-protect'
     gem 'jekyll-feed'
     gem 'jekyll-get-json'
@@ -24,7 +26,6 @@ group :jekyll_plugins do
     gem 'mini_racer'
     gem 'unicode_utils'
     gem 'webrick'
-    gem 'sass-embedded'
 end
 group :other_plugins do
     gem 'css_parser'

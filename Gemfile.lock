@@ -212,6 +212,7 @@ DEPENDENCIES
   jekyll-minifier
   jekyll-paginate-v2
   jekyll-regex-replace
+  jekyll-sass-converter (~> 2.0)
   jekyll-scholar
   jekyll-sitemap
   jekyll-tabs
@@ -219,7 +220,7 @@ DEPENDENCIES
   jekyll-twitter-plugin
   jemoji
   mini_racer
-  sass-embedded
+  sass-embedded (~> 1.0)
   unicode_utils
   webrick
 

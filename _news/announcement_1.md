@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Talk at Bloomberg on "Explainable Information Retrieval" in the CTO Data Science Talk Series. 
+Invited talk on **"Explainable Information Retrieval"** as part of [*Data Science Talk Series*](https://x.com/TechAtBloomberg), Bloomberg, London.

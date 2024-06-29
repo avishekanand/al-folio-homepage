@@ -27,7 +27,7 @@ profiles:
     image_circular: false # crops the image to make it circular
   - align: right
     image: venktesh.jpg
-    content: about_venktesh.md
+    content: about_venky.md
     image_circular: false # crops the image to make it circular    
   - align: left
     image: abhijit.jpg

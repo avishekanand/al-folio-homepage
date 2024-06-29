@@ -6,7 +6,7 @@ group :jekyll_plugins do
     gem 'jekyll', '~> 4.3.2'
     gem 'jekyll-archives', '~> 2.2.1'
     gem 'jekyll-sass-converter', '~> 3.0.0'
-    gem 'sass-embedded', '~> 1.77.5'
+    gem 'sass-embedded', '~> 1.77', '>= 1.77.4'
     gem 'bundler', '~> 2.5.7'
     gem 'jekyll-email-protect'
     gem 'jekyll-feed'

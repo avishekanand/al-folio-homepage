@@ -401,7 +401,814 @@
         <a href="/al-folio/publications/" style="color: inherit">selected publications</a>
       </h2>
       <div class="publications">
-  <ol class="bibliography"></ol>
+  <ol class="bibliography">
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="DBLP:journals/tois/LeonhardtMRKAA24" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">Efficient Neural Ranking Using Forward Indexes and Lightweight Encoders</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      Jurek
+            Leonhardt, Henrik
+            Müller, Koustav
+            Rudra
+        , and
+        <span class="more-authors" title="click to view 3 more authors" onclick="
+              var element = $(this);
+              element.attr('title', '');
+              var more_authors_text = element.text() == '3 more authors' ? 'Megha Khosla, Abhijit Anand, Avishek Anand' : '3 more authors';
+              var cursorPosition = 0;
+              var textAdder = setInterval(function(){
+                element.html(more_authors_text.substring(0, cursorPosition + 1));
+                if (++cursorPosition == more_authors_text.length){
+                  clearInterval(textAdder);
+                }
+            }, '10');
+          ">3 more authors</span>
+      
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>ACM Transactions of Information Systems (TOIS)</em>,  2024
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+        <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
+      
+      
+        <a href="http://arxiv.org/abs/2311.01263" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">arXiv</a>
+      
+      
+      
+      
+        
+          <a href="https://arxiv.org/pdf/2311.01263" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+      
+    
+
+    
+
+    
+      <!-- Hidden abstract block -->
+      <div class="abstract hidden">
+        <p>Dual-encoder-based dense retrieval models have become the standard in IR. They employ large Transformer-based language models, which are notoriously inefficient in terms of resources and latency. We propose Fast-Forward indexes – vector forward indexes which exploit the semantic matching capabilities of dual-encoder models for efficient and effective re-ranking. Our framework enables re-ranking at very high retrieval depths and combines the merits of both lexical and semantic matching via score interpolation. Furthermore, in order to mitigate the limitations of dual-encoders, we tackle two main challenges: Firstly, we improve computational efficiency by either pre-computing representations, avoiding unnecessary computations altogether, or reducing the complexity of encoders. This allows us to considerably improve ranking efficiency and latency. Secondly, we optimize the memory footprint and maintenance cost of indexes; we propose two complementary techniques to reduce the index size and show that, by dynamically dropping irrelevant document tokens, the index maintenance efficiency can be improved substantially. We perform evaluation to show the effectiveness and efficiency of Fast-Forward indexes – our method has low latency and achieves competitive results without the need for hardware acceleration, such as GPUs.</p>
+      </div>
+    
+
+    
+
+    
+  </div>
+</div>
+</li>
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="DBLP:journals/tois/AnandLSRA24" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">Data Augmentation for Sample Efficient and Robust Document Ranking</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      Abhijit
+            Anand, Jurek
+            Leonhardt, Jaspreet
+            Singh
+        , and
+        <span class="more-authors" title="click to view 2 more authors" onclick="
+              var element = $(this);
+              element.attr('title', '');
+              var more_authors_text = element.text() == '2 more authors' ? 'Koustav Rudra, Avishek Anand' : '2 more authors';
+              var cursorPosition = 0;
+              var textAdder = setInterval(function(){
+                element.html(more_authors_text.substring(0, cursorPosition + 1));
+                if (++cursorPosition == more_authors_text.length){
+                  clearInterval(textAdder);
+                }
+            }, '10');
+          ">2 more authors</span>
+      
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>ACM Transactions of Information Systems (TOIS)</em>,  2024
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+        <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
+      
+      
+        <a href="http://arxiv.org/abs/2311.15426" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">arXiv</a>
+      
+      
+      
+      
+        
+          <a href="https://arxiv.org/pdf/2311.15426" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+      
+    
+
+    
+
+    
+      <!-- Hidden abstract block -->
+      <div class="abstract hidden">
+        <p>Contextual ranking models have delivered impressive performance improvements over classical models in the document ranking task. However, these highly over-parameterized models tend to be data-hungry and require large amounts of data even for fine-tuning. In this paper, we propose data-augmentation methods for effective and robust ranking performance. One of the key benefits of using data augmentation is in achieving sample efficiency or learning effectively when we have only a small amount of training data. We propose supervised and unsupervised data augmentation schemes by creating training data using parts of the relevant documents in the query-document pairs. We then adapt a family of contrastive losses for the document ranking task that can exploit the augmented data to learn an effective ranking model. Our extensive experiments on subsets of the MS MARCO and TREC-DL test sets show that data augmentation, along with the ranking-adapted contrastive losses, results in performance improvements under most dataset sizes. Apart from sample efficiency, we conclusively show that data augmentation results in robust models when transferred to out-of-domain benchmarks. Our performance improvements in in-domain and more prominently in out-of-domain benchmarks show that augmentation regularizes the ranking model and improves its robustness and generalization capability.</p>
+      </div>
+    
+
+    
+
+    
+  </div>
+</div>
+</li>
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="DBLP:conf/wsdm/WallatJA24" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">Temporal Blind Spots in Large Language Models</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      Jonas
+            Wallat, Adam
+            Jatowt, and Avishek
+            Anand
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>In Proceedings of the 17th ACM International Conference on Web Search
+                  and Data Mining, WSDM 2024, Merida, Mexico, March 4-8, 2024</em> ,  2024
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+        <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
+      
+      
+        <a href="http://arxiv.org/abs/2401.12078" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">arXiv</a>
+      
+      
+      
+      
+        
+          <a href="https://arxiv.org/pdf/2401.12078" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a>
+        
+      
+      
+      
+      
+      
+        <a href="https://github.com/jwallat/temporalblindspots" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">Code</a>
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+      
+    
+
+    
+
+    
+      <!-- Hidden abstract block -->
+      <div class="abstract hidden">
+        <p>Large language models (LLMs) have recently gained significant attention due to their unparalleled ability to perform various natural language processing tasks. These models, benefiting from their advanced natural language understanding capabilities, have demonstrated impressive zero-shot performance. However, the pre-training data utilized in LLMs is often confined to a specific corpus, resulting in inherent freshness and temporal scope limitations. Consequently, this raises concerns regarding the effectiveness of LLMs for tasks involving temporal intents. In this study, we aim to investigate the underlying limitations of general-purpose LLMs when deployed for tasks that require a temporal understanding. We pay particular attention to handling factual temporal knowledge through three popular temporal QA datasets. Specifically, we observe low performance on detailed questions about the past and, surprisingly, for rather new information. In manual and automatic testing, we find multiple temporal errors and characterize the conditions under which QA performance deteriorates. Our analysis contributes to understanding LLM limitations and offers valuable insights into developing future models that can better cater to the demands of temporally-oriented tasks.</p>
+      </div>
+    
+
+    
+
+    
+  </div>
+</div>
+</li>
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="DBLP:journals/tkde/FunkeKRA23" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">Zorro: Valid, Sparse, and Stable Explanations in Graph Neural Networks</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      Thorben
+            Funke, Megha
+            Khosla, Mandeep
+            Rathee
+        , and
+        <span class="more-authors" title="click to view 1 more author" onclick="
+              var element = $(this);
+              element.attr('title', '');
+              var more_authors_text = element.text() == '1 more author' ? 'Avishek Anand' : '1 more author';
+              var cursorPosition = 0;
+              var textAdder = setInterval(function(){
+                element.html(more_authors_text.substring(0, cursorPosition + 1));
+                if (++cursorPosition == more_authors_text.length){
+                  clearInterval(textAdder);
+                }
+            }, '10');
+          ">1 more author</span>
+      
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>IEEE Trans. Knowl. Data Eng.</em>,  2023
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+      
+    
+
+    
+
+    
+
+    
+
+    
+  </div>
+</div>
+</li>
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="DBLP:journals/tois/LeonhardtRA23" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">Extractive Explanations for Interpretable Text Ranking</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      Jurek
+            Leonhardt, Koustav
+            Rudra, and Avishek
+            Anand
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>ACM Transactions of Information Systems (TOIS)</em>,  2023
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+        <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
+      
+      
+        <a href="http://arxiv.org/abs/2106.12460" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">arXiv</a>
+      
+      
+      
+      
+        
+          <a href="https://arxiv.org/pdf/2106.12460" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+      
+    
+
+    
+
+    
+      <!-- Hidden abstract block -->
+      <div class="abstract hidden">
+        <p>Neural document ranking models perform impressively well due to superior language understanding gained from pre-training tasks. However, due to their complexity and large number of parameters, these (typically transformer-based) models are often non-interpretable in that ranking decisions can not be clearly attributed to specific parts of the input documents.
+In this paper we propose ranking models that are inherently interpretable by generating explanations as a by-product of the prediction decision. We introduce the Select-and-Rank paradigm for document ranking, where we first output an explanation as a selected subset of sentences in a document. Thereafter, we solely use the explanation or selection to make the prediction, making explanations first-class citizens in the ranking process. Technically, we treat sentence selection as a latent variable trained jointly with the ranker from the final output. To that end, we propose an end-to-end training technique for Select-and-Rank models utilizing reparameterizable subset sampling using the Gumbel-max trick.
+We conduct extensive experiments to demonstrate that our approach is competitive to state-of-the-art methods. Our approach is broadly applicable to numerous ranking tasks and furthers the goal of building models that are interpretable by design. Finally, we present real-world applications that benefit from our sentence selection method.</p>
+      </div>
+    
+
+    
+
+    
+  </div>
+</div>
+</li>
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="DBLP:conf/icdm/AbolfazliSPA23" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">A Deep Reinforcement Learning Approach to Configuration Sampling Problem</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      Amir
+            Abolfazli, Jakob
+            Spiegelberg, Gregory
+            Palmer
+        , and
+        <span class="more-authors" title="click to view 1 more author" onclick="
+              var element = $(this);
+              element.attr('title', '');
+              var more_authors_text = element.text() == '1 more author' ? 'Avishek Anand' : '1 more author';
+              var cursorPosition = 0;
+              var textAdder = setInterval(function(){
+                element.html(more_authors_text.substring(0, cursorPosition + 1));
+                if (++cursorPosition == more_authors_text.length){
+                  clearInterval(textAdder);
+                }
+            }, '10');
+          ">1 more author</span>
+      
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>In IEEE International Conference on Data Mining, ICDM 2023, Shanghai,
+                  China, December 1-4, 2023</em> ,  2023
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+        <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
+      
+      
+      
+      
+      
+        
+          <a href="https://doi.org/10.1109/ICDM58522.2023.00009" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+      
+    
+
+    
+
+    
+      <!-- Hidden abstract block -->
+      <div class="abstract hidden">
+        <p>Configurable software systems have become increasingly popular as they enable customized software variants. The main challenge in dealing with configuration problems is that the number of possible configurations grows exponentially as the number of features increases. Therefore, algorithms for testing customized software have to deal with the challenge of tractably finding potentially faulty configurations given exponentially large configurations. To overcome this problem, prior works focused on sampling strategies to significantly reduce the number of generated configurations, guaranteeing a high t-wise coverage. In this work, we address the configuration sampling problem by proposing a deep reinforcement learning (DRL) based sampler that efficiently finds the trade-off between exploration and exploitation, allowing for the efficient identification of a minimal subset of configurations that covers all t-wise feature interactions while minimizing redundancy. We also present the CS-Gym, an environment for the configuration sampling. We benchmark our results against heuristic-based sampling methods on eight different feature models of software product lines and show that our method outperforms all sampling methods in terms of sample size. Our findings indicate that the achieved improvement has major implications for cost reduction, as the reduction in sample size results in fewer configurations that need to be tested.
+</p>
+      </div>
+    
+
+    
+
+    
+  </div>
+</div>
+</li>
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="DBLP:conf/sigir/AnandS0VM23" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">Explainable Information Retrieval</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      Avishek
+            Anand, Procheta
+            Sen, Sourav
+            Saha
+        , and
+        <span class="more-authors" title="click to view 2 more authors" onclick="
+              var element = $(this);
+              element.attr('title', '');
+              var more_authors_text = element.text() == '2 more authors' ? 'Manisha Verma, Mandar Mitra' : '2 more authors';
+              var cursorPosition = 0;
+              var textAdder = setInterval(function(){
+                element.html(more_authors_text.substring(0, cursorPosition + 1));
+                if (++cursorPosition == more_authors_text.length){
+                  clearInterval(textAdder);
+                }
+            }, '10');
+          ">2 more authors</span>
+      
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>In </em> ,  2023
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+      
+        <a href="http://arxiv.org/abs/2211.02405" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">arXiv</a>
+      
+      
+      
+      
+        
+          <a href="https://arxiv.org/pdf/2211.02405.pdf" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+      
+    
+
+    
+
+    
+
+    
+
+    
+  </div>
+</div>
+</li>
+<li>
+<div class="row">
+  
+    <div class="col col-sm-2 abbr">
+      
+    </div>
+  
+
+  <!-- Entry bib key -->
+  <div id="DBLP:journals/corr/abs-2310-01162" class="col-sm-8">
+    <!-- Title -->
+    <div class="title">DINE: Dimensional Interpretability of Node Embeddings</div>
+    <!-- Author -->
+    <div class="author">
+      
+
+      
+      Simone
+            Piaggesi, Megha
+            Khosla, André
+            Panisson
+        , and
+        <span class="more-authors" title="click to view 1 more author" onclick="
+              var element = $(this);
+              element.attr('title', '');
+              var more_authors_text = element.text() == '1 more author' ? 'Avishek Anand' : '1 more author';
+              var cursorPosition = 0;
+              var textAdder = setInterval(function(){
+                element.html(more_authors_text.substring(0, cursorPosition + 1));
+                if (++cursorPosition == more_authors_text.length){
+                  clearInterval(textAdder);
+                }
+            }, '10');
+          ">1 more author</span>
+      
+      
+    </div>
+
+    <!-- Journal/Book title and date -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="periodical">
+      <em>Transactions of Knowledge and Data Engineering (TKDE)</em>,  2024
+    </div>
+    <div class="periodical">
+      
+    </div>
+
+    <!-- Links/Buttons -->
+    <div class="links">
+      
+      
+      
+        <a href="http://arxiv.org/abs/2310.01162" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">arXiv</a>
+      
+      
+      
+      
+        
+          <a href="https://doi.org/10.48550/arXiv.2310.01162" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    
+      
+      
+
+      
+      
+
+      
+      
+      
+    
+
+    
+
+    
+
+    
+
+    
+  </div>
+</div>
+</li>
+</ol>
 </div>
 
     

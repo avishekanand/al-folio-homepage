@@ -33,4 +33,9 @@ profiles:
     image: abhijit.jpg
     content: about_abhijit.md
     image_circular: false # crops the image to make it circular
+    
+  - align: right
+    image: mandeep.png
+    content: about_mandeep.md
+    image_circular: false # crops the image to make it circular   
 ---

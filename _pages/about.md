@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Associated Prof. at the TU Delft</a> 
+subtitle: <a href='#'>Associate Prof. at the TU Delft</a> 
 
 profile:
   align: right

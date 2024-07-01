@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Paper accepted at the TKDE Journal, titled *“DINE: Dimensional Interpretability of Node Embeddings”*. [Arxiv](https://arxiv.org/abs/2310.01162) 🎉
+Paper accepted at the [TKDE Journal](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=69), titled *“DINE: Dimensional Interpretability of Node Embeddings”*. [Arxiv](https://arxiv.org/abs/2310.01162) 🎉

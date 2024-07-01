@@ -2,38 +2,36 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Avishek Anand
     - name: Languages
-      value: English, German
+      value: English, Odiya, Hindi, German
 
 - title: Education
   type: time_table
   contents:
     - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+      institution: Saarland University, Saarbruecken, Germany
+      year: 2014
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - Researcher in the Max Planck Institute for Informatics
+        -
+        - title: Temporal Indexing for Web Archives
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+            - Temporal Information Retrieval
+            - Indexing Text + Time
+    - title: Masters in Science
+      institution: Saarland University, Saarbruecken, Germany
+      year: 2009
       description:
-        - Description 1.
-        - Description 2.
+        - Funded by International Max Planck Research Scholarship (IMPRS)
+        - Msc Thesis: Indexing for Peer-to-Peer Web Archives
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Associate Professor
+      institution: TU Delft
+      year: 2022 - now
       description:
         - Description 1.
         - Description 2.
@@ -41,9 +39,9 @@
           contents:
             - Sub-description 1.
             - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+    - title: Assistant Professor
+      institution: Leibniz University, Hannover
+      year: 2017-2021
       description:
         - Description 1.
         - Description 2.

@@ -38,4 +38,8 @@ profiles:
     image: mandeep.png
     content: about_mandeep.md
     image_circular: false # crops the image to make it circular   
+    
+
+  - align: left
+    content: graduated.md
 ---

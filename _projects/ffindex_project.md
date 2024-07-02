@@ -1,6 +1,6 @@
 ---
 layout: page
-title: project 1
+title: Fast Forward Indexes
 description: with background image
 img: assets/img/12.jpg
 importance: 1
@@ -8,74 +8,56 @@ category: work
 related_publications: true
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+# Fast-Forward Indexes
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+This is the implementation of [Fast-Forward indexes](https://dl.acm.org/doi/abs/10.1145/3485447.3511955).
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+**Important**: As this library is still in its early stages, the API is subject to change!
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+## Installation
 
-You can also put regular text between your rows of images, even citations {% cite einstein1950meaning %}.
-Say you wanted to write a bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+Install the package via `pip`:
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
+```bash
+pip install fast-forward-indexes
 ```
 
-{% endraw %}
+## Getting Started
+
+Using a Fast-Forward index is as simple as providing a TREC run with retrieval scores:
+
+```python
+from pathlib import Path
+from fast_forward import OnDiskIndex, Mode, Ranking
+from fast_forward.encoder import TCTColBERTQueryEncoder
+
+# choose a pre-trained query encoder
+encoder = TCTColBERTQueryEncoder("castorini/tct_colbert-msmarco")
+
+# load an index on disk
+ff_index = OnDiskIndex.load(Path("/path/to/index.h5"), encoder, Mode.MAXP)
+
+# load a run (TREC format) and attach all required queries
+first_stage_ranking = (
+    Ranking.from_file(Path("/path/to/input/run.tsv"))
+    .attach_queries(
+        {
+            "q1": "query 1",
+            "q2": "query 2",
+            # ...
+            "qn": "query n",
+        }
+    )
+    .cut(5000)
+)
+
+# compute the corresponding semantic scores
+out = ff_index(first_stage_ranking)
+
+# interpolate scores and create a new TREC runfile
+first_stage_ranking.interpolate(out, 0.1).save(Path("/path/to/output/run.tsv"))
+```
+
+## Documentation
+
+A more detailed documentation is available [here](https://mrjleo.github.io/fast-forward-indexes/docs).

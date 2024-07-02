@@ -288,6 +288,8 @@ To build your own retriever you can extend from the class bcqa/retriever/BaseRet
 
 ### Citing & Authors
 
+This work is done with [Venktesh Vishwanath](https://venkteshv.github.io/#home) and Deepali Prabhu.
+
 For citing please use the following bibtex  
 
 ```bibtex

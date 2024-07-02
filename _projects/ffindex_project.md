@@ -10,7 +10,11 @@ related_publications: true
 
 # Fast-Forward Indexes
 
-This is the implementation of [Fast-Forward indexes](https://dl.acm.org/doi/abs/10.1145/3485447.3511955).
+We introduce a simple yet powerful vector forward index designed to enhance document ranking by combining lexical and semantic scores through interpolation called Fast Forward Indexes. Unlike traditional contextual re-rankers and dense indexes that rely on nearest neighbor search, Fast-Forward indexes leverage efficient sparse models for retrieval and pre-computed dense transformer-based vector representations. This approach allows for constant time lookup and fast CPU-based semantic similarity computation during query processing. Additionally, we propose innovative index pruning and early stopping techniques, grounded in theoretical foundations, to boost query processing throughput. 
+
+Based on our work published in [TheWebConf'22](https://dl.acm.org/doi/abs/10.1145/3485447.3511955) and its extension in [TOIS 2024](https://dl.acm.org/doi/pdf/10.1145/3631939) we have demonstrated that Fast-Forward indexes outperform hybrid indexes in both performance and query processing efficiency using only CPUs. 
+
+Following is the implementation of [Fast-Forward indexes](https://dl.acm.org/doi/abs/10.1145/3485447.3511955).
 
 **Important**: As this library is still in its early stages, the API is subject to change!
 

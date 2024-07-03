@@ -12,33 +12,20 @@ giscus_comments: false
 Answering complex questions is a difficult task that requires knowledge retrieval. 
 To address this, we propose our easy to use and  extensible benchmark composing diverse complex QA tasks and provide a toolkit to evaluate zero-shot retrieval capabilities of state-of-the-art dense and sparse retrieval models in an open-domain setting. Additionally, since context-based reasoning is key to complex QA tasks, we extend our toolkit with various LLM engines. Both the above components together allow our users to evaluate the various components in the Retrieval Augmented Generation pipeline. The detailed paper on Dexter can be found here: [link to paper](https://arxiv.org/pdf/2406.17158)
 
-For components in retrieval we draw inspiration from [BEIR] (https://github.com/beir-cellar/beir) and reuse some parts of implementation with modification suited to our setup. We thank the authors for open-sourcing their code.
+For components in retrieval we draw inspiration from [BEIR](https://github.com/beir-cellar/beir) and reuse some parts of implementation with modification suited to our setup. We thank the authors for open-sourcing their code.
 
-## Colab notebook
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1UOZ_JuDcWGKvwcPs4ygCEoGCUUgC1PUs?usp=sharing)
 
-## Setup (from Source)
+## Setup 
 
-1. **Clone the repo**
+To setup from the source first **Clone the repo**, then create a conda environment using `conda create -n bcqa` and finally install the package by running: `pip install -e .`
 
-2. **Create a conda environment:**
-   `conda create -n bcqa`
-
-3. **Install the package:**
-   `pip install -e .`
-
-  
-   
-## From pip
-`pip install dexter-cqa`
-
-  
+Alternatively you can simply use `pip install dexter-cqa`
 
 
-## Datasets
+### Datasets
 
-
-All datasets can be found in one place at [Datasets](https://gitlab.tudelft.nl/venkteshviswan/bcqa_data)
+All datasets can be found at [Datasets](https://gitlab.tudelft.nl/venkteshviswan/bcqa_data)
 
 
 
@@ -53,7 +40,13 @@ All datasets can be found in one place at [Datasets](https://gitlab.tudelft.nl/v
 | FinQA          | finqa          | [Link](https://github.com/czyssrs/FinQA)          | Financial Table and Text multi-hop reasoning | 8k         | 24.8k       |
   
 
-## Retrievers
+Note that these are existing datasets that have been extended to an open-domain setting.
+
+
+### Retrievers
+
+We have experimented with the following retrievers.  
+
 
 |    Name    | Paradigm | More |
 |:----------:|:--------:|:----:|
@@ -68,22 +61,26 @@ All datasets can be found in one place at [Datasets](https://gitlab.tudelft.nl/v
 
 
 
-## Retrieving over large corpus collections
-Since some of the datasets have corpus collection with large sizes (millions), we also support chunking of corpus when doing retrieval. To avoid storing docs in memory inspired by the issue https://github.com/beir-cellar/beir/pull/117 we maintain a list of top-k docs with scores when computing scores chunkwise using heapq.
+**Retrieving over large corpus collections:** Since some of the datasets have corpus collection with large sizes (millions), we also support chunking of corpus when doing retrieval. To avoid storing docs in memory inspired by the issue `https://github.com/beir-cellar/beir/pull/117' we maintain a list of top-k docs with scores when computing scores chunkwise using heapq.
+
+If you have a retriever that you use and find to work favourably please let us know.
 
 
+### LLM Models
 
-## LLM Models
+We use the folowing LLM models in our internal benchmarking:
+ 
 - OpenAI models
 - Mistral
 - Llama
 - FlanT5
 
-  Our toolkit is flexible and can support further new generative models. it will be an ongoing effort and we welcome contributions.
+  Our toolkit is flexible and can support further new generative models. It will be an ongoing effort and we welcome contributions. If you have a LLM that you use and find to work favourably please let us know.
 
 
 
-## Project Structure
+### Project Structure
+
 - data
     - datastructures: Basic data classes for question, answer and others needed in the pipeline.
     - dataloaders: Loaders that take raw json/zip file data and convert them to the format needed in the pipeline
@@ -95,7 +92,6 @@ Since some of the datasets have corpus collection with large sizes (millions), w
 - config: Configuration files with constants and initialization.
 - tests: test cases for the above components
 - utils: utilities needed in the pipeline like retrieval accuracy calculation and matching.
-
 
 
 
@@ -136,10 +132,11 @@ if __name__ == "__main__":
     metrics = RetrievalMetrics(k_values=[1,10,100])
     print(metrics.evaluate_retrieval(qrels=qrels,results=response))
 ```
-## Running Evaluation for Results in Paper
+### Running Evaluation for Results in Paper
 All evaluation scripts dataset wise can be found in the evaluation folder
 
-### Example TAT-QA ( When building from source)
+**Example TAT-QA ( When building from source)**
+
 ```
 curl https://gitlab.tudelft.nl/venkteshviswan/bcqa_data/-/raw/main/tatqa.zip -o tatqa.zip
 ```
@@ -161,18 +158,18 @@ export ca_certs = <path to http_ca.crt path in your ES installation>
 
 export http_auth = <your elasticsearch password>
 ```
-## To reproduce dpr results run
+**To reproduce dpr results run**
 ```
 python3 evaluation/tatqa/run_dpr_inference.py
 ```
 
-## To reproduce colbert results run
+**To reproduce colbert results run**
 ```
 python3 evaluation/tatqa/test_tctcolbert_inference.py
 ```
 Similarly other retrievers can be also run using other scripts in the folder
 
-## To Reproduce LLm Results
+**To reproduce our LLM results**
 ```
 export OPENAI_KEY="<you key here>"
 ```
@@ -180,14 +177,14 @@ To run openAI model using colbert docs, run:
 ```
 python3 evaluation/tatqa/llms/run_rag_few_shot_cot.py
 ```
-Above experiment would help get numbers for FEW-SHOT-COT for gpt-3.5-turbo which can be checked with Table 3.
+The above experiment would help get numbers for FEW-SHOT-COT for gpt-3.5-turbo which can be checked with Table 3.
 
 
 ## Building your own custom dataset
 
 You can quickly build your own dataset in three steps:
 
-### 1) Loading the question, answer and evidence records
+**1) Loading the question, answer and evidence records**
 
 The base data loader by default takes a json file of the format
 
@@ -219,7 +216,7 @@ Under config.ini:
 ```
 my-dataset = 'dir_path'
 ```
-### 1) Loading the corpus
+**2) Loading the corpus**
 To load your own corpus you can provide a json file of the standard format:
 ```
 {"idx":{"text":"...","title":"..",'type":"table/text"}}
@@ -229,7 +226,7 @@ Under config.ini add:
 ```
 my-dataset-corpus = '< path to the json file of above format >'
 ```
-### 3) Add your dataset alias to constants
+**3) Add your dataset alias to constants**
 
 Within config.constants:
 ```python
@@ -258,25 +255,25 @@ and within data/loader/DataLoaderFactory.py:
 
 Your dataset is now ready to be loaded and used.
 
-a) You can load the dataloader as:
+**a) You can load the dataloader as:**
 ```python
 loader_factory = DataLoaderFactory()
 loader = loader_factory.create_dataloader("my-dataset", config_path="config.ini", split=Split.DEV, batch_size=10)
 ```
 
-b) You can load the corpus as:
+**b) You can load the corpus as:**
 ```python
 loader = PassageDataLoader(dataset="my-dataset-corpus",subset_ids=None,config_path="config.ini",tokenizer=None)
 ```
 
-c) You can load RetrieverDataset as:
+**c) You can load RetrieverDataset as:**
 ```python
 loader = RetrieverDataset("my-dataset","my-dataset-corpus",
                                "config.ini", Split.DEV,tokenizer=None)
 ```
 
 
-## Building your own retrievers
+### Building your own retrievers
 
 To build your own retriever you can extend from the class bcqa/retriever/BaseRetriever.py and use it in your evaluation script.
 

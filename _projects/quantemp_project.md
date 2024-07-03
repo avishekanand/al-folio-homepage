@@ -2,7 +2,7 @@
 layout: page
 title: QuanTemp
 description: An open-domain benchmark to verify claims with quantities and temporal expressions
-img: assets/img/quantemp.png
+img: assets/img/quantemp-logo.pdf
 importance: 3
 category: work
 ---
@@ -102,4 +102,26 @@ followed by
 
 ```bash
 python3 code/evaluation/eval_veracity_prediction.py --output_path output/finqa_roberta_claimdecomp.csv
+```
+
+### Citing & Authors
+
+This work is done with [Venktesh Vishwanath](https://venkteshv.github.io/#home), [Abhijit Anand](https://abhijitanand.github.io) and [Vinay Setty](https://www.ux.uis.no/~vsetty/).
+
+For citing please use the following bibtex  
+
+```bibtex
+@article{venky:sigir:24,
+  author       = {Venktesh V and
+                  Abhijit Anand and
+                  Avishek Anand and
+                  Vinay Setty},
+  title        = {QuanTemp: A real-world open-domain benchmark for fact-checking numerical claims},
+  journal    = {Proceedings of SIGIR Conference on
+                  Research and Development in Information Retrieval},
+  year         = {2024},
+  url          = {https://doi.org/10.48550/arXiv.2403.17169},
+  doi          = {10.48550/ARXIV.2403.17169},
+  arxiv    = {2403.17169},
+}
 ```

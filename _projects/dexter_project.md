@@ -2,10 +2,10 @@
 layout: page
 title: Dexter
 description: A benchnmark for open-domain complex answering
-img: assets/img/dexter-logo.png
+img: assets/img/dexter-logo.jpeg
 importance: 2
 category: work
-giscus_comments: true
+giscus_comments: false
 ---
 
 
@@ -276,14 +276,9 @@ loader = RetrieverDataset("my-dataset","my-dataset-corpus",
 ```
 
 
-
-
-
 ## Building your own retrievers
 
 To build your own retriever you can extend from the class bcqa/retriever/BaseRetriever.py and use it in your evaluation script.
-
-
 
 
 ### Citing & Authors
@@ -304,7 +299,3 @@ For citing please use the following bibtex
 }
 ```
 
-
-{% raw %}
-
-{% endraw %}

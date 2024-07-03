@@ -154,6 +154,18 @@
             
           
             
+              
+                
+                <li class="nav-item active">
+                  
+                  <a class="nav-link" href="/projects/">projects
+                    
+                      <span class="sr-only">(current)</span>
+                    
+                  </a>
+                </li>
+              
+            
           
             
           
@@ -291,9 +303,9 @@
       https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
     -->
     
-      <source class="responsive-img-srcset" srcset="/assets/img/12-480.webp 480w,/assets/img/12-800.webp 800w,/assets/img/12-1400.webp 1400w," sizes="250px" type="image/webp"></source>
+      <source class="responsive-img-srcset" srcset="/assets/img/ffindex-logo.pdf-480.webp 480w,/assets/img/ffindex-logo.pdf-800.webp 800w,/assets/img/ffindex-logo.pdf-1400.webp 1400w," sizes="250px" type="image/webp"></source>
     
-    <img src="/assets/img/12.jpg" class="card-img-top" width="100%" height="auto" alt="project thumbnail" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/ffindex-logo.pdf" class="card-img-top" width="100%" height="auto" alt="project thumbnail" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
@@ -301,8 +313,8 @@
 
       
       <div class="card-body">
-        <h2 class="card-title">project 1</h2>
-        <p class="card-text">with background image</p>
+        <h2 class="card-title">Fast Forward Indexes</h2>
+        <p class="card-text">Fast-CPU based re-ranking</p>
         <div class="row ml-1 mr-1 p-0">
           
         </div>
@@ -328,7 +340,7 @@
     
       <source class="responsive-img-srcset" srcset="/assets/img/dexter-logo-480.webp 480w,/assets/img/dexter-logo-800.webp 800w,/assets/img/dexter-logo-1400.webp 1400w," sizes="250px" type="image/webp"></source>
     
-    <img src="/assets/img/dexter-logo.png" class="card-img-top" width="100%" height="auto" alt="project thumbnail" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/dexter-logo.jpeg" class="card-img-top" width="100%" height="auto" alt="project thumbnail" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
@@ -361,9 +373,9 @@
       https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
     -->
     
-      <source class="responsive-img-srcset" srcset="/assets/img/quantemp-480.webp 480w,/assets/img/quantemp-800.webp 800w,/assets/img/quantemp-1400.webp 1400w," sizes="250px" type="image/webp"></source>
+      <source class="responsive-img-srcset" srcset="/assets/img/quantemp-logo.pdf-480.webp 480w,/assets/img/quantemp-logo.pdf-800.webp 800w,/assets/img/quantemp-logo.pdf-1400.webp 1400w," sizes="250px" type="image/webp"></source>
     
-    <img src="/assets/img/quantemp.png" class="card-img-top" width="100%" height="auto" alt="project thumbnail" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/quantemp-logo.pdf" class="card-img-top" width="100%" height="auto" alt="project thumbnail" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
@@ -393,41 +405,6 @@
   <!-- Generate cards for each project -->
   
   <div class="row row-cols-1 row-cols-md-3">
-    
-      <div class="col">
-  <a href="/projects/suwr_project/">
-    <div class="card h-100 hoverable">
-      
-        
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/6-480.webp 480w,/assets/img/6-800.webp 800w,/assets/img/6-1400.webp 1400w," sizes="250px" type="image/webp"></source>
-    
-    <img src="/assets/img/6.jpg" class="card-img-top" width="100%" height="auto" alt="project thumbnail" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-  </picture>
-
-  
-</figure>
-
-      
-      <div class="card-body">
-        <h2 class="card-title">SUWR</h2>
-        <p class="card-text">Interpretability by design</p>
-        <div class="row ml-1 mr-1 p-0">
-          
-        </div>
-      </div>
-    </div>
-  </a>
-</div>
-
     
   </div>
   
@@ -676,6 +653,13 @@
               handler: () => {
                 window.location.href = "/publications/";
               },
+            },{id: "nav-projects",
+              title: "projects",
+              description: "A growing collection of your cool projects.",
+              section: "Navigation",
+              handler: () => {
+                window.location.href = "/projects/";
+              },
             },{id: "nav-teaching",
               title: "teaching",
               description: "Materials for courses in the bachelors, and the masters level at TU Delft.",
@@ -755,9 +739,9 @@
               description: "A benchnmark for open-domain complex answering",
               section: "Projects",handler: () => {
                   window.location.href = "/projects/dexter_project/";
-                },},{id: "projects-project-1",
-              title: 'project 1',
-              description: "with background image",
+                },},{id: "projects-fast-forward-indexes",
+              title: 'Fast Forward Indexes',
+              description: "Fast-CPU based re-ranking",
               section: "Projects",handler: () => {
                   window.location.href = "/projects/ffindex_project/";
                 },},{id: "projects-quantemp",
@@ -765,11 +749,6 @@
               description: "An open-domain benchmark to verify claims with quantities and temporal expressions",
               section: "Projects",handler: () => {
                   window.location.href = "/projects/quantemp_project/";
-                },},{id: "projects-suwr",
-              title: 'SUWR',
-              description: "Interpretability by design",
-              section: "Projects",handler: () => {
-                  window.location.href = "/projects/suwr_project/";
                 },},{
             id: 'socials-email',
             title: 'Send email',

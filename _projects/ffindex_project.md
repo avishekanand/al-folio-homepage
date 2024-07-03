@@ -1,14 +1,14 @@
 ---
 layout: page
 title: Fast Forward Indexes
-description: with background image
-img: assets/img/12.jpg
+description: Fast-CPU based re-ranking 
+img: assets/img/ffindex-logo.pdf
 importance: 1
 category: work
-related_publications: true
+related_publications: false
 ---
 
-# Fast-Forward Indexes
+
 
 We introduce a simple yet powerful vector forward index designed to enhance document ranking by combining lexical and semantic scores through interpolation called Fast Forward Indexes. Unlike traditional contextual re-rankers and dense indexes that rely on nearest neighbor search, Fast-Forward indexes leverage efficient sparse models for retrieval and pre-computed dense transformer-based vector representations. This approach allows for constant time lookup and fast CPU-based semantic similarity computation during query processing. Additionally, we propose innovative index pruning and early stopping techniques, grounded in theoretical foundations, to boost query processing throughput. 
 
@@ -65,3 +65,49 @@ first_stage_ranking.interpolate(out, 0.1).save(Path("/path/to/output/run.tsv"))
 ## Documentation
 
 A more detailed documentation is available [here](https://mrjleo.github.io/fast-forward-indexes/docs).
+
+### Citing & Authors
+
+This work is done with [Jurek Leonhardt](https://mrjleo.github.io).
+
+For citing please use the following bibtex
+
+```bibtex
+@article{LeonhardtMRKAA:tois:24,
+  author       = {Jurek Leonhardt and
+                  Henrik M{\"{u}}ller and
+                  Koustav Rudra and
+                  Megha Khosla and
+                  Abhijit Anand and
+                  Avishek Anand},
+  title        = {Efficient Neural Ranking Using Forward Indexes and Lightweight Encoders},
+  journal      = {Transactions of Information Systems (TOIS)},
+  volume       = {42},
+  number       = {5},
+  pages        = {117:1--117:34},
+  year         = {2024},
+  url          = {https://doi.org/10.1145/3631939},
+  arxiv          = {2311.01263},
+  pdf    = {https://arxiv.org/pdf/2311.01263},
+  doi          = {10.1145/3631939},
+}
+``` 
+
+```bibtex
+@inproceedings{LeonhardtRKAA22:www:22,
+  author       = {Jurek Leonhardt and
+                  Koustav Rudra and
+                  Megha Khosla and
+                  Abhijit Anand and
+                  Avishek Anand},
+  title        = {Efficient Neural Ranking using Forward Indexes},
+  journal    = {TheWebConference '22: The {ACM} Web Conference 2022, Virtual Event, Lyon, France,
+                  April 25 - 29, 2022},
+  pages        = {266--276},
+  publisher    = {ACM},
+  year         = {2022},
+  arxiv       = {2311.01263},
+  url          = {https://doi.org/10.1145/3485447.3511955},
+  doi          = {10.1145/3485447.3511955}
+}
+```  

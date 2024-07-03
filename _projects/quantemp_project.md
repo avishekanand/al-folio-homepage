@@ -2,7 +2,7 @@
 layout: page
 title: QuanTemp
 description: An open-domain benchmark to verify claims with quantities and temporal expressions
-img: assets/img/quantemp-logo.pdf
+img: assets/img/quantemp-logo.png
 importance: 3
 category: work
 ---

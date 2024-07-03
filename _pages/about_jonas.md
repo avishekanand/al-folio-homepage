@@ -1,15 +1,14 @@
 **Joans Wallat**
 
 
-My name is Jonas and I am currently working to obtain my PhD in Interpretable AI from Leibniz University in Hannover, Germany. My research focuses on Interpretability in socio-technical systems. Currently, my interests mainly focus on:
+I'm Jonas and I work with Avishek on interpretability and robustness of LLMs. The main goal is understanding how information is processed and making sure the LLMs do so reliably. Currently, my interests mainly focus on:
 
 
 
 Research interests:
 
-	- Probing deep learning models
-    - Interpretability for search
-    - Interpretability and bias in news recommendation
-    - Personalized medicine
+	- Mechanistic interpretability
+    - QA & IR
+    - Robustness of Deep Learning models
 
 [Homepage](https://jwallat.github.io)

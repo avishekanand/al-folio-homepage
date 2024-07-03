@@ -2,13 +2,11 @@
 layout: page
 title: Fast Forward Indexes
 description: Fast-CPU based re-ranking 
-img: assets/img/ffindex-logo.pdf
+img: assets/img/ffindex-logo.png
 importance: 1
 category: work
 related_publications: false
 ---
-
-
 
 We introduce a simple yet powerful vector forward index designed to enhance document ranking by combining lexical and semantic scores through interpolation called Fast Forward Indexes. Unlike traditional contextual re-rankers and dense indexes that rely on nearest neighbor search, Fast-Forward indexes leverage efficient sparse models for retrieval and pre-computed dense transformer-based vector representations. This approach allows for constant time lookup and fast CPU-based semantic similarity computation during query processing. Additionally, we propose innovative index pruning and early stopping techniques, grounded in theoretical foundations, to boost query processing throughput. 
 

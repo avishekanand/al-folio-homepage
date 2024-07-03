@@ -2,7 +2,7 @@
 layout: page
 title: Dexter
 description: A benchnmark for open-domain complex answering
-img: assets/img/dexter-logo.pdf
+img: assets/img/dexter-logo.png
 importance: 2
 category: work
 giscus_comments: false

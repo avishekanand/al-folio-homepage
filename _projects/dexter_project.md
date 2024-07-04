@@ -12,6 +12,7 @@ giscus_comments: false
 Answering complex questions is a difficult task that requires knowledge retrieval. 
 To address this, we propose our easy to use and  extensible benchmark composing diverse complex QA tasks and provide a toolkit to evaluate zero-shot retrieval capabilities of state-of-the-art dense and sparse retrieval models in an open-domain setting. Additionally, since context-based reasoning is key to complex QA tasks, we extend our toolkit with various LLM engines. Both the above components together allow our users to evaluate the various components in the Retrieval Augmented Generation pipeline. The detailed paper on Dexter can be found here: [link to paper](https://arxiv.org/pdf/2406.17158)
 
+
 For components in retrieval we draw inspiration from [BEIR](https://github.com/beir-cellar/beir) and reuse some parts of implementation with modification suited to our setup. We thank the authors for open-sourcing their code.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1UOZ_JuDcWGKvwcPs4ygCEoGCUUgC1PUs?usp=sharing)

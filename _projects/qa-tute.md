@@ -27,13 +27,13 @@ This half-day tutorial is divided into two parts of 90 minutes each -- QA over K
 
 <br>    
 
- 2. **[Question Answering over Textual Sources](http://www.l3s.de/~anand/talks/2020-07-26-sigir20-qa-tute-text.pdf)** by [Avishek Anand](http://www.avishekanand.com)
-    - [Background](http://www.l3s.de/~anand/talks/text-intro.pdf) [:movie_camera:](http://www.l3s.de/~anand/qa-tute/text-intro.mp4)
-    - [Machine Reading Comprehension](http://www.l3s.de/~anand/talks/text-mrc.pdf)  [:movie_camera:](http://www.l3s.de/~anand/qa-tute/text-mrc.mp4)
-    - [Open-domain QA](http://www.l3s.de/~anand/talks/text-odqa.pdf) [:movie_camera:](http://www.l3s.de/~anand/qa-tute/text-odqa.mp4)
-    - [Feedback and Interpretability](http://www.l3s.de/~anand/talks/text-feedback-interpretability.pdf) [:movie_camera:](http://www.l3s.de/~anand/qa-tute/text-feedback-interpretability.mp4)
-    - [Conversational QA](http://www.l3s.de/~anand/talks/text-conversational-qa.pdf) [:movie_camera:](http://www.l3s.de/~anand/qa-tute/text-conv-qa.mp4)
-    - [Summary](http://www.l3s.de/~anand/talks/text-conclusions.pdf) [:movie_camera:](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-1.mp4)
+ 2. **[Question Answering over Textual Sources](../qa-sigir-20/text-intro.pdf)** by [Avishek Anand](http://www.avishekanand.com)
+    - [Background](../qa-sigir-20/text-intro.pdf) [:movie_camera:](../qa-sigir-20/video/text-intro.mp4)
+    - [Machine Reading Comprehension](../qa-sigir-20/text-mrc.pdf)  [:movie_camera:](../qa-sigir-20/video/text-mrc.mp4)
+    - [Open-domain QA](../qa-sigir-20/text-odqa.pdf) [:movie_camera:](../qa-sigir-20/video/text-odqa.mp4)
+    - [Feedback and Interpretability](../qa-sigir-20/text-feedback-interpretability.pdf) [:movie_camera:](../qa-sigir-20/video/text-feedback-interpretability.mp4)
+    - [Conversational QA](../qa-sigir-20/text-conversational-qa.pdf) [:movie_camera:](../qa-sigir-20/video/text-conv-qa.mp4)
+    - [Summary](../qa-sigir-20/text-conclusions.pdf)
 
 <br>
 

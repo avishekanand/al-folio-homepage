@@ -360,41 +360,6 @@
 
     
       <div class="col">
-  <a href="/projects/exir-tute/">
-    <div class="card h-100 hoverable">
-      
-        
-
-<figure>
-  <picture>
-    <!-- Auto scaling with imagemagick -->
-    <!--
-      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
-      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
-    -->
-    
-      <source class="responsive-img-srcset" srcset="/assets/img/exir-logo-480.webp 480w,/assets/img/exir-logo-800.webp 800w,/assets/img/exir-logo-1400.webp 1400w," sizes="250px" type="image/webp"></source>
-    
-    <img src="/assets/img/exir-logo.jpg" class="card-img-top" width="100%" height="auto" alt="project thumbnail" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-  </picture>
-
-  
-</figure>
-
-      
-      <div class="card-body">
-        <h2 class="card-title">Explainable Information Retrieval</h2>
-        <p class="card-text">Resources for the tutorial on Explainable IR as presented in SIGIR 2023, and FIRE 2023</p>
-        <div class="row ml-1 mr-1 p-0">
-          
-        </div>
-      </div>
-    </div>
-  </a>
-</div>
-
-    
-      <div class="col">
   <a href="/projects/quantemp_project/">
     <div class="card h-100 hoverable">
       
@@ -432,14 +397,84 @@
   </div>
   
   
-  <a id="fun" href=".#fun">
-    <h2 class="category">fun</h2>
+  <a id="tutorials" href=".#tutorials">
+    <h2 class="category">tutorials</h2>
   </a>
   
   
   <!-- Generate cards for each project -->
   
   <div class="row row-cols-1 row-cols-md-3">
+    
+      <div class="col">
+  <a href="/projects/exir-tute/">
+    <div class="card h-100 hoverable">
+      
+        
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/exir-logo-480.webp 480w,/assets/img/exir-logo-800.webp 800w,/assets/img/exir-logo-1400.webp 1400w," sizes="250px" type="image/webp"></source>
+    
+    <img src="/assets/img/exir-logo.jpg" class="card-img-top" width="100%" height="auto" alt="project thumbnail" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </picture>
+
+  
+</figure>
+
+      
+      <div class="card-body">
+        <h2 class="card-title">Explainable Information Retrieval</h2>
+        <p class="card-text">Resources for the tutorial on Explainable IR as presented in SIGIR 2023, and FIRE 2023</p>
+        <div class="row ml-1 mr-1 p-0">
+          
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    
+      <div class="col">
+  <a href="/projects/qa-tute/">
+    <div class="card h-100 hoverable">
+      
+        
+
+<figure>
+  <picture>
+    <!-- Auto scaling with imagemagick -->
+    <!--
+      See https://www.debugbear.com/blog/responsive-images#w-descriptors-and-the-sizes-attribute and
+      https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
+    -->
+    
+      <source class="responsive-img-srcset" srcset="/assets/img/qa-tute-20-480.webp 480w,/assets/img/qa-tute-20-800.webp 800w,/assets/img/qa-tute-20-1400.webp 1400w," sizes="250px" type="image/webp"></source>
+    
+    <img src="/assets/img/qa-tute-20.png" class="card-img-top" width="100%" height="auto" alt="project thumbnail" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </picture>
+
+  
+</figure>
+
+      
+      <div class="card-body">
+        <h2 class="card-title">Question Answering on the Curated Web</h2>
+        <p class="card-text">Resources for the tutorial on Question Answering as presented in SIGIR 2020, and ICTIR 2021</p>
+        <div class="row ml-1 mr-1 p-0">
+          
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+
     
   </div>
   
@@ -784,6 +819,11 @@
               description: "Fast-CPU based re-ranking",
               section: "Projects",handler: () => {
                   window.location.href = "/projects/ffindex_project/";
+                },},{id: "projects-question-answering-on-the-curated-web",
+              title: 'Question Answering on the Curated Web',
+              description: "Resources for the tutorial on Question Answering as presented in SIGIR 2020, and ICTIR 2021",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/qa-tute/";
                 },},{id: "projects-quantemp",
               title: 'QuanTemp',
               description: "An open-domain benchmark to verify claims with quantities and temporal expressions",

@@ -4,7 +4,7 @@ title: Explainable Information Retrieval
 description: Resources for the tutorial on Explainable IR as presented in SIGIR 2023, and FIRE 2023 
 img: assets/img/exir-logo.jpg
 importance: 2
-category: work
+category: tutorials
 giscus_comments: false
 ---
 
@@ -18,14 +18,10 @@ This half-day tutorial is divided into two parts of 90 minutes each -- In the fi
 ## Contents
 
  1. **[Notions of Explainable IR](../exir-sigir-24-pdfs/PART-I-ExIR-intro.pdf)** by [Avishek Anand](http://www.avishekanand.com). 
- 2. **[Intrinsic Methods for ExIR](../exir-sigir-24-pdfs/PART-III-ExIR-by-design.pdf)** by [Avishek Anand](http://www.avishekanand.com). 
- 3. **[Probing transformer models](../exir-sigir-24-pdfs/PART-III-ExIR-by-design.pdf)** by [Avishek Anand](http://www.avishekanand.com). 
- 
-<br>    
-
-4. **[Posthoc approaches in ExIR](../exir-sigir-24-pdfs/PART-II-ExIR-posthoc.pdf)** by [Procheta Sen](https://procheta.github.io/sprocheta/). 
-5. **[Axiomatic IR for Interpretability](../exir-sigir-24-pdfs/PART-IV-ExIR-axioms.pdf)** by [Sourav Saha](https://souravsaha.github.io). 
-6. **[Outlook and Conclusion](../exir-sigir-24-pdfs/PART-V-ExIR-conclusion.pdf)** by [Avishek Anand](https://www.avishekanand.com). 
+ 2. **[Intrinsic Methods for ExIR and Probing](../exir-sigir-24-pdfs/PART-III-ExIR-by-design.pdf)** by [Avishek Anand](http://www.avishekanand.com). 
+3. **[Posthoc approaches in ExIR](../exir-sigir-24-pdfs/PART-II-ExIR-posthoc.pdf)** by [Procheta Sen](https://procheta.github.io/sprocheta/). 
+4. **[Axiomatic IR for Interpretability](../exir-sigir-24-pdfs/PART-IV-ExIR-axioms.pdf)** by [Sourav Saha](https://souravsaha.github.io). 
+5. **[Outlook and Conclusion](../exir-sigir-24-pdfs/PART-V-ExIR-conclusion.pdf)** by [Avishek Anand](https://www.avishekanand.com). 
 
 <br>
 

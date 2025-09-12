@@ -1,4 +1,4 @@
-**Past PhD Students**
+**Past PhD Students and Postdocs**
 
 I have been lucky to have worked with the following past PhD students.
 
@@ -8,7 +8,17 @@ I have been lucky to have worked with the following past PhD students.
 
 [Zijian Zhang](https://scholar.google.de/citations?user=sSp1NcgAAAAJ&hl=de)
 
-[Besnik Fetahu](https://scholar.google.com/citations?user=-CQlI8EAAAAJ&hl=en&oi=ao) (co-advised with Prof. Wolfgang Nejdl) 
+[Besnik Fetahu](https://scholar.google.com/citations?user=-CQlI8EAAAAJ&hl=en&oi=ao) (now at Amazon)
+
+[Lijun Lyu](https://www.linkedin.com/in/lijun-lyu/?originalSubdomain=uk) (now at Amazon)
 
 [Yumeng Wang](https://www.universiteitleiden.nl/en/staffmembers/yumeng-wang#tab-3) (now at Leiden University)       
+
+[Venktesh Viswanathan](http://venkteshv.github.io) (now Asst. Prof. in Stockholm University)
+
+[Jurek Leonhardt](https://jleo.net) (now at TU Delft)
+
+[Maximillian Idahl](https://www.linkedin.com/in/maximilianidahl/?originalSubdomain=de) (now at Ellamind)
+
+[Koustav Rudra](https://sites.google.com/view/krudra5/home) (now Asst. prof. IIT Kharagpur)
 

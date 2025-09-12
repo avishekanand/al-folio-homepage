@@ -1,6 +1,6 @@
 **Past PhD Students and Postdocs**
 
-I have been lucky to have worked with the following past PhD students.
+I have been lucky to have worked with the following past PhD students and PostDocs.
 
 [Jaspreet Singh](http://jaz7290.github.io)
 
@@ -22,3 +22,6 @@ I have been lucky to have worked with the following past PhD students.
 
 [Koustav Rudra](https://sites.google.com/view/krudra5/home) (now Asst. prof. IIT Kharagpur)
 
+[Amir Abolfazli](https://www.linkedin.com/in/amir-abolfazli/)
+
+[Abhijit Anand](https://abhijitanand.github.io)

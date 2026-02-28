@@ -10,6 +10,10 @@ nav_order: 2
 <!-- _pages/publications.md -->
 <div class="publications">
 
+<a href="/assets/bibliography/papers.bib" download="papers.bib" class="btn btn-sm z-depth-0" role="button" style="margin-bottom: 1rem;">
+  <i class="fas fa-download"></i> Download BibTeX
+</a>
+
 {% bibliography %}
 
 </div>

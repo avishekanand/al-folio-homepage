@@ -14,7 +14,7 @@ nav_order: 6
 
 This course introduces students to the fundamental concepts and techniques of data mining. Topics include data preprocessing, probabilistic counting, dimensionality reduction, clustering, anomaly detection, and mining text and graph data. The course also includes practical sessions where students apply these techniques using popular data mining tools and software.
 
-[Studyguide Link](https://studiegids.tudelft.nl/a101_displayCourse.do?course_id=67581)
+[Studyguide Link](https://studiegids.tudelft.nl/opleidingen/study-guide/educations/13603#/details/14273)
 
 [Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774633)
 
@@ -27,7 +27,7 @@ This course introduces students to the fundamental concepts and techniques of da
 
 In this course, students explore the principles and practices of information retrieval. The syllabus covers the design and implementation of search engines, text indexing, query processing, and evaluation of information retrieval systems. Special topics include learning-to-rank, neural ranking models, and recommender systems.
 
-[Studyguide Link](https://studiegids.tudelft.nl/a101_displayCourse.do?course_id=70225)
+[Studyguide Link](https://studiegids.tudelft.nl/courses/study-guide/educations/14768)
 
 [Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774748)
 
@@ -40,7 +40,7 @@ In this course, students explore the principles and practices of information ret
 
 This course delves into the field of Natural Language Processing, covering both the theoretical and practical aspects. Students learn about text processing, language modeling, syntactic and semantic analysis, and large-language models. The course emphasizes hands-on projects and applications of NLP techniques in real-world scenarios.
 
-[Coursebase Link](https://studiegids.tudelft.nl/a101_displayCourse.do?course_id=63115&_NotifyTextSearch_)
+[Studyguide Link](https://studiegids.tudelft.nl/courses/study-guide/educations/14803)
 
 [Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774756)  
 

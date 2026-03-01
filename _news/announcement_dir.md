@@ -6,4 +6,4 @@ related_posts: false
 published: false
 ---
 
-📢 Organized the [Dutch-Belgian IR Conference](https://dir2023.github.io/DIR2023/) or DIR 2023! Fun talks with some great minds in IR 🌐 🔍 
+📢 Organized the [Dutch-Belgian IR Conference](https://dir2023.github.io/DIR2023/) or DIR 2023! Fun talks with some great minds in IR 🌐 🔍

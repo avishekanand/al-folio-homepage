@@ -21,6 +21,7 @@ This course introduces students to the fundamental concepts and techniques of da
 ---
 
 ### Information Retrieval
+
 **Level**: Masters
 
 **Co-taught with**: Sole Pera, Jie Yang
@@ -34,6 +35,7 @@ In this course, students explore the principles and practices of information ret
 ---
 
 ### Natural Language Processing (NLP)
+
 **Level**: Masters
 
 **Co-taught with**: Jie Yang
@@ -42,18 +44,16 @@ This course delves into the field of Natural Language Processing, covering both 
 
 [Studyguide Link](https://studiegids.tudelft.nl/courses/study-guide/educations/14803)
 
-[Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774756)  
-
-
-
+[Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774756)
 
 ---
+
 ### Past Courses (@Leibniz University Hannover)
+
 ---
-
-
 
 ### SS 2019 - 2021: Deep Learning
+
 **Level**: Masters
 
 **Course Description**: Foundations of Deep Learning with applications. The aim of this lecture is to provide a solid foundation about deep learning and its applications. We will first study regular machine learning and basic, simple deep learning architectures. Afterwards we will focus on the applications of deep learning/neural networks, including current cutting-edge research. The lecture has both theoretical and programmatic aspects. Students will be exposed to popular machine learning problems and datasets while being able to work hands on with frameworks such as TensorFlow and scikit-learn.
@@ -61,15 +61,15 @@ This course delves into the field of Natural Language Processing, covering both 
 ---
 
 ### SS 2016 - 2018: Algorithms for Big Data
+
 **Level**: Masters
 
 **Course Description**: Concepts and foundations of modern algorithms for Processing, Mining, and Learning for Big Datasets. The aim of this lecture is to learn efficient algorithms that are used for processing large datasets. The course involves learning scalable approaches to some of the fundamental problems involving finding similar items, clustering, recmmender systems and graph mining. The lecture has both theoretical and programmatic aspects. Students will be exposed to large distributed data processing frameworks like Hadoop and Spark.
 
-
-
 ---
 
 ### WS 2017 - 19: Foundations of Probabilistic Information Retrieval
+
 **Level**: Masters
 
 **Course Description**: The aim of this lecture is to learn the probabilistic underpinings of modern information retrieval techniques. We will study probabilistic modeling, machine learning, deep learning and how to apply concepts from these areas to improve search engines. The lecture has both theoretical and programmatic aspects. Students will be exposed to popular machine learning problems and datasets while being able to work hands on with frameworks such as tensorflow and scipy.
@@ -77,6 +77,7 @@ This course delves into the field of Natural Language Processing, covering both 
 ---
 
 ### WS 2014 - 2016: Temporal Information Retrieval
+
 **Level**: Masters
 
 **Course Description**: Masters level course on understanding temporal aspects and issues in Information Retrieval.
@@ -84,9 +85,9 @@ This course delves into the field of Natural Language Processing, covering both 
 ---
 
 ### Puzzling Problems in Computer Science
+
 **Level**: Bachelors
 
 **Course Description**: Bachelor course which presents computer science problems in the form of puzzles.
 
 ---
-

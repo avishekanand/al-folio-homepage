@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Explainable Information Retrieval
-description: Resources for the tutorial on Explainable IR as presented in SIGIR 2023, and FIRE 2023 
+description: Resources for the tutorial on Explainable IR as presented in SIGIR 2023, and FIRE 2023
 img: assets/img/exir-logo.jpg
 importance: 2
 category: tutorials
@@ -10,23 +10,22 @@ giscus_comments: false
 
 This tutorial presents explainable information retrieval (ExIR), an emerging area focused on fostering responsible and trustworthy deployment of machine learning systems in the context of information retrieval. As the field has rapidly evolved in the past 4-5 years, numerous approaches have been proposed that focus on different access modes, stakeholders, and model development stages. This tutorial aims to introduce IR-centric notions, classification, and evaluation styles in ExIR, while focusing on IR-specific tasks such as ranking, text classification, and learning-to-rank systems. We will delve into method families and their adaptations to IR, extensively covering post-hoc methods, axiomatic and probing approaches, and recent advances in interpretability-by-design approaches. We will also discuss ExIR applications for different stakeholders, such as researchers, practitioners, and end-users, in contexts like web search, patent and legal search, and high-stakes decision-making tasks. To facilitate practical understanding, we will provide a hands-on session on applying ExIR methods, reducing the entry barrier for students, researchers, and practitioners alike. For a more detailed overview of the field refer to this survey on [explainable information retrieval](https://arxiv.org/pdf/2211.02405).
 
-
-This half-day tutorial is divided into two parts of 90 minutes each -- In the first part we explore the notions of explainable IR, probing neural models and explainable-by-design approaches. In the second half, we delve deeper into axiomatic IR and its connection to interpretability and some of the popular posthoc approaches. 
+This half-day tutorial is divided into two parts of 90 minutes each -- In the first part we explore the notions of explainable IR, probing neural models and explainable-by-design approaches. In the second half, we delve deeper into axiomatic IR and its connection to interpretability and some of the popular posthoc approaches.
 
 <br>
 
 ## Contents
 
- 1. **[Notions of Explainable IR](../exir-sigir-24-pdfs/PART-I-ExIR-intro.pdf)** by [Avishek Anand](http://www.avishekanand.com). 
- 2. **[Intrinsic Methods for ExIR and Probing](../exir-sigir-24-pdfs/PART-III-ExIR-by-design.pdf)** by [Avishek Anand](http://www.avishekanand.com). 
-3. **[Posthoc approaches in ExIR](../exir-sigir-24-pdfs/PART-II-ExIR-posthoc.pdf)** by [Procheta Sen](https://procheta.github.io/sprocheta/). 
-4. **[Axiomatic IR for Interpretability](../exir-sigir-24-pdfs/PART-IV-ExIR-axioms.pdf)** by [Sourav Saha](https://souravsaha.github.io). 
-5. **[Outlook and Conclusion](../exir-sigir-24-pdfs/PART-V-ExIR-conclusion.pdf)** by [Avishek Anand](https://www.avishekanand.com). 
+1.  **[Notions of Explainable IR](../exir-sigir-24-pdfs/PART-I-ExIR-intro.pdf)** by [Avishek Anand](http://www.avishekanand.com).
+2.  **[Intrinsic Methods for ExIR and Probing](../exir-sigir-24-pdfs/PART-III-ExIR-by-design.pdf)** by [Avishek Anand](http://www.avishekanand.com).
+3.  **[Posthoc approaches in ExIR](../exir-sigir-24-pdfs/PART-II-ExIR-posthoc.pdf)** by [Procheta Sen](https://procheta.github.io/sprocheta/).
+4.  **[Axiomatic IR for Interpretability](../exir-sigir-24-pdfs/PART-IV-ExIR-axioms.pdf)** by [Sourav Saha](https://souravsaha.github.io).
+5.  **[Outlook and Conclusion](../exir-sigir-24-pdfs/PART-V-ExIR-conclusion.pdf)** by [Avishek Anand](https://www.avishekanand.com).
 
 <br>
 
- 
 ---
+
 ## References
 
 <br>
@@ -51,7 +50,7 @@ This half-day tutorial is divided into two parts of 90 minutes each -- In the fi
 
 [10] Adam Berger and John Lafferty. 1999. Information retrieval as statistical translation. In Proceedings of the 22nd annual international ACM SIGIR conference on Research and development in information retrieval. 222–229.
 
-[11] Umang Bhatt, Alice Xiang, Shubham Sharma, Adrian Weller, Ankur Taly, Yunhan Jia, Joydeep Ghosh, Ruchir Puri, José M. F. Moura, and Peter Eckersley. 2020. Explainable Machine Learning in Deployment. In Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency (Barcelona, Spain) (FAT* ’20). Association for Computing Machinery, New York, NY, USA, 648–657. https://doi.org/10.1145/3351095.3375624
+[11] Umang Bhatt, Alice Xiang, Shubham Sharma, Adrian Weller, Ankur Taly, Yunhan Jia, Joydeep Ghosh, Ruchir Puri, José M. F. Moura, and Peter Eckersley. 2020. Explainable Machine Learning in Deployment. In Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency (Barcelona, Spain) (FAT\* ’20). Association for Computing Machinery, New York, NY, USA, 648–657. https://doi.org/10.1145/3351095.3375624
 
 [12] Adrien Bibal, Rémi Cardon, David Alfter, Rodrigo Wilkens, Xiaoou Wang, Thomas François, and Patrick Watrin. 2022. Is Attention Explanation? An Introduction to the Debate. In Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). Association for Computational Linguistics, Dublin, Ireland, 3889–3900. https://doi.org/10.18653/v1/2022.acl-long.269
 
@@ -75,10 +74,9 @@ Inference with Natural Language Explanations. In Advances in Neural Information 
 
 [21] MarkJamesCarman,FabioCrestani,MorganHarvey,andMarkBaillie.2010.Towardsquerylogbasedpersonalization using topic models. In Proceedings of the 19th ACM Conference on Information and Knowledge Management, CIKM 2010,Toronto,Ontario,Canada,October26-30,2010.ACM,1849–1852. https://doi.org/10.1145/1871437.1871745
 
-
 ### Citing & Authors
 
-For citing please use the following bibtex  
+For citing please use the following bibtex
 
 ```bibtex
 @article{DBLP:journals/corr/abs-2211-02405,
@@ -93,7 +91,6 @@ For citing please use the following bibtex
   volume       = {abs/2211.02405},
   year         = {2022},
   pdf       = {https://arxiv.org/abs/2211.02405},
-  
+
 }
 ```
-

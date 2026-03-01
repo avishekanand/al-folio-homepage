@@ -4,6 +4,6 @@ Hannah is a PhD student working on topics at the intersection of Natural Languag
 
 Research interests:
 
-  - Natural Language Processing
-  - Information Retrieval
-  - Trustworthy AI Systems
+- Natural Language Processing
+- Information Retrieval
+- Trustworthy AI Systems

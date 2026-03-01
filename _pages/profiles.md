@@ -16,8 +16,8 @@ profiles:
   - align: right
     image: mandeep.png
     content: about_mandeep.md
-    image_circular: false # crops the image to make it circular   
-    
+    image_circular: false # crops the image to make it circular
+
   - align: left
     content: about_hannah.md
     image_circular: false

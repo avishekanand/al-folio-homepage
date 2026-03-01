@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-🏆  Best Paper Award at [IEEE International Conference on Data Mining (ICDM)](https://www.cloud-conf.net/icdm2023/) for our paper titled *“A Deep Reinforcement Learning Approach to Configuration Sampling Problem”*.
+🏆 Best Paper Award at [IEEE International Conference on Data Mining (ICDM)](https://www.cloud-conf.net/icdm2023/) for our paper titled _“A Deep Reinforcement Learning Approach to Configuration Sampling Problem”_.

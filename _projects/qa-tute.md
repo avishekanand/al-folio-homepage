@@ -1,13 +1,12 @@
 ---
 layout: page
 title: Question Answering on the Curated Web
-description: Resources for the tutorial on Question Answering as presented in SIGIR 2020, and ICTIR 2021 
+description: Resources for the tutorial on Question Answering as presented in SIGIR 2020, and ICTIR 2021
 img: assets/img/qa-tute-20.png
 importance: 2
 category: tutorials
 giscus_comments: false
 ---
-
 
 The last few years have seen an explosion of research on the topic of automated question answering (QA), spanning the communities of information retrieval, natural language processing, and artificial intelligence. This tutorial would cover the highlights of this really active period of growth for QA to give the audience a grasp over the families of algorithms that are currently being used. We partition research contributions by the underlying source from where answers are retrieved: curated knowledge graphs, unstructured text, or hybrid corpora. We choose this dimension of partitioning as it is the most discriminative when it comes to algorithm design. Other key dimensions are covered within each sub-topic: like the complexity of questions addressed, and degrees of explainability and interactivity introduced in the systems. We would conclude the tutorial with the most promising emerging trends in the expanse of QA, that would help new entrants into this field make the best decisions to take the community forward. Much has changed in the community since the last tutorial on QA in SIGIR 2016, and we believe that this timely overview will indeed benefit a large number of conference participants.
 
@@ -17,19 +16,19 @@ This half-day tutorial is divided into two parts of 90 minutes each -- QA over K
 
 ## Contents
 
- 1. **[Question Answering over Knowledge Graphs](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr.pdf)** by [Rishiraj Saha Roy](http://people.mpi-inf.mpg.de/~rsaharo/).  [[Full Video]](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr.mp4)
+1.  **[Question Answering over Knowledge Graphs](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr.pdf)** by [Rishiraj Saha Roy](http://people.mpi-inf.mpg.de/~rsaharo/). [[Full Video]](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr.mp4)
     - [Background](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-1.pdf). [:movie_camera:](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-1.mp4)
-    - [Simple QA](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-2.pdf). [:movie_camera:](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-2.mp4)  
+    - [Simple QA](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-2.pdf). [:movie_camera:](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-2.mp4)
     - [Complex QA](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-3.pdf). [:movie_camera:](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-3.mp4)
     - [Heterogeneous QA](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-4.pdf). [:movie_camera:](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-4.mp4)
     - [Conversational QA](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-5.pdf). [:movie_camera:](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-5.mp4)
     - [Summary](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-6.pdf). [:movie_camera:](http://people.mpi-inf.mpg.de/~rsaharo/sigir20slides_rsr-part-6.mp4)
 
-<br>    
+<br>
 
- 2. **[Question Answering over Textual Sources](../qa-sigir-20/text-intro.pdf)** by [Avishek Anand](http://www.avishekanand.com)
+2.  **[Question Answering over Textual Sources](../qa-sigir-20/text-intro.pdf)** by [Avishek Anand](http://www.avishekanand.com)
     - [Background](../qa-sigir-20/text-intro.pdf) [:movie_camera:](../qa-sigir-20/video/text-intro.mp4)
-    - [Machine Reading Comprehension](../qa-sigir-20/text-mrc.pdf)  [:movie_camera:](../qa-sigir-20/video/text-mrc.mp4)
+    - [Machine Reading Comprehension](../qa-sigir-20/text-mrc.pdf) [:movie_camera:](../qa-sigir-20/video/text-mrc.mp4)
     - [Open-domain QA](../qa-sigir-20/text-odqa.pdf) [:movie_camera:](../qa-sigir-20/video/text-odqa.mp4)
     - [Feedback and Interpretability](../qa-sigir-20/text-feedback-interpretability.pdf) [:movie_camera:](../qa-sigir-20/video/text-feedback-interpretability.mp4)
     - [Conversational QA](../qa-sigir-20/text-conversational-qa.pdf) [:movie_camera:](../qa-sigir-20/video/text-conv-qa.mp4)
@@ -38,6 +37,7 @@ This half-day tutorial is divided into two parts of 90 minutes each -- QA over K
 <br>
 
 ---
+
 ## References
 
 <br>
@@ -246,10 +246,9 @@ Question Answering Systems via Feedback. In CIKM.
 [97] Kangyan Zhou, Shrimai Prabhumoye, and Alan W Black. 2018. A Dataset for
 Document Grounded Conversations. In EMNLP.
 
-
 ### Citing & Authors
 
-For citing please use the following bibtex  
+For citing please use the following bibtex
 
 ```bibtex
 @book{DBLP:series/synthesis/2021Roy,
@@ -266,4 +265,3 @@ For citing please use the following bibtex
 }
 
 ```
-

@@ -6,4 +6,4 @@ related_posts: false
 published: false
 ---
 
-Paper accepted at [ICML 2024](https://icml.cc/Conferences/2024), titled *"Local Feature Selection without Label or Feature Leakage for Interpretable Machine Learning Predictions"*.   🎉
+Paper accepted at [ICML 2024](https://icml.cc/Conferences/2024), titled _"Local Feature Selection without Label or Feature Leakage for Interpretable Machine Learning Predictions"_. 🎉

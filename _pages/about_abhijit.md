@@ -4,8 +4,8 @@ My name is Abhijit and I am currently working to obtain my PhD from Leibniz Univ
 
 Research interests:
 
-	- Ranking Models
-	- Data Augmentation
-	- Query Modelling
+    - Ranking Models
+    - Data Augmentation
+    - Query Modelling
 
 [Homepage](https://abhijitanand.github.io/)

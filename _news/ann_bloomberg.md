@@ -6,4 +6,4 @@ related_posts: false
 published: false
 ---
 
-🎤  Invited talk on **"Explainable Information Retrieval"** as part of [*Data Science Talk Series*](https://x.com/TechAtBloomberg), Bloomberg, London.
+🎤 Invited talk on **"Explainable Information Retrieval"** as part of [_Data Science Talk Series_](https://x.com/TechAtBloomberg), Bloomberg, London.

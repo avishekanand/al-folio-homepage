@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Associate Prof. at the TU Delft</a> 
+subtitle: <a href='#'>Associate Prof. at the TU Delft</a>
 
 profile:
   align: right
@@ -25,4 +25,3 @@ Avishek Anand is an Associate Professor in the [Web Information Systems (WIS)](h
 He earned his PhD in Computer Science from the [Max Planck Institute for Informatics](https://www.mpi-inf.mpg.de/) in Saarbrücken. Prior to joining TU Delft, he was an Assistant Professor in Information Retrieval at [Leibniz University Hannover](https://www.uni-hannover.de/). His work has been supported by Amazon Research Awards, Schufa GmbH, the German Federal Ministry of Education and Research (BMBF), and the EU Horizon 2020 programme. He is also affiliated with the [L3S Research Center](https://www.l3s.de/) and has been a visiting scholar at Amazon Search.
 
 At TU Delft, he leads the [Research, Engineering, and Infrastructure Team (REIT)](https://reit.tudelft.nl) within the Department of Software Technology. He also serves as General Chair of [ECIR 2026](https://ecir2026.eu), hosted in Delft this year.
-

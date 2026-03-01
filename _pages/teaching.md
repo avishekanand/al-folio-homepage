@@ -16,7 +16,7 @@ This course introduces students to the fundamental concepts and techniques of da
 
 [Studyguide Link](https://studiegids.tudelft.nl/a101_displayCourse.do?course_id=67581)
 
-[Brightspace 2024](https://brightspace.tudelft.nl/d2l/home/595336)
+[Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774633)
 
 ---
 

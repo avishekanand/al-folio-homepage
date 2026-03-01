@@ -22,7 +22,6 @@
   biburl       = {https://dblp.org/rec/journals/tois/LeonhardtMRKAA24.bib},
   abstract = {Dual-encoder-based dense retrieval models have become the standard in IR. They employ large Transformer-based language models, which are notoriously inefficient in terms of resources and latency. We propose Fast-Forward indexes -- vector forward indexes which exploit the semantic matching capabilities of dual-encoder models for efficient and effective re-ranking. Our framework enables re-ranking at very high retrieval depths and combines the merits of both lexical and semantic matching via score interpolation. Furthermore, in order to mitigate the limitations of dual-encoders, we tackle two main challenges: Firstly, we improve computational efficiency by either pre-computing representations, avoiding unnecessary computations altogether, or reducing the complexity of encoders. This allows us to considerably improve ranking efficiency and latency. Secondly, we optimize the memory footprint and maintenance cost of indexes; we propose two complementary techniques to reduce the index size and show that, by dynamically dropping irrelevant document tokens, the index maintenance efficiency can be improved substantially. We perform evaluation to show the effectiveness and efficiency of Fast-Forward indexes -- our method has low latency and achieves competitive results without the need for hardware acceleration, such as GPUs.},
   bibsource    = {dblp computer science bibliography, https://dblp.org},
-  selected  = {true},
 }
 
 @article{DBLP:journals/tois/AnandLSRA24,
@@ -45,7 +44,6 @@
   biburl       = {https://dblp.org/rec/journals/tois/AnandLSRA24.bib},
   abstract = {Contextual ranking models have delivered impressive performance improvements over classical models in the document ranking task. However, these highly over-parameterized models tend to be data-hungry and require large amounts of data even for fine-tuning. In this paper, we propose data-augmentation methods for effective and robust ranking performance. One of the key benefits of using data augmentation is in achieving sample efficiency or learning effectively when we have only a small amount of training data. We propose supervised and unsupervised data augmentation schemes by creating training data using parts of the relevant documents in the query-document pairs. We then adapt a family of contrastive losses for the document ranking task that can exploit the augmented data to learn an effective ranking model. Our extensive experiments on subsets of the MS MARCO and TREC-DL test sets show that data augmentation, along with the ranking-adapted contrastive losses, results in performance improvements under most dataset sizes. Apart from sample efficiency, we conclusively show that data augmentation results in robust models when transferred to out-of-domain benchmarks. Our performance improvements in in-domain and more prominently in out-of-domain benchmarks show that augmentation regularizes the ranking model and improves its robustness and generalization capability.},
   bibsource    = {dblp computer science bibliography, https://dblp.org},
-  selected  = {true},
 }
 
 @inproceedings{DBLP:conf/ecir/LyuROA24,
@@ -102,7 +100,6 @@
   abstract = {Large language models (LLMs) have recently gained significant attention due to their unparalleled ability to perform various natural language processing tasks. These models, benefiting from their advanced natural language understanding capabilities, have demonstrated impressive zero-shot performance. However, the pre-training data utilized in LLMs is often confined to a specific corpus, resulting in inherent freshness and temporal scope limitations. Consequently, this raises concerns regarding the effectiveness of LLMs for tasks involving temporal intents. In this study, we aim to investigate the underlying limitations of general-purpose LLMs when deployed for tasks that require a temporal understanding. We pay particular attention to handling factual temporal knowledge through three popular temporal QA datasets. Specifically, we observe low performance on detailed questions about the past and, surprisingly, for rather new information. In manual and automatic testing, we find multiple temporal errors and characterize the conditions under which QA performance deteriorates. Our analysis contributes to understanding LLM limitations and offers valuable insights into developing future models that can better cater to the demands of temporally-oriented tasks.},
   pdf    = {https://arxiv.org/pdf/2401.12078},
   code  = {https://github.com/jwallat/temporalblindspots},
-  selected  = {true},
 }
 
 
@@ -180,7 +177,6 @@
   timestamp    = {Fri, 21 Jul 2023 01:00:00 +0200},
   biburl       = {https://dblp.org/rec/journals/tkde/FunkeKRA23.bib},
   bibsource    = {dblp computer science bibliography, https://dblp.org},
-  selected  = {true},
   arxiv          = {2105.08621},
   pdf            = {https://arxiv.org/pdf/2105.08621},
 }
@@ -204,7 +200,6 @@
 In this paper we propose ranking models that are inherently interpretable by generating explanations as a by-product of the prediction decision. We introduce the Select-and-Rank paradigm for document ranking, where we first output an explanation as a selected subset of sentences in a document. Thereafter, we solely use the explanation or selection to make the prediction, making explanations first-class citizens in the ranking process. Technically, we treat sentence selection as a latent variable trained jointly with the ranker from the final output. To that end, we propose an end-to-end training technique for Select-and-Rank models utilizing reparameterizable subset sampling using the Gumbel-max trick.
 We conduct extensive experiments to demonstrate that our approach is competitive to state-of-the-art methods. Our approach is broadly applicable to numerous ranking tasks and furthers the goal of building models that are interpretable by design. Finally, we present real-world applications that benefit from our sentence selection method.},
   bibsource    = {dblp computer science bibliography, https://dblp.org},
-  selected  = {true},
 }
 
 @inproceedings{DBLP:conf/ecir/WallatBAA23,
@@ -317,7 +312,6 @@ We conduct extensive experiments to demonstrate that our approach is competitive
   abstract = {Configurable software systems have become increasingly popular as they enable customized software variants. The main challenge in dealing with configuration problems is that the number of possible configurations grows exponentially as the number of features increases. Therefore, algorithms for testing customized software have to deal with the challenge of tractably finding potentially faulty configurations given exponentially large configurations. To overcome this problem, prior works focused on sampling strategies to significantly reduce the number of generated configurations, guaranteeing a high t-wise coverage. In this work, we address the configuration sampling problem by proposing a deep reinforcement learning (DRL) based sampler that efficiently finds the trade-off between exploration and exploitation, allowing for the efficient identification of a minimal subset of configurations that covers all t-wise feature interactions while minimizing redundancy. We also present the CS-Gym, an environment for the configuration sampling. We benchmark our results against heuristic-based sampling methods on eight different feature models of software product lines and show that our method outperforms all sampling methods in terms of sample size. Our findings indicate that the achieved improvement has major implications for cost reduction, as the reduction in sample size results in fewer configurations that need to be tested.
 },
   bibsource    = {dblp computer science bibliography, https://dblp.org},
-  selected  = {true},
   award = {true},
   award_name = {Best Paper Award},
 }
@@ -347,7 +341,6 @@ We conduct extensive experiments to demonstrate that our approach is competitive
   timestamp    = {Fri, 21 Jul 2023 01:00:00 +0200},
   biburl       = {https://dblp.org/rec/conf/sigir/AnandS0VM23.bib},
   bibsource    = {dblp computer science bibliography, https://dblp.org},
-  selected  = {true},
   tutorial  = {true}
 }
 
@@ -454,7 +447,6 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   biburl       = {https://dblp.org/rec/conf/chi/ErleiDMAG22.bib},
   abstract = {As algorithms are increasingly augmenting and substituting human decision-making, understanding how the introduction of computational agents changes the fundamentals of human behavior becomes vital. This pertains to not only users, but also those parties who face the consequences of an algorithmic decision. In a controlled experiment with 480 participants, we exploit an extended version of two-player ultimatum bargaining where responders choose to bargain with either another human, another human with an AI decision aid or an autonomous AI-system acting on behalf of a passive human proposer. Our results show strong responder preferences against the algorithm, as most responders opt for a human opponent and demand higher compensation to reach a contract with autonomous agents. To map these preferences to economic expectations, we elicit incentivized subject beliefs about their opponent’s behavior. The majority of responders maximize their expected value when this is line with approaching the human proposer. In contrast, responders predicting income maximization for the autonomous AI-system overwhelmingly override economic self-interest to avoid the algorithm.},
   bibsource    = {dblp computer science bibliography, https://dblp.org},
-  selected  = {false}
 }
 
 @inproceedings{DBLP:conf/emnlp/ZhuWHYA22,
@@ -521,7 +513,6 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   timestamp    = {Sat, 30 Sep 2023 01:00:00 +0200},
   biburl       = {https://dblp.org/rec/conf/ictir/WangLA22.bib},
   bibsource    = {dblp computer science bibliography, https://dblp.org},
-  selected  = {false},
   pdf            = {https://arxiv.org/pdf/2206.11724},
 }
 @inproceedings{DBLP:conf/sigir/0006SA22,
@@ -617,6 +608,7 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   biburl       = {https://dblp.org/rec/journals/corr/abs-2211-02405.bib},
   bibsource    = {dblp computer science bibliography, https://dblp.org},
   arxiv          = {2211.02405},
+  selected     = {true},
 }
 @article{DBLP:journals/corr/abs-2211-04942,
   author       = {Jurek Leonhardt and
@@ -1214,7 +1206,6 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   biburl       = {https://dblp.org/rec/conf/mir/OttoSAE19.bib},
   bibsource    = {dblp computer science bibliography, https://dblp.org},
   award_name = {Best Paper Award},
-  selected  = {true},
   arxiv          = {1906.08595},
 }
 @inproceedings{DBLP:conf/pkdd/IdahlKA19,
@@ -2360,6 +2351,7 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   bibsource    = {dblp computer science bibliography, https://dblp.org},
   pdf            = {https://aclanthology.org/2025.findings-acl.810/},
   arxiv          = {2503.17073},
+  selected     = {true},
 }
 @inproceedings{DBLP:conf/cikm/RostamiFW0AJB25,
   author       = {Mehrdad Rostami and
@@ -2533,6 +2525,7 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   bibsource    = {dblp computer science bibliography, https://dblp.org},
   pdf            = {https://aclanthology.org/2025.findings-emnlp.1322/},
   arxiv          = {2509.22101},
+  selected     = {true},
 }
 @inproceedings{DBLP:conf/icml/PurohitVBA25,
   author       = {Kiran Purohit and
@@ -2560,6 +2553,7 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   bibsource    = {dblp computer science bibliography, https://dblp.org},
   pdf            = {https://proceedings.mlr.press/v267/purohit25a.html},
   arxiv          = {2506.08607},
+  selected     = {true},
 }
 @inproceedings{DBLP:conf/ictir/WallatHRA25,
   author       = {Jonas Wallat and
@@ -2585,6 +2579,7 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   bibsource    = {dblp computer science bibliography, https://dblp.org},
   pdf            = {https://doi.org/10.1145/3731120.3744592},
   arxiv      = {2412.18004},
+  selected     = {true},
 }
 @inproceedings{DBLP:conf/ictir/DumitruVJA25,
   author       = {Alexandru Dumitru and
@@ -2711,6 +2706,7 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   bibsource    = {dblp computer science bibliography, https://dblp.org},
   pdf            = {https://doi.org/10.1145/3726302.3729910},
   arxiv          = {2504.09353},
+  selected     = {true},
 }
 @inproceedings{DBLP:conf/sigir/0003AVAMMM25,
   author       = {Sourav Saha and
@@ -2822,6 +2818,7 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   year         = {2026},
   arxiv        = {2508.15437},
   pdf          = {https://arxiv.org/pdf/2508.15437},
+  selected     = {true},
 }
 @article{DBLP:journals/corr/abs-2508-16665,
   author       = {Venktesh V and
@@ -2973,6 +2970,7 @@ We find that there are two inherent limitations of using LLMs as query re-writer
   bibsource    = {dblp computer science bibliography, https://dblp.org},
   pdf            = {https://proceedings.mlr.press/v235/oosterhuis24a.html},
   arxiv          = {2407.11778},
+  selected     = {true},
 }
 @inproceedings{DBLP:conf/mai-xai/0006SWA24,
   author       = {Zijian Zhang and

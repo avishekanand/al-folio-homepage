@@ -2,7 +2,7 @@
 
 I have been lucky to have worked with the following past PhD students and PostDocs.
 
-[Jaspreet Singh](http://jaz7290.github.io)
+[Jaspreet Singh](https://jaz7290.github.io)
 
 [Helge Holzmann](https://www.helgeholzmann.de/) (co-advised with Prof. Wolfgang Nejdl) 
 
@@ -14,7 +14,7 @@ I have been lucky to have worked with the following past PhD students and PostDo
 
 [Yumeng Wang](https://www.universiteitleiden.nl/en/staffmembers/yumeng-wang#tab-3) (now at Leiden University)       
 
-[Venktesh Viswanathan](http://venkteshv.github.io) (now Asst. Prof. in Stockholm University)
+[Venktesh Viswanathan](https://venkteshv.github.io) (now Asst. Prof. in Stockholm University)
 
 [Jurek Leonhardt](https://jleo.net) (now at TU Delft)
 

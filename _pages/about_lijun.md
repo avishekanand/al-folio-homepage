@@ -9,4 +9,4 @@ Research interests:
 	- Natural Language Processing
 	- Ranking Models
 
-[Homepage](https://www.wis.ewi.tudelft.nl/lyu)
+[LinkedIn](https://www.linkedin.com/in/lijun-lyu/?originalSubdomain=uk)

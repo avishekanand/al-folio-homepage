@@ -25,3 +25,5 @@ I have been lucky to have worked with the following past PhD students and PostDo
 [Amir Abolfazli](https://www.linkedin.com/in/amir-abolfazli/)
 
 [Abhijit Anand](https://abhijitanand.github.io)
+
+[Maria Heuss](https://mariaheuss.com) (now Asst. Professor at University of Amsterdam (UvA))

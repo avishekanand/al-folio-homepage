@@ -29,7 +29,7 @@ In this course, students explore the principles and practices of information ret
 
 [Studyguide Link](https://studiegids.tudelft.nl/a101_displayCourse.do?course_id=70225)
 
-[Brightspace 2024](https://brightspace.tudelft.nl/d2l/home/596319)
+[Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774748)
 
 ---
 
@@ -42,7 +42,7 @@ This course delves into the field of Natural Language Processing, covering both 
 
 [Coursebase Link](https://studiegids.tudelft.nl/a101_displayCourse.do?course_id=63115&_NotifyTextSearch_)
 
-[Brightspace 2024](https://brightspace.tudelft.nl/d2l/home/595262)  
+[Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774756)  
 
 
 

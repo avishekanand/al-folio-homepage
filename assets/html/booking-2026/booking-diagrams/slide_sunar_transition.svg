@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+
+  <defs>
+    <marker id="arrowSU" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">What if the feedback signal was not a point-wise score?</text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">From point-wise reranker scores to richer feedback signals</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- ===== Pipeline ===== -->
+  <!-- QUERY circle (leftmost) -->
+  <g>
+    <circle cx="100" cy="290" r="42" fill="#dfe3e3" stroke="#2a4747" stroke-width="2"/>
+    <text x="100" y="285" font-size="13" fill="#2a4747" text-anchor="middle" font-weight="700">query</text>
+    <text x="100" y="302" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">q</text>
+  </g>
+
+  <!-- STAGE 1 — Query Understanding -->
+  <g>
+    <rect x="170" y="240" width="220" height="100" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8" rx="4"/>
+    <text x="280" y="270" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700">QUERY</text>
+    <text x="280" y="288" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700">UNDERSTANDING</text>
+    <text x="280" y="312" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">multi-hop question</text>
+    <text x="280" y="328" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">→ sub-questions</text>
+  </g>
+
+  <!-- STAGE 2 — Retrieval + Ranking -->
+  <g>
+    <rect x="460" y="240" width="220" height="100" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8" rx="4"/>
+    <text x="570" y="276" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">RETRIEVAL + RANKING</text>
+    <text x="570" y="302" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">first-stage hits +</text>
+    <text x="570" y="320" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">graph neighbors</text>
+  </g>
+
+  <!-- STAGE 3 — LLM Answers -->
+  <g>
+    <rect x="760" y="240" width="200" height="100" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8" rx="4"/>
+    <text x="860" y="276" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">LLM ANSWERS</text>
+    <text x="860" y="302" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">k candidate answers</text>
+    <text x="860" y="320" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">from sampled evidence</text>
+  </g>
+
+  <!-- forward arrows -->
+  <line x1="146" y1="290" x2="166" y2="290" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowSU)"/>
+  <line x1="392" y1="290" x2="456" y2="290" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowSU)"/>
+  <line x1="682" y1="290" x2="756" y2="290" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowSU)"/>
+
+  <!-- Bottom question -->
+  <line x1="80" y1="470" x2="200" y2="470" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="510" font-size="26" font-weight="400" fill="#1a1a1a">What if the output was just an answer —</text>
+  <text x="80" y="544" font-size="26" font-weight="400" fill="#1a1a1a">what feedback signal could you use?</text>
+
+</svg>

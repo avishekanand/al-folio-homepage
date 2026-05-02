@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+  <!-- ============================================================
+       FACT-CHECKING WITH RETRIEVAL — intro slide
+       Claim → Retrieved Document → Verdict
+       ============================================================ -->
+
+  <!-- Background -->
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- Arrowhead defs -->
+  <defs>
+    <marker id="arrowRight" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrowDown" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8553d"/>
+    </marker>
+  </defs>
+
+  <!-- ===== HEADER ===== -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">
+    Fact-checking with retrieval
+  </text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">
+    Search over the web for evidence that supports or refutes a claim
+  </text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- ===== LEFT PANEL — CLAIM ===== -->
+  <rect x="80" y="140" width="310" height="140" rx="3"
+        fill="#ffffff" stroke="#2a4747" stroke-width="2"/>
+
+  <text x="95" y="163" font-size="11" font-weight="bold" fill="#2a4747" letter-spacing="0.8">CLAIM</text>
+
+  <!-- Claim text, wrapped -->
+  <text x="95" y="183" font-size="17" fill="#1a1a1a">
+    <tspan x="95" dy="0">San Francisco Bay Area</tspan>
+    <tspan x="95" dy="22">contains zero towns</tspan>
+  </text>
+
+  <!-- UNVERIFIED badge -->
+  <text x="95" y="268" font-size="10" font-style="italic" fill="#6b665e">UNVERIFIED</text>
+
+  <!-- ===== HORIZONTAL ARROW (claim → document) ===== -->
+  <line x1="393" y1="210" x2="437" y2="210"
+        stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arrowRight)"/>
+
+  <!-- ===== RIGHT PANEL — RETRIEVED DOCUMENT ===== -->
+  <rect x="445" y="140" width="575" height="280" rx="3"
+        fill="#ffffff" stroke="#8a857a" stroke-width="1.2"/>
+
+  <text x="460" y="163" font-size="11" font-weight="bold" fill="#6b665e" letter-spacing="0.8">RETRIEVED DOCUMENT</text>
+  <text x="460" y="178" font-size="9" fill="#6b665e">en.wikipedia.org/wiki/San_Francisco_Bay_Area</text>
+
+  <!-- separator -->
+  <line x1="460" y1="185" x2="1005" y2="185" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- Document body text -->
+  <text font-size="11.5" fill="#6b665e">
+    <tspan x="460" y="200">The San Francisco Bay Area, referred to locally as the Bay Area, is a populous</tspan>
+    <tspan x="460" dy="16">region surrounding the San Francisco and San Pablo estuaries in Northern California.</tspan>
+    <tspan x="460" dy="16">The region encompasses the major cities and metropolitan areas of San Jose,</tspan>
+    <tspan x="460" dy="16">San Francisco, and Oakland, along with </tspan><tspan fill="#2a4747" font-weight="600">smaller urban and rural areas.</tspan>
+    <tspan x="460" dy="16">The Bay Area's nine counties are Alameda, Contra Costa, Marin, Napa, San Francisco,</tspan>
+    <tspan x="460" dy="16">San Mateo, </tspan><tspan fill="#2a4747" font-weight="600">Santa Clara, Solano and Sonoma.</tspan>
+    <tspan x="460" dy="16">The combined statistical area of the region is the second largest in California</tspan>
+    <tspan x="460" dy="16">after the Los Angeles area.</tspan>
+  </text>
+
+  <!-- Annotation: arrow pointing left toward "smaller urban and rural areas" -->
+  <!-- Arrow from annotation label pointing left, near line 4 of text (~y=248) -->
+  <line x1="820" y1="248" x2="860" y2="248"
+        stroke="#c8553d" stroke-width="1.2" marker-end="url(#arrowAccent)"/>
+  <text x="865" y="252" font-size="10" fill="#c8553d" font-style="italic">&#8592; contradicts claim</text>
+
+  <!-- ===== VERDICT PANEL ===== -->
+  <rect x="80" y="440" width="940" height="62" rx="3"
+        fill="#c8553d" fill-opacity="0.07" stroke="#c8553d" stroke-width="1.5"/>
+
+  <text x="100" y="465" font-size="11" font-weight="bold" fill="#2a4747" letter-spacing="0.8">VERDICT</text>
+
+  <text x="180" y="465" font-size="15" fill="#1a1a1a">REFUTED</text>
+  <text x="180" y="485" font-size="12" font-style="italic" fill="#6b665e">
+    Bay Area explicitly includes towns, rural areas, and nine counties — not zero towns
+  </text>
+
+  <!-- ===== FOOTER ===== -->
+  <line x1="80" y1="622" x2="200" y2="622" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="648" font-size="14" font-style="italic" fill="#6b665e">
+    The retriever surfaces evidence · the verifier makes the call
+  </text>
+
+</svg>

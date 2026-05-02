@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">Co-Relevance in the Representation Space</text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">Documents close in embedding space are not necessarily co-relevant — and vice versa.</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- ===== GRAPH AREA ===== -->
+
+  <!-- All light-grey background edges (low co-relevance) -->
+  <g stroke="#d8d4cc" stroke-width="1.2" fill="none">
+    <!-- d1 edges -->
+    <line x1="250" y1="240" x2="380" y2="420"/>
+    <line x1="250" y1="240" x2="600" y2="480"/>
+    <line x1="250" y1="240" x2="800" y2="260"/>
+    <!-- d2 edges -->
+    <line x1="430" y1="200" x2="560" y2="300"/>
+    <line x1="430" y1="200" x2="700" y2="180"/>
+    <line x1="430" y1="200" x2="800" y2="260"/>
+    <!-- d3 edges -->
+    <line x1="560" y1="300" x2="700" y2="180"/>
+    <line x1="560" y1="300" x2="600" y2="480"/>
+    <line x1="560" y1="300" x2="900" y2="380"/>
+    <!-- d4 edges -->
+    <line x1="700" y1="180" x2="900" y2="380"/>
+    <!-- d5 edges -->
+    <line x1="380" y1="420" x2="750" y2="430"/>
+    <!-- d6 edges -->
+    <line x1="600" y1="480" x2="900" y2="380"/>
+    <!-- d7 edges -->
+    <line x1="800" y1="260" x2="900" y2="380"/>
+    <line x1="800" y1="260" x2="750" y2="430"/>
+    <!-- d8 edges -->
+    <line x1="750" y1="430" x2="900" y2="380"/>
+    <line x1="750" y1="430" x2="520" y2="560"/>
+  </g>
+
+  <!-- High co-relevance edges (teal, medium weight) -->
+  <g stroke="#2a4747" stroke-width="2.5" fill="none" opacity="0.8">
+    <line x1="250" y1="240" x2="430" y2="200"/>
+    <line x1="560" y1="300" x2="380" y2="420"/>
+    <line x1="600" y1="480" x2="750" y2="430"/>
+    <line x1="800" y1="260" x2="700" y2="180"/>
+    <line x1="520" y1="560" x2="600" y2="480"/>
+  </g>
+
+  <!-- Very high co-relevance (terracotta accent) -->
+  <g stroke="#c8553d" stroke-width="3" fill="none">
+    <line x1="250" y1="240" x2="560" y2="300"/>
+    <line x1="380" y1="420" x2="600" y2="480"/>
+  </g>
+
+  <!-- ===== NODE CIRCLES ===== -->
+  <!-- d1 -->
+  <circle cx="250" cy="240" r="26" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="250" y="236" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">d</text>
+  <text x="250" y="252" font-size="10" fill="#1a1a1a" text-anchor="middle">1</text>
+
+  <!-- d2 -->
+  <circle cx="430" cy="200" r="26" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="430" y="196" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">d</text>
+  <text x="430" y="212" font-size="10" fill="#1a1a1a" text-anchor="middle">2</text>
+
+  <!-- d3 -->
+  <circle cx="560" cy="300" r="26" fill="#ffffff" stroke="#2a4747" stroke-width="2.5"/>
+  <text x="560" y="296" font-size="13" fill="#2a4747" text-anchor="middle" font-weight="600">d</text>
+  <text x="560" y="312" font-size="10" fill="#2a4747" text-anchor="middle">3</text>
+
+  <!-- d4 -->
+  <circle cx="700" cy="180" r="26" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="700" y="176" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">d</text>
+  <text x="700" y="192" font-size="10" fill="#1a1a1a" text-anchor="middle">4</text>
+
+  <!-- d5 -->
+  <circle cx="380" cy="420" r="26" fill="#ffffff" stroke="#2a4747" stroke-width="2.5"/>
+  <text x="380" y="416" font-size="13" fill="#2a4747" text-anchor="middle" font-weight="600">d</text>
+  <text x="380" y="432" font-size="10" fill="#2a4747" text-anchor="middle">5</text>
+
+  <!-- d6 -->
+  <circle cx="600" cy="480" r="26" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="600" y="476" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">d</text>
+  <text x="600" y="492" font-size="10" fill="#1a1a1a" text-anchor="middle">6</text>
+
+  <!-- d7 -->
+  <circle cx="800" cy="260" r="26" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="800" y="256" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">d</text>
+  <text x="800" y="272" font-size="10" fill="#1a1a1a" text-anchor="middle">7</text>
+
+  <!-- d8 -->
+  <circle cx="750" cy="430" r="26" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="750" y="426" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">d</text>
+  <text x="750" y="442" font-size="10" fill="#1a1a1a" text-anchor="middle">8</text>
+
+  <!-- d9 -->
+  <circle cx="900" cy="380" r="26" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="900" y="376" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">d</text>
+  <text x="900" y="392" font-size="10" fill="#1a1a1a" text-anchor="middle">9</text>
+
+  <!-- d10 -->
+  <circle cx="520" cy="560" r="26" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="520" y="556" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">d</text>
+  <text x="520" y="572" font-size="10" fill="#1a1a1a" text-anchor="middle">10</text>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="80" y="610" width="500" height="72" fill="#ffffff" stroke="#e8e2d6" stroke-width="1" rx="4"/>
+  <line x1="105" y1="630" x2="145" y2="630" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="155" y="634" font-size="12" fill="#6b665e">weak / no co-relevance</text>
+  <line x1="105" y1="654" x2="145" y2="654" stroke="#2a4747" stroke-width="2.5"/>
+  <text x="155" y="658" font-size="12" fill="#2a4747">co-relevant (often judged together)</text>
+  <line x1="105" y1="676" x2="145" y2="676" stroke="#c8553d" stroke-width="3"/>
+  <text x="155" y="680" font-size="12" fill="#c8553d">strongly co-relevant</text>
+
+  <!-- footnote -->
+  <text x="640" y="638" font-size="13" fill="#6b665e" font-style="italic">Co-relevance ≠ textual similarity.</text>
+  <text x="640" y="658" font-size="13" fill="#6b665e" font-style="italic">d₁ and d₃ may look different but answer the same query.</text>
+  <text x="640" y="678" font-size="13" fill="#2a4747" font-style="italic">QUAM learns this structure from reranker feedback.</text>
+
+</svg>

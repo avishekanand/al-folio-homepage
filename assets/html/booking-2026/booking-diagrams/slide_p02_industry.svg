@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+  <!-- ============================================================
+       INDUSTRY LOCKUP — p. 2
+       Typographic treatment of three industry credentials.
+       No fabricated logos. Names set in clean caps with editorial
+       dividers and one descriptor each.
+       ============================================================ -->
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">
+    In industry
+  </text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">
+    Where the pipeline runs in production
+  </text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- ============================================================
+       Three columns, each with a company name and one-line role
+       Layout: x = 110 (col 1), 510 (col 2), 870 (col 3, internet archive)
+       Wait, that's not balanced. Better: 3 equal columns at centers
+       275, 550, 825.
+       ============================================================ -->
+
+  <!-- Section header -->
+  <text x="80" y="225" font-size="13" fill="#c8553d" font-weight="700" letter-spacing="2">
+    SELECTED ENGAGEMENTS
+  </text>
+
+  <!-- Column 1: Amazon -->
+  <text x="275" y="320" font-size="28" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="2">
+    AMAZON
+  </text>
+  <line x1="220" y1="340" x2="330" y2="340" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="275" y="370" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    Amazon Scholar · 3 yrs
+  </text>
+  <text x="275" y="408" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    v1 of deep-learning
+  </text>
+  <text x="275" y="426" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    embedding-based
+  </text>
+  <text x="275" y="444" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    product search
+  </text>
+
+  <!-- Column 2: Factiverse -->
+  <text x="550" y="320" font-size="28" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="2">
+    FACTIVERSE
+  </text>
+  <line x1="495" y1="340" x2="605" y2="340" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="550" y="370" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    fact-checking startup
+  </text>
+  <text x="550" y="408" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    Efficient
+  </text>
+  <text x="550" y="426" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    fact-checking
+  </text>
+  <text x="550" y="444" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    at scale
+  </text>
+
+  <!-- Column 3: Internet Archive (stacked on two lines) -->
+  <text x="825" y="306" font-size="26" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="1.5">
+    INTERNET
+  </text>
+  <text x="825" y="334" font-size="26" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="1.5">
+    ARCHIVE
+  </text>
+  <line x1="780" y1="350" x2="870" y2="350" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="825" y="378" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    research collaboration
+  </text>
+  <text x="825" y="412" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    Content extraction
+  </text>
+  <text x="825" y="430" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    across the world's
+  </text>
+  <text x="825" y="448" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    largest web archive
+  </text>
+
+  <!-- ============================================================
+       FOOTER LINE
+       ============================================================ -->
+
+  <line x1="80" y1="600" x2="200" y2="600" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="635" font-size="22" fill="#1a1a1a" font-style="italic">
+    Algorithms running in production —
+  </text>
+  <text x="80" y="660" font-size="22" fill="#1a1a1a">
+    at companies you've heard of.
+  </text>
+</svg>

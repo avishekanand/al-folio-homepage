@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">
+    SUNAR — multi-hop QA
+  </text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">
+    F1 score vs the strongest decomposition baselines · LLM-agnostic
+  </text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- background grid -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="130" y1="540" x2="920" y2="540"/>
+    <line x1="130" y1="480" x2="920" y2="480"/>
+    <line x1="130" y1="420" x2="920" y2="420"/>
+    <line x1="130" y1="360" x2="920" y2="360"/>
+    <line x1="130" y1="300" x2="920" y2="300"/>
+    <line x1="130" y1="240" x2="920" y2="240"/>
+    <line x1="130" y1="180" x2="920" y2="180"/>
+  </g>
+
+  <!-- axes -->
+  <line x1="130" y1="540" x2="920" y2="540" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="130" y1="180" x2="130" y2="540" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- y-axis ticks (0..60 in 10s) -->
+  <g font-size="13" fill="#1a1a1a" text-anchor="end">
+    <text x="118" y="545">0</text>
+    <text x="118" y="485">10</text>
+    <text x="118" y="425">20</text>
+    <text x="118" y="365">30</text>
+    <text x="118" y="305">40</text>
+    <text x="118" y="245">50</text>
+    <text x="118" y="185">60</text>
+  </g>
+  <g stroke="#1a1a1a" stroke-width="1.5">
+    <line x1="125" y1="540" x2="130" y2="540"/>
+    <line x1="125" y1="480" x2="130" y2="480"/>
+    <line x1="125" y1="420" x2="130" y2="420"/>
+    <line x1="125" y1="360" x2="130" y2="360"/>
+    <line x1="125" y1="300" x2="130" y2="300"/>
+    <line x1="125" y1="240" x2="130" y2="240"/>
+    <line x1="125" y1="180" x2="130" y2="180"/>
+  </g>
+  <text x="60" y="360" font-size="15" fill="#1a1a1a" text-anchor="middle"
+        transform="rotate(-90 60 360)" font-style="italic">
+    F1 score
+  </text>
+
+  <!-- legend block on right side -->
+  <rect x="842" y="195" width="148" height="160" fill="#ffffff" stroke="#e8e2d6" stroke-width="1" rx="3"/>
+  <g font-size="12">
+    <text x="856" y="220" fill="#6b665e" font-weight="700" letter-spacing="0.5">SYSTEMS</text>
+
+    <rect x="856" y="236" width="14" height="14" fill="#b8b3a8" stroke="#8a857a"/>
+    <text x="876" y="248" fill="#1a1a1a">SELF-ASK</text>
+
+    <rect x="856" y="258" width="14" height="14" fill="#b8b3a8" stroke="#8a857a"/>
+    <text x="876" y="270" fill="#1a1a1a">ReAct</text>
+
+    <rect x="856" y="280" width="14" height="14" fill="#8a857a" stroke="#8a857a"/>
+    <text x="876" y="292" fill="#1a1a1a" font-weight="600">SearChain</text>
+    <text x="876" y="308" fill="#6b665e" font-style="italic" font-size="10">strongest baseline</text>
+
+    <rect x="856" y="320" width="14" height="14" fill="#c8553d" stroke="#c8553d"/>
+    <text x="876" y="332" fill="#c8553d" font-weight="700">SUNAR</text>
+  </g>
+
+</svg>

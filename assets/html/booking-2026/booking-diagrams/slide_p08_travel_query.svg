@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+  <!-- ============================================================
+       TRAVEL QUERY MOCKUP — p. 8
+       Three search-box mockups showing query evolution within session
+       Demonstrates: ambiguous query, evolving constraints, comparison
+       ============================================================ -->
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">
+    A query you've seen a thousand times
+  </text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">
+    Retrieval here isn't a step. It's a process.
+  </text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- ============================================================
+       Three search-box mockups, vertically stacked with arrow between
+       Each box: 700 wide, 65 tall, centered around x=550
+       ============================================================ -->
+
+  <!-- ===== Search box 1 — ambiguous query ===== -->
+  <g>
+    <rect x="200" y="195" width="700" height="65" rx="32" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5"/>
+    <!-- search icon -->
+    <circle cx="240" cy="227" r="9" fill="none" stroke="#6b665e" stroke-width="2"/>
+    <line x1="247" y1="234" x2="254" y2="241" stroke="#6b665e" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- query text -->
+    <text x="275" y="234" font-size="20" fill="#1a1a1a" font-style="italic">hotels in Lisbon</text>
+
+    <!-- timestamp / hint -->
+    <text x="870" y="234" font-size="13" fill="#b8b3a8" text-anchor="end" font-style="italic">first query</text>
+  </g>
+
+  <!-- annotation -->
+  <text x="200" y="278" font-size="13" fill="#6b665e" font-style="italic">
+    user means: "show me what's there" — broad and ambiguous
+  </text>
+
+  <!-- arrow down -->
+  <g stroke="#c8553d" stroke-width="2" fill="none">
+    <line x1="550" y1="295" x2="550" y2="320" marker-end="url(#downArrow)"/>
+  </g>
+  <defs>
+    <marker id="downArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8553d"/>
+    </marker>
+  </defs>
+
+  <!-- ===== Search box 2 — added constraint ===== -->
+  <g>
+    <rect x="200" y="335" width="700" height="65" rx="32" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5"/>
+    <circle cx="240" cy="367" r="9" fill="none" stroke="#6b665e" stroke-width="2"/>
+    <line x1="247" y1="374" x2="254" y2="381" stroke="#6b665e" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="275" y="374" font-size="20" fill="#1a1a1a" font-style="italic">
+      hotels in Lisbon, <tspan fill="#c8553d" font-weight="700">kid-friendly</tspan>
+    </text>
+    <text x="870" y="374" font-size="13" fill="#b8b3a8" text-anchor="end" font-style="italic">refined</text>
+  </g>
+
+  <text x="200" y="418" font-size="13" fill="#6b665e" font-style="italic">
+    constraint discovered after browsing — system needs to retrieve under new criteria
+  </text>
+
+  <!-- arrow down -->
+  <line x1="550" y1="435" x2="550" y2="460" stroke="#c8553d" stroke-width="2" marker-end="url(#downArrow)"/>
+
+  <!-- ===== Search box 3 — comparison behavior ===== -->
+  <g>
+    <rect x="200" y="475" width="700" height="65" rx="32" fill="#ffffff" stroke="#c8553d" stroke-width="2.5"/>
+    <circle cx="240" cy="507" r="9" fill="none" stroke="#6b665e" stroke-width="2"/>
+    <line x1="247" y1="514" x2="254" y2="521" stroke="#6b665e" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="275" y="514" font-size="18" fill="#1a1a1a" font-style="italic">
+      kid-friendly Lisbon, <tspan fill="#c8553d" font-weight="700">near beach, under €200</tspan>
+    </text>
+    <text x="870" y="514" font-size="13" fill="#c8553d" text-anchor="end" font-style="italic" font-weight="700">comparing</text>
+  </g>
+
+  <text x="200" y="558" font-size="13" fill="#6b665e" font-style="italic">
+    multiple constraints in play — user is now comparing alternatives
+  </text>
+
+  <!-- ============================================================
+       FOOTER — what this means for retrieval
+       ============================================================ -->
+
+  <line x1="80" y1="635" x2="200" y2="635" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="666" font-size="16" fill="#1a1a1a">
+    Three queries · one user · one session.
+    <tspan font-style="italic" fill="#6b665e">  Each one reshapes the retrieval problem.</tspan>
+  </text>
+  <text x="80" y="690" font-size="14" fill="#c8553d" font-weight="700">
+    The system that treats these as independent shots will lose information at every step.
+  </text>
+</svg>

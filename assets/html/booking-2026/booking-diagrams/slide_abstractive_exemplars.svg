@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+
+  <defs>
+    <marker id="arrAE" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrAEacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8553d"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">Abstractive explanations as exemplars for the LLM</text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">Today's question — can these Q–A–E exemplars steer LLMs to more robust answers?</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- ============================================================
+       LEFT — POOL OF EXEMPLARS
+       ============================================================ -->
+  <g transform="translate(60, 150)">
+    <text x="0" y="14" font-size="13" fill="#2a4747" font-weight="700" letter-spacing="0.5">EXEMPLAR POOL</text>
+    <text x="0" y="32" font-size="12" fill="#6b665e" font-style="italic">each item is a Q–A–E triple — abstractive explanation</text>
+
+    <rect x="0" y="44" width="380" height="320" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+
+    <!-- Exemplar 1 -->
+    <g transform="translate(12, 56)">
+      <rect x="0" y="0" width="356" height="92" rx="4" fill="#ffffff" stroke="#8a857a" stroke-width="1"/>
+      <text x="10" y="18" font-size="10" fill="#6b665e" font-style="italic">Q:</text>
+      <text x="28" y="18" font-size="11" fill="#1a1a1a">romantic weekend near Amsterdam canals</text>
+      <text x="10" y="36" font-size="10" fill="#6b665e" font-style="italic">A:</text>
+      <text x="28" y="36" font-size="11" fill="#1a1a1a">Boutique canal-side hotel · Jordaan</text>
+      <text x="10" y="54" font-size="10" fill="#c8553d" font-style="italic">E:</text>
+      <text x="28" y="54" font-size="11" fill="#c8553d" font-style="italic">"pairs the romantic atmosphere with a</text>
+      <text x="28" y="68" font-size="11" fill="#c8553d" font-style="italic">canal location — exactly the Amsterdam</text>
+      <text x="28" y="82" font-size="11" fill="#c8553d" font-style="italic">setting the user described."</text>
+    </g>
+
+    <!-- Exemplar 2 -->
+    <g transform="translate(12, 158)">
+      <rect x="0" y="0" width="356" height="92" rx="4" fill="#ffffff" stroke="#8a857a" stroke-width="1"/>
+      <text x="10" y="18" font-size="10" fill="#6b665e" font-style="italic">Q:</text>
+      <text x="28" y="18" font-size="11" fill="#1a1a1a">kid-friendly hotel with pool, near Sagrada</text>
+      <text x="10" y="36" font-size="10" fill="#6b665e" font-style="italic">A:</text>
+      <text x="28" y="36" font-size="11" fill="#1a1a1a">Family suite · rooftop pool · Eixample</text>
+      <text x="10" y="54" font-size="10" fill="#c8553d" font-style="italic">E:</text>
+      <text x="28" y="54" font-size="11" fill="#c8553d" font-style="italic">"satisfies all three constraints —</text>
+      <text x="28" y="68" font-size="11" fill="#c8553d" font-style="italic">family-grade rooms, on-site pool, and</text>
+      <text x="28" y="82" font-size="11" fill="#c8553d" font-style="italic">walking distance to the landmark."</text>
+    </g>
+
+    <!-- Exemplar 3 -->
+    <g transform="translate(12, 260)">
+      <rect x="0" y="0" width="356" height="92" rx="4" fill="#ffffff" stroke="#8a857a" stroke-width="1"/>
+      <text x="10" y="18" font-size="10" fill="#6b665e" font-style="italic">Q:</text>
+      <text x="28" y="18" font-size="11" fill="#1a1a1a">Marriott London Bridge</text>
+      <text x="10" y="36" font-size="10" fill="#6b665e" font-style="italic">A:</text>
+      <text x="28" y="36" font-size="11" fill="#1a1a1a">Marriott Hotel London Bridge (exact)</text>
+      <text x="10" y="54" font-size="10" fill="#c8553d" font-style="italic">E:</text>
+      <text x="28" y="54" font-size="11" fill="#c8553d" font-style="italic">"navigational query — the right hotel</text>
+      <text x="28" y="68" font-size="11" fill="#c8553d" font-style="italic">is the one whose name and location</text>
+      <text x="28" y="82" font-size="11" fill="#c8553d" font-style="italic">exactly match; no neighbors needed."</text>
+    </g>
+
+    <text x="190" y="385" text-anchor="middle" font-size="11" fill="#6b665e" font-style="italic">… N exemplars total</text>
+  </g>
+
+  <!-- arrow exemplars → LLM -->
+  <line x1="450" y1="340" x2="510" y2="340" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrAE)"/>
+  <text x="480" y="332" text-anchor="middle" font-size="11" fill="#6b665e" font-style="italic">k of N</text>
+  <text x="480" y="356" text-anchor="middle" font-size="10" fill="#c8553d" font-style="italic">in-context</text>
+
+  <!-- ============================================================
+       MIDDLE — LLM
+       ============================================================ -->
+  <g transform="translate(515, 240)">
+    <rect x="0" y="0" width="220" height="200" rx="4" fill="#c8553d"/>
+    <text x="110" y="34" text-anchor="middle" font-size="18" fill="#ffffff" font-weight="700" letter-spacing="0.8">LLM</text>
+    <line x1="20" y1="44" x2="200" y2="44" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.5"/>
+    <text x="110" y="68" text-anchor="middle" font-size="12" fill="#ffffff" font-style="italic">prompt =</text>
+    <text x="110" y="86" text-anchor="middle" font-size="12" fill="#ffffff">k exemplars</text>
+    <text x="110" y="104" text-anchor="middle" font-size="12" fill="#ffffff">+ new query</text>
+
+    <line x1="40" y1="118" x2="180" y2="118" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.4"/>
+    <text x="110" y="138" text-anchor="middle" font-size="11" fill="#ffffff" font-style="italic">imitates the</text>
+    <text x="110" y="154" text-anchor="middle" font-size="11" fill="#ffffff" font-style="italic">explanation pattern</text>
+    <text x="110" y="180" text-anchor="middle" font-size="11" fill="#ffffff" font-weight="700" letter-spacing="0.5">→ produces A · E</text>
+  </g>
+
+  <!-- New query input from above -->
+  <g transform="translate(515, 160)">
+    <rect x="0" y="0" width="220" height="60" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+    <text x="110" y="20" text-anchor="middle" font-size="11" fill="#6b665e" font-style="italic">new query</text>
+    <text x="110" y="42" text-anchor="middle" font-size="13" fill="#1a1a1a">Q*: "boutique stay in Lisbon"</text>
+  </g>
+  <line x1="625" y1="220" x2="625" y2="238" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrAE)"/>
+
+  <!-- arrow LLM → output -->
+  <line x1="745" y1="340" x2="800" y2="340" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrAE)"/>
+
+  <!-- ============================================================
+       RIGHT — OUTPUT (A* + E*)
+       ============================================================ -->
+  <g transform="translate(805, 240)">
+    <rect x="0" y="0" width="230" height="200" rx="4" fill="#ffffff" stroke="#c8553d" stroke-width="2"/>
+    <rect x="0" y="0" width="230" height="32" rx="4" fill="#c8553d"/>
+    <text x="115" y="22" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="700" letter-spacing="0.5">ROBUST ANSWER</text>
+
+    <text x="14" y="58" font-size="10" fill="#6b665e" font-style="italic">A*:</text>
+    <text x="40" y="58" font-size="12" fill="#1a1a1a" font-weight="700">Pousada in Alfama,</text>
+    <text x="40" y="74" font-size="12" fill="#1a1a1a" font-weight="700">tile-front boutique</text>
+
+    <text x="14" y="104" font-size="10" fill="#c8553d" font-style="italic">E*:</text>
+    <text x="40" y="104" font-size="11" fill="#c8553d" font-style="italic">"matches the boutique +</text>
+    <text x="40" y="118" font-size="11" fill="#c8553d" font-style="italic">historic-quarter pattern</text>
+    <text x="40" y="132" font-size="11" fill="#c8553d" font-style="italic">seen in the Amsterdam</text>
+    <text x="40" y="146" font-size="11" fill="#c8553d" font-style="italic">exemplar — same intent."</text>
+
+    <text x="115" y="182" text-anchor="middle" font-size="11" fill="#2a4747" font-weight="700">grounded · transferable</text>
+  </g>
+
+  <!-- ===== Question banner ===== -->
+  <rect x="80" y="560" width="940" height="64" rx="4" fill="#c8553d" fill-opacity="0.08" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="100" y="584" font-size="13" fill="#c8553d" font-weight="700" letter-spacing="0.8">THE QUESTION</text>
+  <text x="100" y="608" font-size="17" fill="#1a1a1a" font-style="italic">Can we use abstractive explanations as in-context exemplars to make LLM answers more robust?</text>
+
+  <!-- footer caption -->
+  <line x1="80" y1="652" x2="200" y2="652" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="680" font-size="13" fill="#6b665e" font-style="italic">Yesterday: explain-then-predict with extractive spans. Today: prompt-then-imitate with abstractive exemplars.</text>
+</svg>

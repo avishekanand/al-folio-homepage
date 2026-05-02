@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+
+  <defs>
+    <marker id="arrowCB1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title block -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">
+    The cascading myth
+  </text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">
+    The standard pipeline — and what it assumes
+  </text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- Query node only -->
+  <circle cx="130" cy="320" r="50" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="130" y="316" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Query</text>
+  <text x="130" y="335" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">q</text>
+
+</svg>

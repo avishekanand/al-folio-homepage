@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" font-family="Georgia, 'Times New Roman', serif">
+
+  <defs>
+    <marker id="arrBlack" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8553d"/>
+    </marker>
+    <marker id="arrMuted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a857a"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="620" fill="#ffffff"/>
+
+  <!-- ===== EXEMPLAR TEXT BOX (top-left) ===== -->
+  <text x="60" y="52" font-size="13" font-weight="bold" fill="#1a1a1a">Exemplars</text>
+  <text x="60" y="72" font-size="12" fill="#8a857a" font-style="italic">p₁ : While purchasing groceries ram bought <tspan fill="#c8553d" font-weight="bold">5 apples</tspan> …</text>
+  <text x="60" y="90" font-size="12" fill="#8a857a" font-style="italic">p₂ : Ephraim has <tspan fill="#c8553d" font-weight="bold">two machines</tspan> that make necklaces …</text>
+
+  <!-- ===== EXEMPLAR CLUSTERS ellipse ===== -->
+  <ellipse cx="175" cy="330" rx="130" ry="175" fill="#f0ece4" stroke="#8a857a" stroke-width="1.5"/>
+
+  <!-- inner cluster top -->
+  <ellipse cx="165" cy="200" rx="40" ry="30" fill="none" stroke="#8a857a" stroke-width="1" stroke-dasharray="4,3"/>
+  <circle cx="155" cy="196" r="5" fill="#2a4747"/>
+  <circle cx="172" cy="210" r="5" fill="#2a4747"/>
+  <circle cx="180" cy="193" r="5" fill="#2a4747"/>
+  <text x="165" y="178" font-size="11" fill="#1a1a1a" text-anchor="middle">p₂</text>
+  <text x="148" y="192" font-size="10" fill="#6b665e" text-anchor="middle">p₀</text>
+  <text x="188" y="206" font-size="10" fill="#6b665e" text-anchor="middle">p₁</text>
+  <text x="135" y="240" font-size="10" fill="#6b665e">(...)</text>
+
+  <!-- middle cluster -->
+  <ellipse cx="175" cy="330" rx="38" ry="28" fill="none" stroke="#8a857a" stroke-width="1" stroke-dasharray="4,3"/>
+  <circle cx="165" cy="325" r="5" fill="#2a4747"/>
+  <circle cx="182" cy="338" r="5" fill="#2a4747"/>
+  <circle cx="170" cy="342" r="5" fill="#2a4747"/>
+  <text x="155" y="318" font-size="10" fill="#6b665e">p₆</text>
+  <text x="185" y="342" font-size="10" fill="#6b665e">p₅</text>
+
+  <!-- outer dots scattered -->
+  <circle cx="110" cy="290" r="5" fill="#2a4747"/>
+  <circle cx="130" cy="380" r="5" fill="#2a4747"/>
+  <circle cx="200" cy="400" r="5" fill="#2a4747"/>
+  <circle cx="220" cy="270" r="5" fill="#2a4747"/>
+  <circle cx="145" cy="430" r="5" fill="#2a4747"/>
+  <text x="98" y="288" font-size="10" fill="#6b665e" text-anchor="end">p₇</text>
+  <text x="118" y="382" font-size="10" fill="#6b665e" text-anchor="end">p₄</text>
+  <text x="207" y="415" font-size="10" fill="#6b665e">p₈</text>
+  <text x="227" y="268" font-size="10" fill="#6b665e">p₃</text>
+
+  <text x="175" y="512" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">Exemplar clusters</text>
+
+  <!-- arrow from exemplar text down to ellipse -->
+  <line x1="175" y1="100" x2="175" y2="150" stroke="#8a857a" stroke-width="1.5" marker-end="url(#arrMuted)"/>
+
+  <!-- ===== ARROW cluster → U_sample ===== -->
+  <line x1="308" y1="330" x2="358" y2="330" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrBlack)"/>
+
+  <!-- ===== U (Sampling with replacement) box ===== -->
+  <rect x="362" y="230" width="175" height="200" rx="14" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8"/>
+
+  <!-- clusters inside U_sample -->
+  <ellipse cx="400" cy="272" rx="22" ry="18" fill="none" stroke="#8a857a" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="393" cy="268" r="3.5" fill="#2a4747"/><circle cx="405" cy="278" r="3.5" fill="#2a4747"/><circle cx="410" cy="266" r="3.5" fill="#2a4747"/>
+  <text x="392" y="258" font-size="10" fill="#6b665e">p₄</text><text x="413" y="260" font-size="10" fill="#6b665e">p₃</text>
+
+  <ellipse cx="450" cy="272" rx="22" ry="18" fill="none" stroke="#8a857a" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="443" cy="268" r="3.5" fill="#2a4747"/><circle cx="455" cy="278" r="3.5" fill="#2a4747"/><circle cx="460" cy="266" r="3.5" fill="#2a4747"/>
+  <text x="441" y="258" font-size="10" fill="#6b665e">p₂</text>
+
+  <text x="450" y="305" font-size="13" fill="#6b665e" text-anchor="middle">⋮</text>
+
+  <ellipse cx="400" cy="348" rx="22" ry="18" fill="none" stroke="#8a857a" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="393" cy="344" r="3.5" fill="#2a4747"/><circle cx="405" cy="354" r="3.5" fill="#2a4747"/>
+  <text x="392" y="334" font-size="10" fill="#6b665e">p₇</text>
+
+  <ellipse cx="450" cy="348" rx="22" ry="18" fill="none" stroke="#8a857a" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="443" cy="344" r="3.5" fill="#2a4747"/><circle cx="455" cy="354" r="3.5" fill="#2a4747"/>
+  <text x="441" y="334" font-size="10" fill="#6b665e">p₁</text><text x="460" y="358" font-size="10" fill="#6b665e">p₆</text>
+
+  <text x="450" y="455" font-size="12" fill="#1a1a1a" text-anchor="middle" font-weight="600">𝒰</text>
+  <text x="450" y="472" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">(Sampling with</text>
+  <text x="450" y="486" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">replacement)</text>
+
+  <!-- ===== ARROW U_sample → scorer ===== -->
+  <line x1="540" y1="330" x2="590" y2="330" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrBlack)"/>
+
+  <!-- ===== SCORER box ===== -->
+  <rect x="594" y="296" width="80" height="68" rx="6" fill="#b8e0b0" stroke="#5a9a50" stroke-width="1.8"/>
+  <text x="634" y="326" font-size="14" fill="#1a1a1a" text-anchor="middle" font-style="italic">σ(α, .)</text>
+  <text x="634" y="352" font-size="10" fill="#5a9a50" text-anchor="middle">scorer</text>
+
+  <!-- ===== ARROW scorer → U_low_loss ===== -->
+  <line x1="676" y1="330" x2="720" y2="330" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrBlack)"/>
+
+  <!-- ===== U (Low-Loss subsets) box ===== -->
+  <rect x="724" y="230" width="175" height="200" rx="14" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8"/>
+
+  <!-- clusters inside U_lowloss -->
+  <ellipse cx="762" cy="272" rx="22" ry="18" fill="none" stroke="#8a857a" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="755" cy="268" r="3.5" fill="#2a4747"/><circle cx="767" cy="278" r="3.5" fill="#2a4747"/><circle cx="772" cy="266" r="3.5" fill="#2a4747"/>
+  <text x="753" y="258" font-size="10" fill="#6b665e">p₄</text><text x="774" y="260" font-size="10" fill="#6b665e">p₃</text>
+
+  <ellipse cx="812" cy="272" rx="22" ry="18" fill="none" stroke="#8a857a" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="805" cy="268" r="3.5" fill="#2a4747"/><circle cx="817" cy="278" r="3.5" fill="#2a4747"/><circle cx="822" cy="266" r="3.5" fill="#2a4747"/>
+  <text x="803" y="258" font-size="10" fill="#6b665e">p₂</text>
+
+  <text x="812" y="305" font-size="13" fill="#6b665e" text-anchor="middle">⋮</text>
+
+  <ellipse cx="762" cy="348" rx="22" ry="18" fill="none" stroke="#8a857a" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="755" cy="344" r="3.5" fill="#2a4747"/><circle cx="767" cy="354" r="3.5" fill="#2a4747"/>
+  <text x="753" y="334" font-size="10" fill="#6b665e">p₇</text>
+
+  <ellipse cx="812" cy="348" rx="22" ry="18" fill="none" stroke="#8a857a" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="805" cy="344" r="3.5" fill="#2a4747"/><circle cx="817" cy="354" r="3.5" fill="#2a4747"/>
+  <text x="803" y="334" font-size="10" fill="#6b665e">p₁</text><text x="820" y="358" font-size="10" fill="#6b665e">p₆</text>
+
+  <text x="812" y="455" font-size="12" fill="#1a1a1a" text-anchor="middle" font-weight="600">U</text>
+  <text x="812" y="472" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">(Low – Loss</text>
+  <text x="812" y="486" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">subsets)</text>
+
+  <!-- ===== ARROW U_lowloss → LLM loss ===== -->
+  <line x1="902" y1="330" x2="948" y2="330" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrBlack)"/>
+
+  <!-- ===== LLM LOSS box ===== -->
+  <rect x="952" y="296" width="100" height="68" rx="6" fill="#b8e0b0" stroke="#5a9a50" stroke-width="1.8"/>
+  <text x="1002" y="324" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="bold">LLM</text>
+  <text x="1002" y="344" font-size="13" fill="#1a1a1a" text-anchor="middle">loss</text>
+
+  <!-- ===== FEEDBACK ARC (LLM loss → scorer) ===== -->
+  <path d="M 1002,296 C 1002,160 634,160 634,296"
+        fill="none" stroke="#c8553d" stroke-width="2" stroke-dasharray="6,3"
+        marker-end="url(#arrRed)"/>
+  <text x="818" y="148" font-size="12" fill="#c8553d" text-anchor="middle" font-style="italic">Approx. error based</text>
+  <text x="818" y="165" font-size="12" fill="#c8553d" text-anchor="middle" font-style="italic">parameter update</text>
+
+
+</svg>

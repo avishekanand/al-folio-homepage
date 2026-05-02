@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" width="1100" height="720">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#c8553d"/>
+    </marker>
+    <marker id="arrow-muted" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8a857a"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- Standard header -->
+  <text x="80" y="68" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="bold" fill="#1a1a1a">Learning to Rank — the reranker as a scoring function</text>
+  <text x="80" y="94" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-style="italic" fill="#6b665e">20 years of building better estimators of relevance</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- ===== LEFT COLUMN — FEATURES ===== -->
+  <text x="80" y="163" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#2a4747" letter-spacing="0.5">QUERY × PROPERTY FEATURES</text>
+  <text x="80" y="179" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#6b665e">Booking.com property ranking</text>
+  <line x1="80" y1="186" x2="380" y2="186" stroke="#e8e2d6" stroke-width="1"/>
+  <rect x="80" y="190" width="300" height="370" stroke="#2a4747" stroke-width="1.5" rx="3" fill="#ffffff"/>
+
+  <!-- Feature row 1: price -->
+  <text x="95" y="217" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-weight="bold" fill="#1a1a1a">price</text>
+  <text x="95" y="231" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">€89/night</text>
+  <rect x="195" y="209" width="160" height="10" fill="#e8e2d6" rx="2"/>
+  <rect x="195" y="209" width="140" height="10" fill="#2a4747" rx="2"/>
+
+  <!-- Feature row 2: review score -->
+  <text x="95" y="257" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-weight="bold" fill="#1a1a1a">review score</text>
+  <text x="95" y="271" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">8.7 / 10</text>
+  <rect x="195" y="249" width="160" height="10" fill="#e8e2d6" rx="2"/>
+  <rect x="195" y="249" width="150" height="10" fill="#2a4747" rx="2"/>
+
+  <!-- Feature row 3: star rating -->
+  <text x="95" y="297" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-weight="bold" fill="#1a1a1a">star rating</text>
+  <text x="95" y="311" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">★★★★☆  4 stars</text>
+  <rect x="195" y="289" width="160" height="10" fill="#e8e2d6" rx="2"/>
+  <rect x="195" y="289" width="128" height="10" fill="#8a857a" rx="2"/>
+
+  <!-- Feature row 4: location -->
+  <text x="95" y="337" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-weight="bold" fill="#1a1a1a">location</text>
+  <text x="95" y="351" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">0.8 km city centre</text>
+  <rect x="195" y="329" width="160" height="10" fill="#e8e2d6" rx="2"/>
+  <rect x="195" y="329" width="140" height="10" fill="#2a4747" rx="2"/>
+
+  <!-- Feature row 5: availability -->
+  <text x="95" y="377" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-weight="bold" fill="#1a1a1a">availability</text>
+  <text x="95" y="391" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">12 rooms left</text>
+  <rect x="195" y="369" width="160" height="10" fill="#e8e2d6" rx="2"/>
+  <rect x="195" y="369" width="110" height="10" fill="#8a857a" rx="2"/>
+
+  <!-- Feature row 6: images -->
+  <text x="95" y="417" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-weight="bold" fill="#1a1a1a">images</text>
+  <text x="95" y="431" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">14 high-quality</text>
+  <rect x="195" y="409" width="160" height="10" fill="#e8e2d6" rx="2"/>
+  <rect x="195" y="409" width="120" height="10" fill="#b8b3a8" rx="2"/>
+
+  <!-- Feature row 7: reviews -->
+  <text x="95" y="457" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-weight="bold" fill="#1a1a1a">reviews</text>
+  <text x="95" y="471" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">847 reviews</text>
+  <rect x="195" y="449" width="160" height="10" fill="#e8e2d6" rx="2"/>
+  <rect x="195" y="449" width="155" height="10" fill="#2a4747" rx="2"/>
+
+  <!-- Feature row 8: description -->
+  <text x="95" y="497" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-weight="bold" fill="#1a1a1a">description</text>
+  <text x="95" y="511" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">complete + recent</text>
+  <rect x="195" y="489" width="160" height="10" fill="#e8e2d6" rx="2"/>
+  <rect x="195" y="489" width="135" height="10" fill="#b8b3a8" rx="2"/>
+
+  <text x="230" y="548" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#6b665e">40+ features total</text>
+
+  <!-- Arrow left to center -->
+  <line x1="382" y1="345" x2="427" y2="345" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== CENTER COLUMN — RE-RANKER ===== -->
+  <text x="430" y="163" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#2a4747" letter-spacing="0.8">RE-RANKER</text>
+  <text x="430" y="179" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#6b665e">choose depth based on cost and quality</text>
+  <line x1="430" y1="186" x2="670" y2="186" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- Outer box spanning all 3 options -->
+  <rect x="430" y="200" width="240" height="290" stroke="#2a4747" stroke-width="2" rx="4" fill="#ffffff"/>
+
+  <!-- Option 1: LTR -->
+  <text x="550" y="228" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#2a4747">LTR</text>
+  <text x="550" y="248" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-style="italic" fill="#6b665e">LambdaMART · GBDT</text>
+  <text x="550" y="264" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#b8b3a8">feature-weighted · fast</text>
+
+  <!-- Divider between option 1 and 2 -->
+  <line x1="430" y1="280" x2="670" y2="280" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- Option 2: BERT cross-encoder -->
+  <text x="550" y="308" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#2a4747">BERT cross-encoder</text>
+  <text x="550" y="328" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-style="italic" fill="#6b665e">full doc × query attention</text>
+  <text x="550" y="344" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#b8b3a8">better features · slower</text>
+
+  <!-- Divider between option 2 and 3 -->
+  <line x1="430" y1="362" x2="670" y2="362" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- Option 3: LLM re-ranker (terracotta accent bar on left edge) -->
+  <rect x="430" y="363" width="5" height="127" fill="#c8553d" opacity="0.7"/>
+  <text x="550" y="393" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#c8553d">LLM re-ranker</text>
+  <text x="550" y="413" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-style="italic" fill="#6b665e">GPT-4 · Claude</text>
+  <text x="550" y="431" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#b8b3a8">human-level comprehension</text>
+  <text x="550" y="448" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#c8553d">most accurate · most expensive</text>
+
+  <!-- Arrow center to right (at mid-height of options area) -->
+  <line x1="672" y1="345" x2="717" y2="345" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== RIGHT COLUMN — RANKED OUTPUT ===== -->
+  <text x="720" y="163" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#6b665e" letter-spacing="0.8">RANKED RESULTS</text>
+  <text x="720" y="179" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#6b665e">sorted by learned score</text>
+  <line x1="720" y1="186" x2="1020" y2="186" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- Card 1 -->
+  <rect x="720" y="200" width="300" height="80" stroke="#c8553d" stroke-width="1.5" fill="#c8553d" fill-opacity="0.05" rx="3"/>
+  <circle cx="740" cy="230" r="12" fill="#c8553d"/>
+  <text x="740" y="234" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#ffffff">1</text>
+  <text x="757" y="225" font-family="Georgia, 'Times New Roman', serif" font-size="13" font-weight="bold" fill="#1a1a1a">Conservatorium Hotel</text>
+  <text x="757" y="241" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747">5★ · Score: 0.94</text>
+  <text x="757" y="256" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">Museumplein · €285 · 9.2/10</text>
+  <text x="757" y="268" font-family="Georgia, 'Times New Roman', serif" font-size="9" font-style="italic" fill="#6b665e">248 nights booked</text>
+
+  <!-- Card 2 -->
+  <rect x="720" y="292" width="300" height="70" stroke="#2a4747" stroke-width="1" fill="#2a4747" fill-opacity="0.03" rx="3"/>
+  <circle cx="740" cy="320" r="10" fill="#2a4747"/>
+  <text x="740" y="324" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" fill="#ffffff">2</text>
+  <text x="757" y="316" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#1a1a1a">Hotel V Nesplein</text>
+  <text x="757" y="330" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747">4★ · Score: 0.87</text>
+  <text x="757" y="344" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">City Centre · €149 · 8.8</text>
+
+  <!-- Card 3 -->
+  <rect x="720" y="374" width="300" height="70" stroke="#8a857a" stroke-width="1" fill="#ffffff" rx="3"/>
+  <circle cx="740" cy="402" r="10" fill="#8a857a"/>
+  <text x="740" y="406" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" fill="#ffffff">3</text>
+  <text x="757" y="398" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#1a1a1a">The Student Hotel</text>
+  <text x="757" y="412" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">3★ · Score: 0.79</text>
+  <text x="757" y="426" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">De Pijp · €119 · 8.4</text>
+
+  <!-- FOOTER -->
+  <line x1="80" y1="618" x2="200" y2="618" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="650" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-style="italic" fill="#6b665e">The reranker is not magic — it has better features. The choice is cost vs. quality.</text>
+</svg>

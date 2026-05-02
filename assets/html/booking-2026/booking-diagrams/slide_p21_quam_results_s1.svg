@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+  <!-- ============================================================
+       QUAM RESULTS — p. 21 — STEP 1
+       Title + chart frame only: axes, grid, y-axis labels, x-axis metric labels
+       No bars yet.
+       ============================================================ -->
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">
+    QUAM — TREC DL19 / DL20
+  </text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">
+    Recall improvements over the strongest adaptive-retrieval baseline
+  </text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- background grid -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="180" y1="540" x2="880" y2="540"/>
+    <line x1="180" y1="472" x2="880" y2="472"/>
+    <line x1="180" y1="404" x2="880" y2="404"/>
+    <line x1="180" y1="336" x2="880" y2="336"/>
+    <line x1="180" y1="268" x2="880" y2="268"/>
+    <line x1="180" y1="200" x2="880" y2="200"/>
+  </g>
+
+  <!-- axes -->
+  <line x1="180" y1="540" x2="880" y2="540" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="180" y1="200" x2="180" y2="540" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- y-axis tick marks -->
+  <g stroke="#1a1a1a" stroke-width="1.5">
+    <line x1="175" y1="540" x2="180" y2="540"/>
+    <line x1="175" y1="472" x2="180" y2="472"/>
+    <line x1="175" y1="404" x2="180" y2="404"/>
+    <line x1="175" y1="336" x2="180" y2="336"/>
+    <line x1="175" y1="268" x2="180" y2="268"/>
+    <line x1="175" y1="200" x2="180" y2="200"/>
+  </g>
+
+  <!-- y-axis tick labels -->
+  <g font-size="13" fill="#1a1a1a" text-anchor="end">
+    <text x="168" y="545">0.0</text>
+    <text x="168" y="477">0.2</text>
+    <text x="168" y="409">0.4</text>
+    <text x="168" y="341">0.6</text>
+    <text x="168" y="273">0.8</text>
+    <text x="168" y="205">1.0</text>
+  </g>
+
+  <!-- y-axis title -->
+  <text x="100" y="370" font-size="15" fill="#1a1a1a" text-anchor="middle"
+        transform="rotate(-90 100 370)" font-style="italic">
+    Recall
+  </text>
+
+  <!-- x-axis metric labels -->
+  <text x="360" y="625" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+    Recall@50
+  </text>
+  <text x="710" y="625" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+    Recall@1000
+  </text>
+
+</svg>

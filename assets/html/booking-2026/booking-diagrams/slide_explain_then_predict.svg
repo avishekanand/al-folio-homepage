@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+
+  <defs>
+    <marker id="arrEP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">Explain-then-predict — classical interpretable models</text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">First produce an extractive explanation, then predict from it</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- ============================================================
+       PIPELINE
+       ============================================================ -->
+
+  <!-- INPUT (Query + Document) -->
+  <g transform="translate(60, 200)">
+    <rect x="0" y="0" width="180" height="180" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+    <text x="90" y="26" text-anchor="middle" font-size="12" fill="#1a1a1a" font-weight="700" letter-spacing="0.5">INPUT</text>
+    <line x1="14" y1="36" x2="166" y2="36" stroke="#e8e2d6" stroke-width="1"/>
+    <text x="14" y="58" font-size="11" fill="#6b665e" font-style="italic">Q:</text>
+    <text x="14" y="76" font-size="12" fill="#1a1a1a">romantic weekend</text>
+    <text x="14" y="92" font-size="12" fill="#1a1a1a">near Amsterdam</text>
+    <text x="14" y="118" font-size="11" fill="#6b665e" font-style="italic">D:</text>
+    <text x="14" y="136" font-size="12" fill="#1a1a1a">A boutique canal-side</text>
+    <text x="14" y="152" font-size="12" fill="#1a1a1a">hotel in the Jordaan,</text>
+    <text x="14" y="168" font-size="12" fill="#1a1a1a">couples-only floor …</text>
+  </g>
+
+  <!-- arrow 1 -->
+  <line x1="246" y1="290" x2="296" y2="290" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrEP)"/>
+
+  <!-- STEP 1 — EXTRACTIVE EXPLANATION -->
+  <g transform="translate(300, 200)">
+    <rect x="0" y="0" width="240" height="180" rx="4" fill="#ffffff" stroke="#2a4747" stroke-width="2"/>
+    <rect x="0" y="0" width="240" height="32" rx="4" fill="#2a4747"/>
+    <text x="120" y="22" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="700" letter-spacing="0.5">EXTRACTIVE EXPLAINER</text>
+
+    <text x="14" y="56" font-size="11" fill="#6b665e" font-style="italic">selects rationale spans from D</text>
+
+    <!-- highlighted rationale -->
+    <rect x="14" y="76" width="115" height="20" fill="#c8553d" fill-opacity="0.35" rx="2"/>
+    <text x="20" y="90" font-size="12" fill="#1a1a1a" font-weight="700">canal-side</text>
+
+    <rect x="14" y="104" width="155" height="20" fill="#c8553d" fill-opacity="0.35" rx="2"/>
+    <text x="20" y="118" font-size="12" fill="#1a1a1a" font-weight="700">romantic suites</text>
+
+    <rect x="14" y="132" width="155" height="20" fill="#c8553d" fill-opacity="0.35" rx="2"/>
+    <text x="20" y="146" font-size="12" fill="#1a1a1a" font-weight="700">Jordaan district</text>
+
+    <text x="14" y="170" font-size="11" fill="#2a4747" font-style="italic">→ rationale R = {r₁, r₂, r₃}</text>
+  </g>
+
+  <!-- arrow 2: explanation → predictor -->
+  <line x1="546" y1="290" x2="596" y2="290" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrEP)"/>
+  <text x="571" y="282" text-anchor="middle" font-size="11" fill="#6b665e" font-style="italic">R only</text>
+
+  <!-- STEP 2 — PREDICTOR -->
+  <g transform="translate(600, 200)">
+    <rect x="0" y="0" width="220" height="180" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+    <rect x="0" y="0" width="220" height="32" rx="4" fill="#1a1a1a"/>
+    <text x="110" y="22" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="700" letter-spacing="0.5">PREDICTOR</text>
+
+    <text x="14" y="56" font-size="11" fill="#6b665e" font-style="italic">reads only the rationale R</text>
+
+    <!-- mini classifier diagram -->
+    <rect x="20" y="80" width="180" height="50" rx="4" fill="#dfe3e3" stroke="#2a4747" stroke-width="1.5"/>
+    <text x="110" y="100" text-anchor="middle" font-size="11" fill="#2a4747" font-weight="700">f(R) → ŷ</text>
+    <text x="110" y="118" text-anchor="middle" font-size="11" fill="#6b665e" font-style="italic">small classifier / GBDT</text>
+
+    <text x="14" y="156" font-size="11" fill="#1a1a1a" font-weight="700">prediction is faithful to R</text>
+    <text x="14" y="172" font-size="10" fill="#6b665e" font-style="italic">— if R is wrong, prediction is wrong</text>
+  </g>
+
+  <!-- arrow 3: predictor → output -->
+  <line x1="826" y1="290" x2="876" y2="290" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrEP)"/>
+
+  <!-- OUTPUT -->
+  <g transform="translate(880, 240)">
+    <rect x="0" y="0" width="160" height="100" rx="4" fill="#f4ddd8" stroke="#c8553d" stroke-width="2"/>
+    <text x="80" y="26" text-anchor="middle" font-size="12" fill="#c8553d" font-weight="700" letter-spacing="0.5">PREDICTION</text>
+    <line x1="14" y1="36" x2="146" y2="36" stroke="#c8553d" stroke-width="0.6" stroke-opacity="0.5"/>
+    <text x="80" y="62" text-anchor="middle" font-size="22" fill="#1a1a1a" font-weight="700">relevant</text>
+    <text x="80" y="84" text-anchor="middle" font-size="11" fill="#6b665e" font-style="italic">ŷ + faithful rationale R</text>
+  </g>
+
+  <!-- ===== Summary band ===== -->
+  <rect x="80" y="450" width="940" height="120" fill="#2a4747" fill-opacity="0.05" rx="4"/>
+  <text x="100" y="478" font-size="13" fill="#2a4747" font-weight="700" letter-spacing="1">PROPERTIES</text>
+  <text x="100" y="504" font-size="14" fill="#1a1a1a">·  the rationale is the only path from input to prediction — <tspan font-weight="700">faithful by construction</tspan></text>
+  <text x="100" y="526" font-size="14" fill="#1a1a1a">·  explanation comes <tspan font-style="italic">first</tspan>, prediction follows — explain-<tspan font-style="italic">then</tspan>-predict, not predict-then-rationalize</text>
+  <text x="100" y="548" font-size="14" fill="#1a1a1a">·  representative work: Lei et al. 2016 · Bastings et al. 2019 · Zhang, Rudra, Anand 2021 (KITS)</text>
+
+  <!-- footer caption -->
+  <line x1="80" y1="640" x2="200" y2="640" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="668" font-size="15" fill="#1a1a1a" font-style="italic">The classical recipe: pick the spans that justify the answer, predict from those spans alone.</text>
+</svg>

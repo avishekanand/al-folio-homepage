@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <marker id="arrowSB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">Static batching — one signal, fixed order</text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">Sorted by BM25 · peel off batches in order · never look back</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- POOL label -->
+  <text x="80" y="160" font-size="13" fill="#1a1a1a" font-weight="700" letter-spacing="0.5">CANDIDATE POOL</text>
+  <text x="80" y="180" font-size="11" fill="#6b665e" font-style="italic">sorted by BM25 score ↓</text>
+
+  <!-- feature legend -->
+  <g font-size="10" fill="#6b665e">
+    <rect x="80" y="195" width="8" height="8" fill="#8a857a"/>
+    <text x="93" y="203">BM25</text>
+  </g>
+
+  <!-- pool box -->
+  <rect x="70" y="220" width="340" height="380" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5" rx="3"/>
+
+  <!-- rank arrow -->
+  <line x1="55" y1="240" x2="55" y2="490" stroke="#6b665e" stroke-width="1" marker-end="url(#arrowSB)"/>
+  <text x="48" y="370" font-size="10" fill="#6b665e" text-anchor="middle" font-style="italic" transform="rotate(-90 48 370)">BM25 rank</text>
+
+  <!-- BATCH 1 background -->
+  <rect x="72" y="234" width="336" height="86" fill="#2a4747" fill-opacity="0.05" rx="2"/>
+
+  <!-- d1 -->
+  <text x="85" y="247" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">1</tspan></text>
+  <rect x="115" y="240" width="200" height="9" fill="#8a857a" rx="1"/>
+
+  <!-- d2 -->
+  <text x="85" y="277" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">2</tspan></text>
+  <rect x="115" y="270" width="180" height="9" fill="#8a857a" rx="1"/>
+
+  <!-- d3 -->
+  <text x="85" y="307" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">3</tspan></text>
+  <rect x="115" y="300" width="162" height="9" fill="#8a857a" rx="1"/>
+
+  <!-- BATCH 1 bracket -->
+  <path d="M 420 234 L 432 234 L 432 320 L 420 320" fill="none" stroke="#2a4747" stroke-width="2.2"/>
+  <text x="442" y="264" font-size="12" fill="#2a4747" font-weight="700" letter-spacing="0.5">BATCH 1</text>
+  <text x="442" y="282" font-size="10" fill="#2a4747" font-style="italic">top-k by BM25</text>
+
+  <!-- d4 -->
+  <text x="85" y="347" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">4</tspan></text>
+  <rect x="115" y="340" width="145" height="9" fill="#8a857a" rx="1"/>
+
+  <!-- d5 -->
+  <text x="85" y="377" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">5</tspan></text>
+  <rect x="115" y="370" width="128" height="9" fill="#8a857a" rx="1"/>
+
+  <!-- d6 -->
+  <text x="85" y="407" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">6</tspan></text>
+  <rect x="115" y="400" width="112" height="9" fill="#8a857a" rx="1"/>
+
+  <!-- divider -->
+  <line x1="80" y1="430" x2="400" y2="430" stroke="#1a1a1a" stroke-width="0.6" stroke-dasharray="3,3"/>
+
+  <!-- d7 (faded) -->
+  <g opacity="0.35">
+    <text x="85" y="457" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">7</tspan></text>
+    <rect x="115" y="450" width="95" height="9" fill="#8a857a" rx="1"/>
+  </g>
+  <!-- d8 (faded) -->
+  <g opacity="0.35">
+    <text x="85" y="487" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">8</tspan></text>
+    <rect x="115" y="480" width="78" height="9" fill="#8a857a" rx="1"/>
+  </g>
+
+  <text x="235" y="520" font-size="14" fill="#6b665e" text-anchor="middle" opacity="0.5">...</text>
+  <text x="235" y="555" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">N − 2k candidates · never scored</text>
+  <line x1="80" y1="572" x2="400" y2="572" stroke="#1a1a1a" stroke-width="0.6"/>
+  <text x="235" y="588" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">rank order fixed at retrieval time</text>
+
+  <!-- RANKER -->
+  <rect x="730" y="280" width="220" height="120" fill="#ffffff" stroke="#2a4747" stroke-width="2.4" rx="4"/>
+  <text x="840" y="318" font-size="15" fill="#2a4747" text-anchor="middle" font-weight="700">EXPENSIVE RANKER</text>
+  <text x="840" y="343" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">cross-encoder /</text>
+  <text x="840" y="358" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">RankLLaMA / etc.</text>
+  <text x="840" y="384" font-size="11" fill="#2a4747" text-anchor="middle" font-weight="700" letter-spacing="0.5">scores docs in batch</text>
+
+  <!-- batch 1 arrow -->
+  <line x1="510" y1="277" x2="729" y2="305" stroke="#1a1a1a" stroke-width="2.2" marker-end="url(#arrowSB)"/>
+  <text x="620" y="268" font-size="11" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.3">batch 1 → score</text>
+
+  <!-- FOOTER -->
+  <line x1="80" y1="630" x2="200" y2="630" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="660" font-size="16" fill="#1a1a1a">Reranker scores order the output — but never decide what comes next.</text>
+  <text x="80" y="685" font-size="14" fill="#c8553d" font-weight="700">The information from batch 1 is discarded. What if we kept it?</text>
+</svg>

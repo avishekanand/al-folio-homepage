@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title block -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">
+    In industry
+  </text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">
+    Where the pipeline runs in production
+  </text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- Section header -->
+  <text x="80" y="225" font-size="13" fill="#c8553d" font-weight="700" letter-spacing="2">
+    SELECTED ENGAGEMENTS
+  </text>
+
+  <!-- Column 1: Amazon (not dimmed) -->
+  <text x="275" y="320" font-size="28" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="2">
+    AMAZON
+  </text>
+  <line x1="220" y1="340" x2="330" y2="340" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="275" y="370" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    Amazon Scholar · 3 yrs
+  </text>
+  <text x="275" y="408" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    v1 of deep-learning
+  </text>
+  <text x="275" y="426" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    embedding-based
+  </text>
+  <text x="275" y="444" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    product search
+  </text>
+
+  <!-- Column 2: Factiverse (new) -->
+  <text x="550" y="320" font-size="28" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="2">
+    FACTIVERSE
+  </text>
+  <line x1="495" y1="340" x2="605" y2="340" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="550" y="370" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    fact-checking startup
+  </text>
+  <text x="550" y="408" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    Efficient
+  </text>
+  <text x="550" y="426" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    fact-checking
+  </text>
+  <text x="550" y="444" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    at scale
+  </text>
+
+</svg>

@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">
+    Why this matters
+  </text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">
+    Comparable task performance, with far fewer expensive calls
+  </text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- HEADLINE label -->
+  <text x="80" y="220" font-size="14" fill="#c8553d" font-weight="700" letter-spacing="2">
+    HEADLINE
+  </text>
+
+  <!-- Big 7x number -->
+  <text x="80" y="380" font-size="200" fill="#c8553d" font-weight="700">
+    7<tspan font-size="160" dx="-15">×</tspan>
+  </text>
+  <text x="80" y="465" font-size="22" fill="#1a1a1a" font-weight="700" letter-spacing="0.5">
+    fewer LLM calls
+  </text>
+  <text x="80" y="495" font-size="16" fill="#6b665e" font-style="italic">
+    same task performance
+  </text>
+
+  <!-- RIGHT SIDE -->
+  <text x="600" y="220" font-size="14" fill="#1a1a1a" font-weight="700" letter-spacing="2">
+    LLM CALLS PER QUERY
+  </text>
+  <text x="600" y="240" font-size="12" fill="#6b665e" font-style="italic">
+    each ● = 10 expensive calls · same task, same final accuracy
+  </text>
+
+  <!-- classical baseline row -->
+  <text x="600" y="290" font-size="13" fill="#6b665e" font-weight="600">classical baseline</text>
+
+  <!-- 70 gray dots in 4 rows -->
+  <g fill="#8a857a">
+    <!-- Row 1 cy=315 -->
+    <circle cx="610" cy="315" r="5"/><circle cx="630" cy="315" r="5"/>
+    <circle cx="650" cy="315" r="5"/><circle cx="670" cy="315" r="5"/>
+    <circle cx="690" cy="315" r="5"/><circle cx="710" cy="315" r="5"/>
+    <circle cx="730" cy="315" r="5"/><circle cx="750" cy="315" r="5"/>
+    <circle cx="770" cy="315" r="5"/><circle cx="790" cy="315" r="5"/>
+    <circle cx="810" cy="315" r="5"/><circle cx="830" cy="315" r="5"/>
+    <circle cx="850" cy="315" r="5"/><circle cx="870" cy="315" r="5"/>
+    <circle cx="890" cy="315" r="5"/><circle cx="910" cy="315" r="5"/>
+    <circle cx="930" cy="315" r="5"/><circle cx="950" cy="315" r="5"/>
+    <circle cx="970" cy="315" r="5"/><circle cx="990" cy="315" r="5"/>
+    <!-- Row 2 cy=335 -->
+    <circle cx="610" cy="335" r="5"/><circle cx="630" cy="335" r="5"/>
+    <circle cx="650" cy="335" r="5"/><circle cx="670" cy="335" r="5"/>
+    <circle cx="690" cy="335" r="5"/><circle cx="710" cy="335" r="5"/>
+    <circle cx="730" cy="335" r="5"/><circle cx="750" cy="335" r="5"/>
+    <circle cx="770" cy="335" r="5"/><circle cx="790" cy="335" r="5"/>
+    <circle cx="810" cy="335" r="5"/><circle cx="830" cy="335" r="5"/>
+    <circle cx="850" cy="335" r="5"/><circle cx="870" cy="335" r="5"/>
+    <circle cx="890" cy="335" r="5"/><circle cx="910" cy="335" r="5"/>
+    <circle cx="930" cy="335" r="5"/><circle cx="950" cy="335" r="5"/>
+    <circle cx="970" cy="335" r="5"/><circle cx="990" cy="335" r="5"/>
+    <!-- Row 3 cy=355 -->
+    <circle cx="610" cy="355" r="5"/><circle cx="630" cy="355" r="5"/>
+    <circle cx="650" cy="355" r="5"/><circle cx="670" cy="355" r="5"/>
+    <circle cx="690" cy="355" r="5"/><circle cx="710" cy="355" r="5"/>
+    <circle cx="730" cy="355" r="5"/><circle cx="750" cy="355" r="5"/>
+    <circle cx="770" cy="355" r="5"/><circle cx="790" cy="355" r="5"/>
+    <circle cx="810" cy="355" r="5"/><circle cx="830" cy="355" r="5"/>
+    <circle cx="850" cy="355" r="5"/><circle cx="870" cy="355" r="5"/>
+    <circle cx="890" cy="355" r="5"/><circle cx="910" cy="355" r="5"/>
+    <circle cx="930" cy="355" r="5"/><circle cx="950" cy="355" r="5"/>
+    <circle cx="970" cy="355" r="5"/><circle cx="990" cy="355" r="5"/>
+    <!-- Row 4 cy=375 partial -->
+    <circle cx="610" cy="375" r="5"/><circle cx="630" cy="375" r="5"/>
+    <circle cx="650" cy="375" r="5"/><circle cx="670" cy="375" r="5"/>
+    <circle cx="690" cy="375" r="5"/><circle cx="710" cy="375" r="5"/>
+    <circle cx="730" cy="375" r="5"/>
+  </g>
+  <text x="1010" y="350" font-size="13" fill="#6b665e" font-weight="600">~700</text>
+  <text x="1010" y="365" font-size="11" fill="#6b665e" font-style="italic">calls</text>
+
+  <!-- CASE row -->
+  <text x="600" y="450" font-size="13" fill="#c8553d" font-weight="700">CASE</text>
+
+  <!-- 10 accent dots at cy=475 -->
+  <g fill="#c8553d">
+    <circle cx="610" cy="475" r="5"/><circle cx="630" cy="475" r="5"/>
+    <circle cx="650" cy="475" r="5"/><circle cx="670" cy="475" r="5"/>
+    <circle cx="690" cy="475" r="5"/><circle cx="710" cy="475" r="5"/>
+    <circle cx="730" cy="475" r="5"/><circle cx="750" cy="475" r="5"/>
+    <circle cx="770" cy="475" r="5"/><circle cx="790" cy="475" r="5"/>
+  </g>
+  <text x="810" y="479" font-size="13" fill="#c8553d" font-weight="600">~100 calls</text>
+
+  <!-- Footer -->
+  <line x1="80" y1="540" x2="200" y2="540" stroke="#c8553d" stroke-width="1.5"/>
+
+  <text x="80" y="580" font-size="18" fill="#1a1a1a">
+    The same algorithm picks reranker-bound documents, in-context exemplars,
+  </text>
+  <text x="80" y="605" font-size="18" fill="#1a1a1a">
+    evaluation samples — anywhere you choose a subset under a budget.
+  </text>
+
+  <text x="80" y="660" font-size="16" fill="#c8553d" font-weight="700">
+    Better retrieval is useless if it's too expensive.
+  </text>
+  <text x="80" y="685" font-size="14" fill="#6b665e" font-style="italic">
+    We're pushing the cost frontier, not just the quality frontier.
+  </text>
+</svg>

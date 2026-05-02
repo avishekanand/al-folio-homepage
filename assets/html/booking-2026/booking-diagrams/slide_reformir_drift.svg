@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ReformIR drift chart — based on Figure 1a of the SIGIR 2026 ReformIR paper.
+  Three curves on TREC DL19, Recall@100 vs # reformulations:
+    - BM25 (no reformulation): flat reference line
+    - GenQR: rises slightly, peaks ~10, drops sharply by 50 due to drift
+    - ReformIR: stable, monotonically increasing → asymptote
+  X-axis: # reformulations ∈ {0, 3, 5, 10, 15, 25, 50}
+  Y-axis: Recall@100, range 0.45 → 0.60
+  Size: 1100 x 720 (matches deck)
+
+  Numeric values are taken/inferred from the paper's Figure 1a:
+    BM25:     0.50 flat
+    GenQR:    [0.50, 0.535, 0.54, 0.535, 0.52, 0.49, 0.46]
+    ReformIR: [0.50, 0.555, 0.575, 0.585, 0.59, 0.59, 0.585]
+
+  Axis math (chart area in SVG coords):
+    chart_x_left  = 220
+    chart_x_right = 880
+    chart_y_top   = 200    (corresponds to recall = 0.60)
+    chart_y_bot   = 500    (corresponds to recall = 0.45)
+    For recall r: y = 500 - (r - 0.45) / (0.60 - 0.45) * 300 = 500 - (r-0.45)*2000
+    For x position (n reformulations): use a categorical x axis with positions
+      n=0→x=240, n=3→x=320, n=5→x=400, n=10→x=500, n=15→x=600, n=25→x=720, n=50→x=860
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" width="1100" height="720" font-family="Georgia, 'Times New Roman', serif">
+
+  <defs>
+    <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1a1a"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- TITLE -->
+  <text font-weight="bold" font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" fill="#1a1a1a">More reformulations → more drift</text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" fill="#6b665e" font-style="italic">Classical reformulation degrades past ~10 reformulations · ReformIR stays stable</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- chart label / context -->
+  <text x="80" y="170" font-size="12" fill="#6b665e" font-style="italic" letter-spacing="0.5">TREC DL19 · BM25 → MonoT5 (budget c=100)</text>
+
+  <!-- ============ CHART AREA ============ -->
+  <!-- vertical axis line -->
+  <line x1="220" y1="200" x2="220" y2="500" stroke="#1a1a1a" stroke-width="1.2"/>
+  <!-- horizontal axis line -->
+  <line x1="220" y1="500" x2="880" y2="500" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- horizontal grid lines (subtle) at recall = 0.45, 0.50, 0.55, 0.60 -->
+  <!-- 0.60 → y=200 -->
+  <line x1="220" y1="200" x2="880" y2="200" stroke="#e8e2d6" stroke-width="0.8"/>
+  <!-- 0.55 → y=300 -->
+  <line x1="220" y1="300" x2="880" y2="300" stroke="#e8e2d6" stroke-width="0.8"/>
+  <!-- 0.50 → y=400 -->
+  <line x1="220" y1="400" x2="880" y2="400" stroke="#e8e2d6" stroke-width="0.8"/>
+  <!-- 0.45 → y=500 (axis itself) -->
+
+  <!-- y-axis tick labels -->
+  <g font-size="12" fill="#6b665e" text-anchor="end">
+    <text x="208" y="205">0.60</text>
+    <text x="208" y="305">0.55</text>
+    <text x="208" y="405">0.50</text>
+    <text x="208" y="505">0.45</text>
+  </g>
+
+  <!-- y-axis title -->
+  <text x="100" y="350" font-size="14" fill="#1a1a1a" transform="rotate(-90, 100, 350)" text-anchor="middle" letter-spacing="0.4">Recall@100</text>
+
+  <!-- x-axis tick marks + labels -->
+  <g font-size="12" fill="#6b665e" text-anchor="middle">
+    <line x1="240" y1="500" x2="240" y2="506" stroke="#1a1a1a" stroke-width="1"/>
+    <text x="240" y="524">0</text>
+
+    <line x1="320" y1="500" x2="320" y2="506" stroke="#1a1a1a" stroke-width="1"/>
+    <text x="320" y="524">3</text>
+
+    <line x1="400" y1="500" x2="400" y2="506" stroke="#1a1a1a" stroke-width="1"/>
+    <text x="400" y="524">5</text>
+
+    <line x1="500" y1="500" x2="500" y2="506" stroke="#1a1a1a" stroke-width="1"/>
+    <text x="500" y="524">10</text>
+
+    <line x1="600" y1="500" x2="600" y2="506" stroke="#1a1a1a" stroke-width="1"/>
+    <text x="600" y="524">15</text>
+
+    <line x1="720" y1="500" x2="720" y2="506" stroke="#1a1a1a" stroke-width="1"/>
+    <text x="720" y="524">25</text>
+
+    <line x1="860" y1="500" x2="860" y2="506" stroke="#1a1a1a" stroke-width="1"/>
+    <text x="860" y="524">50</text>
+  </g>
+
+  <!-- x-axis title -->
+  <text x="550" y="558" font-size="14" fill="#1a1a1a" text-anchor="middle" letter-spacing="0.3"># of reformulations</text>
+
+  <!-- ============ CURVES ============ -->
+
+  <!-- BM25 baseline: flat at 0.50 → y=400. Use grey, dashed -->
+  <line x1="240" y1="400" x2="860" y2="400" stroke="#8a857a" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- GenQR: classical reformulation that drifts.
+       Values:
+         n=0  → 0.50  → y = 500 - (0.50-0.45)*2000 = 500 - 100 = 400
+         n=3  → 0.535 → y = 500 - 0.085*2000 = 500 - 170 = 330
+         n=5  → 0.54  → y = 320
+         n=10 → 0.535 → y = 330
+         n=15 → 0.52  → y = 360
+         n=25 → 0.49  → y = 420
+         n=50 → 0.46  → y = 480
+  -->
+  <polyline points="240,400 320,330 400,320 500,330 600,360 720,420 860,480"
+            fill="none" stroke="#2a4747" stroke-width="2.4"/>
+  <!-- markers on GenQR -->
+  <g fill="#2a4747">
+    <circle cx="240" cy="400" r="4"/>
+    <circle cx="320" cy="330" r="4"/>
+    <circle cx="400" cy="320" r="4"/>
+    <circle cx="500" cy="330" r="4"/>
+    <circle cx="600" cy="360" r="4"/>
+    <circle cx="720" cy="420" r="4"/>
+    <circle cx="860" cy="480" r="4"/>
+  </g>
+
+  <!-- ReformIR: rises and stabilizes.
+       Values:
+         n=0  → 0.50  → y = 400
+         n=3  → 0.555 → y = 500 - 0.105*2000 = 500 - 210 = 290
+         n=5  → 0.575 → y = 250
+         n=10 → 0.585 → y = 230
+         n=15 → 0.59  → y = 220
+         n=25 → 0.59  → y = 220
+         n=50 → 0.585 → y = 230
+  -->
+  <polyline points="240,400 320,290 400,250 500,230 600,220 720,220 860,230"
+            fill="none" stroke="#c8553d" stroke-width="3"/>
+  <!-- markers on ReformIR -->
+  <g fill="#c8553d">
+    <circle cx="240" cy="400" r="4.5"/>
+    <circle cx="320" cy="290" r="4.5"/>
+    <circle cx="400" cy="250" r="4.5"/>
+    <circle cx="500" cy="230" r="4.5"/>
+    <circle cx="600" cy="220" r="4.5"/>
+    <circle cx="720" cy="220" r="4.5"/>
+    <circle cx="860" cy="230" r="4.5"/>
+  </g>
+
+  <!-- ============ INLINE CURVE LABELS ============ -->
+  <!-- ReformIR label, near the asymptote -->
+  <text x="780" y="208" font-size="14" fill="#c8553d" font-weight="bold" letter-spacing="0.3">ReformIR</text>
+  <text x="780" y="225" font-size="11" fill="#c8553d" font-style="italic">stable · keeps improving</text>
+
+  <!-- GenQR label, near the descending tail -->
+  <text x="688" y="450" font-size="14" fill="#2a4747" font-weight="bold" letter-spacing="0.3">GenQR</text>
+  <text x="688" y="467" font-size="11" fill="#2a4747" font-style="italic">drift dominates past 10</text>
+
+  <!-- BM25 label, on the dashed line -->
+  <text x="438" y="392" font-size="13" fill="#6b665e" letter-spacing="0.3">BM25 baseline</text>
+
+  <!-- ============ ANNOTATION: drift zone ============ -->
+  <!-- Soft band on the right where GenQR collapses -->
+  <rect x="720" y="200" width="160" height="300" fill="#c8553d" fill-opacity="0.04"/>
+  <text x="800" y="582" font-size="11" fill="#6b665e" font-style="italic" text-anchor="middle">drift zone — classical reformulation collapses</text>
+  <line x1="720" y1="568" x2="880" y2="568" stroke="#c8553d" stroke-width="0.8" stroke-dasharray="4,3"/>
+
+  <!-- ============ FOOTER MARK + CLOSING ============ -->
+  <line x1="80" y1="630" x2="200" y2="630" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="660" font-size="16" fill="#1a1a1a">Adding more reformulations doesn't fix recall — <tspan fill="#c8553d" font-weight="bold">picking the right ones does.</tspan></text>
+  <text x="80" y="688" font-size="14" fill="#6b665e" font-style="italic">ReformIR uses ranker feedback to up-weight useful reformulations and down-weight drifty ones.</text>
+</svg>

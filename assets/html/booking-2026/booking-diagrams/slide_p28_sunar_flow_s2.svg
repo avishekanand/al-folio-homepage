@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+
+  <defs>
+    <marker id="arrowSU" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrowSUaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8553d"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">
+    SUNAR — uncertainty as the feedback signal
+  </text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">
+    LLM answer consistency drives next-iteration document retrieval
+  </text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- QUERY circle (leftmost) -->
+  <g>
+    <circle cx="70" cy="210" r="24" fill="#dfe3e3" stroke="#2a4747" stroke-width="2"/>
+    <text x="70" y="207" font-size="11" fill="#2a4747" text-anchor="middle" font-weight="700">query</text>
+    <text x="70" y="219" font-size="10" fill="#6b665e" text-anchor="middle" font-style="italic">q</text>
+  </g>
+  <!-- query → QU arrow -->
+  <line x1="96" y1="210" x2="108" y2="210" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowSU)"/>
+
+  <!-- STAGE 1 — Query Understanding -->
+  <g>
+    <rect x="110" y="170" width="170" height="80" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8" rx="4"/>
+    <text x="195" y="194" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700">QUERY</text>
+    <text x="195" y="210" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700">UNDERSTANDING</text>
+    <text x="195" y="228" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">multi-hop question</text>
+    <text x="195" y="243" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">→ sub-questions</text>
+  </g>
+
+  <!-- STAGE 2 — Retrieval + Ranking -->
+  <g>
+    <rect x="310" y="170" width="220" height="80" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8" rx="4"/>
+    <text x="420" y="200" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+      RETRIEVAL + RANKING
+    </text>
+    <text x="420" y="222" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">first-stage hits +</text>
+    <text x="420" y="237" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">graph neighbors</text>
+  </g>
+
+  <!-- STAGE 3 — LLM Answers -->
+  <g>
+    <rect x="580" y="170" width="180" height="80" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8" rx="4"/>
+    <text x="670" y="200" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+      LLM ANSWERS
+    </text>
+    <text x="670" y="222" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">k candidate answers</text>
+    <text x="670" y="237" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">from sampled evidence</text>
+  </g>
+
+  <!-- STAGE 4 — Semantic Clusters (accent, new in s2) -->
+  <g>
+    <rect x="810" y="170" width="200" height="80" fill="#c8553d" stroke="#c8553d" stroke-width="1.8" rx="4"/>
+    <text x="910" y="200" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+      SEMANTIC CLUSTERS
+    </text>
+    <text x="910" y="222" font-size="11" fill="#ffffff" text-anchor="middle" font-style="italic" opacity="0.92">number of sets</text>
+    <text x="910" y="237" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="700" opacity="0.95">= uncertainty</text>
+  </g>
+
+  <!-- forward arrows top row -->
+  <line x1="282" y1="210" x2="308" y2="210" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowSU)"/>
+  <line x1="532" y1="210" x2="576" y2="210" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowSU)"/>
+  <line x1="762" y1="210" x2="806" y2="210" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowSU)"/>
+
+</svg>

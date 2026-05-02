@@ -13,9 +13,9 @@ nav: false
 <ul>
   <li>
     <strong>Towards Self-Improving Retrieval Augmented Systems</strong><br>
-    <a href="/assets/html/booking-2026/booking-talk.html">View slides (HTML)</a>
+    <a href="{{ '/assets/html/booking-2026/booking-talk.html' | relative_url }}">View slides (HTML)</a>
     &nbsp;·&nbsp;
-    <a href="/assets/html/booking-2026/booking-talk.pdf">PDF</a>
+    <a href="{{ '/assets/html/booking-2026/booking-talk.pdf' | relative_url }}">PDF</a>
   </li>
 </ul>
 

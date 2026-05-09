@@ -235,6 +235,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - INSTALL.md
+  - INSTRUCTIONS_TO_SELF.md
   - LICENSE
   - lighthouse_results/
   - package.json

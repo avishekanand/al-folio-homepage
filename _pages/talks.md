@@ -17,6 +17,9 @@ nav: false
     &nbsp;·&nbsp;
     <a href="{{ '/assets/html/booking-2026/booking-talk.pdf' | relative_url }}">PDF</a>
   </li>
+  <li>
+    <strong>talk at SIGIR : Temporal Information retrieval tutorial</strong>
+  </li>
 </ul>
 
 </div>

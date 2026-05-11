@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- HEADLINE label -->
+  <text x="80" y="220" font-size="14" fill="#c8553d" font-weight="700" letter-spacing="2">
+    HEADLINE
+  </text>
+
+  <!-- Big 7x number -->
+  <text x="80" y="380" font-size="200" fill="#c8553d" font-weight="700">
+    7<tspan font-size="160" dx="-15">×</tspan>
+  </text>
+  <text x="80" y="425" font-size="22" fill="#1a1a1a" font-weight="700" letter-spacing="0.5">
+    fewer LLM calls
+  </text>
+  <text x="80" y="455" font-size="16" fill="#6b665e" font-style="italic">
+    same task performance
+  </text>
+</svg>

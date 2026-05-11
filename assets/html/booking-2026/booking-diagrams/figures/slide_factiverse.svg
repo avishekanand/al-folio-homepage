@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" width="1100" height="480">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2a4747"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- Standard header -->
+  
+  
+  
+
+  <!-- LEFT PANEL — CLAIM INPUT -->
+  <rect x="80" y="140" width="260" height="390" stroke="#2a4747" stroke-width="2" rx="3" fill="#ffffff"/>
+  <text x="95" y="163" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#2a4747" letter-spacing="0.8">CLAIM</text>
+  <text x="95" y="179" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#6b665e">Input text</text>
+  <line x1="80" y1="186" x2="340" y2="186" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- Claim text box -->
+  <rect x="92" y="195" width="236" height="140" stroke="#8a857a" stroke-width="1" fill="#ffffff" rx="2"/>
+  <text x="107" y="218" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#1a1a1a">mRNA vaccines</text>
+  <text x="107" y="242" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#1a1a1a">alter human DNA</text>
+
+  <!-- Source -->
+  <text x="95" y="350" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">Source</text>
+  <rect x="95" y="360" width="120" height="18" fill="#e8e2d6" rx="2"/>
+  <text x="100" y="373" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#6b665e">Twitter / X</text>
+
+  <!-- VERIFY button -->
+  <rect x="92" y="395" width="230" height="34" fill="#2a4747" rx="3"/>
+  <text x="207" y="416" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#ffffff">VERIFY CLAIM →</text>
+
+  <!-- Arrow from left to middle -->
+  <line x1="342" y1="335" x2="368" y2="335" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- MIDDLE PANEL — EVIDENCE -->
+  <rect x="370" y="140" width="390" height="390" stroke="#8a857a" stroke-width="1.2" rx="3" fill="#ffffff"/>
+  <text x="385" y="163" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#6b665e" letter-spacing="0.8">RETRIEVED EVIDENCE</text>
+  <text x="385" y="179" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#6b665e">3 high-credibility sources</text>
+  <line x1="370" y1="186" x2="760" y2="186" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- Evidence card 1 -->
+  <rect x="382" y="200" width="370" height="95" stroke="#e8e2d6" stroke-width="1" rx="2" fill="#ffffff"/>
+  <rect x="720" y="205" width="25" height="14" fill="#2a4747" rx="2"/>
+  <text x="732" y="215" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="7" fill="#ffffff">HIGH</text>
+  <text x="390" y="218" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="bold" fill="#2a4747">Nature Medicine (2021)</text>
+  <text x="390" y="232" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">mRNA vaccines work by instructing cells to produce a</text>
+  <text x="390" y="246" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">spike protein. mRNA does not enter the cell nucleus</text>
+  <text x="390" y="260" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">and cannot alter DNA.</text>
+  <text x="745" y="285" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747">0.97</text>
+
+  <!-- Evidence card 2 -->
+  <rect x="382" y="305" width="370" height="85" stroke="#e8e2d6" stroke-width="1" rx="2" fill="#ffffff"/>
+  <rect x="720" y="310" width="25" height="14" fill="#2a4747" rx="2"/>
+  <text x="732" y="320" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="7" fill="#ffffff">HIGH</text>
+  <text x="390" y="323" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="bold" fill="#2a4747">CDC.gov Fact Sheet</text>
+  <text x="390" y="337" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">COVID-19 vaccines do not change or interact with</text>
+  <text x="390" y="351" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">your DNA in any way. The mRNA from vaccines</text>
+  <text x="390" y="365" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">never enters the nucleus of the cell.</text>
+  <text x="745" y="382" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747">0.95</text>
+
+  <!-- Evidence card 3 -->
+  <rect x="382" y="400" width="370" height="75" stroke="#e8e2d6" stroke-width="1" rx="2" fill="#ffffff"/>
+  <rect x="720" y="405" width="25" height="14" fill="#2a4747" rx="2"/>
+  <text x="732" y="415" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="7" fill="#ffffff">HIGH</text>
+  <text x="390" y="418" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="bold" fill="#2a4747">WHO Technical Brief</text>
+  <text x="390" y="432" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">mRNA technology has been studied for 30+ years.</text>
+  <text x="390" y="446" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">No mechanism for DNA alteration exists.</text>
+  <text x="745" y="467" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747">0.93</text>
+
+  <!-- Arrow from middle to right -->
+  <line x1="762" y1="335" x2="783" y2="335" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- RIGHT PANEL — VERDICT -->
+  <rect x="785" y="140" width="235" height="390" stroke="#c8553d" stroke-width="2" rx="3" fill="#ffffff"/>
+  <text x="800" y="163" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#c8553d" letter-spacing="0.8">VERDICT</text>
+  <line x1="785" y1="186" x2="1020" y2="186" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- Large verdict indicator -->
+  <rect x="800" y="200" width="210" height="80" fill="#c8553d" fill-opacity="0.12" rx="3"/>
+  <text x="905" y="249" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="36" font-weight="bold" fill="#c8553d">FALSE</text>
+
+  <!-- Confidence bar -->
+  <text x="800" y="300" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">Confidence</text>
+  <rect x="800" y="308" width="210" height="10" fill="#e8e2d6" rx="5"/>
+  <rect x="800" y="308" width="198" height="10" fill="#c8553d" rx="5"/>
+  <text x="1015" y="318" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747">0.96</text>
+
+  <!-- Breakdown -->
+  <text x="800" y="340" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">Contradicted by</text>
+  <text x="800" y="357" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="bold" fill="#2a4747">3 / 3 sources</text>
+  <line x1="800" y1="372" x2="1010" y2="372" stroke="#e8e2d6" stroke-width="1"/>
+  <text x="800" y="385" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">Source credibility</text>
+  <text x="800" y="400" font-family="Georgia, 'Times New Roman', serif" font-size="12" fill="#2a4747">High (avg 0.95)</text>
+  <line x1="800" y1="415" x2="1010" y2="415" stroke="#e8e2d6" stroke-width="1"/>
+  <text x="800" y="428" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">First checked</text>
+  <text x="800" y="443" font-family="Georgia, 'Times New Roman', serif" font-size="11" fill="#1a1a1a">2024-03-15 · 0.34s</text>
+
+  </svg>

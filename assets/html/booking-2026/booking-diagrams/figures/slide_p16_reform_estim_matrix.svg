@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <!-- ============================================================
+       SLIDE 9 — Reformulation × Estimator: pick the pair per query
+       Same palette as slide 7.
+       ============================================================ -->
+
+  <!-- background -->
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- ============================================================
+       MATRIX
+       Plot area: x 230 → 830  (600 wide)
+                  y 200 → 600  (400 tall)
+       Quadrants:
+         BL (cheap × weak)        easy queries        ☉
+         BR (expensive × weak)    wasteful
+         TL (cheap × strong)      starved
+         TR (expensive × strong)  hard queries        ◉
+       ============================================================ -->
+
+  <!-- diagonal sweet-spot band (drawn first, behind grid) -->
+  <!-- band goes from BL corner to TR corner with width ~80 -->
+  <path d="M 230 600
+           L 230 540
+           L 770 200
+           L 830 200
+           L 830 260
+           L 290 600 Z"
+        fill="#c8553d" fill-opacity="0.10"/>
+
+  <!-- inner band (slightly darker, narrower) -->
+  <path d="M 230 600
+           L 230 570
+           L 800 200
+           L 830 200
+           L 830 230
+           L 260 600 Z"
+        fill="#c8553d" fill-opacity="0.10"/>
+
+  <!-- quadrant divider lines -->
+  <line x1="530" y1="200" x2="530" y2="600" stroke="#1a1a1a" stroke-width="1.3" stroke-dasharray="4,4"/>
+  <line x1="230" y1="400" x2="830" y2="400" stroke="#1a1a1a" stroke-width="1.3" stroke-dasharray="4,4"/>
+
+  <!-- outer matrix box -->
+  <rect x="230" y="200" width="600" height="400" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- ============================================================
+       AXIS LABELS
+       ============================================================ -->
+
+  <!-- x-axis -->
+  <line x1="230" y1="638" x2="830" y2="638" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arrowEnd)"/>
+  <defs>
+    <marker id="arrowEnd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrowEndUp" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,10 L5,0 L10,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8553d"/>
+    </marker>
+  </defs>
+
+  <text x="240" y="660" font-size="12" fill="#6b665e" font-style="italic">cheap</text>
+  <text x="820" y="660" font-size="12" fill="#6b665e" font-style="italic" text-anchor="end">expensive</text>
+  <text x="530" y="685" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600" letter-spacing="0.3">
+    Reformulation strength
+  </text>
+
+  <!-- y-axis -->
+  <line x1="192" y1="600" x2="192" y2="200" stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arrowEndUp)"/>
+  <text x="180" y="595" font-size="12" fill="#6b665e" font-style="italic" text-anchor="end">weak</text>
+  <text x="180" y="215" font-size="12" fill="#6b665e" font-style="italic" text-anchor="end">strong</text>
+  <text x="155" y="400" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600" letter-spacing="0.3"
+        transform="rotate(-90 155 400)">
+    Estimator strength
+  </text>
+
+  <!-- ============================================================
+       QUADRANT LABELS
+       Each quadrant: short heading + one-line description
+       ============================================================ -->
+
+  <!-- BL anchor descriptor: tucked above-right of the BL anchor circle, BELOW the diagonal,
+       in the lower-right portion of the BL quadrant where there's clear space -->
+  <text x="500" y="575" font-size="14" fill="#c8553d" text-anchor="end" font-weight="700">Easy queries</text>
+  <text x="500" y="592" font-size="11" fill="#6b665e" text-anchor="end" font-style="italic">cheap reform · light judge</text>
+
+  <!-- BR: expensive × weak  —  wasted compute -->
+  <text x="680" y="500" font-size="15" fill="#6b665e" text-anchor="middle" font-weight="600">
+    Wasteful
+  </text>
+  <text x="680" y="522" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    spend on exploration
+  </text>
+  <text x="680" y="540" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    you can't evaluate
+  </text>
+
+  <!-- TL: cheap × strong  —  starved -->
+  <text x="380" y="290" font-size="15" fill="#6b665e" text-anchor="middle" font-weight="600">
+    Starved
+  </text>
+  <text x="380" y="312" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    strong judge with
+  </text>
+  <text x="380" y="330" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    nothing to judge
+  </text>
+
+  <!-- TR anchor descriptor: tucked in upper portion away from band -->
+  <text x="565" y="225" font-size="14" fill="#c8553d" text-anchor="start" font-weight="700">Hard queries</text>
+  <text x="565" y="242" font-size="11" fill="#6b665e" text-anchor="start" font-style="italic">deep reform · strong judge</text>
+
+  <!-- ============================================================
+       SWEET-SPOT ENDPOINT MARKERS
+       ============================================================ -->
+
+  <!-- BL anchor: easy navigational -->
+  <circle cx="305" cy="555" r="9" fill="#ffffff" stroke="#c8553d" stroke-width="2.5"/>
+  <circle cx="305" cy="555" r="3" fill="#c8553d"/>
+
+  <!-- TR anchor: hard ambiguous -->
+  <circle cx="755" cy="245" r="9" fill="#ffffff" stroke="#c8553d" stroke-width="2.5"/>
+  <circle cx="755" cy="245" r="3" fill="#c8553d"/>
+
+  <!-- diagonal arrow showing the sweet-spot sweep -->
+  <line x1="320" y1="540" x2="740" y2="260" stroke="#c8553d" stroke-width="2.5"
+        stroke-linecap="round" marker-end="url(#arrowAccent)" stroke-dasharray="0"/>
+
+  <!-- annotation along the diagonal — placed in upper portion to avoid the gridline crossing -->
+  <text x="640" y="338" font-size="13" fill="#c8553d" font-style="italic" font-weight="600"
+        text-anchor="middle" transform="rotate(-25 640 338)">
+    sweet spot per query
+  </text>
+
+  <!-- ============================================================
+       CALLOUTS for the two anchors
+       ============================================================ -->
+
+  <!-- easy callout (bottom-left, outside matrix) -->
+  <line x1="305" y1="555" x2="245" y2="615" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="105" y="618" font-size="13" fill="#1a1a1a" font-weight="600">
+    e.g. "hotels in Lisbon"
+  </text>
+
+  <!-- hard callout (top-right, outside matrix) -->
+  <line x1="755" y1="245" x2="850" y2="180" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="858" y="180" font-size="13" fill="#1a1a1a" font-weight="600">
+    e.g. "kid-friendly,
+  </text>
+  <text x="858" y="197" font-size="13" fill="#1a1a1a" font-weight="600">
+    near beach, under €200"
+  </text>
+
+  </svg>

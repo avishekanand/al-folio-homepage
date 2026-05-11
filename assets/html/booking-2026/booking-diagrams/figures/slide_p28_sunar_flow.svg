@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <!-- ============================================================
+       SUNAR FLOW — p. 28
+       Pipeline:
+         Question → decomposition → first-stage retrieval
+         → neighborhood-aware retrieval over doc graph
+         → LLM generates k answer candidates
+         → semantic clustering (number of sets = uncertainty)
+         → uncertainty signal feeds back to re-prioritize docs
+       ============================================================ -->
+
+  <defs>
+    <marker id="arrowSU" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrowSUaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8553d"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- ============================================================
+       STAGE 1 — Decomposition
+       y-band: 160-280 (top row)
+       ============================================================ -->
+
+  <g>
+    <rect x="80" y="170" width="180" height="80" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8" rx="4"/>
+    <text x="170" y="200" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+      DECOMPOSE
+    </text>
+    <text x="170" y="222" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">multi-hop question</text>
+    <text x="170" y="237" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">→ sub-questions</text>
+  </g>
+
+  <!-- ============================================================
+       STAGE 2 — Neighborhood retrieval over doc graph
+       ============================================================ -->
+
+  <g>
+    <rect x="310" y="170" width="220" height="80" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8" rx="4"/>
+    <text x="420" y="200" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+      RETRIEVAL + RANKING
+    </text>
+    <text x="420" y="222" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">first-stage hits +</text>
+    <text x="420" y="237" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">graph neighbors</text>
+  </g>
+
+  <!-- mini doc graph schematic, embedded inside the box header area -->
+  <!-- placed below the box, in the cluster zone -->
+
+  <!-- ============================================================
+       STAGE 3 — LLM answer generation
+       ============================================================ -->
+
+  <g>
+    <rect x="580" y="170" width="180" height="80" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.8" rx="4"/>
+    <text x="670" y="200" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+      LLM ANSWERS
+    </text>
+    <text x="670" y="222" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">k candidate answers</text>
+    <text x="670" y="237" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">from sampled evidence</text>
+  </g>
+
+  <!-- ============================================================
+       STAGE 4 — Semantic clustering (the conceptually novel part)
+       Highlighted in accent color since it's the key innovation
+       ============================================================ -->
+
+  <g>
+    <rect x="810" y="170" width="200" height="80" fill="#c8553d" stroke="#c8553d" stroke-width="1.8" rx="4"/>
+    <text x="910" y="200" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+      SEMANTIC CLUSTERS
+    </text>
+    <text x="910" y="222" font-size="11" fill="#ffffff" text-anchor="middle" font-style="italic" opacity="0.92">number of sets</text>
+    <text x="910" y="237" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="700" opacity="0.95">= uncertainty</text>
+  </g>
+
+  <!-- forward arrows top row -->
+  <line x1="262" y1="210" x2="306" y2="210" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowSU)"/>
+  <line x1="532" y1="210" x2="576" y2="210" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowSU)"/>
+  <line x1="762" y1="210" x2="806" y2="210" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowSU)"/>
+
+  <!-- ============================================================
+       MIDDLE BAND — semantic-clustering visualization (the "aha")
+       Two scenarios side-by-side:
+         (a) HIGH CONFIDENCE — 6 answer dots → 1 cluster
+         (b) HIGH UNCERTAINTY — 6 answer dots → 4 clusters
+       ============================================================ -->
+
+  <!-- band background -->
+  <rect x="80" y="320" width="940" height="220" fill="#2a4747" fill-opacity="0.04" rx="3"/>
+
+  <!-- band title -->
+  <text x="100" y="350" font-size="13" fill="#2a4747" font-weight="700" letter-spacing="1.5">
+    HOW UNCERTAINTY IS COMPUTED
+  </text>
+
+  <!-- LEFT scenario: HIGH CONFIDENCE -->
+
+  <text x="240" y="385" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="700">
+    Consistent answers
+  </text>
+  <text x="240" y="403" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">
+    1 semantic cluster · low uncertainty
+  </text>
+
+  <!-- the 6 answer dots, ALL grouped tightly = 1 cluster -->
+  <ellipse cx="240" cy="465" rx="100" ry="52" fill="none" stroke="#2a4747" stroke-width="2"/>
+  <g fill="#2a4747">
+    <circle cx="195" cy="448" r="6"/>
+    <circle cx="225" cy="438" r="6"/>
+    <circle cx="265" cy="445" r="6"/>
+    <circle cx="290" cy="465" r="6"/>
+    <circle cx="245" cy="478" r="6"/>
+    <circle cx="205" cy="488" r="6"/>
+  </g>
+  <text x="240" y="535" font-size="13" fill="#2a4747" text-anchor="middle" font-weight="700">
+    evidence is good
+  </text>
+
+  <!-- DIVIDER -->
+  <line x1="500" y1="380" x2="500" y2="540" stroke="#1a1a1a" stroke-width="0.6" stroke-dasharray="3,4"/>
+
+  <!-- RIGHT scenario: HIGH UNCERTAINTY -->
+
+  <text x="760" y="385" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="700">
+    Divergent answers
+  </text>
+  <text x="760" y="403" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">
+    4 semantic clusters · high uncertainty
+  </text>
+
+  <!-- 4 small clusters, each holding 1-2 answer dots -->
+  <!-- cluster 1 -->
+  <ellipse cx="650" cy="445" rx="22" ry="20" fill="none" stroke="#c8553d" stroke-width="1.8"/>
+  <circle cx="650" cy="445" r="6" fill="#c8553d"/>
+
+  <!-- cluster 2 -->
+  <ellipse cx="725" cy="490" rx="26" ry="22" fill="none" stroke="#c8553d" stroke-width="1.8"/>
+  <circle cx="718" cy="486" r="6" fill="#c8553d"/>
+  <circle cx="734" cy="494" r="6" fill="#c8553d"/>
+
+  <!-- cluster 3 -->
+  <ellipse cx="800" cy="438" rx="22" ry="20" fill="none" stroke="#c8553d" stroke-width="1.8"/>
+  <circle cx="800" cy="438" r="6" fill="#c8553d"/>
+
+  <!-- cluster 4 -->
+  <ellipse cx="870" cy="490" rx="26" ry="22" fill="none" stroke="#c8553d" stroke-width="1.8"/>
+  <circle cx="862" cy="488" r="6" fill="#c8553d"/>
+  <circle cx="878" cy="494" r="6" fill="#c8553d"/>
+
+  <text x="760" y="535" font-size="13" fill="#c8553d" text-anchor="middle" font-weight="700">
+    evidence is bad → re-retrieve
+  </text>
+
+  <!-- ============================================================
+       FEEDBACK ARROW — from top of divergent answers cluster up
+       to bottom of retrieval+ranking box. Stays in upper-right region,
+       avoids the central area.
+       ============================================================ -->
+
+  <path d="M 760 375 C 760 320, 600 280, 420 252"
+        fill="none" stroke="#c8553d" stroke-width="2.4"
+        stroke-dasharray="8,5" marker-end="url(#arrowSUaccent)"/>
+
+  <!-- feedback label, placed along the arrow's curve in clear space -->
+  <rect x="540" y="288" width="200" height="36" fill="#ffffff" stroke="none"/>
+  <text x="640" y="304" font-size="13" fill="#c8553d" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+    UNCERTAINTY FEEDBACK
+  </text>
+  <text x="640" y="320" font-size="11" fill="#c8553d" text-anchor="middle" font-style="italic">
+    promote/penalize · next iteration
+  </text>
+
+  </svg>

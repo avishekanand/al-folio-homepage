@@ -11,7 +11,7 @@
   <rect width="1100" height="720" fill="#ffffff"/>
 
   <!-- TITLE -->
-  <text font-weight="bold" font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" fill="#1a1a1a">Failure 1 — the recall ceiling</text>
+  <text font-weight="bold" font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" fill="#1a1a1a">Failure 1 — the bounded recall problem</text>
   <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" fill="#6b665e" font-style="italic">The reranker can't fix what it never sees</text>
   <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
 

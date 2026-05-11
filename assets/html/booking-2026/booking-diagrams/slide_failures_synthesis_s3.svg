@@ -61,23 +61,10 @@
   </g>
 
   <!-- ARROW: root cause → diagnosis -->
-  <line x1="745" y1="345" x2="800" y2="345" stroke="#1a1a1a" stroke-width="2" marker-end="url(#ar-fwd)"/>
+  <line x1="745" y1="345" x2="800" y2="345" stroke="#c8553d" stroke-width="2" marker-end="url(#ar-acc)"/>
 
-  <!-- RIGHT: TODAY'S RAG diagnosis box -->
+  <!-- RIGHT: TOMORROW'S RAG box -->
   <g transform="translate(805, 290)">
-    <rect x="0" y="0" width="215" height="110" rx="4" fill="none" stroke="#1a1a1a" stroke-width="1.4"/>
-    <text x="107" y="32" text-anchor="middle" font-size="11" fill="#6b665e" font-weight="bold" letter-spacing="1.0">TODAY'S RAG</text>
-    <line x1="62" y1="42" x2="152" y2="42" stroke="#1a1a1a" stroke-width="0.8"/>
-    <text x="107" y="68" text-anchor="middle" font-size="18" fill="#1a1a1a" letter-spacing="0.3">a feed-forward</text>
-    <text x="107" y="94" text-anchor="middle" font-size="18" fill="#1a1a1a" letter-spacing="0.3">pipeline</text>
-  </g>
-
-  <!-- Downward dashed accent arrow from pipeline box (x=912, y=405) to TOMORROW'S RAG (y=520) -->
-  <path d="M 912 405 L 912 520" fill="none" stroke="#c8553d" stroke-width="2.4" stroke-dasharray="9,5" marker-end="url(#ar-acc)"/>
-  <text x="924" y="465" font-size="12" fill="#c8553d" font-style="italic">add feedback</text>
-
-  <!-- TOMORROW'S RAG box -->
-  <g transform="translate(805, 525)">
     <rect x="0" y="0" width="215" height="110" rx="4" fill="#2a4747"/>
     <text x="107" y="32" text-anchor="middle" font-size="11" fill="#ffffff" font-weight="bold" letter-spacing="1.0">TOMORROW'S RAG</text>
     <line x1="62" y1="42" x2="152" y2="42" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.5"/>

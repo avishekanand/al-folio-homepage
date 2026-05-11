@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- LEFT: 40× big number + LATENCY TAX label -->
+  <text x="80" y="222" font-size="14" fill="#c8553d" font-weight="700" letter-spacing="2">LATENCY TAX</text>
+
+  <text x="80" y="390" font-size="150" fill="#c8553d" font-weight="700">40×</text>
+
+  <text x="80" y="435" font-size="22" fill="#1a1a1a" font-weight="700" letter-spacing="0.5">slower per query</text>
+  <text x="80" y="462" font-size="16" fill="#6b665e" font-style="italic">cross-encoder → LLM reranker</text>
+
+</svg>

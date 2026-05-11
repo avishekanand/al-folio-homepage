@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <!-- ============================================================
+       CASE — CONVERGENCE CURVES (p. 35b)
+       Y axis: gap-index (1.0 → 0)
+       X axis: iterations (0 → 7000)
+       Three curves: CASE (fast), LinGIFA (medium), LinGapE (slow)
+       Convergence threshold line at gap-index = 0.05
+       ============================================================ -->
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- background grid -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="130" y1="468" x2="880" y2="468"/>
+    <line x1="130" y1="396" x2="880" y2="396"/>
+    <line x1="130" y1="324" x2="880" y2="324"/>
+    <line x1="130" y1="252" x2="880" y2="252"/>
+    <!-- vertical gridlines -->
+    <line x1="237.1" y1="180" x2="237.1" y2="540" stroke-dasharray="2,4"/>
+    <line x1="344.3" y1="180" x2="344.3" y2="540" stroke-dasharray="2,4"/>
+    <line x1="451.4" y1="180" x2="451.4" y2="540" stroke-dasharray="2,4"/>
+    <line x1="558.6" y1="180" x2="558.6" y2="540" stroke-dasharray="2,4"/>
+    <line x1="665.7" y1="180" x2="665.7" y2="540" stroke-dasharray="2,4"/>
+    <line x1="772.9" y1="180" x2="772.9" y2="540" stroke-dasharray="2,4"/>
+  </g>
+
+  <!-- "convergence threshold" zone (light fill below the line) -->
+  <rect x="130" y="522" width="750" height="18" fill="#2a4747" fill-opacity="0.05"/>
+  <line x1="130" y1="522" x2="880" y2="522" stroke="#2a4747" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="885" y="526" font-size="11" fill="#2a4747" font-style="italic">converged (g &lt; 0.05)</text>
+
+  <!-- axes -->
+  <line x1="130" y1="540" x2="880" y2="540" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="130" y1="180" x2="130" y2="540" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- y-axis ticks (gap-index 0 to 1) -->
+  <g font-size="13" fill="#1a1a1a" text-anchor="end">
+    <text x="118" y="545">0.0</text>
+    <text x="118" y="473">0.2</text>
+    <text x="118" y="401">0.4</text>
+    <text x="118" y="329">0.6</text>
+    <text x="118" y="257">0.8</text>
+    <text x="118" y="185">1.0</text>
+  </g>
+  <g stroke="#1a1a1a" stroke-width="1.5">
+    <line x1="125" y1="540" x2="130" y2="540"/>
+    <line x1="125" y1="468" x2="130" y2="468"/>
+    <line x1="125" y1="396" x2="130" y2="396"/>
+    <line x1="125" y1="324" x2="130" y2="324"/>
+    <line x1="125" y1="252" x2="130" y2="252"/>
+    <line x1="125" y1="180" x2="130" y2="180"/>
+  </g>
+  <text x="60" y="360" font-size="15" fill="#1a1a1a" text-anchor="middle"
+        transform="rotate(-90 60 360)" font-style="italic">
+    Gap-index  (lower = better)
+  </text>
+
+  <!-- x-axis ticks -->
+  <g stroke="#1a1a1a" stroke-width="1.5">
+    <line x1="130" y1="540" x2="130" y2="545"/>
+    <line x1="237.1" y1="540" x2="237.1" y2="545"/>
+    <line x1="344.3" y1="540" x2="344.3" y2="545"/>
+    <line x1="451.4" y1="540" x2="451.4" y2="545"/>
+    <line x1="558.6" y1="540" x2="558.6" y2="545"/>
+    <line x1="665.7" y1="540" x2="665.7" y2="545"/>
+    <line x1="772.9" y1="540" x2="772.9" y2="545"/>
+    <line x1="880" y1="540" x2="880" y2="545"/>
+  </g>
+  <g font-size="13" fill="#1a1a1a" text-anchor="middle">
+    <text x="130" y="565">0</text>
+    <text x="237.1" y="565">1k</text>
+    <text x="344.3" y="565">2k</text>
+    <text x="451.4" y="565">3k</text>
+    <text x="558.6" y="565">4k</text>
+    <text x="665.7" y="565">5k</text>
+    <text x="772.9" y="565">6k</text>
+    <text x="880" y="565">7k</text>
+  </g>
+  <text x="505" y="600" font-size="15" fill="#1a1a1a" text-anchor="middle" font-style="italic">
+    iterations
+  </text>
+
+  <!-- ============================================================
+       CURVES (drawn back-to-front, lightest first)
+       ============================================================ -->
+
+  <!-- LinGapE: slow gray dashed -->
+  <path d="M 130.0 180.0 L 140.7 187.3 L 151.4 194.4 L 162.1 201.4 L 172.9 208.2 L 183.6 214.9 L 194.3 221.5 L 205.0 227.9 L 215.7 234.2 L 226.4 240.4 L 237.1 246.5 L 247.9 252.4 L 258.6 258.2 L 269.3 263.9 L 280.0 269.5 L 290.7 274.9 L 301.4 280.3 L 312.1 285.5 L 322.9 290.7 L 333.6 295.7 L 344.3 300.6 L 355.0 305.5 L 365.7 310.2 L 376.4 314.9 L 387.1 319.4 L 397.9 323.9 L 408.6 328.2 L 419.3 332.5 L 430.0 336.7 L 440.7 340.8 L 451.4 344.8 L 462.1 348.8 L 472.9 352.6 L 483.6 356.4 L 494.3 360.1 L 505.0 363.8 L 515.7 367.3 L 526.4 370.8 L 537.1 374.2 L 547.9 377.6 L 558.6 380.9 L 569.3 384.1 L 580.0 387.2 L 590.7 390.3 L 601.4 393.3 L 612.1 396.3 L 622.9 399.2 L 633.6 402.0 L 644.3 404.8 L 655.0 407.6 L 665.7 410.2 L 676.4 412.9 L 687.1 415.4 L 697.9 417.9 L 708.6 420.4 L 719.3 422.8 L 730.0 425.2 L 740.7 427.5 L 751.4 429.8 L 762.1 432.0 L 772.9 434.2 L 783.6 436.3 L 794.3 438.4 L 805.0 440.5 L 815.7 442.5 L 826.4 444.5 L 837.1 446.4 L 847.9 448.3 L 858.6 450.1 L 869.3 451.9 L 880.0 453.7"
+        stroke="#8a857a" stroke-width="2.4" fill="none" stroke-linecap="round"
+        stroke-dasharray="6,4"/>
+
+  <!-- LinGIFA: medium teal -->
+  <path d="M 130.0 180.0 L 140.7 196.0 L 151.4 211.3 L 162.1 225.9 L 172.9 239.8 L 183.6 253.2 L 194.3 265.9 L 205.0 278.1 L 215.7 289.7 L 226.4 300.9 L 237.1 311.5 L 247.9 321.6 L 258.6 331.4 L 269.3 340.6 L 280.0 349.5 L 290.7 357.9 L 301.4 366.0 L 312.1 373.8 L 322.9 381.2 L 333.6 388.2 L 344.3 395.0 L 355.0 401.4 L 365.7 407.6 L 376.4 413.4 L 387.1 419.1 L 397.9 424.4 L 408.6 429.6 L 419.3 434.5 L 430.0 439.2 L 440.7 443.7 L 451.4 447.9 L 462.1 452.0 L 472.9 455.9 L 483.6 459.7 L 494.3 463.2 L 505.0 466.7 L 515.7 469.9 L 526.4 473.0 L 537.1 476.0 L 547.9 478.8 L 558.6 481.6 L 569.3 484.2 L 580.0 486.6 L 590.7 489.0 L 601.4 491.3 L 612.1 493.4 L 622.9 495.5 L 633.6 497.5 L 644.3 499.4 L 655.0 501.2 L 665.7 502.9 L 676.4 504.6 L 687.1 506.1 L 697.9 507.6 L 708.6 509.1 L 719.3 510.4 L 730.0 511.8 L 740.7 513.0 L 751.4 514.2 L 762.1 515.4 L 772.9 516.5 L 783.6 517.5 L 794.3 518.5 L 805.0 519.5 L 815.7 520.4 L 826.4 521.2 L 837.1 522.1 L 847.9 522.9 L 858.6 523.6 L 869.3 524.4 L 880.0 525.1"
+        stroke="#2a4747" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+
+  <!-- CASE: fast terracotta (primary) -->
+  <path d="M 130.0 180.0 L 140.7 227.9 L 151.4 269.5 L 162.1 305.5 L 172.9 336.7 L 183.6 363.8 L 194.3 387.2 L 205.0 407.6 L 215.7 425.2 L 226.4 440.5 L 237.1 453.7 L 247.9 465.2 L 258.6 475.2 L 269.3 483.8 L 280.0 491.3 L 290.7 497.8 L 301.4 503.4 L 312.1 508.3 L 322.9 512.5 L 333.6 516.1 L 344.3 519.3 L 355.0 522.1 L 365.7 524.5 L 376.4 526.5 L 387.1 528.3 L 397.9 529.9 L 408.6 531.2 L 419.3 532.4 L 430.0 533.4 L 440.7 534.3 L 451.4 535.0 L 462.1 535.7 L 472.9 536.3 L 483.6 536.8 L 494.3 537.2 L 505.0 537.6 L 515.7 537.9 L 526.4 538.2 L 537.1 538.4 L 547.9 538.6 L 558.6 538.8 L 569.3 539.0 L 580.0 539.1 L 590.7 539.2 L 601.4 539.3 L 612.1 539.4 L 622.9 539.5 L 633.6 539.6 L 644.3 539.6 L 655.0 539.7 L 665.7 539.7 L 676.4 539.8 L 687.1 539.8 L 697.9 539.8 L 708.6 539.8 L 719.3 539.9 L 730.0 539.9 L 740.7 539.9 L 751.4 539.9 L 762.1 539.9 L 772.9 539.9 L 783.6 539.9 L 794.3 539.9 L 805.0 540.0 L 815.7 540.0 L 826.4 540.0 L 837.1 540.0 L 847.9 540.0 L 858.6 540.0 L 869.3 540.0 L 880.0 540.0"
+        stroke="#c8553d" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+
+  <!-- ============================================================
+       CONVERGENCE-POINT MARKERS
+       CASE crosses g=0.05 at x ≈ 354.7
+       LinGIFA crosses g=0.05 at x ≈ 836.1
+       LinGapE never converges in plot range
+       ============================================================ -->
+
+  <!-- CASE convergence point -->
+  <circle cx="354.7" cy="522" r="6" fill="#ffffff" stroke="#c8553d" stroke-width="2.5"/>
+  <line x1="354.7" y1="540" x2="354.7" y2="630" stroke="#c8553d" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="354.7" y="650" font-size="13" fill="#c8553d" font-weight="700" text-anchor="middle">~2k iter</text>
+  <text x="354.7" y="667" font-size="11" fill="#c8553d" font-style="italic" text-anchor="middle">CASE converges</text>
+
+  <!-- LinGIFA convergence point -->
+  <circle cx="836.1" cy="522" r="5" fill="#ffffff" stroke="#2a4747" stroke-width="2"/>
+  <line x1="836.1" y1="540" x2="836.1" y2="610" stroke="#2a4747" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="836.1" y="630" font-size="12" fill="#2a4747" font-weight="600" text-anchor="middle">~6.5k iter</text>
+
+  <!-- ============================================================
+       CURVE LABELS (placed near endpoints / clear whitespace)
+       ============================================================ -->
+
+  <!-- CASE label - in clear whitespace below its curve, before drop -->
+  <text x="200" y="500" font-size="16" fill="#c8553d" font-weight="700">CASE</text>
+  <text x="200" y="518" font-size="11" fill="#6b665e" font-style="italic">our approach</text>
+
+  <!-- LinGIFA label - mid-curve in clear region -->
+  <text x="395" y="385" font-size="14" fill="#2a4747" font-weight="600">LinGIFA</text>
+
+  <!-- LinGapE label - above its curve in upper-right -->
+  <text x="780" y="395" font-size="14" fill="#6b665e" font-weight="600">LinGapE</text>
+
+  <!-- ============================================================
+       SPEEDUP CALLOUT (right side)
+       ============================================================ -->
+
+  <rect x="908" y="200" width="160" height="120" fill="#c8553d" rx="3"/>
+  <text x="988" y="240" font-size="38" fill="#ffffff" text-anchor="middle" font-weight="700">7×</text>
+  <text x="988" y="270" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" letter-spacing="1">FEWER</text>
+  <text x="988" y="288" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" letter-spacing="1">ITERATIONS</text>
+  <text x="988" y="307" font-size="11" fill="#ffffff" text-anchor="middle" font-style="italic" opacity="0.85">vs LinGapE</text>
+
+  
+</svg>

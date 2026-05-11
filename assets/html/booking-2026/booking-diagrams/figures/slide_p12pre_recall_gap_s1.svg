@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  
+  
+  
+
+  <!-- background grid -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="130" y1="500" x2="880" y2="500"/>
+    <line x1="130" y1="420" x2="880" y2="420"/>
+    <line x1="130" y1="340" x2="880" y2="340"/>
+    <line x1="130" y1="260" x2="880" y2="260"/>
+    <line x1="130" y1="180" x2="880" y2="180"/>
+    <line x1="309" y1="180" x2="309" y2="580" stroke-dasharray="2,4"/>
+    <line x1="684" y1="180" x2="684" y2="580" stroke-dasharray="2,4"/>
+  </g>
+
+  <!-- axes -->
+  <line x1="130" y1="580" x2="880" y2="580" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="130" y1="180" x2="130" y2="580" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- y ticks -->
+  <g font-size="14" fill="#1a1a1a" text-anchor="end">
+    <text x="118" y="585">0.0</text>
+    <text x="118" y="505">0.2</text>
+    <text x="118" y="425">0.4</text>
+    <text x="118" y="345">0.6</text>
+    <text x="118" y="265">0.8</text>
+    <text x="118" y="185">1.0</text>
+  </g>
+  <g stroke="#1a1a1a" stroke-width="1.5">
+    <line x1="125" y1="580" x2="130" y2="580"/>
+    <line x1="125" y1="500" x2="130" y2="500"/>
+    <line x1="125" y1="420" x2="130" y2="420"/>
+    <line x1="125" y1="340" x2="130" y2="340"/>
+    <line x1="125" y1="260" x2="130" y2="260"/>
+    <line x1="125" y1="180" x2="130" y2="180"/>
+  </g>
+  <text x="60" y="380" font-size="16" fill="#1a1a1a" text-anchor="middle"
+        transform="rotate(-90 60 380)" font-style="italic">Recall@k</text>
+
+  <!-- x ticks -->
+  <g stroke="#1a1a1a" stroke-width="1.5">
+    <line x1="130" y1="580" x2="130" y2="585"/>
+    <line x1="505" y1="580" x2="505" y2="585"/>
+    <line x1="880" y1="580" x2="880" y2="585"/>
+  </g>
+  <g font-size="14" fill="#1a1a1a" text-anchor="middle">
+    <text x="130" y="605">10</text>
+    <text x="505" y="605">100</text>
+    <text x="880" y="605">1000</text>
+  </g>
+  <text x="505" y="640" font-size="16" fill="#1a1a1a" text-anchor="middle" font-style="italic">k  (candidates retrieved, log scale)</text>
+
+</svg>

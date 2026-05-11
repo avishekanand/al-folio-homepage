@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" width="1100" height="480" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <marker id="ar-fwd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="ar-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c8553d"/>
+    </marker>
+    <marker id="ar-cool" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2a4747"/>
+    </marker>
+  </defs>
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- TITLE -->
+  
+  
+  
+
+  <!-- LEFT: THREE FAILURE CARDS -->
+  <!-- Failure 1 -->
+  <g transform="translate(80, 165)">
+    <rect x="0" y="0" width="280" height="100" rx="4" fill="none" stroke="#1a1a1a" stroke-width="1.2"/>
+    <text x="14" y="24" font-size="11" fill="#6b665e" font-weight="bold" letter-spacing="0.6">FAILURE 1</text>
+    <text x="14" y="50" font-size="17" fill="#1a1a1a">The recall ceiling</text>
+    <text x="14" y="76" font-size="12" fill="#6b665e" font-style="italic">retriever decides once →</text>
+    <text x="14" y="92" font-size="12" fill="#6b665e" font-style="italic">reranker can't see what was dropped</text>
+  </g>
+
+  <!-- Failure 2 -->
+  <g transform="translate(80, 295)">
+    <rect x="0" y="0" width="280" height="100" rx="4" fill="none" stroke="#1a1a1a" stroke-width="1.2"/>
+    <text x="14" y="24" font-size="11" fill="#6b665e" font-weight="bold" letter-spacing="0.6">FAILURE 2</text>
+    <text x="14" y="50" font-size="17" fill="#1a1a1a">The drift problem</text>
+    <text x="14" y="76" font-size="12" fill="#6b665e" font-style="italic">reformulations decided once →</text>
+    <text x="14" y="92" font-size="12" fill="#6b665e" font-style="italic">drift accumulates with each one</text>
+  </g>
+
+  <!-- Failure 3 -->
+  <g transform="translate(80, 425)">
+    <rect x="0" y="0" width="280" height="100" rx="4" fill="none" stroke="#1a1a1a" stroke-width="1.2"/>
+    <text x="14" y="24" font-size="11" fill="#6b665e" font-weight="bold" letter-spacing="0.6">FAILURE 3</text>
+    <text x="14" y="50" font-size="17" fill="#1a1a1a">The cost wall</text>
+    <text x="14" y="76" font-size="12" fill="#6b665e" font-style="italic">budget allocated once →</text>
+    <text x="14" y="92" font-size="12" fill="#6b665e" font-style="italic">reasoning rerankers priced out</text>
+  </g>
+
+  <!-- ARROWS: failures → root cause -->
+  <!-- F1 arrow (from right edge of F1 card: x=80+280=360, y=165+50=215) → root cause center (505+120=625, 290+55=345) -->
+  <line x1="364" y1="215" x2="498" y2="332" stroke="#1a1a1a" stroke-width="1.8" marker-end="url(#ar-fwd)"/>
+  <!-- F2 arrow (straight: x=360, y=295+50=345) → root cause left (505, 345) -->
+  <line x1="364" y1="345" x2="500" y2="345" stroke="#1a1a1a" stroke-width="1.8" marker-end="url(#ar-fwd)"/>
+  <!-- F3 arrow (from right edge of F3 card: x=360, y=425+50=475) → root cause center bottom (505+120=625, 290+55=345) -->
+  <line x1="364" y1="475" x2="498" y2="358" stroke="#1a1a1a" stroke-width="1.8" marker-end="url(#ar-fwd)"/>
+
+  <!-- CENTER: ROOT CAUSE BOX -->
+  <g transform="translate(505, 290)">
+    <rect x="0" y="0" width="240" height="110" rx="4" fill="#c8553d"/>
+    <text x="120" y="32" text-anchor="middle" font-size="11" fill="#ffffff" font-weight="bold" letter-spacing="1.0">ROOT CAUSE</text>
+    <line x1="80" y1="42" x2="160" y2="42" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.5"/>
+    <text x="120" y="68" text-anchor="middle" font-size="22" fill="#ffffff" letter-spacing="0.3">one-shot</text>
+    <text x="120" y="94" text-anchor="middle" font-size="22" fill="#ffffff" letter-spacing="0.3">decisions</text>
+  </g>
+</svg>

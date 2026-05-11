@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <!-- ============================================================
+       QUAM RESULTS — p. 21 — STEP 3
+       Full diagram: s2 + Recall@1000 group + footer
+       ============================================================ -->
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- background grid -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="180" y1="540" x2="880" y2="540"/>
+    <line x1="180" y1="472" x2="880" y2="472"/>
+    <line x1="180" y1="404" x2="880" y2="404"/>
+    <line x1="180" y1="336" x2="880" y2="336"/>
+    <line x1="180" y1="268" x2="880" y2="268"/>
+    <line x1="180" y1="200" x2="880" y2="200"/>
+  </g>
+
+  <!-- axes -->
+  <line x1="180" y1="540" x2="880" y2="540" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="180" y1="200" x2="180" y2="540" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- y-axis tick marks -->
+  <g stroke="#1a1a1a" stroke-width="1.5">
+    <line x1="175" y1="540" x2="180" y2="540"/>
+    <line x1="175" y1="472" x2="180" y2="472"/>
+    <line x1="175" y1="404" x2="180" y2="404"/>
+    <line x1="175" y1="336" x2="180" y2="336"/>
+    <line x1="175" y1="268" x2="180" y2="268"/>
+    <line x1="175" y1="200" x2="180" y2="200"/>
+  </g>
+
+  <!-- y-axis tick labels -->
+  <g font-size="13" fill="#1a1a1a" text-anchor="end">
+    <text x="168" y="545">0.0</text>
+    <text x="168" y="477">0.2</text>
+    <text x="168" y="409">0.4</text>
+    <text x="168" y="341">0.6</text>
+    <text x="168" y="273">0.8</text>
+    <text x="168" y="205">1.0</text>
+  </g>
+
+  <!-- y-axis title -->
+  <text x="100" y="370" font-size="15" fill="#1a1a1a" text-anchor="middle"
+        transform="rotate(-90 100 370)" font-style="italic">
+    Recall
+  </text>
+
+  <!-- x-axis metric labels -->
+  <text x="360" y="625" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+    Recall@50
+  </text>
+  <text x="710" y="625" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+    Recall@1000
+  </text>
+
+  <!-- ============================================================
+       PAIR 1 — Recall@50
+       ============================================================ -->
+
+  <!-- baseline bar -->
+  <rect x="290" y="353" width="60" height="187" fill="#b8b3a8" stroke="#8a857a" stroke-width="1"/>
+  <text x="320" y="558" font-size="11" fill="#6b665e" text-anchor="middle">standard</text>
+  <text x="320" y="572" font-size="11" fill="#6b665e" text-anchor="middle">reranking</text>
+  <text x="320" y="588" font-size="10" fill="#6b665e" text-anchor="middle" font-style="italic">strongest baseline</text>
+  <text x="320" y="345" font-size="11" fill="#6b665e" text-anchor="middle" font-weight="600">0.55</text>
+
+  <!-- QUAM bar -->
+  <rect x="370" y="329.2" width="60" height="210.8" fill="#c8553d" stroke="#c8553d" stroke-width="1"/>
+  <text x="400" y="558" font-size="13" fill="#c8553d" text-anchor="middle" font-weight="700">QUAM</text>
+  <text x="400" y="321" font-size="11" fill="#c8553d" text-anchor="middle" font-weight="700">0.62</text>
+
+  <!-- delta bracket +12% -->
+  <g>
+    <line x1="320" y1="290" x2="320" y2="345" stroke="#1a1a1a" stroke-width="0.8"/>
+    <line x1="400" y1="290" x2="400" y2="320" stroke="#1a1a1a" stroke-width="0.8"/>
+    <line x1="320" y1="290" x2="400" y2="290" stroke="#1a1a1a" stroke-width="0.8"/>
+    <rect x="335" y="265" width="50" height="22" fill="#ffffff" stroke="none"/>
+    <text x="360" y="282" font-size="16" fill="#c8553d" text-anchor="middle" font-weight="700">+12%</text>
+  </g>
+
+  <!-- ============================================================
+       PAIR 2 — Recall@1000
+       baseline 0.68 → y = 540 - 340*0.68 = 308.8, height = 231.2
+       QUAM    0.86 → y = 540 - 340*0.86 = 247.6, height = 292.4
+       ============================================================ -->
+
+  <!-- baseline bar -->
+  <rect x="640" y="308.8" width="60" height="231.2" fill="#b8b3a8" stroke="#8a857a" stroke-width="1"/>
+  <text x="670" y="558" font-size="11" fill="#6b665e" text-anchor="middle">standard</text>
+  <text x="670" y="572" font-size="11" fill="#6b665e" text-anchor="middle">reranking</text>
+  <text x="670" y="588" font-size="10" fill="#6b665e" text-anchor="middle" font-style="italic">strongest baseline</text>
+  <text x="670" y="300" font-size="11" fill="#6b665e" text-anchor="middle" font-weight="600">0.68</text>
+
+  <!-- QUAM bar -->
+  <rect x="720" y="247.6" width="60" height="292.4" fill="#c8553d" stroke="#c8553d" stroke-width="1"/>
+  <text x="750" y="558" font-size="13" fill="#c8553d" text-anchor="middle" font-weight="700">QUAM</text>
+  <text x="750" y="240" font-size="11" fill="#c8553d" text-anchor="middle" font-weight="700">0.86</text>
+
+  <!-- delta bracket +26% -->
+  <g>
+    <line x1="670" y1="210" x2="670" y2="300" stroke="#1a1a1a" stroke-width="0.8"/>
+    <line x1="750" y1="210" x2="750" y2="238" stroke="#1a1a1a" stroke-width="0.8"/>
+    <line x1="670" y1="210" x2="750" y2="210" stroke="#1a1a1a" stroke-width="0.8"/>
+    <rect x="685" y="186" width="50" height="22" fill="#ffffff" stroke="none"/>
+    <text x="710" y="203" font-size="20" fill="#c8553d" text-anchor="middle" font-weight="700">+26%</text>
+  </g>
+
+  </svg>

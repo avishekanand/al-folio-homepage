@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <!-- ============================================================
+       ORE RESULTS — p. 31 — TWO charts side-by-side
+       LEFT  · speedup over QUAM (cross-encoder vs LLM-reranker)
+              2× and 9×
+       RIGHT · Recall@50 over baseline (DL21: vs QUAM, DL22: vs cascade)
+              +30% and +58%
+       ============================================================ -->
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- ============================================================
+       VERTICAL DIVIDER between the two panels
+       ============================================================ -->
+  <line x1="540" y1="170" x2="540" y2="600" stroke="#1a1a1a" stroke-width="0.6" stroke-dasharray="4,5"/>
+
+  <!-- ============================================================
+       LEFT PANEL — SPEEDUP OVER QUAM
+       ============================================================ -->
+
+  <text x="290" y="180" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+    SPEEDUP OVER QUAM
+  </text>
+  <text x="290" y="200" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">
+    same recall, fewer reranker calls
+  </text>
+
+  <!-- Plot area: x 130 → 460, y 240 → 510  (270 tall, 330 wide) -->
+  <!-- y axis: speedup from 1× to 10×.  y = 510 - 30 * (s - 1)  where s in [1,10]
+       1× → 510, 2× → 480, 9× → 270, 10× → 240 -->
+
+  <!-- background grid -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="130" y1="510" x2="460" y2="510"/>
+    <line x1="130" y1="450" x2="460" y2="450"/>
+    <line x1="130" y1="390" x2="460" y2="390"/>
+    <line x1="130" y1="330" x2="460" y2="330"/>
+    <line x1="130" y1="270" x2="460" y2="270"/>
+  </g>
+
+  <!-- 1× baseline reference line -->
+  <line x1="130" y1="510" x2="460" y2="510" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="130" y1="240" x2="130" y2="510" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- y-axis ticks -->
+  <g font-size="12" fill="#1a1a1a" text-anchor="end">
+    <text x="120" y="514">1×</text>
+    <text x="120" y="454">3×</text>
+    <text x="120" y="394">5×</text>
+    <text x="120" y="334">7×</text>
+    <text x="120" y="274">9×</text>
+  </g>
+  <g stroke="#1a1a1a" stroke-width="1.2">
+    <line x1="125" y1="510" x2="130" y2="510"/>
+    <line x1="125" y1="450" x2="130" y2="450"/>
+    <line x1="125" y1="390" x2="130" y2="390"/>
+    <line x1="125" y1="330" x2="130" y2="330"/>
+    <line x1="125" y1="270" x2="130" y2="270"/>
+  </g>
+
+  <!-- bars
+       Cross-encoder: 2× → height 60, y = 450
+       LLM (RankLLaMA): 9× → height 240, y = 270
+  -->
+
+  <!-- Cross-encoder bar : 2× → top at y(2) = 510 - 30*(2-1) = 480, height 30 -->
+  <rect x="200" y="480" width="80" height="30" fill="#c8553d" stroke="#c8553d"/>
+  <text x="240" y="472" font-size="22" fill="#c8553d" text-anchor="middle" font-weight="700">2×</text>
+  <text x="240" y="535" font-size="13" fill="#1a1a1a" text-anchor="middle">cross-encoder</text>
+  <text x="240" y="552" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">reranker</text>
+
+  <!-- LLM/RankLLaMA bar (highlighted with deeper red since it's the bigger result) -->
+  <rect x="340" y="270" width="80" height="240" fill="#c8553d" stroke="#c8553d"/>
+  <text x="380" y="262" font-size="32" fill="#c8553d" text-anchor="middle" font-weight="700">9×</text>
+  <text x="380" y="535" font-size="13" fill="#1a1a1a" text-anchor="middle">LLM reranker</text>
+  <text x="380" y="552" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">(RankLLaMA)</text>
+
+  <!-- ============================================================
+       RIGHT PANEL — RECALL@50 IMPROVEMENT
+       ============================================================ -->
+
+  <text x="790" y="180" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+    RECALL@50 IMPROVEMENT
+  </text>
+  <text x="790" y="200" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">
+    same compute, more relevant candidates
+  </text>
+
+  <!-- Plot area: x 600 → 960, y 240 → 510 -->
+  <!-- y axis: percent improvement, 0 to 60. y = 510 - 4.5 * pct -->
+
+  <!-- background grid -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="600" y1="510" x2="960" y2="510"/>
+    <line x1="600" y1="465" x2="960" y2="465"/>
+    <line x1="600" y1="420" x2="960" y2="420"/>
+    <line x1="600" y1="375" x2="960" y2="375"/>
+    <line x1="600" y1="330" x2="960" y2="330"/>
+    <line x1="600" y1="285" x2="960" y2="285"/>
+    <line x1="600" y1="240" x2="960" y2="240"/>
+  </g>
+
+  <line x1="600" y1="510" x2="960" y2="510" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="600" y1="240" x2="600" y2="510" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- y-axis ticks -->
+  <g font-size="12" fill="#1a1a1a" text-anchor="end">
+    <text x="590" y="514">0%</text>
+    <text x="590" y="469">10</text>
+    <text x="590" y="424">20</text>
+    <text x="590" y="379">30</text>
+    <text x="590" y="334">40</text>
+    <text x="590" y="289">50</text>
+    <text x="590" y="244">60</text>
+  </g>
+  <g stroke="#1a1a1a" stroke-width="1.2">
+    <line x1="595" y1="510" x2="600" y2="510"/>
+    <line x1="595" y1="465" x2="600" y2="465"/>
+    <line x1="595" y1="420" x2="600" y2="420"/>
+    <line x1="595" y1="375" x2="600" y2="375"/>
+    <line x1="595" y1="330" x2="600" y2="330"/>
+    <line x1="595" y1="285" x2="600" y2="285"/>
+    <line x1="595" y1="240" x2="600" y2="240"/>
+  </g>
+
+  <!-- bars
+       DL21: +30% → height 135, y = 510 - 4.5*30 = 375
+       DL22: +58% → height 261, y = 510 - 4.5*58 = 249
+  -->
+
+  <!-- DL21 bar -->
+  <rect x="670" y="375" width="80" height="135" fill="#c8553d" stroke="#c8553d"/>
+  <text x="710" y="367" font-size="22" fill="#c8553d" text-anchor="middle" font-weight="700">+30%</text>
+  <text x="710" y="535" font-size="13" fill="#1a1a1a" text-anchor="middle">TREC DL21</text>
+  <text x="710" y="552" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">vs QUAM</text>
+
+  <!-- DL22 bar -->
+  <rect x="810" y="249" width="80" height="261" fill="#c8553d" stroke="#c8553d"/>
+  <text x="850" y="241" font-size="26" fill="#c8553d" text-anchor="middle" font-weight="700">+58%</text>
+  <text x="850" y="535" font-size="13" fill="#1a1a1a" text-anchor="middle">TREC DL22</text>
+  <text x="850" y="552" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">vs cascade</text>
+
+  <!-- ============================================================
+       FOOTER — the two-frontier framing
+       ============================================================ -->
+
+  
+  
+  
+</svg>

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+
+  <defs>
+    <marker id="arrowCB1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title block -->
+  
+  
+  
+
+  <!-- ── s2 elements dimmed at opacity 0.35 ── -->
+  <g opacity="0.35">
+    <!-- Query node -->
+    <circle cx="130" cy="320" r="50" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+    <text x="130" y="316" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Query</text>
+    <text x="130" y="335" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">q</text>
+
+    <!-- Arrow Query → Retrieve -->
+    <line x1="180" y1="320" x2="234" y2="320" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowCB1)"/>
+
+    <!-- Retrieve box -->
+    <rect x="240" y="280" width="160" height="80" fill="#ffffff" stroke="#1a1a1a" stroke-width="2" rx="4"/>
+    <text x="320" y="313" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Retrieve</text>
+    <text x="320" y="335" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">embeddings</text>
+
+    <!-- Arrow Retrieve → pool -->
+    <line x1="402" y1="320" x2="424" y2="320" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowCB1)"/>
+
+    <!-- Candidate pool -->
+    <rect x="430" y="225" width="280" height="190" fill="none" stroke="#6b665e" stroke-width="1" stroke-dasharray="4,4" rx="3"/>
+    <text x="570" y="218" font-size="13" fill="#6b665e" text-anchor="middle" font-weight="600" letter-spacing="0.3">
+      top-1000 candidates
+    </text>
+
+    <!-- candidate dots: 6 rows × 12 cols -->
+    <g fill="#b8b3a8">
+      <circle cx="450" cy="245" r="3.5"/><circle cx="472" cy="245" r="3.5"/>
+      <circle cx="494" cy="245" r="3.5"/><circle cx="516" cy="245" r="3.5"/>
+      <circle cx="538" cy="245" r="3.5"/><circle cx="560" cy="245" r="3.5"/>
+      <circle cx="582" cy="245" r="3.5"/><circle cx="604" cy="245" r="3.5"/>
+      <circle cx="626" cy="245" r="3.5"/><circle cx="648" cy="245" r="3.5"/>
+      <circle cx="670" cy="245" r="3.5"/><circle cx="692" cy="245" r="3.5"/>
+      <circle cx="450" cy="267" r="3.5"/><circle cx="472" cy="267" r="3.5"/>
+      <circle cx="494" cy="267" r="3.5"/><circle cx="516" cy="267" r="3.5"/>
+      <circle cx="538" cy="267" r="3.5"/><circle cx="560" cy="267" r="3.5"/>
+      <circle cx="582" cy="267" r="3.5"/><circle cx="604" cy="267" r="3.5"/>
+      <circle cx="626" cy="267" r="3.5"/><circle cx="648" cy="267" r="3.5"/>
+      <circle cx="670" cy="267" r="3.5"/><circle cx="692" cy="267" r="3.5"/>
+      <circle cx="450" cy="289" r="3.5"/><circle cx="472" cy="289" r="3.5"/>
+      <circle cx="494" cy="289" r="3.5"/><circle cx="516" cy="289" r="3.5"/>
+      <circle cx="538" cy="289" r="3.5"/><circle cx="560" cy="289" r="3.5"/>
+      <circle cx="582" cy="289" r="3.5"/><circle cx="604" cy="289" r="3.5"/>
+      <circle cx="626" cy="289" r="3.5"/><circle cx="648" cy="289" r="3.5"/>
+      <circle cx="670" cy="289" r="3.5"/><circle cx="692" cy="289" r="3.5"/>
+      <circle cx="450" cy="311" r="3.5"/><circle cx="472" cy="311" r="3.5"/>
+      <circle cx="494" cy="311" r="3.5"/><circle cx="516" cy="311" r="3.5"/>
+      <circle cx="538" cy="311" r="3.5"/><circle cx="560" cy="311" r="3.5"/>
+      <circle cx="582" cy="311" r="3.5"/><circle cx="604" cy="311" r="3.5"/>
+      <circle cx="626" cy="311" r="3.5"/><circle cx="648" cy="311" r="3.5"/>
+      <circle cx="670" cy="311" r="3.5"/><circle cx="692" cy="311" r="3.5"/>
+      <circle cx="450" cy="333" r="3.5"/><circle cx="472" cy="333" r="3.5"/>
+      <circle cx="494" cy="333" r="3.5"/><circle cx="516" cy="333" r="3.5"/>
+      <circle cx="538" cy="333" r="3.5"/><circle cx="560" cy="333" r="3.5"/>
+      <circle cx="582" cy="333" r="3.5"/><circle cx="604" cy="333" r="3.5"/>
+      <circle cx="626" cy="333" r="3.5"/><circle cx="648" cy="333" r="3.5"/>
+      <circle cx="670" cy="333" r="3.5"/><circle cx="692" cy="333" r="3.5"/>
+      <circle cx="450" cy="355" r="3.5"/><circle cx="472" cy="355" r="3.5"/>
+      <circle cx="494" cy="355" r="3.5"/><circle cx="516" cy="355" r="3.5"/>
+      <circle cx="538" cy="355" r="3.5"/><circle cx="560" cy="355" r="3.5"/>
+      <circle cx="582" cy="355" r="3.5"/><circle cx="604" cy="355" r="3.5"/>
+      <circle cx="626" cy="355" r="3.5"/><circle cx="648" cy="355" r="3.5"/>
+      <circle cx="670" cy="355" r="3.5"/><circle cx="692" cy="355" r="3.5"/>
+    </g>
+
+    <!-- relevant docs inside pool (teal) -->
+    <g fill="#2a4747">
+      <circle cx="494" cy="267" r="4.5"/>
+      <circle cx="582" cy="311" r="4.5"/>
+      <circle cx="648" cy="333" r="4.5"/>
+      <circle cx="538" cy="355" r="4.5"/>
+    </g>
+
+    <!-- pool legend -->
+    <g font-size="11" fill="#6b665e" font-style="italic">
+      <circle cx="438" cy="436" r="3.5" fill="#b8b3a8"/>
+      <text x="450" y="440">retrieved</text>
+      <circle cx="512" cy="436" r="4.5" fill="#2a4747"/>
+      <text x="522" y="440" fill="#2a4747">relevant</text>
+    </g>
+    <text x="700" y="440" font-size="11" fill="#6b665e" text-anchor="end" font-style="italic">top-10 → rerank</text>
+  </g>
+  <!-- ── end dimmed s2 group ── -->
+
+  <!-- Rerank box (new) -->
+  <rect x="740" y="280" width="140" height="80" fill="#ffffff" stroke="#1a1a1a" stroke-width="2" rx="4"/>
+  <text x="810" y="313" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Rerank</text>
+  <text x="810" y="335" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">deep, slow</text>
+
+  <!-- Generate box (new) -->
+  <rect x="920" y="280" width="130" height="80" fill="#ffffff" stroke="#1a1a1a" stroke-width="2" rx="4"/>
+  <text x="985" y="313" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Generate</text>
+  <text x="985" y="335" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">answer</text>
+
+  <!-- Arrow pool → Rerank (new) -->
+  <line x1="712" y1="320" x2="734" y2="320" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowCB1)"/>
+
+  <!-- Arrow Rerank → Generate (new) -->
+  <line x1="882" y1="320" x2="914" y2="320" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowCB1)"/>
+
+  <!-- Assumption callout section (new) -->
+  <line x1="80" y1="490" x2="200" y2="490" stroke="#1a1a1a" stroke-width="1.2"/>
+  <text x="80" y="520" font-size="15" fill="#6b665e" font-style="italic" letter-spacing="0.3">THE ASSUMPTION</text>
+  <text x="80" y="555" font-size="20" fill="#1a1a1a">
+    The retriever's <tspan font-weight="700">top-1000 contains everything</tspan>
+  </text>
+  <text x="80" y="585" font-size="20" fill="#1a1a1a">
+    the reranker would have wanted to see.
+  </text>
+
+  </svg>

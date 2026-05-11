@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <defs>
+    <marker id="loopArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="loopArrowAccent" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="12" markerHeight="12" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#c8553d"/>
+    </marker>
+  </defs>
+
+  <!-- background -->
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- Background circle guide (dashed gray) -->
+  <circle cx="550" cy="400" r="215" fill="none" stroke="#e8e2d6" stroke-width="1" stroke-dasharray="3,5"/>
+
+  <!-- All four arcs -->
+
+  <!-- Arc 1 → 2  (top → right) -->
+  <path d="M 628.6 199.9 A 215 215 0 0 1 746.2 312.0"
+        fill="none" stroke="#1a1a1a" stroke-width="2.4" marker-end="url(#loopArrow)"/>
+
+  <!-- Arc 2 → 3  (right → bottom) -->
+  <path d="M 750.1 478.6 A 215 215 0 0 1 649.1 590.8"
+        fill="none" stroke="#1a1a1a" stroke-width="2.4" marker-end="url(#loopArrow)"/>
+
+  <!-- Arc 3 → 4  (bottom → left) ACCENT DASHED -->
+  <path d="M 460.1 595.3 A 215 215 0 0 1 353.8 488.0"
+        fill="none" stroke="#c8553d" stroke-width="2.4" stroke-dasharray="6,4" marker-end="url(#loopArrowAccent)"/>
+
+  <!-- Arc 4 → 1  (left → top) ACCENT SOLID -->
+  <path d="M 349.9 321.4 A 215 215 0 0 1 462.0 203.8"
+        fill="none" stroke="#c8553d" stroke-width="3.0" marker-end="url(#loopArrowAccent)"/>
+
+  <!-- return-edge label -->
+  <line x1="220" y1="195" x2="375" y2="245" stroke="#c8553d" stroke-width="0.8" opacity="0.6"/>
+  <text x="80" y="186" font-size="13" fill="#c8553d" font-style="italic" font-weight="700" letter-spacing="0.3">
+    new behavior
+  </text>
+  <text x="80" y="204" font-size="13" fill="#c8553d" font-style="italic" font-weight="700" letter-spacing="0.3">
+    under personas
+  </text>
+
+  <!-- NODE 1 — Personas (TOP) -->
+  <circle cx="550" cy="185" r="76" fill="#ffffff" stroke="#2a4747" stroke-width="2.4"/>
+  <circle cx="486" cy="155" r="15" fill="#1a1a1a"/>
+  <text x="486" y="160" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="700">1</text>
+  <text x="550" y="178" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">PERSONAS</text>
+  <text x="550" y="198" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">simulated users with</text>
+  <text x="550" y="213" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">distinct intents,</text>
+  <text x="550" y="228" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">behavioral traces</text>
+
+  <!-- NODE 2 — Evaluation data (RIGHT) -->
+  <circle cx="765" cy="400" r="76" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="765" cy="338" r="15" fill="#1a1a1a"/>
+  <text x="765" y="343" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="700">2</text>
+  <text x="765" y="390" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">EVALUATION</text>
+  <text x="765" y="406" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">DATA</text>
+  <text x="765" y="428" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">queries, judgments,</text>
+  <text x="765" y="443" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">click trajectories</text>
+
+  <!-- NODE 3 — Inner loop (BOTTOM, primary, accent-filled, larger) -->
+  <circle cx="550" cy="615" r="88" fill="#c8553d" stroke="#c8553d" stroke-width="2.4"/>
+  <circle cx="550" cy="510" r="15" fill="#1a1a1a"/>
+  <text x="550" y="515" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="700">3</text>
+  <text x="550" y="600" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" letter-spacing="0.5">INNER LOOP</text>
+  <text x="550" y="617" font-size="11" fill="#ffffff" text-anchor="middle" font-style="italic" opacity="0.92">feedback-driven</text>
+  <text x="550" y="632" font-size="11" fill="#ffffff" text-anchor="middle" font-style="italic" opacity="0.92">optimization</text>
+  <line x1="500" y1="645" x2="600" y2="645" stroke="#ffffff" stroke-width="0.8" opacity="0.5"/>
+  <text x="550" y="664" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="700" letter-spacing="0.6">
+    ORE · SuNar · QUAM
+  </text>
+  <text x="550" y="680" font-size="11" fill="#ffffff" text-anchor="middle" opacity="0.85" letter-spacing="0.5">
+    bandits
+  </text>
+
+  <!-- NODE 4 — Updated retrieval (LEFT) -->
+  <circle cx="335" cy="400" r="76" fill="#ffffff" stroke="#2a4747" stroke-width="2.4"/>
+  <circle cx="335" cy="338" r="15" fill="#1a1a1a"/>
+  <text x="335" y="343" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="700">4</text>
+  <text x="335" y="390" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">UPDATED</text>
+  <text x="335" y="406" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">RETRIEVAL</text>
+  <text x="335" y="428" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">retriever, reranker,</text>
+  <text x="335" y="443" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">policy — all updated</text>
+
+  <!-- CENTER TAGLINE -->
+  <line x1="455" y1="388" x2="500" y2="388" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="600" y1="388" x2="645" y2="388" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="550" y="398" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="2">
+    THE LOOP
+  </text>
+  <text x="550" y="425" font-size="14" fill="#1a1a1a" text-anchor="middle" font-style="italic">
+    The system creates
+  </text>
+  <text x="550" y="444" font-size="14" fill="#1a1a1a" text-anchor="middle" font-style="italic">
+    the data it needs
+  </text>
+  <text x="550" y="463" font-size="14" fill="#1a1a1a" text-anchor="middle" font-style="italic">
+    to improve.
+  </text>
+
+  <!-- RIGHT SIDEBAR legend -->
+  <text x="945" y="200" font-size="12" fill="#6b665e" font-style="italic" letter-spacing="0.3">FROM</text>
+  <text x="945" y="220" font-size="14" fill="#1a1a1a" font-weight="600">Static benchmarks</text>
+  <text x="945" y="238" font-size="12" fill="#6b665e" font-style="italic">fixed at release</text>
+
+  <line x1="945" y1="258" x2="945" y2="288" stroke="#c8553d" stroke-width="2"/>
+
+  <text x="945" y="312" font-size="12" fill="#6b665e" font-style="italic" letter-spacing="0.3">TO</text>
+  <text x="945" y="332" font-size="14" fill="#c8553d" font-weight="700">Continuous</text>
+  <text x="945" y="350" font-size="14" fill="#c8553d" font-weight="700">self-evaluation</text>
+  <text x="945" y="368" font-size="12" fill="#6b665e" font-style="italic">deployed system</text>
+  <text x="945" y="384" font-size="12" fill="#6b665e" font-style="italic">re-evaluates itself</text>
+
+  </svg>

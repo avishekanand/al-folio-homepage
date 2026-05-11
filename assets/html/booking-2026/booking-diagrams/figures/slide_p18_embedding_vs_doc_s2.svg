@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <!-- ============================================================
+       EMBEDDING vs DOCUMENT — p. 18 — STEP 2
+       Full diagram: left panel + right panel + footer
+       ============================================================ -->
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+
+  <!-- ============================================================
+       LEFT — retriever's view: a dot in vector space
+       ============================================================ -->
+
+  <text x="270" y="170" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="2">
+    THE RETRIEVER SEES
+  </text>
+  <text x="270" y="190" font-size="14" fill="#6b665e" text-anchor="middle" font-style="italic">
+    a vector
+  </text>
+
+  <!-- 2D embedding space frame -->
+  <rect x="120" y="220" width="300" height="300" fill="none" stroke="#6b665e" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- axis lines -->
+  <line x1="120" y1="370" x2="420" y2="370" stroke="#b8b3a8" stroke-width="0.8"/>
+  <line x1="270" y1="220" x2="270" y2="520" stroke="#b8b3a8" stroke-width="0.8"/>
+
+  <!-- many surrounding dots (other documents) -->
+  <g fill="#b8b3a8">
+    <circle cx="180" cy="280" r="3"/>
+    <circle cx="220" cy="310" r="3"/>
+    <circle cx="155" cy="350" r="3"/>
+    <circle cx="200" cy="390" r="3"/>
+    <circle cx="170" cy="450" r="3"/>
+    <circle cx="240" cy="470" r="3"/>
+    <circle cx="320" cy="280" r="3"/>
+    <circle cx="370" cy="320" r="3"/>
+    <circle cx="395" cy="380" r="3"/>
+    <circle cx="350" cy="430" r="3"/>
+    <circle cx="305" cy="470" r="3"/>
+    <circle cx="380" cy="490" r="3"/>
+  </g>
+
+  <!-- the document of interest, highlighted -->
+  <circle cx="305" cy="345" r="9" fill="#c8553d"/>
+  <circle cx="305" cy="345" r="14" fill="none" stroke="#c8553d" stroke-width="1.2" stroke-dasharray="3,2" opacity="0.6"/>
+
+  <!-- vector arrow from origin to the dot -->
+  <line x1="270" y1="370" x2="305" y2="345" stroke="#c8553d" stroke-width="1.5"/>
+
+  <!-- coords label -->
+  <text x="320" y="334" font-size="12" fill="#c8553d" font-style="italic">d</text>
+
+  <!-- under-frame description -->
+  <text x="270" y="555" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    a 768-dim point
+  </text>
+  <text x="270" y="573" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    fast · shallow · approximate
+  </text>
+
+  <!-- ============================================================
+       VERTICAL DIVIDER
+       ============================================================ -->
+  <line x1="540" y1="190" x2="540" y2="600" stroke="#1a1a1a" stroke-width="0.6" stroke-dasharray="4,5"/>
+
+  <!-- ============================================================
+       RIGHT — reranker's view: full document
+       ============================================================ -->
+
+  <text x="800" y="170" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="2">
+    THE RERANKER READS
+  </text>
+  <text x="800" y="190" font-size="14" fill="#6b665e" text-anchor="middle" font-style="italic">
+    the document
+  </text>
+
+  <!-- document page silhouette -->
+  <rect x="650" y="220" width="300" height="300" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5" rx="2"/>
+
+  <!-- text lines (some highlighted) -->
+  <g stroke="#6b665e" stroke-width="1.6" stroke-linecap="round">
+    <line x1="670" y1="245" x2="930" y2="245"/>
+    <line x1="670" y1="265" x2="900" y2="265"/>
+    <line x1="670" y1="285" x2="920" y2="285"/>
+    <line x1="670" y1="305" x2="880" y2="305"/>
+  </g>
+
+  <!-- highlighted passage 1 (terracotta) -->
+  <rect x="666" y="320" width="240" height="22" fill="#c8553d" fill-opacity="0.18"/>
+  <line x1="670" y1="332" x2="900" y2="332" stroke="#c8553d" stroke-width="1.8" stroke-linecap="round"/>
+
+  <g stroke="#6b665e" stroke-width="1.6" stroke-linecap="round">
+    <line x1="670" y1="358" x2="910" y2="358"/>
+    <line x1="670" y1="378" x2="930" y2="378"/>
+  </g>
+
+  <!-- highlighted passage 2 -->
+  <rect x="666" y="395" width="220" height="22" fill="#c8553d" fill-opacity="0.18"/>
+  <line x1="670" y1="407" x2="880" y2="407" stroke="#c8553d" stroke-width="1.8" stroke-linecap="round"/>
+
+  <g stroke="#6b665e" stroke-width="1.6" stroke-linecap="round">
+    <line x1="670" y1="433" x2="920" y2="433"/>
+    <line x1="670" y1="453" x2="900" y2="453"/>
+    <line x1="670" y1="473" x2="930" y2="473"/>
+    <line x1="670" y1="493" x2="870" y2="493"/>
+  </g>
+
+  <!-- attention indicator (small arrows pointing to highlighted passages) -->
+  <g fill="#c8553d">
+    <text x="935" y="335" font-size="14" font-style="italic">&#8592;</text>
+    <text x="935" y="410" font-size="14" font-style="italic">&#8592;</text>
+  </g>
+
+  <!-- under-frame description -->
+  <text x="800" y="555" font-size="14" fill="#1a1a1a" text-anchor="middle">
+    every word, in context
+  </text>
+  <text x="800" y="573" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">
+    slow · deep · precise
+  </text>
+
+  </svg>

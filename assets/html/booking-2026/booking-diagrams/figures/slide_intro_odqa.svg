@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <!-- ============================================================
+       OPEN-DOMAIN QUESTION ANSWERING — intro slide
+       Question → Retrieval → Answer, with illustrated garden
+       ============================================================ -->
+
+  <!-- Background -->
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- Arrowhead defs -->
+  <defs>
+    <marker id="arrowRight" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrowDown" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+  </defs>
+
+  <!-- ===== HEADER ===== -->
+  
+  
+  
+
+  <!-- ===== LEFT PANEL ===== -->
+
+  <!-- QUESTION BOX -->
+  <rect x="80" y="148" width="350" height="90" rx="3"
+        fill="#ffffff" stroke="#2a4747" stroke-width="2"/>
+  <text x="95" y="168" font-size="11" font-weight="bold" fill="#2a4747" letter-spacing="0.8">QUESTION</text>
+  <text font-size="16" fill="#1a1a1a">
+    <tspan x="95" y="188">Where is the world's largest</tspan>
+    <tspan x="95" dy="20">flower garden located?</tspan>
+  </text>
+
+  <!-- Down arrow: question → answer -->
+  <line x1="255" y1="240" x2="255" y2="278"
+        stroke="#1a1a1a" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+
+  <!-- ANSWER BOX -->
+  <rect x="80" y="282" width="350" height="80" rx="3"
+        fill="#c8553d" fill-opacity="0.08" stroke="#c8553d" stroke-width="1.8"/>
+  <text x="95" y="300" font-size="11" font-weight="bold" fill="#c8553d" letter-spacing="0.8">ANSWER</text>
+  <text x="95" y="322" font-size="24" font-weight="bold" fill="#c8553d">Dubai, UAE</text>
+  <text x="95" y="345" font-size="13" font-style="italic" fill="#6b665e">Dubai Miracle Garden</text>
+
+  <!-- ===== DECORATIVE GARDEN ILLUSTRATION ===== -->
+  <rect x="80" y="375" width="350" height="100" rx="3"
+        fill="#e8e2d6" fill-opacity="0.4"/>
+
+  <text x="255" y="393" font-size="10" fill="#6b665e" text-anchor="middle">Dubai Miracle Garden</text>
+
+  <!-- Row 2 (back row, drawn first): y=415, 5 circles r=7 -->
+  <!-- Stems for row 2 -->
+  <line x1="127" y1="415" x2="127" y2="433" stroke="#8a857a" stroke-width="1"/>
+  <line x1="162" y1="415" x2="162" y2="433" stroke="#8a857a" stroke-width="1"/>
+  <line x1="197" y1="415" x2="197" y2="433" stroke="#8a857a" stroke-width="1"/>
+  <line x1="232" y1="415" x2="232" y2="433" stroke="#8a857a" stroke-width="1"/>
+  <line x1="267" y1="415" x2="267" y2="433" stroke="#8a857a" stroke-width="1"/>
+  <!-- Row 2 circles -->
+  <circle cx="127" cy="415" r="7" fill="#8a857a"/>
+  <circle cx="162" cy="415" r="7" fill="#c8553d"/>
+  <circle cx="197" cy="415" r="7" fill="#2a4747"/>
+  <circle cx="232" cy="415" r="7" fill="#b8b3a8"/>
+  <circle cx="267" cy="415" r="7" fill="#c8553d"/>
+
+  <!-- Row 1 (front row): y=430, 6 circles r=8 -->
+  <!-- Stems for row 1 -->
+  <line x1="110" y1="430" x2="110" y2="448" stroke="#8a857a" stroke-width="1"/>
+  <line x1="145" y1="430" x2="145" y2="448" stroke="#8a857a" stroke-width="1"/>
+  <line x1="180" y1="430" x2="180" y2="448" stroke="#8a857a" stroke-width="1"/>
+  <line x1="215" y1="430" x2="215" y2="448" stroke="#8a857a" stroke-width="1"/>
+  <line x1="250" y1="430" x2="250" y2="448" stroke="#8a857a" stroke-width="1"/>
+  <line x1="285" y1="430" x2="285" y2="448" stroke="#8a857a" stroke-width="1"/>
+  <!-- Row 1 circles -->
+  <circle cx="110" cy="430" r="8" fill="#c8553d"/>
+  <circle cx="145" cy="430" r="8" fill="#2a4747"/>
+  <circle cx="180" cy="430" r="8" fill="#b8b3a8"/>
+  <circle cx="215" cy="430" r="8" fill="#c8553d"/>
+  <circle cx="250" cy="430" r="8" fill="#2a4747"/>
+  <circle cx="285" cy="430" r="8" fill="#b8b3a8"/>
+
+  <!-- Ground band -->
+  <rect x="80" y="448" width="350" height="12" rx="0"
+        fill="#8a857a" fill-opacity="0.25"/>
+
+  <!-- Caption -->
+  <text x="255" y="468" font-size="9" font-style="italic" fill="#6b665e" text-anchor="middle">
+    72,000 m&#178; · 60 million flowers
+  </text>
+
+  <!-- ===== RIGHT PANEL — RETRIEVED DOCUMENT ===== -->
+  <rect x="465" y="140" width="555" height="350" rx="3"
+        fill="#ffffff" stroke="#8a857a" stroke-width="1.2"/>
+
+  <text x="480" y="163" font-size="11" font-weight="bold" fill="#6b665e" letter-spacing="0.8">RETRIEVED DOCUMENT</text>
+  <text x="480" y="178" font-size="9" font-style="italic" fill="#6b665e">travel-database.com / Wikipedia</text>
+
+  <!-- separator -->
+  <line x1="480" y1="185" x2="1005" y2="185" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- Highlight box around "world's largest natural flower garden" (approx line 3–4 of text) -->
+  <!-- Text line 3 ends mid-line; highlight behind the tspan at ~y=235, height=14 -->
+  <rect x="480" y="235" width="390" height="14" rx="1"
+        fill="#2a4747" fill-opacity="0.1"/>
+
+  <!-- Document body text -->
+  <text font-size="12" fill="#6b665e">
+    <tspan x="480" y="202">The Dubai Miracle Garden is certainly aptly named considering that —</tspan>
+    <tspan x="480" dy="17">like pretty much everything in this Middle Eastern destination — it was</tspan>
+    <tspan x="480" dy="17">built on desert land. Billing itself as the </tspan><tspan fill="#2a4747" font-weight="600">world's largest natural flower garden,</tspan>
+    <tspan x="480" dy="17">the 72,000-square-meter attraction has more than 60 million flowers on display.</tspan>
+    <tspan x="480" dy="17">&#160;</tspan>
+    <tspan x="480" dy="17">Located in Dubailand, Al Barsha South district, the garden opened in 2013.</tspan>
+    <tspan x="480" dy="17">It features over 150 flower varieties arranged in themed structures.</tspan>
+    <tspan x="480" dy="17">&#160;</tspan>
+    <tspan x="480" dy="17"><tspan fill="#c8553d" font-weight="600">Location: Dubai, UAE</tspan> · Open season: November to April</tspan>
+  </text>
+
+  </svg>

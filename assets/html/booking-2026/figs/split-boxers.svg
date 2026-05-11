@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" font-family="Georgia, 'Times New Roman', serif">
+
+  <!-- =============================================================
+       Split personality — Explainable IR vs Scaling & Efficiency
+       Two cartoon boxers, mirrored, throwing punches that collide.
+       Palette matches the deck's paper / ink / accent / cool system.
+       ============================================================= -->
+
+  <!-- background -->
+  <rect width="1400" height="800" fill="#ffffff"/>
+
+  <!-- ring floor -->
+  <line x1="60" y1="640" x2="1340" y2="640" stroke="#1a1a1a" stroke-width="2.5"/>
+  <line x1="60" y1="666" x2="1340" y2="666" stroke="#6b665e" stroke-width="1" stroke-dasharray="6,6" opacity="0.5"/>
+
+  <!-- shadows under each boxer -->
+  <ellipse cx="400" cy="640" rx="150" ry="14" fill="#1a1a1a" opacity="0.14"/>
+  <ellipse cx="1000" cy="640" rx="150" ry="14" fill="#1a1a1a" opacity="0.14"/>
+
+  <!-- ================== LEFT BOXER (Explainable IR — teal) ================== -->
+  <g id="left-boxer">
+    <!-- legs -->
+    <path d="M 365 540 L 325 630" stroke="#2a4747" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <path d="M 435 540 L 475 630" stroke="#2a4747" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <!-- shoes -->
+    <ellipse cx="325" cy="635" rx="32" ry="9" fill="#1a1a1a"/>
+    <ellipse cx="475" cy="635" rx="32" ry="9" fill="#1a1a1a"/>
+
+    <!-- torso (singlet) -->
+    <path d="M 350 285 L 460 285 L 472 545 L 338 545 Z" fill="#2a4747" stroke="#1a1a1a" stroke-width="2.5"/>
+    <!-- waistband / belt -->
+    <rect x="332" y="460" width="148" height="22" fill="#ffdb6b" stroke="#1a1a1a" stroke-width="2"/>
+    <rect x="395" y="455" width="22" height="32" fill="#c8553d" stroke="#1a1a1a" stroke-width="2"/>
+
+    <!-- back arm (cocked, behind body) -->
+    <path d="M 360 320 Q 290 355 250 320" stroke="#2a4747" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <circle cx="234" cy="305" r="38" fill="#c8553d" stroke="#1a1a1a" stroke-width="2.5"/>
+    <ellipse cx="226" cy="298" rx="8" ry="6" fill="#1a1a1a" opacity="0.35"/>
+
+    <!-- front arm (punching!) -->
+    <path d="M 458 308 Q 555 300 640 295" stroke="#2a4747" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <circle cx="660" cy="295" r="48" fill="#c8553d" stroke="#1a1a1a" stroke-width="2.5"/>
+    <ellipse cx="650" cy="285" rx="10" ry="7" fill="#1a1a1a" opacity="0.35"/>
+
+    <!-- head -->
+    <ellipse cx="405" cy="218" rx="56" ry="64" fill="#f4dcc1" stroke="#1a1a1a" stroke-width="2.5"/>
+    <!-- hair tuft -->
+    <path d="M 360 175 Q 380 158 410 165 Q 440 158 450 178" stroke="#1a1a1a" stroke-width="2.5" fill="#1a1a1a"/>
+    <!-- angry eyebrows -->
+    <line x1="378" y1="200" x2="402" y2="212" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="412" y1="212" x2="436" y2="200" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- eyes -->
+    <circle cx="392" cy="222" r="3.5" fill="#1a1a1a"/>
+    <circle cx="422" cy="222" r="3.5" fill="#1a1a1a"/>
+    <!-- gritted teeth mouth -->
+    <path d="M 386 250 L 426 250" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+    <line x1="394" y1="246" x2="394" y2="254" stroke="#1a1a1a" stroke-width="1.5"/>
+    <line x1="402" y1="246" x2="402" y2="254" stroke="#1a1a1a" stroke-width="1.5"/>
+    <line x1="410" y1="246" x2="410" y2="254" stroke="#1a1a1a" stroke-width="1.5"/>
+    <line x1="418" y1="246" x2="418" y2="254" stroke="#1a1a1a" stroke-width="1.5"/>
+    <!-- sweat drop -->
+    <path d="M 462 195 Q 467 207 463 217 Q 459 207 462 195 Z" fill="#7cb4d9" stroke="#1a1a1a" stroke-width="1.5"/>
+  </g>
+
+  <!-- ================== RIGHT BOXER (Scaling — terracotta), mirrored ================== -->
+  <g id="right-boxer" transform="translate(1400, 0) scale(-1, 1)">
+    <!-- legs -->
+    <path d="M 365 540 L 325 630" stroke="#c8553d" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <path d="M 435 540 L 475 630" stroke="#c8553d" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <ellipse cx="325" cy="635" rx="32" ry="9" fill="#1a1a1a"/>
+    <ellipse cx="475" cy="635" rx="32" ry="9" fill="#1a1a1a"/>
+
+    <!-- torso -->
+    <path d="M 350 285 L 460 285 L 472 545 L 338 545 Z" fill="#c8553d" stroke="#1a1a1a" stroke-width="2.5"/>
+    <rect x="332" y="460" width="148" height="22" fill="#ffdb6b" stroke="#1a1a1a" stroke-width="2"/>
+    <rect x="395" y="455" width="22" height="32" fill="#2a4747" stroke="#1a1a1a" stroke-width="2"/>
+
+    <!-- back arm -->
+    <path d="M 360 320 Q 290 355 250 320" stroke="#c8553d" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <circle cx="234" cy="305" r="38" fill="#2a4747" stroke="#1a1a1a" stroke-width="2.5"/>
+    <ellipse cx="226" cy="298" rx="8" ry="6" fill="#ffffff" opacity="0.45"/>
+
+    <!-- front arm (punching!) -->
+    <path d="M 458 308 Q 555 300 640 295" stroke="#c8553d" stroke-width="22" stroke-linecap="round" fill="none"/>
+    <circle cx="660" cy="295" r="48" fill="#2a4747" stroke="#1a1a1a" stroke-width="2.5"/>
+    <ellipse cx="650" cy="285" rx="10" ry="7" fill="#ffffff" opacity="0.45"/>
+
+    <!-- head -->
+    <ellipse cx="405" cy="218" rx="56" ry="64" fill="#f4dcc1" stroke="#1a1a1a" stroke-width="2.5"/>
+    <path d="M 360 175 Q 380 158 410 165 Q 440 158 450 178" stroke="#1a1a1a" stroke-width="2.5" fill="#1a1a1a"/>
+    <line x1="378" y1="200" x2="402" y2="212" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="412" y1="212" x2="436" y2="200" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="392" cy="222" r="3.5" fill="#1a1a1a"/>
+    <circle cx="422" cy="222" r="3.5" fill="#1a1a1a"/>
+    <path d="M 386 250 L 426 250" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+    <line x1="394" y1="246" x2="394" y2="254" stroke="#1a1a1a" stroke-width="1.5"/>
+    <line x1="402" y1="246" x2="402" y2="254" stroke="#1a1a1a" stroke-width="1.5"/>
+    <line x1="410" y1="246" x2="410" y2="254" stroke="#1a1a1a" stroke-width="1.5"/>
+    <line x1="418" y1="246" x2="418" y2="254" stroke="#1a1a1a" stroke-width="1.5"/>
+    <path d="M 462 195 Q 467 207 463 217 Q 459 207 462 195 Z" fill="#7cb4d9" stroke="#1a1a1a" stroke-width="1.5"/>
+  </g>
+
+  <!-- ================== COLLISION STARBURST (KAPOW!) ================== -->
+  <g transform="translate(700, 295)">
+    <!-- starburst points -->
+    <polygon points="
+      -130,0 -95,-22 -82,-50 -55,-30 -42,-72 -18,-42 0,-95 18,-42 42,-72 55,-30 82,-50 95,-22 130,0
+      95,22 130,55 82,40 95,72 55,55 50,95 18,68 0,108 -18,68 -50,95 -55,55 -95,72 -82,40 -130,55 -95,22"
+      fill="#ffdb6b" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round"/>
+    <text x="0" y="-2" text-anchor="middle" font-size="46" font-weight="900" fill="#1a1a1a"
+          font-family="'Impact', 'Arial Black', 'Helvetica Neue', sans-serif" letter-spacing="2">KAPOW!</text>
+    <text x="0" y="30" text-anchor="middle" font-size="18" font-style="italic" fill="#1a1a1a">15+ years</text>
+  </g>
+
+  <!-- ================== Motion / speed lines around the impact ================== -->
+  <g stroke="#1a1a1a" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <line x1="540" y1="240" x2="580" y2="225" opacity="0.55"/>
+    <line x1="540" y1="295" x2="580" y2="295" opacity="0.75"/>
+    <line x1="540" y1="350" x2="580" y2="365" opacity="0.55"/>
+    <line x1="820" y1="240" x2="860" y2="225" opacity="0.55"/>
+    <line x1="820" y1="295" x2="860" y2="295" opacity="0.75"/>
+    <line x1="820" y1="350" x2="860" y2="365" opacity="0.55"/>
+  </g>
+
+  <!-- ================== Labels ================== -->
+  <text x="400" y="722" text-anchor="middle" font-size="28" font-style="italic" fill="#2a4747">Explainable IR</text>
+  <text x="400" y="752" text-anchor="middle" font-size="17" fill="#6b665e">research · transparency · faithfulness</text>
+
+  <text x="1000" y="722" text-anchor="middle" font-size="28" font-style="italic" fill="#c8553d">Scaling &amp; Efficiency</text>
+  <text x="1000" y="752" text-anchor="middle" font-size="17" fill="#6b665e">industry · production · latency</text>
+
+  <!-- subtle dividing line below labels for unity with the deck system -->
+  <line x1="600" y1="730" x2="800" y2="730" stroke="#1a1a1a" stroke-width="1"/>
+
+</svg>

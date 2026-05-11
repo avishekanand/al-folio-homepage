@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" width="1100" height="720" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="3" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- TITLE -->
+  <text x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">What did we learn from ReformIR?</text>
+  <text x="80" y="94" font-size="16" fill="#6b665e" font-style="italic">The reranker decides <tspan font-style="italic" fill="#c8553d">which reformulations to trust</tspan> — per query.</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <g transform="translate(80, 180)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="280" height="380" rx="6" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+    <rect x="0" y="0" width="280" height="6" rx="6" fill="#c8553d"/>
+    <text x="28" y="78" font-size="56" font-weight="bold" fill="#c8553d">1</text>
+    <text x="28" y="108" font-size="11" font-weight="bold" fill="#6b665e" letter-spacing="1.2">PER-QUERY REFORMULATIONS</text>
+    <line x1="28" y1="120" x2="78" y2="120" stroke="#6b665e" stroke-width="0.8"/>
+    <text x="28" y="158" font-size="20" fill="#1a1a1a" font-weight="bold">Pick which rewrites</text>
+    <text x="28" y="186" font-size="20" fill="#1a1a1a" font-weight="bold">to trust this query.</text>
+    <text x="28" y="232" font-size="14" fill="#6b665e" font-style="italic">Drifty reformulations get</text>
+    <text x="28" y="252" font-size="14" fill="#6b665e" font-style="italic">downweighted online.</text>
+    <text x="28" y="272" font-size="14" fill="#6b665e" font-style="italic">Useful ones get upweighted.</text>
+    <g transform="translate(140, 320)">
+      <polygon points="-22,-14 22,-14 8,4 8,16 -8,16 -8,4" fill="none" stroke="#c8553d" stroke-width="2"/>
+    </g>
+  </g>
+  <g transform="translate(410, 180)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="280" height="380" rx="6" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+    <rect x="0" y="0" width="280" height="6" rx="6" fill="#c8553d"/>
+    <text x="28" y="78" font-size="56" font-weight="bold" fill="#c8553d">2</text>
+    <text x="28" y="108" font-size="11" font-weight="bold" fill="#6b665e" letter-spacing="1.2">ANCHORED BY ORIGINAL</text>
+    <line x1="28" y1="120" x2="78" y2="120" stroke="#6b665e" stroke-width="0.8"/>
+    <text x="28" y="158" font-size="20" fill="#1a1a1a" font-weight="bold">Reranker scores</text>
+    <text x="28" y="186" font-size="20" fill="#1a1a1a" font-weight="bold">the original query.</text>
+    <text x="28" y="232" font-size="14" fill="#6b665e" font-style="italic">The original query is the</text>
+    <text x="28" y="252" font-size="14" fill="#6b665e" font-style="italic">anchor against drift —</text>
+    <text x="28" y="272" font-size="14" fill="#6b665e" font-style="italic">drift is caught early.</text>
+    <g transform="translate(140, 320)">
+      <line x1="0" y1="-18" x2="0" y2="18" stroke="#c8553d" stroke-width="2"/>
+      <circle cx="0" cy="-18" r="4" fill="none" stroke="#c8553d" stroke-width="2"/>
+      <path d="M -16 12 A 16 16 0 0 0 16 12" fill="none" stroke="#c8553d" stroke-width="2"/>
+      <line x1="-10" y1="-6" x2="10" y2="-6" stroke="#c8553d" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- FOOTER -->
+  <line x1="80" y1="640" x2="200" y2="640" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="668" font-size="15" fill="#1a1a1a">More reformulations don’t hurt — if the reranker can downweight the drifty ones.</text>
+  <text x="80" y="690" font-size="14" fill="#6b665e" font-style="italic">Same bandit framework as ORE — one level up the pipeline.</text>
+</svg>

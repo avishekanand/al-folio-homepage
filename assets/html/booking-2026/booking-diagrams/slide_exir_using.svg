@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" width="1100" height="720" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="ar-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c8553d"/>
+    </marker>
+    <marker id="ar-cool" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2a4747"/>
+    </marker>
+  </defs>
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- TITLE -->
+  <text x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">Ways in which you can use explanations</text>
+  <text x="80" y="94" font-size="16" fill="#6b665e" font-style="italic">From standard ML to interpretable ML to human-in-the-loop systems</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- COLUMN HEADERS -->
+  <text x="180" y="160" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a1a1a">Standard ML</text>
+  <text x="700" y="160" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a1a1a">Interpretable ML</text>
+  <line x1="340" y1="142" x2="340" y2="612" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- ============================================ -->
+  <!-- COLUMN 1: STANDARD ML  (x: 80–280, center 180) -->
+  <!-- ============================================ -->
+  <rect x="80" y="190" width="200" height="280" rx="4" fill="none" stroke="#1a1a1a" stroke-width="1.4"/>
+
+  <ellipse cx="180" cy="222" rx="32" ry="9" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <line x1="148" y1="222" x2="148" y2="244" stroke="#1a1a1a" stroke-width="1.4"/>
+  <line x1="212" y1="222" x2="212" y2="244" stroke="#1a1a1a" stroke-width="1.4"/>
+  <path d="M 148 244 A 32 9 0 0 0 212 244" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <text x="180" y="237" text-anchor="middle" font-size="13" fill="#1a1a1a">Data</text>
+
+  <line x1="180" y1="256" x2="180" y2="295" stroke="#1a1a1a" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <rect x="135" y="300" width="90" height="80" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <text x="180" y="335" text-anchor="middle" font-size="14" fill="#1a1a1a" font-weight="bold">ML</text>
+  <text x="180" y="355" text-anchor="middle" font-size="14" fill="#1a1a1a" font-weight="bold">Model</text>
+
+  <line x1="180" y1="385" x2="180" y2="450" stroke="#1a1a1a" stroke-width="1.4" marker-end="url(#ar)"/>
+  <text x="220" y="420" font-size="12" fill="#6b665e" font-style="italic">Predictions</text>
+
+  <rect x="80" y="500" width="200" height="60" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <text x="180" y="525" text-anchor="middle" font-size="13" fill="#1a1a1a">Generalization</text>
+  <text x="180" y="545" text-anchor="middle" font-size="13" fill="#1a1a1a">Error</text>
+
+  <!-- ============================================ -->
+  <!-- COLUMN 2: INTERPRETABLE ML — predict + explain  (x: 380–620, center 500) -->
+  <!-- ============================================ -->
+  <text x="500" y="184" text-anchor="middle" font-size="13" fill="#6b665e" font-style="italic">predict + explain</text>
+
+  <rect x="370" y="190" width="260" height="280" rx="4" fill="none" stroke="#1a1a1a" stroke-width="1.4"/>
+
+  <ellipse cx="425" cy="222" rx="32" ry="9" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <line x1="393" y1="222" x2="393" y2="244" stroke="#1a1a1a" stroke-width="1.4"/>
+  <line x1="457" y1="222" x2="457" y2="244" stroke="#1a1a1a" stroke-width="1.4"/>
+  <path d="M 393 244 A 32 9 0 0 0 457 244" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <text x="425" y="237" text-anchor="middle" font-size="13" fill="#1a1a1a">Data</text>
+
+  <ellipse cx="575" cy="222" rx="32" ry="9" fill="#f6d8cf" stroke="#c8553d" stroke-width="1.4"/>
+  <line x1="543" y1="222" x2="543" y2="244" stroke="#c8553d" stroke-width="1.4"/>
+  <line x1="607" y1="222" x2="607" y2="244" stroke="#c8553d" stroke-width="1.4"/>
+  <path d="M 543 244 A 32 9 0 0 0 607 244" fill="#f6d8cf" stroke="#c8553d" stroke-width="1.4"/>
+  <text x="575" y="232" text-anchor="middle" font-size="11" fill="#1a1a1a">Expl.</text>
+  <text x="575" y="246" text-anchor="middle" font-size="11" fill="#1a1a1a">data</text>
+
+  <line x1="425" y1="256" x2="425" y2="295" stroke="#1a1a1a" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="575" y1="256" x2="575" y2="295" stroke="#c8553d" stroke-width="1.4" marker-end="url(#ar-acc)"/>
+
+  <rect x="390" y="300" width="220" height="80" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <text x="500" y="346" text-anchor="middle" font-size="16" fill="#1a1a1a" font-weight="bold">ML Model</text>
+
+  <line x1="440" y1="385" x2="440" y2="450" stroke="#1a1a1a" stroke-width="1.4" marker-end="url(#ar)"/>
+  <text x="380" y="420" font-size="12" fill="#6b665e" font-style="italic">Predictions</text>
+
+  <line x1="560" y1="385" x2="560" y2="408" stroke="#c8553d" stroke-width="1.4" marker-end="url(#ar-acc)"/>
+  <rect x="515" y="410" width="90" height="32" rx="3" fill="#f6d8cf" stroke="#c8553d" stroke-width="1.2"/>
+  <text x="560" y="431" text-anchor="middle" font-size="13" fill="#1a1a1a">Explanations</text>
+  <line x1="560" y1="442" x2="560" y2="498" stroke="#c8553d" stroke-width="1.4" marker-end="url(#ar-acc)"/>
+
+  <rect x="370" y="500" width="260" height="60" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <text x="500" y="525" text-anchor="middle" font-size="13" fill="#1a1a1a">Generalization Error +</text>
+  <text x="500" y="545" text-anchor="middle" font-size="13" fill="#1a1a1a">Understanding</text>
+
+  <!-- ============================================ -->
+  <!-- COLUMN 3: INTERACTIVE  (x: 700–1030, center 870) -->
+  <!-- Layout:
+         outer card (Data + ML + Interp): x=700, y=210, w=240, h=220
+         Data cylinder above ML
+         ML Model     +  Interpretability  side-by-side inside outer card
+         Human Interaction box: outside outer card to the right (x=970)
+         Loop "Model improvements": Human top → up → left across top → down to Data
+         "Verified predictions": Human bottom → down -->
+  <!-- ============================================ -->
+  <text x="870" y="184" text-anchor="middle" font-size="13" fill="#6b665e" font-style="italic">interactive · human-in-the-loop</text>
+
+  <rect x="700" y="210" width="240" height="220" rx="4" fill="none" stroke="#1a1a1a" stroke-width="1.4"/>
+
+  <!-- Data cylinder (centered above ML Model) -->
+  <ellipse cx="760" cy="248" rx="30" ry="8" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <line x1="730" y1="248" x2="730" y2="268" stroke="#1a1a1a" stroke-width="1.4"/>
+  <line x1="790" y1="248" x2="790" y2="268" stroke="#1a1a1a" stroke-width="1.4"/>
+  <path d="M 730 268 A 30 8 0 0 0 790 268" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <text x="760" y="262" text-anchor="middle" font-size="13" fill="#1a1a1a">Data</text>
+
+  <!-- arrow Data → ML Model -->
+  <line x1="760" y1="278" x2="760" y2="320" stroke="#1a1a1a" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- ML Model box -->
+  <rect x="720" y="325" width="80" height="75" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <text x="760" y="358" text-anchor="middle" font-size="14" fill="#1a1a1a" font-weight="bold">ML</text>
+  <text x="760" y="378" text-anchor="middle" font-size="14" fill="#1a1a1a" font-weight="bold">Model</text>
+
+  <!-- Interpretability box (terracotta) — inside outer card, right of ML -->
+  <rect x="820" y="325" width="105" height="75" rx="4" fill="#f6d8cf" stroke="#c8553d" stroke-width="1.4"/>
+  <text x="872" y="358" text-anchor="middle" font-size="13" fill="#1a1a1a" font-weight="bold">Interpret-</text>
+  <text x="872" y="378" text-anchor="middle" font-size="13" fill="#1a1a1a" font-weight="bold">ability</text>
+
+  <!-- Human Interaction box (vertical, dashed teal) — outside outer card -->
+  <rect x="970" y="320" width="32" height="100" rx="3" fill="#dde6e6" stroke="#2a4747" stroke-width="1.4" stroke-dasharray="4,3"/>
+  <text x="986" y="370" text-anchor="middle" font-size="11" fill="#2a4747" font-weight="bold" transform="rotate(-90, 986, 370)">Human Interaction</text>
+
+  <!-- Bidirectional arrows: Interpretability ↔ Human Interaction -->
+  <line x1="927" y1="345" x2="968" y2="345" stroke="#2a4747" stroke-width="1.4" marker-end="url(#ar-cool)"/>
+  <line x1="968" y1="395" x2="927" y2="395" stroke="#2a4747" stroke-width="1.4" marker-end="url(#ar-cool)"/>
+
+  <!-- LOOP: Human top → up → left across top → down to Data -->
+  <!-- start at top of Human box (986, 320), exit upward -->
+  <path d="M 986 320 L 986 195 L 760 195 L 760 240"
+        fill="none" stroke="#2a4747" stroke-width="1.4" marker-end="url(#ar-cool)"/>
+  <text x="873" y="188" text-anchor="middle" font-size="12" fill="#2a4747" font-style="italic">Model improvements</text>
+
+  <!-- Verified predictions: Human bottom → down -->
+  <line x1="986" y1="420" x2="986" y2="475" stroke="#2a4747" stroke-width="1.4" marker-end="url(#ar-cool)"/>
+  <text x="986" y="492" text-anchor="middle" font-size="12" fill="#2a4747" font-style="italic">Verified predictions</text>
+
+  <!-- Outcome box -->
+  <rect x="700" y="500" width="240" height="60" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+  <text x="820" y="525" text-anchor="middle" font-size="13" fill="#1a1a1a">Generalization Error +</text>
+  <text x="820" y="545" text-anchor="middle" font-size="13" fill="#1a1a1a">human experience</text>
+
+  <!-- FOOTER -->
+  <line x1="80" y1="640" x2="200" y2="640" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="668" font-size="14" fill="#1a1a1a">Three regimes — explanations as outputs, then explanations as feedback in a loop with the human.</text>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+
+  <defs>
+    <marker id="downArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8553d"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title block -->
+  
+  
+  
+
+  <!-- Search box 1 — from s1, not dimmed -->
+  <rect x="200" y="195" width="700" height="65" rx="32" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <circle cx="240" cy="227" r="9" fill="none" stroke="#6b665e" stroke-width="2"/>
+  <line x1="247" y1="234" x2="254" y2="241" stroke="#6b665e" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="275" y="234" font-size="20" fill="#1a1a1a" font-style="italic">hotels in Lisbon</text>
+  <text x="870" y="234" font-size="13" fill="#b8b3a8" text-anchor="end" font-style="italic">first query</text>
+
+  <!-- annotation 1 -->
+  <text x="200" y="278" font-size="13" fill="#6b665e" font-style="italic">
+    user means: "show me what's there" — broad and ambiguous
+  </text>
+
+  <!-- down arrow 1 -->
+  <line x1="550" y1="295" x2="550" y2="320" stroke="#c8553d" stroke-width="2" fill="none" marker-end="url(#downArrow)"/>
+
+  <!-- Search box 2 — from s2, not dimmed -->
+  <rect x="200" y="335" width="700" height="65" rx="32" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <circle cx="240" cy="367" r="9" fill="none" stroke="#6b665e" stroke-width="2"/>
+  <line x1="247" y1="374" x2="254" y2="381" stroke="#6b665e" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="275" y="374" font-size="20" fill="#1a1a1a" font-style="italic">
+    hotels in Lisbon, <tspan fill="#c8553d" font-weight="700">kid-friendly</tspan>
+  </text>
+  <text x="870" y="374" font-size="13" fill="#b8b3a8" text-anchor="end" font-style="italic">refined</text>
+
+  <!-- annotation 2 -->
+  <text x="200" y="418" font-size="13" fill="#6b665e" font-style="italic">
+    constraint discovered after browsing — system needs to retrieve under new criteria
+  </text>
+
+  <!-- down arrow 2 (new) -->
+  <line x1="550" y1="435" x2="550" y2="460" stroke="#c8553d" stroke-width="2" marker-end="url(#downArrow)"/>
+
+  <!-- Search box 3 — comparison behavior (new) -->
+  <rect x="200" y="475" width="700" height="65" rx="32" fill="#ffffff" stroke="#c8553d" stroke-width="2.5"/>
+  <circle cx="240" cy="507" r="9" fill="none" stroke="#6b665e" stroke-width="2"/>
+  <line x1="247" y1="514" x2="254" y2="521" stroke="#6b665e" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="275" y="514" font-size="18" fill="#1a1a1a" font-style="italic">
+    kid-friendly Lisbon, <tspan fill="#c8553d" font-weight="700">near beach, under €200</tspan>
+  </text>
+  <text x="870" y="514" font-size="13" fill="#c8553d" text-anchor="end" font-style="italic" font-weight="700">comparing</text>
+
+  <!-- annotation 3 (new) -->
+  <text x="200" y="558" font-size="13" fill="#6b665e" font-style="italic">
+    multiple constraints in play — user is now comparing alternatives
+  </text>
+
+  </svg>

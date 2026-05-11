@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" width="1100" height="480">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2a4747"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- Standard header -->
+  
+  
+  
+
+  <!-- Context badge -->
+  <rect x="80" y="128" width="300" height="24" fill="#2a4747" fill-opacity="0.1" stroke="#2a4747" stroke-width="1" rx="3"/>
+  <text x="95" y="144" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747" letter-spacing="0.5">Industry collaboration · Product Search · NLP</text>
+
+  <!-- LEFT PANEL — KEYWORD MATCH -->
+  <rect x="80" y="162" width="440" height="360" stroke="#8a857a" stroke-width="1.2" rx="3" fill="#ffffff"/>
+  <text x="95" y="185" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#6b665e" letter-spacing="0.8">KEYWORD MATCH</text>
+  <text x="95" y="201" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#6b665e">BM25 / inverted index</text>
+
+  <!-- Search bar left -->
+  <rect x="95" y="213" width="400" height="28" rx="14" stroke="#e8e2d6" stroke-width="1" fill="#ffffff"/>
+  <text x="113" y="231" font-family="Georgia, 'Times New Roman', serif" font-size="11" fill="#6b665e">waterproof outdoor portable speaker</text>
+
+  <!-- Result 1 left -->
+  <circle cx="110" cy="269" r="10" fill="#2a4747"/>
+  <text x="110" y="273" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" fill="#ffffff">1</text>
+  <text x="128" y="265" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#1a1a1a">Waterproof Outdoor Speaker Pro X3</text>
+  <text x="128" y="279" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">exact keyword match</text>
+  <text x="128" y="293" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">★★★★☆ · $78.99</text>
+
+  <!-- Divider -->
+  <line x1="95" y1="307" x2="500" y2="307" stroke="#e8e2d6" stroke-width="0.8"/>
+
+  <!-- Result 2 left -->
+  <circle cx="110" cy="329" r="10" fill="#2a4747"/>
+  <text x="110" y="333" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" fill="#ffffff">2</text>
+  <text x="128" y="325" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#1a1a1a">Outdoor Speaker Waterproof Bluetooth</text>
+  <text x="128" y="339" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">keyword overlap</text>
+  <text x="128" y="353" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">★★★★☆ · $65.00</text>
+
+  <!-- Divider -->
+  <line x1="95" y1="367" x2="500" y2="367" stroke="#e8e2d6" stroke-width="0.8"/>
+
+  <!-- Result 3 left -->
+  <circle cx="110" cy="389" r="10" fill="#2a4747"/>
+  <text x="110" y="393" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" fill="#ffffff">3</text>
+  <text x="128" y="385" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#1a1a1a">Portable Waterproof Speaker Case</text>
+  <text x="128" y="399" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#c8553d">partial match — wrong product!</text>
+  <text x="128" y="413" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">★★★☆☆ · $22.00</text>
+
+  <!-- Warning note left -->
+  <text x="95" y="440" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#c8553d">⚠ Returns cases, not speakers (keyword collision)</text>
+
+  <!-- CENTER DIVIDER -->
+  <line x1="540" y1="162" x2="540" y2="522" stroke="#e8e2d6" stroke-width="1.5"/>
+  <text x="540" y="350" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#6b665e">vs</text>
+
+  <!-- RIGHT PANEL — EMBEDDING SEARCH -->
+  <rect x="570" y="162" width="440" height="360" stroke="#2a4747" stroke-width="1.8" rx="3" fill="#ffffff"/>
+  <text x="585" y="185" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#2a4747" letter-spacing="0.8">EMBEDDING SEARCH</text>
+  <text x="585" y="201" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" fill="#2a4747">Dense retrieval · semantic matching</text>
+
+  <!-- Search bar right -->
+  <rect x="585" y="213" width="400" height="28" rx="14" stroke="#e8e2d6" stroke-width="1" fill="#ffffff"/>
+  <text x="603" y="231" font-family="Georgia, 'Times New Roman', serif" font-size="11" fill="#6b665e">waterproof outdoor portable speaker</text>
+
+  <!-- Result 1 right -->
+  <circle cx="600" cy="269" r="10" fill="#c8553d"/>
+  <text x="600" y="273" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" fill="#ffffff">1</text>
+  <text x="618" y="265" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#1a1a1a">JBL Flip 6 — Portable Waterproof Speaker</text>
+  <text x="618" y="279" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747">semantic match · top product in category</text>
+  <text x="618" y="293" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">★★★★★ · $119.95</text>
+
+  <!-- Divider -->
+  <line x1="585" y1="307" x2="990" y2="307" stroke="#e8e2d6" stroke-width="0.8"/>
+
+  <!-- Result 2 right -->
+  <circle cx="600" cy="329" r="10" fill="#c8553d"/>
+  <text x="600" y="333" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" fill="#ffffff">2</text>
+  <text x="618" y="325" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#1a1a1a">Bose SoundLink Flex · Outdoor Speaker</text>
+  <text x="618" y="339" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747">semantic: outdoor, durable, portable</text>
+  <text x="618" y="353" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">★★★★☆ · $149.00</text>
+
+  <!-- Divider -->
+  <line x1="585" y1="367" x2="990" y2="367" stroke="#e8e2d6" stroke-width="0.8"/>
+
+  <!-- Result 3 right -->
+  <circle cx="600" cy="389" r="10" fill="#c8553d"/>
+  <text x="600" y="393" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" fill="#ffffff">3</text>
+  <text x="618" y="385" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#1a1a1a">Sony SRS-XB23 · Extra Bass · IP67</text>
+  <text x="618" y="399" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747">semantic: waterproof, rugged</text>
+  <text x="618" y="413" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#6b665e">★★★★☆ · $89.99</text>
+
+  <!-- Confirmation note right -->
+  <text x="585" y="440" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#2a4747">✓ Returns relevant products — no false keyword matches</text>
+
+  <!-- IMPACT CALLOUT -->
+  <rect x="80" y="538" width="940" height="60" fill="#c8553d" fill-opacity="0.07" stroke="#c8553d" stroke-width="1.2" rx="3"/>
+  <text x="100" y="558" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-weight="bold" fill="#2a4747" letter-spacing="0.8">IMPACT</text>
+  <text x="175" y="558" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#1a1a1a">500M+ queries/day · 1B+ products · better recall for long-tail and semantic queries</text>
+  <text x="175" y="576" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-style="italic" fill="#6b665e">Embeddings move keyword collision from common to rare — the long tail becomes reachable</text>
+
+  </svg>

@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <!--
+    REFORMIR RESULTS — TREC DL19–DL22
+    Left:  grouped bar chart · Recall@50 · baseline vs ReformIR (+34%)
+    Right: stability line chart · recall vs number of reformulations
+           classical GenQR drops with drift; ReformIR stays stable
+    Footer: efficiency headline (3.3×–4.5×)
+
+    Bar formula (left chart):
+      plot box y 180–500 (320 tall)
+      y = 500 − 320 × recall
+      baseline 0.52 → y = 333.6   QUAM-style gray bar
+      ReformIR 0.70 → y = 276.0   accent bar
+
+    Line chart (right):
+      x positions for 5/10/15/20/25 reformulations: 640/720/800/880/960
+      classical:  recall 0.56 / 0.50 / 0.45 / 0.41 / 0.38
+      ReformIR:   recall 0.60 / 0.65 / 0.68 / 0.70 / 0.72
+      y = 500 − 320 × recall
+  -->
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- ============================================================
+       LEFT — RECALL@50 BAR CHART
+       plot box: x 130–470, y 180–500
+       ============================================================ -->
+
+  <text x="80" y="163" font-size="13" fill="#6b665e" font-weight="700" letter-spacing="0.5">RECALL IMPROVEMENT</text>
+
+  <!-- grid -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="130" y1="500" x2="470" y2="500"/>
+    <line x1="130" y1="436" x2="470" y2="436"/>
+    <line x1="130" y1="372" x2="470" y2="372"/>
+    <line x1="130" y1="308" x2="470" y2="308"/>
+    <line x1="130" y1="244" x2="470" y2="244"/>
+    <line x1="130" y1="180" x2="470" y2="180"/>
+  </g>
+
+  <!-- axes -->
+  <line x1="130" y1="500" x2="470" y2="500" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="130" y1="180" x2="130" y2="500" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- y-axis ticks and labels -->
+  <g font-size="12" fill="#1a1a1a" text-anchor="end">
+    <text x="122" y="504">0.0</text>
+    <text x="122" y="440">0.2</text>
+    <text x="122" y="376">0.4</text>
+    <text x="122" y="312">0.6</text>
+    <text x="122" y="248">0.8</text>
+    <text x="122" y="184">1.0</text>
+  </g>
+  <g stroke="#1a1a1a" stroke-width="1.2">
+    <line x1="125" y1="500" x2="130" y2="500"/>
+    <line x1="125" y1="436" x2="130" y2="436"/>
+    <line x1="125" y1="372" x2="130" y2="372"/>
+    <line x1="125" y1="308" x2="130" y2="308"/>
+    <line x1="125" y1="244" x2="130" y2="244"/>
+    <line x1="125" y1="180" x2="130" y2="180"/>
+  </g>
+  <text x="60" y="340" font-size="14" fill="#1a1a1a" text-anchor="middle" transform="rotate(-90 60 340)" font-style="italic">Recall@50</text>
+
+  <!-- baseline bar: 0.52 → y=333.6, height=166.4 -->
+  <rect x="210" y="333.6" width="56" height="166.4" fill="#b8b3a8" stroke="#8a857a" stroke-width="1"/>
+  <text x="238" y="518" font-size="11" fill="#6b665e" text-anchor="middle">classical</text>
+  <text x="238" y="531" font-size="11" fill="#6b665e" text-anchor="middle">reformulation</text>
+  <text x="238" y="325" font-size="11" fill="#6b665e" text-anchor="middle" font-weight="600">0.52</text>
+
+  <!-- ReformIR bar: 0.70 → y=276, height=224 -->
+  <rect x="290" y="276" width="56" height="224" fill="#c8553d" stroke="#c8553d" stroke-width="1"/>
+  <text x="318" y="518" font-size="12" fill="#c8553d" text-anchor="middle" font-weight="700">ReformIR</text>
+  <text x="318" y="268" font-size="11" fill="#c8553d" text-anchor="middle" font-weight="700">0.70</text>
+
+  <!-- delta annotation -->
+  <line x1="238" y1="248" x2="238" y2="326" stroke="#1a1a1a" stroke-width="0.8"/>
+  <line x1="318" y1="248" x2="318" y2="267" stroke="#1a1a1a" stroke-width="0.8"/>
+  <line x1="238" y1="248" x2="318" y2="248" stroke="#1a1a1a" stroke-width="0.8"/>
+  <rect x="248" y="224" width="60" height="22" fill="#ffffff"/>
+  <text x="278" y="241" font-size="18" fill="#c8553d" text-anchor="middle" font-weight="700">+34%</text>
+
+  <!-- x-axis metric label -->
+  <text x="278" y="570" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">Recall@50</text>
+
+  <!-- vertical divider -->
+  <line x1="510" y1="148" x2="510" y2="590" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- ============================================================
+       RIGHT — STABILITY LINE CHART
+       plot box: x 560–1000, y 180–500
+       x positions: 5→640, 10→720, 15→800, 20→880, 25→960
+       ============================================================ -->
+
+  <text x="560" y="163" font-size="13" fill="#6b665e" font-weight="700" letter-spacing="0.5">STABILITY AS REFORMULATIONS GROW</text>
+
+  <!-- grid -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="560" y1="500" x2="1000" y2="500"/>
+    <line x1="560" y1="436" x2="1000" y2="436"/>
+    <line x1="560" y1="372" x2="1000" y2="372"/>
+    <line x1="560" y1="308" x2="1000" y2="308"/>
+    <line x1="560" y1="244" x2="1000" y2="244"/>
+    <line x1="560" y1="180" x2="1000" y2="180"/>
+  </g>
+
+  <!-- axes -->
+  <line x1="560" y1="500" x2="1000" y2="500" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="560" y1="180" x2="560" y2="500" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- x-axis labels -->
+  <g font-size="12" fill="#1a1a1a" text-anchor="middle">
+    <text x="640" y="518">5</text>
+    <text x="720" y="518">10</text>
+    <text x="800" y="518">15</text>
+    <text x="880" y="518">20</text>
+    <text x="960" y="518">25</text>
+  </g>
+  <text x="780" y="546" font-size="13" fill="#6b665e" text-anchor="middle" font-style="italic">number of reformulations</text>
+
+  <!-- y-axis labels -->
+  <g font-size="12" fill="#1a1a1a" text-anchor="end">
+    <text x="552" y="504">0.0</text>
+    <text x="552" y="376">0.4</text>
+    <text x="552" y="248">0.8</text>
+  </g>
+  <text x="520" y="340" font-size="14" fill="#1a1a1a" text-anchor="middle" transform="rotate(-90 520 340)" font-style="italic">Recall@50</text>
+
+  <!-- classical GenQR line: drops with more reformulations (drift)
+       points: (5,0.56)(10,0.50)(15,0.45)(20,0.41)(25,0.38)
+       y:      320.8  340    355.6  368.8  378.4                  -->
+  <polyline points="640,320.8 720,340 800,355.6 880,368.8 960,378.4"
+            fill="none" stroke="#8a857a" stroke-width="2" stroke-dasharray="7,4"/>
+  <g fill="#8a857a">
+    <circle cx="640" cy="320.8" r="5"/>
+    <circle cx="720" cy="340" r="5"/>
+    <circle cx="800" cy="355.6" r="5"/>
+    <circle cx="880" cy="368.8" r="5"/>
+    <circle cx="960" cy="378.4" r="5"/>
+  </g>
+
+  <!-- ReformIR line: stable and improving
+       points: (5,0.60)(10,0.65)(15,0.68)(20,0.70)(25,0.72)
+       y:      308    292    282.4  276    269.6                   -->
+  <polyline points="640,308 720,292 800,282.4 880,276 960,269.6"
+            fill="none" stroke="#c8553d" stroke-width="2.5"/>
+  <g fill="#c8553d">
+    <circle cx="640" cy="308" r="5"/>
+    <circle cx="720" cy="292" r="5"/>
+    <circle cx="800" cy="282.4" r="5"/>
+    <circle cx="880" cy="276" r="5"/>
+    <circle cx="960" cy="269.6" r="5"/>
+  </g>
+
+  <!-- legend -->
+  <line x1="640" y1="210" x2="668" y2="210" stroke="#8a857a" stroke-width="2" stroke-dasharray="7,4"/>
+  <circle cx="654" cy="210" r="4" fill="#8a857a"/>
+  <text x="676" y="215" font-size="13" fill="#6b665e">classical (GenQR) — drift accumulates</text>
+  <line x1="640" y1="234" x2="668" y2="234" stroke="#c8553d" stroke-width="2.5"/>
+  <circle cx="654" cy="234" r="4" fill="#c8553d"/>
+  <text x="676" y="239" font-size="13" fill="#c8553d" font-weight="700">ReformIR — stays stable</text>
+
+  <!-- "drift zone" annotation on right chart -->
+  <text x="968" y="374" font-size="11" fill="#8a857a" font-style="italic">−drift</text>
+  <text x="968" y="265" font-size="11" fill="#c8553d" font-style="italic">+gain</text>
+
+  </svg>

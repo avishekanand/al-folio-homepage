@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- vertical divider -->
+  <line x1="540" y1="170" x2="540" y2="600" stroke="#1a1a1a" stroke-width="0.6" stroke-dasharray="4,5"/>
+
+  <!-- LEFT PANEL header -->
+  <text x="290" y="180" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+    SPEEDUP OVER QUAM
+  </text>
+  <text x="290" y="200" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">
+    same recall, fewer reranker calls
+  </text>
+
+  <!-- background grid -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="130" y1="510" x2="460" y2="510"/>
+    <line x1="130" y1="450" x2="460" y2="450"/>
+    <line x1="130" y1="390" x2="460" y2="390"/>
+    <line x1="130" y1="330" x2="460" y2="330"/>
+    <line x1="130" y1="270" x2="460" y2="270"/>
+  </g>
+
+  <!-- axes -->
+  <line x1="130" y1="510" x2="460" y2="510" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="130" y1="240" x2="130" y2="510" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- y-axis ticks -->
+  <g font-size="12" fill="#1a1a1a" text-anchor="end">
+    <text x="120" y="514">1×</text>
+    <text x="120" y="454">3×</text>
+    <text x="120" y="394">5×</text>
+    <text x="120" y="334">7×</text>
+    <text x="120" y="274">9×</text>
+  </g>
+  <g stroke="#1a1a1a" stroke-width="1.2">
+    <line x1="125" y1="510" x2="130" y2="510"/>
+    <line x1="125" y1="450" x2="130" y2="450"/>
+    <line x1="125" y1="390" x2="130" y2="390"/>
+    <line x1="125" y1="330" x2="130" y2="330"/>
+    <line x1="125" y1="270" x2="130" y2="270"/>
+  </g>
+</svg>

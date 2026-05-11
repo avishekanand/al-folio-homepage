@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <!-- ============================================================
+       QUAM — Query Affinity Modelling (p. 20) — STEP 3
+       s2 + forward arrow + Reranker box + arrow legend
+       ============================================================ -->
+
+  <defs>
+    <marker id="arrQuam" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+    <marker id="arrQuamAcc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8553d"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- LEFT - first-stage retrieval -->
+  <g>
+    <circle cx="125" cy="380" r="42" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+    <text x="125" y="376" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700">First-stage</text>
+    <text x="125" y="394" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700">retrieval</text>
+  </g>
+  <text x="125" y="448" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">top-N from BM25 / dense</text>
+
+  <line x1="170" y1="380" x2="218" y2="380" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrQuam)"/>
+
+  <!-- CENTER - the affinity graph box -->
+  <rect x="225" y="195" width="450" height="370" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5" rx="3"/>
+  <text x="450" y="218" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="1.5">
+    LEARNED AFFINITY GRAPH  (L_aff)
+  </text>
+  <text x="450" y="236" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">
+    edges = predicted co-relevance, not textual similarity
+  </text>
+
+  <!-- thick edges = high-affinity -->
+  <g stroke="#c8553d" stroke-width="2.4" stroke-opacity="0.85">
+    <line x1="310" y1="320" x2="270" y2="410"/>
+    <line x1="310" y1="320" x2="380" y2="365"/>
+    <line x1="495" y1="305" x2="380" y2="365"/>
+    <line x1="495" y1="305" x2="570" y2="350"/>
+    <line x1="565" y1="425" x2="640" y2="480"/>
+    <line x1="565" y1="425" x2="440" y2="470"/>
+    <line x1="495" y1="305" x2="565" y2="425"/>
+  </g>
+
+  <!-- thin edges = general structure -->
+  <g stroke="#8a857a" stroke-width="0.8" stroke-opacity="0.5">
+    <line x1="270" y1="410" x2="290" y2="510"/>
+    <line x1="270" y1="410" x2="380" y2="280"/>
+    <line x1="380" y1="365" x2="380" y2="280"/>
+    <line x1="570" y1="350" x2="600" y2="290"/>
+    <line x1="640" y1="480" x2="630" y2="540"/>
+    <line x1="440" y1="470" x2="290" y2="510"/>
+    <line x1="380" y1="280" x2="495" y2="305"/>
+    <line x1="600" y1="290" x2="495" y2="305"/>
+    <line x1="380" y1="365" x2="290" y2="510"/>
+  </g>
+
+  <!-- gray "Other" nodes -->
+  <g fill="#b8b3a8" stroke="#8a857a" stroke-width="1">
+    <circle cx="290" cy="510" r="8"/>
+    <circle cx="380" cy="280" r="8"/>
+    <circle cx="600" cy="290" r="8"/>
+    <circle cx="630" cy="540" r="8"/>
+  </g>
+
+  <!-- "Neighbor" candidate nodes -->
+  <g fill="#ffffff" stroke="#c8553d" stroke-width="2.2">
+    <circle cx="270" cy="410" r="11"/>
+    <circle cx="380" cy="365" r="11"/>
+    <circle cx="570" cy="350" r="11"/>
+    <circle cx="640" cy="480" r="11"/>
+    <circle cx="440" cy="470" r="11"/>
+  </g>
+
+  <!-- "Anchor" nodes -->
+  <g fill="#c8553d" stroke="#c8553d" stroke-width="1.5">
+    <circle cx="310" cy="320" r="13"/>
+    <circle cx="495" cy="305" r="13"/>
+    <circle cx="565" cy="425" r="13"/>
+  </g>
+
+  <!-- inline legend at bottom of graph box -->
+  <g font-size="11" fill="#6b665e" font-style="italic">
+    <circle cx="245" cy="538" r="7" fill="#c8553d" stroke="none"/>
+    <text x="258" y="542" fill="#c8553d" font-weight="700">anchor</text>
+    <text x="305" y="542">(high reranker score)</text>
+
+    <circle cx="465" cy="538" r="7" fill="#ffffff" stroke="#c8553d" stroke-width="2"/>
+    <text x="478" y="542" fill="#c8553d" font-weight="700">neighbor</text>
+    <text x="540" y="542">(next batch)</text>
+  </g>
+
+  <!-- FORWARD: graph → reranker -->
+  <line x1="680" y1="355" x2="739" y2="355" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrQuam)"/>
+  <text x="710" y="338" font-size="10" fill="#6b665e" text-anchor="middle" font-style="italic">SetAff</text>
+  <text x="710" y="350" font-size="10" fill="#6b665e" text-anchor="middle" font-style="italic">top-b</text>
+
+  <!-- Reranker box -->
+  <g>
+    <rect x="740" y="320" width="200" height="120" fill="#ffffff" stroke="#2a4747" stroke-width="2.4" rx="4"/>
+    <text x="840" y="358" font-size="15" fill="#2a4747" text-anchor="middle" font-weight="700">Reranker</text>
+    <text x="840" y="383" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">cross-encoder /</text>
+    <text x="840" y="398" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">LLM-based</text>
+    <text x="840" y="424" font-size="11" fill="#2a4747" text-anchor="middle" font-weight="700" letter-spacing="0.5">relevance signal</text>
+  </g>
+
+  <!-- arrow legend below reranker -->
+  <g transform="translate(740 470)" font-size="11" fill="#6b665e" font-style="italic">
+    <line x1="0" y1="0" x2="20" y2="0" stroke="#1a1a1a" stroke-width="2"/>
+    <text x="28" y="4">forward — score next batch</text>
+    <line x1="0" y1="18" x2="20" y2="18" stroke="#c8553d" stroke-width="2.4" stroke-dasharray="6,4"/>
+    <text x="28" y="22" fill="#c8553d">feedback — high-scoring docs become new anchors</text>
+  </g>
+
+</svg>

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 130 1100 480" font-family="Georgia, 'Times New Roman', serif" width="1100" height="480">
+  <!--
+    STATIC BATCHING — STEP 1 OF 2
+    Shows: candidate pool + batch 1 selected + arrow to ranker.
+    Batch 2 rows visible but unhighlighted. Never-scored rows faded.
+  -->
+
+  <defs>
+    <marker id="arrowSB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  
+  
+  
+
+  <!-- ============ POOL ============ -->
+  <text x="80" y="160" font-size="13" fill="#1a1a1a" font-weight="700" letter-spacing="0.5">CANDIDATE POOL</text>
+  <text x="80" y="180" font-size="11" fill="#6b665e" font-style="italic">sorted by first-stage score (BM25 / dense)</text>
+
+  <!-- feature legend -->
+  <g font-size="10" fill="#6b665e">
+    <rect x="80"  y="195" width="8" height="8" fill="#8a857a"/><text x="93"  y="203">BM25</text>
+    <rect x="135" y="195" width="8" height="8" fill="#2a4747"/><text x="148" y="203">dense</text>
+    <rect x="190" y="195" width="8" height="8" fill="#c8553d"/><text x="203" y="203">affinity</text>
+    <rect x="248" y="195" width="8" height="8" fill="#b8b3a8"/><text x="261" y="203">neighbor</text>
+  </g>
+
+  <!-- pool box -->
+  <rect x="70" y="220" width="320" height="380" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.5" rx="3"/>
+
+  <!-- first-stage rank indicator -->
+  <line x1="55" y1="240" x2="55" y2="490" stroke="#6b665e" stroke-width="1" marker-end="url(#arrowSB)"/>
+  <text x="48" y="370" font-size="10" fill="#6b665e" text-anchor="middle" font-style="italic" transform="rotate(-90 48 370)">first-stage rank</text>
+
+  <!-- BATCH 1 rows (d1–d3) — highlighted background -->
+  <rect x="72" y="234" width="316" height="86" fill="#2a4747" fill-opacity="0.05" rx="2"/>
+  <g>
+    <text x="85" y="247" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">1</tspan></text>
+    <rect x="115" y="240" width="55" height="8" fill="#8a857a"/>
+    <rect x="175" y="240" width="50" height="8" fill="#2a4747"/>
+    <rect x="230" y="240" width="40" height="8" fill="#c8553d"/>
+    <rect x="275" y="240" width="48" height="8" fill="#b8b3a8"/>
+  </g>
+  <g>
+    <text x="85" y="277" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">2</tspan></text>
+    <rect x="115" y="270" width="50" height="8" fill="#8a857a"/>
+    <rect x="170" y="270" width="55" height="8" fill="#2a4747"/>
+    <rect x="230" y="270" width="35" height="8" fill="#c8553d"/>
+    <rect x="270" y="270" width="50" height="8" fill="#b8b3a8"/>
+  </g>
+  <g>
+    <text x="85" y="307" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">3</tspan></text>
+    <rect x="115" y="300" width="48" height="8" fill="#8a857a"/>
+    <rect x="168" y="300" width="48" height="8" fill="#2a4747"/>
+    <rect x="221" y="300" width="42" height="8" fill="#c8553d"/>
+    <rect x="268" y="300" width="50" height="8" fill="#b8b3a8"/>
+  </g>
+
+  <!-- BATCH 1 bracket -->
+  <path d="M 400 234 L 412 234 L 412 320 L 400 320" fill="none" stroke="#2a4747" stroke-width="2.2"/>
+  <text x="422" y="264" font-size="12" fill="#2a4747" font-weight="700" letter-spacing="0.5">BATCH 1</text>
+  <text x="422" y="282" font-size="10" fill="#2a4747" font-style="italic">top-k by</text>
+  <text x="422" y="297" font-size="10" fill="#2a4747" font-style="italic">first-stage</text>
+
+  <!-- BATCH 2 rows (d4–d6) — neutral, not yet selected -->
+  <g>
+    <text x="85" y="347" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">4</tspan></text>
+    <rect x="115" y="340" width="40" height="8" fill="#8a857a"/>
+    <rect x="160" y="340" width="48" height="8" fill="#2a4747"/>
+    <rect x="213" y="340" width="55" height="8" fill="#c8553d"/>
+    <rect x="273" y="340" width="40" height="8" fill="#b8b3a8"/>
+  </g>
+  <g>
+    <text x="85" y="377" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">5</tspan></text>
+    <rect x="115" y="370" width="38" height="8" fill="#8a857a"/>
+    <rect x="158" y="370" width="42" height="8" fill="#2a4747"/>
+    <rect x="205" y="370" width="50" height="8" fill="#c8553d"/>
+    <rect x="260" y="370" width="45" height="8" fill="#b8b3a8"/>
+  </g>
+  <g>
+    <text x="85" y="407" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">6</tspan></text>
+    <rect x="115" y="400" width="35" height="8" fill="#8a857a"/>
+    <rect x="155" y="400" width="40" height="8" fill="#2a4747"/>
+    <rect x="200" y="400" width="38" height="8" fill="#c8553d"/>
+    <rect x="243" y="400" width="55" height="8" fill="#b8b3a8"/>
+  </g>
+
+  <!-- divider: batched / never-scored -->
+  <line x1="80" y1="430" x2="380" y2="430" stroke="#1a1a1a" stroke-width="0.6" stroke-dasharray="3,3"/>
+
+  <!-- never-scored rows (faded) -->
+  <g opacity="0.35">
+    <text x="85" y="457" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">7</tspan></text>
+    <rect x="115" y="450" width="32" height="8" fill="#8a857a"/>
+    <rect x="152" y="450" width="38" height="8" fill="#2a4747"/>
+    <rect x="195" y="450" width="42" height="8" fill="#c8553d"/>
+    <rect x="242" y="450" width="48" height="8" fill="#b8b3a8"/>
+  </g>
+  <g opacity="0.35">
+    <text x="85" y="487" font-size="11" fill="#1a1a1a" font-family="Courier, monospace">d<tspan font-size="9" baseline-shift="sub">8</tspan></text>
+    <rect x="115" y="480" width="30" height="8" fill="#8a857a"/>
+    <rect x="150" y="480" width="35" height="8" fill="#2a4747"/>
+    <rect x="190" y="480" width="40" height="8" fill="#c8553d"/>
+    <rect x="235" y="480" width="50" height="8" fill="#b8b3a8"/>
+  </g>
+  <text x="225" y="520" font-size="14" fill="#6b665e" text-anchor="middle" opacity="0.5">...</text>
+  <text x="225" y="555" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">N − 2k candidates · never scored</text>
+  <line x1="80"  y1="572" x2="380" y2="572" stroke="#1a1a1a" stroke-width="0.6"/>
+  <text x="225" y="588" font-size="11" fill="#6b665e" text-anchor="middle" font-style="italic">rank order is fixed at retrieval time</text>
+
+  <!-- ============ RANKER ============ -->
+  <rect x="730" y="280" width="220" height="120" fill="#ffffff" stroke="#2a4747" stroke-width="2.4" rx="4"/>
+  <text x="840" y="318" font-size="15" fill="#2a4747" text-anchor="middle" font-weight="700">EXPENSIVE RANKER</text>
+  <text x="840" y="343" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">cross-encoder /</text>
+  <text x="840" y="358" font-size="12" fill="#6b665e" text-anchor="middle" font-style="italic">RankLLaMA / etc.</text>
+  <text x="840" y="384" font-size="11" fill="#2a4747" text-anchor="middle" font-weight="700" letter-spacing="0.5">scores docs in batch</text>
+
+  <!-- ============ BATCH 1 ARROW ============ -->
+  <!-- length ≈ √(239²+30²) ≈ 241 -->
+  <line x1="490" y1="277" x2="729" y2="305" stroke="#1a1a1a" stroke-width="2.2" marker-end="url(#arrowSB)"/>
+  <text x="610" y="270" font-size="11" fill="#1a1a1a" text-anchor="middle" font-weight="700" letter-spacing="0.3">batch 1 → score</text>
+
+  </svg>

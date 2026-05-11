@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" width="1100" height="720" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="3" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- TITLE -->
+  <text x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">What did we learn from SUNAR?</text>
+  <text x="80" y="94" font-size="16" fill="#6b665e" font-style="italic">The <tspan font-style="italic" fill="#c8553d">generator’s own uncertainty</tspan> teaches the retriever — per query.</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <g transform="translate(80, 180)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="280" height="380" rx="6" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.4"/>
+    <rect x="0" y="0" width="280" height="6" rx="6" fill="#c8553d"/>
+    <text x="28" y="78" font-size="56" font-weight="bold" fill="#c8553d">1</text>
+    <text x="28" y="108" font-size="11" font-weight="bold" fill="#6b665e" letter-spacing="1.2">UNCERTAINTY AS FEEDBACK</text>
+    <line x1="28" y1="120" x2="78" y2="120" stroke="#6b665e" stroke-width="0.8"/>
+    <text x="28" y="158" font-size="20" fill="#1a1a1a" font-weight="bold">Answer divergence</text>
+    <text x="28" y="186" font-size="20" fill="#1a1a1a" font-weight="bold">flags weak evidence.</text>
+    <text x="28" y="232" font-size="14" fill="#6b665e" font-style="italic">When the LLM disagrees</text>
+    <text x="28" y="252" font-size="14" fill="#6b665e" font-style="italic">with itself, the retrieved</text>
+    <text x="28" y="272" font-size="14" fill="#6b665e" font-style="italic">context is the problem.</text>
+    <g transform="translate(140, 320)">
+      <text x="0" y="8" text-anchor="middle" font-size="38" fill="#c8553d" font-weight="bold">?</text>
+    </g>
+  </g>
+
+  <!-- FOOTER -->
+  <line x1="80" y1="640" x2="200" y2="640" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="668" font-size="15" fill="#1a1a1a">Disagreement among LLM answers is a signal that the evidence is weak.</text>
+  <text x="80" y="690" font-size="14" fill="#6b665e" font-style="italic">No labels. No retraining. The system grades itself.</text>
+</svg>

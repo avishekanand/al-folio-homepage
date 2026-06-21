@@ -12,6 +12,13 @@ nav: false
 
 <ul>
   <li>
+    <strong>Local LLM Hosting at TU Delft — TULIP workshop</strong><br>
+    <em>First alignment workshop · 22 June 2026</em><br>
+    <a href="{{ '/assets/html/tulip-workshop-2026/presentation.html' | relative_url }}">View slides (HTML)</a>
+    &nbsp;·&nbsp;
+    <a href="{{ '/assets/html/tulip-workshop-2026/presentation.pdf' | relative_url }}">PDF</a>
+  </li>
+  <li>
     <strong>Towards Self-Improving Retrieval Augmented Systems</strong><br>
     <a href="{{ '/assets/html/booking-2026/booking-talk.html' | relative_url }}">View slides (HTML)</a>
     &nbsp;·&nbsp;

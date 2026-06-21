@@ -1,0 +1,516 @@
+/* Move the TULIP slide logo to the bottom right */
+.reveal .slide-logo {
+  position: fixed !important;
+  bottom: 12px !important;
+  right: 16px !important;
+  top: auto !important;
+  left: auto !important;
+  max-height: 60px !important;
+  max-width: 140px !important;
+  z-index: 12;
+}
+
+/* Colour-coded "Example use patterns" table */
+.reveal .use-cases-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.4em auto 0;
+  font-size: 0.75em;
+}
+
+.reveal .use-cases-table th {
+  background: #F0F0F0;
+  color: #111;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid #333;
+  font-weight: 700;
+}
+
+.reveal .use-cases-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.reveal .use-cases-table tr.use-case-sensitive  td { background-color: #FBE4D5; }
+.reveal .use-cases-table tr.use-case-education  td { background-color: #DEEBF7; }
+.reveal .use-cases-table tr.use-case-coding     td { background-color: #E2F0D9; }
+.reveal .use-cases-table tr.use-case-rag        td { background-color: #FFF2CC; }
+.reveal .use-cases-table tr.use-case-support    td { background-color: #EAD9F4; }
+
+/* Move the "hamburger" menu button to the bottom left */
+.reveal .slide-menu-button {
+    position: fixed;
+    bottom: 6px;   /* Move to the bottom */
+    left: 6px;     /* Move to the left */
+    display: flex;
+    justify-content: flex-start;  /* Align items to the left */
+    align-items: flex-end;        /* Align items to the bottom */
+    pointer-events: none;
+}
+
+.reveal .slide-menu-button > * {
+    pointer-events: auto;
+}
+
+/* Move the chalkboard buttons to the bottom left, with an offset */
+.reveal .slide-chalkboard-buttons {
+    position: fixed;
+    bottom: 12px;  /* Move to the bottom with an offset */
+    left: 24px;    /* Move to the left with an offset */
+    display: flex;
+    justify-content: flex-start;  /* Align items to the left */
+    align-items: flex-end;        /* Align items to the bottom */
+    pointer-events: none;
+}
+
+.reveal .slide-chalkboard-buttons > * {
+    pointer-events: auto;
+}
+/*******************************************************************************/
+/* TU Delft Color Overrides */
+:root {
+  --jet: #000000;            /* TU Delft Black */
+  --accent: #00A6D6;         /* TU Delft Cyan */
+  --accent2: #6F1D77;        /* TU Delft Purple */
+  --presentation-heading-color: var(--jet); 
+  --body-color: var(--jet);  /* Body text color */
+  --link-color: var(--accent); /* Link color */
+  --selection-bg: #0C2340; /* TU Delft dark blue */
+}
+  
+ /* $body-color is applied by default, make sure to propagate it */ 
+.reveal p {
+  color: var(--body-color);
+}
+
+.reveal a {
+    color: #00B8C8; /* TU Delft Turquoise */
+}
+
+a:hover {
+  color: var(--link-color); 
+  text-decoration: underline; 
+}
+  
+  
+/* Title and headings */
+#title-slide .title,
+#title-slide .author,
+#title-slide .quarto-title-author-name,
+#title-slide .quarto-title-author-email {
+  color: var(--body-color);
+}
+  
+#title-slide .subtitle {
+  color: var(--accent);
+}
+
+/* Make title-slide heading text clearly bold and larger */
+#title-slide .title,
+#title-slide h1.title {
+  font-size: 3rem !important;
+  font-weight: 900 !important;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.18em;
+}
+
+#title-slide .subtitle,
+#title-slide p.subtitle {
+  font-size: 1.7rem !important;
+  font-weight: 800 !important;
+  line-height: 1.2;
+  margin-top: 0 !important;
+}
+
+#title-slide .quarto-title-authors {
+  display: block;
+  text-align: left;
+  margin-top: 1.2rem;
+}
+
+#title-slide .quarto-title-author {
+  display: block;
+  text-align: left;
+  padding: 0;
+  margin: 0 0 0.45rem 0;
+}
+
+#title-slide .quarto-title-author-name,
+#title-slide .quarto-title-author-email,
+#title-slide .quarto-title-affiliation {
+  text-align: left;
+  line-height: 1.25;
+}
+
+#title-slide .quarto-title-author-name {
+  margin-bottom: 0.2rem;
+}
+
+#title-slide .quarto-title-author-email {
+  display: block;
+  margin: 0.3rem 0 0.4rem 0;
+}
+
+.reveal h3 {
+  color: var(--accent);
+}
+
+.reveal h4 {
+  color: var(--accent2);
+}
+
+/* alerts etc. */
+
+.alert {
+  color: var(--accent2);
+}
+
+.fg {
+  color: #EF60A3;
+}
+
+.bg {
+    background-color: #EC6842;
+}
+
+/* Editable replacement for img/TULIP-positioning.png */
+.reveal .positioning {
+  display: grid;
+  gap: 6px;
+  margin: 12px auto 0;
+  max-width: 680px;
+}
+
+.reveal .positioning > div {
+  box-sizing: border-box;
+  color: #ffffff !important;
+  min-height: 96px;
+  overflow: hidden;
+  padding: 10px 86px 10px 22px;
+  position: relative;
+  text-align: left;
+}
+
+.reveal .positioning > div > p:first-child {
+  color: #000000 !important;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.08;
+  margin: 0 0 6px;
+  text-transform: none;
+}
+
+.reveal .positioning > div > p:first-child strong {
+  font-weight: 500;
+}
+
+.reveal .positioning ul {
+  color: #ffffff !important;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0;
+  opacity: 1;
+  padding-left: 20px;
+}
+
+.reveal .positioning li {
+  color: #ffffff !important;
+  opacity: 1;
+}
+
+.reveal .positioning li::marker {
+  color: #ffffff !important;
+}
+
+.reveal .positioning > div::after {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  font-size: 46px;
+  justify-content: center;
+  line-height: 1;
+  opacity: 0.96;
+  position: absolute;
+  right: 18px;
+  top: 0;
+  width: 58px;
+}
+
+.reveal .positioning .national {
+  background: #0b78b8;
+}
+
+.reveal .positioning .national::after {
+  color: #ffffff;
+  content: "⚛";
+  font-size: 56px;
+  text-shadow: 1.6px 0 #78be20, -1.6px 0 #78be20;
+}
+
+.reveal .positioning .campus {
+  background: #10b8bf;
+}
+
+.reveal .positioning .campus::after {
+  content: "🧠";
+}
+
+.reveal .positioning .use-cases {
+  background: #099bd3;
+}
+
+.reveal .positioning .use-cases::after {
+  color: #f4c21b;
+  content: "▰";
+  font-size: 52px;
+  text-shadow: -9px 7px 0 #ffffff;
+}
+
+.reveal .missing-middle-diagram {
+  margin: 0 auto;
+  max-width: 780px;
+  width: 78%;
+}
+
+.reveal .missing-middle-diagram .cell,
+.reveal .missing-middle-diagram .cell-output-display,
+.reveal .missing-middle-diagram figure,
+.reveal .missing-middle-diagram figure > div {
+  margin: 0;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.reveal .missing-middle-diagram svg {
+  display: block;
+  height: auto !important;
+  max-height: 430px;
+  max-width: 100%;
+  width: 100% !important;
+}
+
+.reveal .missing-middle-diagram svg text,
+.reveal .missing-middle-diagram svg .nodeLabel,
+.reveal .missing-middle-diagram svg .edgeLabel {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: 600 !important;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 0.35px;
+  text-rendering: geometricPrecision;
+}
+
+.reveal .missing-middle-diagram svg .nodeLabel {
+  font-weight: 700 !important;
+}
+/* lists */
+
+/* Unordered lists */
+
+.reveal ul li::marker {
+  color: var(--accent);
+}
+
+.reveal ul ul li:before {
+  color: var(--accent);
+}
+
+/* Ordered lists */
+
+.reveal ol li::marker {
+  color: var(--accent);
+}
+
+/* Beamer-style button link environment */
+
+.button {
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.button:hover {
+  background-color: var(--selection-bg);
+  border-color: var(--selection-bg);
+}
+
+::selection {
+    background-color: var(--selection-bg) !important;
+    color: #FFFFFF !important;
+  }
+
+/* Increase code blocks font size*/
+code.sourceCode {
+  font-size: xx-large;
+  /* or try font-size: 1.3em; */
+}
+
+.deliverables-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.acknowledgement-visual {
+  position: relative;
+  width: min(100%, 1000px);
+  aspect-ratio: 786 / 442;
+  margin: 0 auto;
+  padding: 34px 34px 28px;
+  overflow: hidden;
+  background: #2f9fd0;
+  color: #061820;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.acknowledgement-visual::before,
+.acknowledgement-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.acknowledgement-visual::before {
+  background:
+    linear-gradient(134deg, #2db7bd 0 24%, transparent 24.2% 100%),
+    linear-gradient(119deg, transparent 0 61%, #2db7bd 61.2% 100%);
+  opacity: 0.82;
+}
+
+.acknowledgement-visual::after {
+  width: 430px;
+  height: 430px;
+  left: 425px;
+  top: -142px;
+  border-radius: 50%;
+  background: #2db7bd;
+  opacity: 0.52;
+}
+
+.acknowledgement-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 39% 1fr;
+  column-gap: 44px;
+  height: 100%;
+}
+
+.acknowledgement-logo {
+  grid-column: 1 / -1;
+  color: #fff;
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0 0 15px 14px;
+}
+
+.acknowledgement-logo span {
+  font-weight: 700;
+}
+
+.acknowledgement-logo strong {
+  font-weight: 700;
+}
+
+.acknowledgement-logo p {
+  margin: 0;
+  color: #fff;
+}
+
+.acknowledgement-heading {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: #061820;
+}
+
+.acknowledgement-heading p {
+  margin: 0;
+  color: #061820;
+  font-weight: 900;
+}
+
+.acknowledgement-left,
+.acknowledgement-group {
+  min-width: 0;
+}
+
+.acknowledgement-group {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.acknowledgement-group ul {
+  columns: 2;
+  column-gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.82rem;
+  line-height: 1.22;
+  font-weight: 500;
+}
+
+.acknowledgement-group li {
+  break-inside: avoid;
+  margin: 0 0 4px;
+  color: #061820;
+}
+
+.acknowledgement-group li::marker {
+  content: "";
+}
+
+.acknowledgement-group + .acknowledgement-group {
+  margin-top: 10px;
+}
+
+.acknowledgement-thanks {
+  position: absolute;
+  z-index: 1;
+  right: 48px;
+  bottom: 34px;
+  margin: 0;
+  color: #fff;
+  font-size: 1.95rem;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.acknowledgement-thanks p {
+  margin: 0;
+  color: #fff;
+}
+
+@media (max-width: 760px) {
+  .acknowledgement-visual {
+    aspect-ratio: auto;
+    min-height: 560px;
+    padding: 24px;
+  }
+
+  .acknowledgement-content {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+  }
+
+  .acknowledgement-logo {
+    margin-left: 0;
+  }
+
+  .acknowledgement-thanks {
+    position: static;
+    margin-top: 24px;
+    font-size: 1.7rem;
+  }
+}

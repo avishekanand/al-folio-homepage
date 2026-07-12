@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 140 1100 580" width="1100" height="580" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- (title/subtitle removed — the slide heading provides it) -->
+
+  <!-- ============================================ -->
+  <!-- LEFT PLOT: Train-time scaling -->
+  <!-- ============================================ -->
+  <g transform="translate(80, 170)">
+    <!-- panel title -->
+    <text x="225" y="0" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a1a1a">Train-time scaling</text>
+    <text x="225" y="22" text-anchor="middle" font-size="13" fill="#6b665e" font-style="italic">bigger model · more data · longer training</text>
+
+    <!-- plot frame -->
+    <!-- y-axis -->
+    <line x1="60" y1="60" x2="60" y2="420" stroke="#1a1a1a" stroke-width="1.4"/>
+    <!-- x-axis -->
+    <line x1="60" y1="420" x2="430" y2="420" stroke="#1a1a1a" stroke-width="1.4"/>
+
+    <!-- y-axis label -->
+    <text x="-240" y="20" transform="rotate(-90)" text-anchor="middle" font-size="14" fill="#1a1a1a">performance</text>
+    <!-- x-axis label -->
+    <text x="245" y="455" text-anchor="middle" font-size="14" fill="#1a1a1a">compute (log)</text>
+
+    <!-- subtle grid -->
+    <line x1="60" y1="350" x2="430" y2="350" stroke="#e8e2d6" stroke-width="0.8"/>
+    <line x1="60" y1="280" x2="430" y2="280" stroke="#e8e2d6" stroke-width="0.8"/>
+    <line x1="60" y1="210" x2="430" y2="210" stroke="#e8e2d6" stroke-width="0.8"/>
+    <line x1="60" y1="140" x2="430" y2="140" stroke="#e8e2d6" stroke-width="0.8"/>
+
+    <!-- Power-law-ish curve: rises, then plateaus -->
+    <path d="M 65 410
+             C 110 400, 140 360, 175 310
+             C 215 255, 250 215, 290 185
+             C 330 160, 370 145, 425 138"
+          fill="none" stroke="#c8553d" stroke-width="2.6"/>
+
+    <!-- annotation -->
+    <circle cx="425" cy="138" r="4" fill="#c8553d"/>
+    <text x="380" y="120" font-size="12" fill="#6b665e" font-style="italic">diminishing returns</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- RIGHT PLOT: Test-time scaling -->
+  <!-- ============================================ -->
+  <g transform="translate(580, 170)">
+    <!-- panel title -->
+    <text x="225" y="0" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a1a1a">Test-time scaling</text>
+    <text x="225" y="22" text-anchor="middle" font-size="13" fill="#6b665e" font-style="italic">longer reasoning · more inference passes</text>
+
+    <!-- plot frame -->
+    <line x1="60" y1="60" x2="60" y2="420" stroke="#1a1a1a" stroke-width="1.4"/>
+    <line x1="60" y1="420" x2="430" y2="420" stroke="#1a1a1a" stroke-width="1.4"/>
+
+    <text x="-240" y="20" transform="rotate(-90)" text-anchor="middle" font-size="14" fill="#1a1a1a">performance</text>
+    <text x="245" y="455" text-anchor="middle" font-size="14" fill="#1a1a1a">compute (log)</text>
+
+    <!-- subtle grid -->
+    <line x1="60" y1="350" x2="430" y2="350" stroke="#e8e2d6" stroke-width="0.8"/>
+    <line x1="60" y1="280" x2="430" y2="280" stroke="#e8e2d6" stroke-width="0.8"/>
+    <line x1="60" y1="210" x2="430" y2="210" stroke="#e8e2d6" stroke-width="0.8"/>
+    <line x1="60" y1="140" x2="430" y2="140" stroke="#e8e2d6" stroke-width="0.8"/>
+
+    <!-- Curve: similar shape, slightly different — reaches a higher level later -->
+    <path d="M 65 410
+             C 105 395, 135 375, 170 335
+             C 210 285, 245 245, 290 215
+             C 335 188, 380 170, 425 162"
+          fill="none" stroke="#2a4747" stroke-width="2.6"/>
+
+    <!-- annotation -->
+    <circle cx="425" cy="162" r="4" fill="#2a4747"/>
+    <text x="370" y="145" font-size="12" fill="#6b665e" font-style="italic">also flattens</text>
+  </g>
+
+  <!-- FOOTER -->
+  <line x1="80" y1="660" x2="200" y2="660" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="688" font-size="15" fill="#1a1a1a">Both axes hit the same wall: compute grows fast; the gain it buys does not.</text>
+</svg>

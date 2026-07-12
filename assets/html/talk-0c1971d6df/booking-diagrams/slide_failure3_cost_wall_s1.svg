@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">Limitation 2 — the cost wall</text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">Better rerankers exist. You can't afford to run them.</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- LEFT: 40× big number + LATENCY TAX label -->
+  <text x="80" y="222" font-size="14" fill="#c8553d" font-weight="700" letter-spacing="2">LATENCY TAX</text>
+
+  <text x="80" y="390" font-size="150" fill="#c8553d" font-weight="700">40×</text>
+
+  <text x="80" y="435" font-size="22" fill="#1a1a1a" font-weight="700" letter-spacing="0.5">slower per query</text>
+  <text x="80" y="462" font-size="16" fill="#6b665e" font-style="italic">cross-encoder → LLM reranker</text>
+
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">
+    A three-step path to self-improving AI systems
+  </text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">
+    Inner loop · bridge · outer loop
+  </text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- Innermost circle -->
+  <circle cx="550" cy="395" r="60" fill="none" stroke="#c8553d" stroke-width="2.5"/>
+
+  <!-- Center labels -->
+  <text x="550" y="385" font-size="14" fill="#c8553d" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+    INNER LOOP
+  </text>
+  <text x="550" y="403" font-size="11" fill="#c8553d" text-anchor="middle" font-style="italic">
+    feedback drives
+  </text>
+  <text x="550" y="418" font-size="11" fill="#c8553d" text-anchor="middle" font-style="italic">
+    optimization
+  </text>
+
+  <!-- Step 1 card (LEFT) -->
+  <circle cx="120" cy="240" r="22" fill="#c8553d" stroke="#c8553d"/>
+  <text x="120" y="248" font-size="20" fill="#ffffff" text-anchor="middle" font-weight="700">1</text>
+  <text x="160" y="232" font-size="18" fill="#1a1a1a" font-weight="700">Feedback</text>
+  <text x="160" y="252" font-size="13" fill="#c8553d" font-style="italic" font-weight="600">the inner loop</text>
+  <text x="160" y="278" font-size="13" fill="#1a1a1a">What feedback, and how to use</text>
+  <text x="160" y="295" font-size="13" fill="#1a1a1a">it to improve and even construct</text>
+  <text x="160" y="312" font-size="13" fill="#1a1a1a">RAG pipelines.</text>
+  <text x="160" y="338" font-size="11" fill="#6b665e" font-style="italic">QUAM · SUNAR · ORE · CASE</text>
+
+  <!-- Connector dashed line from step 1 to inner ring -->
+  <line x1="280" y1="320" x2="490" y2="395" stroke="#1a1a1a" stroke-width="0.6" stroke-dasharray="3,3"/>
+
+  <!-- Middle teal ring -->
+  <circle cx="550" cy="395" r="115" fill="none" stroke="#2a4747" stroke-width="2"/>
+
+  <!-- BRIDGE label at top of teal ring -->
+  <rect x="500" y="270" width="100" height="22" fill="#ffffff" stroke="none"/>
+  <text x="550" y="285" font-size="13" fill="#2a4747" text-anchor="middle" font-weight="700" letter-spacing="0.5">
+    BRIDGE
+  </text>
+
+  <!-- Step 2 card (RIGHT) -->
+  <circle cx="800" cy="240" r="22" fill="#2a4747" stroke="#2a4747"/>
+  <text x="800" y="248" font-size="20" fill="#ffffff" text-anchor="middle" font-weight="700">2</text>
+  <text x="840" y="232" font-size="18" fill="#1a1a1a" font-weight="700">Evaluation alignment</text>
+  <text x="840" y="252" font-size="13" fill="#2a4747" font-style="italic" font-weight="600">the bridge</text>
+  <text x="840" y="278" font-size="13" fill="#1a1a1a">Auto-generated offline</text>
+  <text x="840" y="295" font-size="13" fill="#1a1a1a">benchmarks aligned with</text>
+  <text x="840" y="312" font-size="13" fill="#1a1a1a">online behavior.</text>
+  <text x="840" y="338" font-size="11" fill="#6b665e" font-style="italic">LLM judges · click models</text>
+
+  <!-- Connector dashed line from step 2 to teal ring -->
+  <line x1="780" y1="320" x2="660" y2="395" stroke="#1a1a1a" stroke-width="0.6" stroke-dasharray="3,3"/>
+</svg>

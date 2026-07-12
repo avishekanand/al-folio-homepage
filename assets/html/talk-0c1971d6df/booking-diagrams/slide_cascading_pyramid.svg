@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="68" font-size="32" font-weight="bold" fill="#1a1a1a">Cascading retrieval — narrowing from billions to a few</text>
+  <text font-family="Georgia, 'Times New Roman', serif" x="80" y="94" font-size="16" font-style="italic" fill="#6b665e">Computation cost grows as the candidate set shrinks</text>
+  <line x1="80" y1="112" x2="200" y2="112" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- ===== COMPUTATION COST ARROW (immediately left of pyramid) ===== -->
+  <line x1="320" y1="580" x2="320" y2="200" stroke="#1a1a1a" stroke-width="2.6"/>
+  <polygon points="320,180 309,200 331,200" fill="#1a1a1a"/>
+  <text x="248" y="380" font-size="18" fill="#1a1a1a" text-anchor="middle">Computation</text>
+  <text x="248" y="402" font-size="18" fill="#1a1a1a" text-anchor="middle">Cost</text>
+
+  <!-- ===== PYRAMID ===== -->
+  <!-- Apex (640, 170), base (370, 580) — (910, 580) -->
+  <polygon points="640,170 370,580 910,580" fill="#ffffff" stroke="#1a1a1a" stroke-width="2.2"/>
+
+  <!-- Tier dividers -->
+  <line x1="593" y1="240" x2="687" y2="240" stroke="#1a1a1a" stroke-width="1.4"/>
+  <line x1="528" y1="340" x2="752" y2="340" stroke="#1a1a1a" stroke-width="1.4"/>
+  <line x1="448" y1="460" x2="832" y2="460" stroke="#1a1a1a" stroke-width="1.4"/>
+
+  <!-- Tier labels -->
+  <text x="640" y="218" font-size="20" fill="#1a1a1a" text-anchor="middle">10<tspan baseline-shift="super" font-size="13">1</tspan></text>
+  <text x="640" y="298" font-size="20" fill="#1a1a1a" text-anchor="middle">10<tspan baseline-shift="super" font-size="13">2–3</tspan> Documents</text>
+  <text x="640" y="408" font-size="22" fill="#1a1a1a" text-anchor="middle">…</text>
+  <text x="640" y="528" font-size="20" fill="#1a1a1a" text-anchor="middle">10<tspan baseline-shift="super" font-size="13">8–10</tspan> Documents</text>
+
+  <!-- ===== INDEXED DOCUMENTS BASE ===== -->
+  <rect x="370" y="600" width="540" height="40" fill="#d8d4cc" stroke="#1a1a1a" stroke-width="1"/>
+  <text x="640" y="626" font-size="20" fill="#1a1a1a" text-anchor="middle" font-weight="700">Indexed Documents</text>
+
+  <!-- ===== RIGHT-SIDE BRACKETS + LABELS ===== -->
+  <!-- Reranking bracket: spans tiers 1-2 (y 170-340) -->
+  <path d="M 925 175 L 935 175 L 935 335 L 925 335" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="950" y="240" font-size="18" fill="#1a1a1a">Reranking</text>
+  <text x="950" y="262" font-size="14" font-style="italic" fill="#6b665e">(e.g., LTR / Cross-encoders)</text>
+
+  <!-- Initial Retrieval bracket: spans tiers 3-4 (y 340-580) -->
+  <path d="M 925 345 L 935 345 L 935 575 L 925 575" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="950" y="460" font-size="18" fill="#1a1a1a">Initial Retrieval</text>
+  <text x="950" y="482" font-size="14" font-style="italic" fill="#6b665e">(e.g., BM25 / DRs)</text>
+
+  <!-- ===== LLM-based Rankers label near apex (no callout) ===== -->
+  <text x="640" y="158" font-size="14" fill="#c8553d" text-anchor="middle" font-weight="700">LLM-based Rankers</text>
+
+  <!-- footer caption -->
+  <line x1="80" y1="668" x2="200" y2="668" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="694" font-size="14" fill="#6b665e" font-style="italic">Each layer is more expensive per document — and reads more of the document.</text>
+</svg>

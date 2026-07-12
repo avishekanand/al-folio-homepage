@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <marker id="arrBlk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/>
+    </marker>
+  </defs>
+  <rect width="1100" height="720" fill="#ffffff"/>
+
+  <!-- title -->
+  <text x="80" y="66" font-size="32" font-weight="bold" fill="#1a1a1a">Feedback beats scale on complex retrieval</text>
+  <text x="80" y="92" font-size="16" font-style="italic" fill="#6b665e">A 1.7B ranker guided by its own feedback overtakes 4B and 7B rankers without it — on BRIGHT, a reasoning-intensive benchmark</text>
+  <line x1="80" y1="108" x2="200" y2="108" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- ============ LEFT COLUMN — PLOT ============ -->
+  <text x="80" y="146" font-size="13" fill="#6b665e" font-weight="700" letter-spacing="0.5">AVG nDCG@10 · BRIGHT · reranking budget 100</text>
+
+  <!-- legend -->
+  <rect x="150" y="166" width="14" height="14" fill="#b8b3a8"/>
+  <text x="170" y="178" font-size="12.5" fill="#1a1a1a">no feedback</text>
+  <rect x="300" y="166" width="14" height="14" fill="#c8553d"/>
+  <text x="320" y="178" font-size="12.5" fill="#1a1a1a">+ reranker feedback (GAR)</text>
+
+  <!-- gridlines -->
+  <g stroke="#e8e2d6" stroke-width="1">
+    <line x1="130" y1="540" x2="490" y2="540"/>
+    <line x1="130" y1="450" x2="490" y2="450"/>
+    <line x1="130" y1="360" x2="490" y2="360"/>
+    <line x1="130" y1="270" x2="490" y2="270"/>
+    <line x1="130" y1="180" x2="490" y2="180"/>
+  </g>
+
+  <!-- axes -->
+  <line x1="130" y1="540" x2="490" y2="540" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="130" y1="180" x2="130" y2="540" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- y ticks -->
+  <g font-size="12" fill="#1a1a1a" text-anchor="end">
+    <text x="122" y="544">0</text>
+    <text x="122" y="454">7</text>
+    <text x="122" y="364">14</text>
+    <text x="122" y="274">21</text>
+    <text x="122" y="184">28</text>
+  </g>
+
+  <!-- BM25 baseline (12.6 -> y=378) -->
+  <line x1="130" y1="378" x2="490" y2="378" stroke="#8a857a" stroke-width="1.4" stroke-dasharray="5,4"/>
+  <text x="486" y="392" font-size="11.5" fill="#8a857a" text-anchor="end" font-style="italic">BM25 = 12.6</text>
+
+  <!-- ===== bars ===== -->
+  <!-- Group 1: TFRank-1.7B  base 19.7 -> top287 ; +fb 21.7 -> top261 -->
+  <rect x="159" y="287" width="34" height="253" fill="#b8b3a8"/>
+  <rect x="207" y="261" width="34" height="279" fill="#c8553d"/>
+  <text x="176" y="281" font-size="11" fill="#6b665e" text-anchor="middle">19.7</text>
+  <text x="224" y="255" font-size="11.5" fill="#c8553d" text-anchor="middle" font-weight="bold">21.7</text>
+
+  <!-- Group 2: Qwen-4B  base 20.8 -> top273 ; +fb 22.8 -> top247 -->
+  <rect x="274" y="273" width="34" height="267" fill="#b8b3a8"/>
+  <rect x="322" y="247" width="34" height="293" fill="#c8553d"/>
+  <text x="291" y="267" font-size="11" fill="#6b665e" text-anchor="middle">20.8</text>
+  <text x="339" y="241" font-size="11" fill="#c8553d" text-anchor="middle">22.8</text>
+
+  <!-- Group 3: Rank1-7B  base 19.7 -> top287 ; +fb 21.0 -> top270 -->
+  <rect x="389" y="287" width="34" height="253" fill="#b8b3a8"/>
+  <rect x="437" y="270" width="34" height="270" fill="#c8553d"/>
+  <text x="406" y="281" font-size="11" fill="#6b665e" text-anchor="middle">19.7</text>
+  <text x="454" y="264" font-size="11" fill="#c8553d" text-anchor="middle">21.0</text>
+
+  <!-- crossover guide: TFRank-1.7B + feedback = 21.7 (y=261) -->
+  <line x1="130" y1="261" x2="490" y2="261" stroke="#c8553d" stroke-width="1.3" stroke-dasharray="2,3" opacity="0.85"/>
+
+  <!-- x group labels -->
+  <g text-anchor="middle" fill="#1a1a1a">
+    <text x="200" y="560" font-size="13" font-weight="600">TFRank</text>
+    <text x="200" y="576" font-size="12" fill="#6b665e">1.7B</text>
+    <text x="315" y="560" font-size="13" font-weight="600">Qwen</text>
+    <text x="315" y="576" font-size="12" fill="#6b665e">4B</text>
+    <text x="430" y="560" font-size="13" font-weight="600">Rank1</text>
+    <text x="430" y="576" font-size="12" fill="#6b665e">7B</text>
+  </g>
+
+  <!-- annotation under plot -->
+  <text x="80" y="606" font-size="13" fill="#c8553d" font-style="italic">The 1.7B + feedback bar (21.7) clears the 4B and 7B rankers run without it.</text>
+
+  <!-- vertical divider -->
+  <line x1="560" y1="130" x2="560" y2="612" stroke="#e8e2d6" stroke-width="1"/>
+
+  <!-- ============ RIGHT COLUMN — CONCRETE EXAMPLE ============ -->
+  <text x="600" y="146" font-size="13" fill="#6b665e" font-weight="700" letter-spacing="0.5">ONE BIOLOGY QUERY · BRIGHT</text>
+
+  <!-- query card -->
+  <rect x="600" y="162" width="440" height="120" rx="8" fill="#f7f4ee" stroke="#e8e2d6" stroke-width="1"/>
+  <line x1="600" y1="162" x2="600" y2="282" stroke="#2a4747" stroke-width="3"/>
+  <g font-size="15" fill="#1a1a1a" font-style="italic">
+    <text x="618" y="192">“Why are insects attracted to light? Could they be</text>
+    <text x="618" y="214">evolutionarily programmed to associate light with</text>
+    <text x="618" y="236">heat — so that even without heat near the LED, they</text>
+    <text x="618" y="258">still ‘expect’ it?”</text>
+  </g>
+
+  <text x="600" y="316" font-size="13" fill="#6b665e" font-weight="700" letter-spacing="0.5">RELEVANT DOCUMENTS RECOVERED</text>
+
+  <!-- before block -->
+  <text x="700" y="352" font-size="14" fill="#1a1a1a" text-anchor="middle">BM25 first stage</text>
+  <text x="700" y="418" font-size="52" fill="#c8553d" text-anchor="middle" font-weight="bold">0%</text>
+  <text x="700" y="446" font-size="14" fill="#6b665e" text-anchor="middle" font-style="italic">0 of 5 relevant found</text>
+
+  <!-- arrow -->
+  <line x1="792" y1="398" x2="852" y2="398" stroke="#1a1a1a" stroke-width="2.2" marker-end="url(#arrBlk)"/>
+  <text x="822" y="386" font-size="11.5" fill="#6b665e" text-anchor="middle" font-style="italic">1 hop</text>
+
+  <!-- after block -->
+  <text x="945" y="352" font-size="14" fill="#1a1a1a" text-anchor="middle">+ feedback traversal</text>
+  <text x="945" y="418" font-size="52" fill="#3f9142" text-anchor="middle" font-weight="bold">100%</text>
+  <text x="945" y="446" font-size="14" fill="#6b665e" text-anchor="middle" font-style="italic">all 5 recovered</text>
+
+  <!-- takeaway -->
+  <line x1="600" y1="486" x2="600" y2="560" stroke="#c8553d" stroke-width="3"/>
+  <g font-size="16.5" fill="#1a1a1a">
+    <text x="618" y="512">The relevant evidence was never in BM25’s pool.</text>
+    <text x="618" y="538"><tspan fill="#c8553d" font-style="italic" font-weight="bold">The reranker’s own feedback pulled it in</tspan> — at</text>
+    <text x="618" y="560">3–4 ms per 100 documents, no retraining.</text>
+  </g>
+
+  <!-- ============ CITATION ============ -->
+  <line x1="80" y1="648" x2="200" y2="648" stroke="#c8553d" stroke-width="1.5"/>
+  <text x="80" y="676" font-size="14" fill="#1a1a1a" font-style="italic">Rathee, Venktesh V, MacAvaney, Anand. <tspan font-weight="bold" font-style="normal">Reproducing Adaptive Reranking for Reasoning-Intensive IR.</tspan> SIGIR 2026.</text>
+  <text x="80" y="696" font-size="12.5" fill="#8a857a" font-style="italic">Graph-based Adaptive Reranking (GAR) on the BRIGHT benchmark · corpus-graph traversal steered by reranker relevance feedback.</text>
+</svg>

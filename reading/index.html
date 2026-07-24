@@ -469,13 +469,26 @@
            encodeURIComponent(config.repo) + "/contents/" +
            config.path.split("/").map(encodeURIComponent).join("/");
   }
+  // Turn a failed GitHub response into an Error that surfaces the API's own reason.
+  function ghFail(prefix, res){
+    return res.text().then(function(tx){
+      var msg = "";
+      try{ msg = (JSON.parse(tx) || {}).message || ""; }catch(e){}
+      if(res.status === 403 && /write|permission|not accessible|resource/i.test(msg || ""))
+        msg = (msg || "") + " — the token needs Contents: Read AND write on this repo.";
+      if(res.status === 403 && !msg)
+        msg = "forbidden — check the token has Contents: Read and write on this repo.";
+      if(res.status === 404 && !msg)
+        msg = "not found — check owner/repo/path/branch.";
+      throw new Error(prefix + " (" + res.status + ")" + (msg ? ": " + msg : ""));
+    });
+  }
 
   function ghGet(){
     return fetch(contentsURL() + "?ref=" + encodeURIComponent(config.branch), { headers: ghHeaders() })
       .then(function(res){
         if(res.status === 404) return { missing:true };
-        if(res.status === 401) throw new Error("Unauthorized — check the token.");
-        if(!res.ok) throw new Error("GitHub read failed (" + res.status + ").");
+        if(!res.ok) return ghFail("GitHub read failed", res);
         return res.json().then(function(j){
           return { content: b64decode(j.content), sha: j.sha };
         });
@@ -504,12 +517,12 @@
           if(sha) b2.sha = sha;
           return fetch(contentsURL(), { method:"PUT", headers: ghHeaders(), body: JSON.stringify(b2) })
             .then(function(r2){
-              if(!r2.ok) throw new Error("Write retry failed (" + r2.status + ").");
+              if(!r2.ok) return ghFail("Write retry failed", r2);
               return r2.json();
             });
         });
       }
-      if(!res.ok) throw new Error("GitHub write failed (" + res.status + ").");
+      if(!res.ok) return ghFail("GitHub write failed", res);
       return res.json();
     }).then(function(j){
       if(j && j.content && j.content.sha) sha = j.content.sha;
@@ -583,9 +596,10 @@
   // ---------- rendering ----------
   function venueClass(v){
     v = String(v||"").trim().toLowerCase();
-    if(v === "sigir") return "sigir";
-    if(v === "ictir") return "ictir";
-    if(v === "arxiv") return "arxiv";
+    // match a known venue anywhere in the tag so "SIGIR 2026" still colours as SIGIR
+    if(v.indexOf("sigir") >= 0) return "sigir";
+    if(v.indexOf("ictir") >= 0) return "ictir";
+    if(v.indexOf("arxiv") >= 0) return "arxiv";
     return "generic";
   }
 

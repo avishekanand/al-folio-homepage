@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My rough classification of the ICML 2026 papers</title>
+<style>
+  :root{--ink:#1a1a1a;--muted:#5b6470;--line:#e4e7ec;--accent:#1f5fb0;--accent-soft:#eef4fc;--bg:#fff;--chip:#f3f5f8;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:#f6f7f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;font-size:15px;}
+  .sheet{max-width:880px;margin:24px auto;background:var(--bg);padding:44px 52px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-radius:6px;}
+  header.masthead{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:22px;}
+  .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-size:25px;line-height:1.2;margin:6px 0 6px;}
+  .dek{color:var(--muted);font-size:14.5px;margin:0;}
+  .meta{margin-top:10px;font-size:12px;color:var(--muted);}
+  h2.section{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border-top:1px solid var(--line);padding-top:16px;margin:26px 0 12px;}
+  .theme{margin:0 0 16px;}
+  .theme h3{font-size:16px;margin:0 0 4px;display:flex;gap:9px;align-items:baseline;}
+  .num{color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums;}
+  .theme p{margin:2px 0 6px;}
+  .anchors{font-size:12.5px;color:var(--muted);}
+  .anchors b{color:var(--ink);font-weight:600;}
+  .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;padding:1px 6px;border-radius:3px;vertical-align:middle;}
+  .tag.sigir{background:#e7f0fb;color:#1f5fb0;}
+  .tag.ictir{background:#fdeee2;color:#b5651d;}
+  .tag.icml{background:#e6f4ea;color:#1b7f4b;}
+  .tag.acl{background:#fce8e6;color:#b32b23;}
+  .tag.generic{background:#eceff3;color:#4a5560;}
+  .callout{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 5px 5px 0;margin:18px 0;font-size:13.5px;}
+  .callout b{color:var(--ink);}
+  .appendix h2.section{border-top:2px solid var(--ink);}
+  .grp{margin:16px 0 4px;}
+  .grp h3{font-size:14.5px;margin:0 0 8px;color:var(--ink);background:var(--chip);padding:6px 10px;border-radius:4px;}
+  ul.papers{list-style:none;margin:0 0 14px;padding:0;}
+  ul.papers li{padding:6px 0;border-bottom:1px solid var(--line);font-size:13px;}
+  ul.papers li:last-child{border-bottom:none;}
+  .ptitle{font-weight:600;}
+  .pnote{color:var(--muted);}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a.doi,a.arx,a.url{font-size:10.5px;font-weight:700;letter-spacing:.03em;padding:1px 5px;border-radius:3px;white-space:nowrap;}
+  a.doi{background:#eef4fc;color:#1f5fb0;}
+  a.arx{background:#f0eafc;color:#6b3fa0;}
+  a.url{background:#e6f4ea;color:#1b7f4b;}
+  .addrl{font-size:10px;font-weight:700;letter-spacing:.03em;padding:1px 7px;margin-left:5px;border-radius:3px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;white-space:nowrap;vertical-align:middle;line-height:1.5;}
+  .addrl:hover{background:var(--accent);color:#fff;}
+  .addrl.added{border-color:var(--line);color:var(--muted);cursor:default;}
+  .addrl:disabled{cursor:default;opacity:.85;}
+  @media print{.addrl{display:none !important;} }
+  .sources{font-size:12px;color:var(--muted);}
+  .sources a{word-break:break-word;}
+  footer{margin-top:26px;border-top:1px solid var(--line);padding-top:12px;font-size:11.5px;color:var(--muted);}
+  @media print{body{background:#fff;}.sheet{box-shadow:none;margin:0;max-width:none;padding:0 6px;border-radius:0;}.appendix{page-break-before:always;}a{color:var(--ink);} }
+  @media(max-width:620px){.sheet{padding:26px 20px;margin:0;}h1{font-size:22px;} }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header class="masthead">
+    <div class="kicker">Machine Learning · ICML 2026</div>
+    <h1>My rough classification of the ICML 2026 papers</h1>
+    <p class="dek">I was going through the ICML 2026 program in Seoul and roughly classified the papers I read. The shape I kept seeing: <em>the model is increasingly its own teacher</em> — self-play, self-reward, self-correction and self-evolving memory move from tricks to training regimes.</p>
+    <div class="meta">Scope: self-improvement, reasoning, agents, RL/RLHF, efficiency, generation, evaluation &amp; theory &nbsp;|&nbsp; a curated, verified sample &mdash; not the full 6,600+ &nbsp;|&nbsp; <a href="/reading/">&#8599; Reading list</a></div>
+  </header>
+
+  <div class="callout"><b>My overall read:</b> the center of gravity this year is <b>self-improvement</b>. The interesting question stopped being “how do we supervise the model” and became “how does the model supervise itself” — and, one level up, how does it evolve the machinery (memory, verifier, reward) that does the supervising.</div>
+
+  <h2 class="section">Roughly, the papers fell into these groups</h2>
+
+  <div class="theme">
+    <h3><span class="num">1</span> Agents that rewrite themselves</h3>
+    <p>The headline shift: agents that improve by editing their own experience, memory, or policy rather than by another round of human fine-tuning. Several papers push past agent-level tuning to <em>meta</em>-evolution — evolving the memory architecture itself, not just its contents. The sharpest open question is faithfulness: at least one paper shows these self-evolvers can drift or deceive themselves, so “it improved on the benchmark” is not yet “it improved.”</p>
+    <p class="anchors"><b>Anchors:</b> MemEvolve: Meta-Evolution of Agent Memory Systems <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/61379">ICML</a>) &middot; Large Language Model Agents Are Not Always Faithful Self-Evolvers <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/62034">ICML</a>) &middot; From Interactions to Principles: Experience-Driven Self-Distillation for Evolving LLM Agents <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/65641">ICML</a>)</p>
+  </div>
+  <div class="theme">
+    <h3><span class="num">2</span> Self-play is back, and it is aimed at code</h3>
+    <p>Self-play returned as a serious training signal, now pointed at software engineering and quantitative reasoning rather than board games. The recurring recipe is a single model that both proposes a challenge (inject a bug, set a market) and solves it, with an anchor or reference set to stop the two halves drifting into an unrealistic private language.</p>
+    <p class="anchors"><b>Anchors:</b> Toward Training Superintelligent Software Agents through Self-Play SWE-RL <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/66747">ICML</a> &middot; <a href="https://arxiv.org/abs/2512.18552">arXiv</a>) &middot; Anchoring Self-Play for Code Repair <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/62051">ICML</a>) &middot; Evolving Quantitative Reasoning through Self-Play in Digital Twin Markets <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/62173">ICML</a>)</p>
+  </div>
+  <div class="theme">
+    <h3><span class="num">3</span> Reward without humans: self-reward, self-consistency, weak verification</h3>
+    <p>A cluster on where the reward comes from when nobody labels anything. Some turn self-supervised objectives into dense verifiable rewards; some let the model meta-evaluate its own outputs; and a theory strand asks when a cheap self-check (self-consistency, a proxy reward) is actually good enough to trust versus when you need a strong verifier.</p>
+    <p class="anchors"><b>Anchors:</b> Conversation for Non-verifiable Learning: Self-Evolving LLMs through Meta-Evaluation <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/63505">ICML</a>) &middot; SSL4RL: Revisiting Self-supervised Learning as Intrinsic Reward for Visual-Language Reasoning <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/60895">ICML</a>) &middot; When to Trust the Cheap Check: Weak and Strong Verification for Reasoning <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/62754">ICML</a>)</p>
+  </div>
+  <div class="theme">
+    <h3><span class="num">4</span> Test-time RL and self-correction as first-class training</h3>
+    <p>Correction moved from a decoding trick to an objective you train against. Test-time RL updates the policy from self-generated pseudo-labels at inference; multi-attempt training rewards a model for fixing its own earlier answer. The tension is reward hacking — self-generated labels are exactly the ones a model is biased to agree with.</p>
+    <p class="anchors"><b>Anchors:</b> Beyond Majority Voting: Self-Reflective Test-Time Reinforcement Learning for LLM Reasoning <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/62036">ICML</a>) &middot; Learning to Correct: Reinforcement Learning for Multi-Attempt Chain-of-Thought <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/66555">ICML</a>)</p>
+  </div>
+  <div class="theme">
+    <h3><span class="num">5</span> The judge problem gets quantified</h3>
+    <p>As evaluation leans on LLM-as-judge, the papers stopped assuming the judge is neutral and started modelling its reliability — per-judge discriminators, judge-aware ranking, and direct measurement of judge bias. If you are going to reward a model with another model, this is the load-bearing wall.</p>
+    <p class="anchors"><b>Anchors:</b> A Judge-Aware Ranking Framework for Evaluating LLMs without Ground Truth <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/60635">ICML</a>) &middot; Who can we trust? LLM-as-a-jury for Comparative Assessment <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/64228">ICML</a>) &middot; Quantifying Biases in LLM-as-a-Judge Evaluations <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/61443">ICML</a>)</p>
+  </div>
+
+  <h2 class="section">One quieter thread: the generative-modelling theory kept its edge</h2>
+  <p style="margin-top:0;font-size:13.5px;">Away from the agent noise, the diffusion/flow-matching theory was some of the sharpest work — two of the Outstanding Paper awards went here: <b>High-Accuracy Sampling for Diffusion Models and Log-Concave Distributions</b> <span class="tag icml">ICML</span> (<a href="https://arxiv.org/abs/2602.01338">arXiv</a>) and <b>The Flexibility Trap: Rethinking the Value of Arbitrary Order in Diffusion Language Models</b> <span class="tag icml">ICML</span>, the latter a useful cold-shower on arbitrary-order generation.</p>
+
+  <footer>Every paper cited links to its ICML 2026 program page (arXiv where a preprint was verified). Full annotated appendix follows.</footer>
+</div>
+
+<div class="sheet appendix">
+  <header class="masthead">
+    <div class="kicker">Appendix</div>
+    <h1>The full list, grouped the way I sorted it</h1>
+    <p class="dek">The ICML 2026 papers I went through, each with a one-line note and its ICML program link (arXiv where I could verify a preprint). This is a curated sample, not the whole proceedings.</p>
+  </header>
+
+  <div class="grp">
+    <h3>1 &middot; Self-improving &amp;amp; self-evolving agents</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">SE-GA: Memory-Augmented Self-Evolution for GUI Agents</span> — <span class="pnote">A GUI agent that pairs hierarchical memory with an iterative self-improvement pipeline (test-time memory extension plus memory-augmented self-evolution training).</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/65853">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;SE-GA: Memory-Augmented Self-Evolution for GUI Agents&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving agents&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/65853&quot;, &quot;note&quot;: &quot;A GUI agent that pairs hierarchical memory with an iterative self-improvement pipeline (test-time memory extension plus memory-augmented self-evolution training).&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Large Language Model Agents Are Not Always Faithful Self-Evolvers</span> — <span class="pnote">Shows self-evolving agents that reuse past experience can fail to faithfully reflect it — a caution on trusting self-reported improvement.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/62034">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Large Language Model Agents Are Not Always Faithful Self-Evolvers&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving agents&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/62034&quot;, &quot;note&quot;: &quot;Shows self-evolving agents that reuse past experience can fail to faithfully reflect it — a caution on trusting self-reported improvement.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">From Interactions to Principles: Experience-Driven Self-Distillation for Evolving LLM Agents</span> — <span class="pnote">EvolveR distills an agent&#x27;s own interaction history into reusable strategic principles and feeds them back via self-distillation.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/65641">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;From Interactions to Principles: Experience-Driven Self-Distillation for Evolving LLM Agents&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving agents&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/65641&quot;, &quot;note&quot;: &quot;EvolveR distills an agent&#x27;s own interaction history into reusable strategic principles and feeds them back via self-distillation.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">On the Generalization Gap in Self-Evolving Language Model Reasoning</span> — <span class="pnote">Measures how far self-generated supervision sits from oracle supervision across four self-evolution methods on controlled logical reasoning.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/61802">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;On the Generalization Gap in Self-Evolving Language Model Reasoning&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving agents&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/61802&quot;, &quot;note&quot;: &quot;Measures how far self-generated supervision sits from oracle supervision across four self-evolution methods on controlled logical reasoning.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>2 &middot; Recursive self-improvement &amp;amp; self-play</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">MemEvolve: Meta-Evolution of Agent Memory Systems</span> — <span class="pnote">Jointly evolves an agent&#x27;s experiential knowledge and its memory architecture, so the system improves how it learns, not just what it knows.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/61379">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;MemEvolve: Meta-Evolution of Agent Memory Systems&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Recursive self-improvement &amp; self-play&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/61379&quot;, &quot;note&quot;: &quot;Jointly evolves an agent&#x27;s experiential knowledge and its memory architecture, so the system improves how it learns, not just what it knows.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Toward Training Superintelligent Software Agents through Self-Play SWE-RL</span> — <span class="pnote">One LLM trained by RL self-play to inject and repair increasingly hard bugs specified by test-suite improvements; beats a human-data baseline on SWE-bench.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/66747">ICML</a> <a class="arx" href="https://arxiv.org/abs/2512.18552">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Toward Training Superintelligent Software Agents through Self-Play SWE-RL&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Recursive self-improvement &amp; self-play&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2512.18552&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/66747&quot;, &quot;note&quot;: &quot;One LLM trained by RL self-play to inject and repair increasingly hard bugs specified by test-suite improvements; beats a human-data baseline on SWE-bench.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Anchoring Self-Play for Code Repair</span> — <span class="pnote">Generator-fixer self-play in a single model, anchored to a reference set so injected bugs stay close to real-world ones.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/62051">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Anchoring Self-Play for Code Repair&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Recursive self-improvement &amp; self-play&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/62051&quot;, &quot;note&quot;: &quot;Generator-fixer self-play in a single model, anchored to a reference set so injected bugs stay close to real-world ones.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Evolving Quantitative Reasoning through Self-Play in Digital Twin Markets</span> — <span class="pnote">Agents test and adapt strategies via self-play in a controllable digital-twin market, forming a bounded self-evolving loop.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/62173">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Evolving Quantitative Reasoning through Self-Play in Digital Twin Markets&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Recursive self-improvement &amp; self-play&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/62173&quot;, &quot;note&quot;: &quot;Agents test and adapt strategies via self-play in a controllable digital-twin market, forming a bounded self-evolving loop.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>3 &middot; Self-reward, self-verification &amp;amp; self-consistency</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Conversation for Non-verifiable Learning: Self-Evolving LLMs through Meta-Evaluation</span> — <span class="pnote">CoNL unifies generation, evaluation and meta-evaluation via multi-agent self-play, beating self-rewarding baselines without external judges.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/63505">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Conversation for Non-verifiable Learning: Self-Evolving LLMs through Meta-Evaluation&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-reward, self-verification &amp; self-consistency&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/63505&quot;, &quot;note&quot;: &quot;CoNL unifies generation, evaluation and meta-evaluation via multi-agent self-play, beating self-rewarding baselines without external judges.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">SSL4RL: Revisiting Self-supervised Learning as Intrinsic Reward for Visual-Language Reasoning</span> — <span class="pnote">Turns self-supervised objectives into dense, automatic, verifiable rewards for RL fine-tuning — no human preferences or AI judges.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/60895">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;SSL4RL: Revisiting Self-supervised Learning as Intrinsic Reward for Visual-Language Reasoning&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-reward, self-verification &amp; self-consistency&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/60895&quot;, &quot;note&quot;: &quot;Turns self-supervised objectives into dense, automatic, verifiable rewards for RL fine-tuning — no human preferences or AI judges.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">When to Trust the Cheap Check: Weak and Strong Verification for Reasoning</span> — <span class="pnote">Analyzes when weak verification (self-consistency, proxy rewards) suffices versus when a strong verifier is required.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/62754">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;When to Trust the Cheap Check: Weak and Strong Verification for Reasoning&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-reward, self-verification &amp; self-consistency&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/62754&quot;, &quot;note&quot;: &quot;Analyzes when weak verification (self-consistency, proxy rewards) suffices versus when a strong verifier is required.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Optimal Self-Consistency for Efficient Reasoning with Large Language Models</span> — <span class="pnote">Derives power-law scaling for self-consistency and analyzes fixed- versus dynamic-allocation sampling for chain-of-thought.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/61225">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Optimal Self-Consistency for Efficient Reasoning with Large Language Models&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-reward, self-verification &amp; self-consistency&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/61225&quot;, &quot;note&quot;: &quot;Derives power-law scaling for self-consistency and analyzes fixed- versus dynamic-allocation sampling for chain-of-thought.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>4 &middot; Self-correction, self-reflection &amp;amp; test-time RL</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Beyond Majority Voting: Self-Reflective Test-Time Reinforcement Learning for LLM Reasoning</span> — <span class="pnote">SR-TTRL uses self-reflective verification to produce high-fidelity pseudo-labels for test-time RL instead of majority voting.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/62036">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Beyond Majority Voting: Self-Reflective Test-Time Reinforcement Learning for LLM Reasoning&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-correction, self-reflection &amp; test-time RL&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/62036&quot;, &quot;note&quot;: &quot;SR-TTRL uses self-reflective verification to produce high-fidelity pseudo-labels for test-time RL instead of majority voting.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Learning to Correct: Reinforcement Learning for Multi-Attempt Chain-of-Thought</span> — <span class="pnote">Trains reasoning models to make multiple verified attempts with self-reflection, improving self-correction over long chains.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/66555">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Learning to Correct: Reinforcement Learning for Multi-Attempt Chain-of-Thought&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-correction, self-reflection &amp; test-time RL&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/66555&quot;, &quot;note&quot;: &quot;Trains reasoning models to make multiple verified attempts with self-reflection, improving self-correction over long chains.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Test-Time Reinforcement Learning for Flow Matching</span> — <span class="pnote">Flow-TTRL aligns text-to-image generation on the fly by reinterpreting intermediate latents as an implicit policy.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/63456">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Test-Time Reinforcement Learning for Flow Matching&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-correction, self-reflection &amp; test-time RL&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/63456&quot;, &quot;note&quot;: &quot;Flow-TTRL aligns text-to-image generation on the fly by reinterpreting intermediate latents as an implicit policy.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>5 &middot; Self-training &amp;amp; self-distillation</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Self-Distillation Enables Continual Learning</span> — <span class="pnote">Self-Distillation Fine-Tuning learns on-policy directly from demonstrations, supporting continual learning without catastrophic forgetting.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/61434">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Self-Distillation Enables Continual Learning&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-training &amp; self-distillation&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/61434&quot;, &quot;note&quot;: &quot;Self-Distillation Fine-Tuning learns on-policy directly from demonstrations, supporting continual learning without catastrophic forgetting.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Self-Distilled Reasoner: On-Policy Self-Distillation for Large Language Models</span> — <span class="pnote">OPSD has one LLM act as both teacher and student under different contexts to improve reasoning.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/64784">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Self-Distilled Reasoner: On-Policy Self-Distillation for Large Language Models&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Self-training &amp; self-distillation&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/64784&quot;, &quot;note&quot;: &quot;OPSD has one LLM act as both teacher and student under different contexts to improve reasoning.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>6 &middot; Reasoning &amp;amp; test-time compute</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">AsyncSpade: Efficient Test-Time Scaling with Asynchronous Sparse Decoding</span> — <span class="pnote">Cuts the KV-cache bottleneck of long chain-of-thought test-time scaling with asynchronous sparse decoding, &gt;20% faster per token at matched accuracy.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/63012">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;AsyncSpade: Efficient Test-Time Scaling with Asynchronous Sparse Decoding&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Reasoning &amp; test-time compute&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/63012&quot;, &quot;note&quot;: &quot;Cuts the KV-cache bottleneck of long chain-of-thought test-time scaling with asynchronous sparse decoding, &gt;20% faster per token at matched accuracy.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">UniScale: Adaptive Unified Inference Scaling via Online Joint Optimization of Model Routing and Test-Time Scaling</span> — <span class="pnote">Casts model routing plus test-time scaling as a contextual bandit over the quality-cost trade-off.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/60578">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;UniScale: Adaptive Unified Inference Scaling via Online Joint Optimization of Model Routing and Test-Time Scaling&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Reasoning &amp; test-time compute&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/60578&quot;, &quot;note&quot;: &quot;Casts model routing plus test-time scaling as a contextual bandit over the quality-cost trade-off.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs</span> — <span class="pnote">A tool-assisted agent interleaving informal reasoning with formally verified Lean proofs, raising accuracy while spending fewer tokens.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/60844">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Reasoning &amp; test-time compute&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/60844&quot;, &quot;note&quot;: &quot;A tool-assisted agent interleaving informal reasoning with formally verified Lean proofs, raising accuracy while spending fewer tokens.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>7 &middot; Agents, tool use &amp;amp; multi-agent systems</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Multi²: Hierarchical Multi-Agent Decision-Making with LLM-Based Agents in Interactive Environments</span> — <span class="pnote">Decomposes agent behavior into complementary hierarchical roles for decision-making in interactive environments.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/65074">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Multi²: Hierarchical Multi-Agent Decision-Making with LLM-Based Agents in Interactive Environments&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Agents, tool use &amp; multi-agent systems&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/65074&quot;, &quot;note&quot;: &quot;Decomposes agent behavior into complementary hierarchical roles for decision-making in interactive environments.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">AgentNoiseBench: Benchmarking Robustness of Tool-Using LLM Agents Under Noisy Conditions</span> — <span class="pnote">Systematically evaluates tool-using agents under both user-side instruction noise and tool-side result noise.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/64355">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;AgentNoiseBench: Benchmarking Robustness of Tool-Using LLM Agents Under Noisy Conditions&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Agents, tool use &amp; multi-agent systems&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/64355&quot;, &quot;note&quot;: &quot;Systematically evaluates tool-using agents under both user-side instruction noise and tool-side result noise.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">SciAgentGym: Benchmarking Multi-Step Scientific Tool-Use in LLM Agents</span> — <span class="pnote">A scalable environment with 1,780 domain tools across four natural sciences plus a tiered agentic tool-use benchmark.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/66785">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;SciAgentGym: Benchmarking Multi-Step Scientific Tool-Use in LLM Agents&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Agents, tool use &amp; multi-agent systems&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/66785&quot;, &quot;note&quot;: &quot;A scalable environment with 1,780 domain tools across four natural sciences plus a tiered agentic tool-use benchmark.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">AppWorld-UL: Benchmarking Diverse Agent-User Interactions for Tool-Use</span> — <span class="pnote">306 user-in-the-loop tasks needing diverse agent-user interaction across nine simulated apps.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/62856">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;AppWorld-UL: Benchmarking Diverse Agent-User Interactions for Tool-Use&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Agents, tool use &amp; multi-agent systems&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/62856&quot;, &quot;note&quot;: &quot;306 user-in-the-loop tasks needing diverse agent-user interaction across nine simulated apps.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">ExCyTIn-Bench: Evaluating LLM Agents on Cyber Threat Investigation</span> — <span class="pnote">Evaluates agents on cyber threat investigation using questions derived from investigation graphs.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/66310">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;ExCyTIn-Bench: Evaluating LLM Agents on Cyber Threat Investigation&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Agents, tool use &amp; multi-agent systems&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/66310&quot;, &quot;note&quot;: &quot;Evaluates agents on cyber threat investigation using questions derived from investigation graphs.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>8 &middot; RL, RLHF &amp;amp; preference optimization</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Multi-Objective Preference Optimization: Improving Human Alignment of Generative Models</span> — <span class="pnote">MOPO maximizes a primary preference objective under tunable lower bounds on secondary objectives via KL-regularized constraints.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/65773">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Multi-Objective Preference Optimization: Improving Human Alignment of Generative Models&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;RL, RLHF &amp; preference optimization&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/65773&quot;, &quot;note&quot;: &quot;MOPO maximizes a primary preference objective under tunable lower bounds on secondary objectives via KL-regularized constraints.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Reliability-Aware LLM Alignment from Inconsistent Human Feedback</span> — <span class="pnote">Tackles DPO&#x27;s tendency to overfit ambiguous, high-disagreement preference pairs by modelling annotator reliability.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/66787">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Reliability-Aware LLM Alignment from Inconsistent Human Feedback&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;RL, RLHF &amp; preference optimization&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/66787&quot;, &quot;note&quot;: &quot;Tackles DPO&#x27;s tendency to overfit ambiguous, high-disagreement preference pairs by modelling annotator reliability.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Autoregressive Direct Preference Optimization</span> — <span class="pnote">ADPO folds autoregressive structure explicitly into the DPO objective.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/65423">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Autoregressive Direct Preference Optimization&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;RL, RLHF &amp; preference optimization&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/65423&quot;, &quot;note&quot;: &quot;ADPO folds autoregressive structure explicitly into the DPO objective.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Distributionally Robust Reinforcement Learning with Human Feedback</span> — <span class="pnote">Distributionally robust formulations for both reward-based RLHF and reward-free DPO.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/66158">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Distributionally Robust Reinforcement Learning with Human Feedback&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;RL, RLHF &amp; preference optimization&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/66158&quot;, &quot;note&quot;: &quot;Distributionally robust formulations for both reward-based RLHF and reward-free DPO.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Advantage Collapse in Group Relative Policy Optimization: Diagnosis and Mitigation</span> — <span class="pnote">Diagnoses and mitigates advantage-collapse failure modes in GRPO-style RL fine-tuning.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/64547">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Advantage Collapse in Group Relative Policy Optimization: Diagnosis and Mitigation&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;RL, RLHF &amp; preference optimization&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/64547&quot;, &quot;note&quot;: &quot;Diagnoses and mitigates advantage-collapse failure modes in GRPO-style RL fine-tuning.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>9 &middot; Efficiency: MoE, decoding &amp;amp; distillation</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Vegas: Self-Speculative Decoding with Verification-Guided Sparse Attention</span> — <span class="pnote">Identifies critical KV entries as a byproduct of verification and loads only those when drafting subsequent tokens.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/60880">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Vegas: Self-Speculative Decoding with Verification-Guided Sparse Attention&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Efficiency: MoE, decoding &amp; distillation&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/60880&quot;, &quot;note&quot;: &quot;Identifies critical KV entries as a byproduct of verification and loads only those when drafting subsequent tokens.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">SoftMoE: Soft Differentiable Routing for Mixture-of-Experts in LLMs</span> — <span class="pnote">Replaces discrete MoE routing with a truncated soft top-k relaxation, enabling gradient-based routing while activating fewer experts.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/60933">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;SoftMoE: Soft Differentiable Routing for Mixture-of-Experts in LLMs&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Efficiency: MoE, decoding &amp; distillation&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/60933&quot;, &quot;note&quot;: &quot;Replaces discrete MoE routing with a truncated soft top-k relaxation, enabling gradient-based routing while activating fewer experts.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">ReMoE: Boosting Expert Reuse through Router Fine-Tuning in Memory-Constrained MoE Inference</span> — <span class="pnote">Router fine-tuning to raise token-wise expert reuse for fine-grained MoE under memory-constrained inference.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/60585">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;ReMoE: Boosting Expert Reuse through Router Fine-Tuning in Memory-Constrained MoE Inference&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Efficiency: MoE, decoding &amp; distillation&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/60585&quot;, &quot;note&quot;: &quot;Router fine-tuning to raise token-wise expert reuse for fine-grained MoE under memory-constrained inference.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Mean Flow Distillation: Robust and Stable Distillation for Flow Matching Models</span> — <span class="pnote">A stable distillation method for flow-matching models, SoTA on 4D occupancy forecasting and text-to-image.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/62045">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Mean Flow Distillation: Robust and Stable Distillation for Flow Matching Models&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Efficiency: MoE, decoding &amp; distillation&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/62045&quot;, &quot;note&quot;: &quot;A stable distillation method for flow-matching models, SoTA on 4D occupancy forecasting and text-to-image.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>10 &middot; Diffusion &amp;amp; flow-based generation</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">High-Accuracy Sampling for Diffusion Models and Log-Concave Distributions</span> — <span class="pnote">Outstanding Paper: training-free first-order rejection sampling giving polylog(1/δ)-step high-accuracy diffusion sampling from scores alone.</span>  <a class="url" href="https://icml.cc/virtual/2026/events/2026SpotlightPosters">ICML</a> <a class="arx" href="https://arxiv.org/abs/2602.01338">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;High-Accuracy Sampling for Diffusion Models and Log-Concave Distributions&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Diffusion &amp; flow-based generation&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2602.01338&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/events/2026SpotlightPosters&quot;, &quot;note&quot;: &quot;Outstanding Paper: training-free first-order rejection sampling giving polylog(1/δ)-step high-accuracy diffusion sampling from scores alone.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">The Flexibility Trap: Rethinking the Value of Arbitrary Order in Diffusion Language Models</span> — <span class="pnote">Outstanding Paper questioning whether arbitrary generation order actually helps diffusion language models.</span>  <a class="url" href="https://blog.icml.cc/2026/07/05/announcing-the-icml-2026-awards/">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;The Flexibility Trap: Rethinking the Value of Arbitrary Order in Diffusion Language Models&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Diffusion &amp; flow-based generation&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://blog.icml.cc/2026/07/05/announcing-the-icml-2026-awards/&quot;, &quot;note&quot;: &quot;Outstanding Paper questioning whether arbitrary generation order actually helps diffusion language models.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">A Kinetic-Energy Perspective of Flow Matching</span> — <span class="pnote">Introduces Kinetic Path Energy, an action-like diagnostic of accumulated effort along a flow ODE trajectory.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/62806">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;A Kinetic-Energy Perspective of Flow Matching&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Diffusion &amp; flow-based generation&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/62806&quot;, &quot;note&quot;: &quot;Introduces Kinetic Path Energy, an action-like diagnostic of accumulated effort along a flow ODE trajectory.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>11 &middot; Evaluation &amp;amp; LLM-as-judge</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">A Judge-Aware Ranking Framework for Evaluating LLMs without Ground Truth</span> — <span class="pnote">Improves human-preference agreement in ground-truth-free evaluation by modelling judge reliability and calibrating ranking uncertainty.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/60635">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;A Judge-Aware Ranking Framework for Evaluating LLMs without Ground Truth&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Evaluation &amp; LLM-as-judge&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/60635&quot;, &quot;note&quot;: &quot;Improves human-preference agreement in ground-truth-free evaluation by modelling judge reliability and calibrating ranking uncertainty.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Who can we trust? LLM-as-a-jury for Comparative Assessment</span> — <span class="pnote">A Bradley-Terry extension with per-judge discriminator parameters to jointly infer rankings and judge reliability.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/64228">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Who can we trust? LLM-as-a-jury for Comparative Assessment&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Evaluation &amp; LLM-as-judge&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/64228&quot;, &quot;note&quot;: &quot;A Bradley-Terry extension with per-judge discriminator parameters to jointly infer rankings and judge reliability.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Quantifying Biases in LLM-as-a-Judge Evaluations</span> — <span class="pnote">Systematically measures biases in LLM-as-a-judge autograders used as a scalable stand-in for human evaluation.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/61443">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Quantifying Biases in LLM-as-a-Judge Evaluations&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Evaluation &amp; LLM-as-judge&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/61443&quot;, &quot;note&quot;: &quot;Systematically measures biases in LLM-as-a-judge autograders used as a scalable stand-in for human evaluation.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">QEDBench: Quantifying the Alignment Gap in Automated Evaluation of University-Level Mathematical Proofs</span> — <span class="pnote">First benchmark contrasting course rubrics with expert criteria for grading undergraduate math proofs.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/63067">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;QEDBench: Quantifying the Alignment Gap in Automated Evaluation of University-Level Mathematical Proofs&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Evaluation &amp; LLM-as-judge&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/63067&quot;, &quot;note&quot;: &quot;First benchmark contrasting course rubrics with expert criteria for grading undergraduate math proofs.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>12 &middot; Alignment, safety &amp;amp; interpretability</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety</span> — <span class="pnote">10,389 adversarial prompts spanning 2,665 distinct harmful intents for multi-turn jailbreak evaluation.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/63523">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Alignment, safety &amp; interpretability&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/63523&quot;, &quot;note&quot;: &quot;10,389 adversarial prompts spanning 2,665 distinct harmful intents for multi-turn jailbreak evaluation.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Steering Beyond the Support: Adversarial Training on Unsupervised Jailbroken Activation Simulation</span> — <span class="pnote">A bi-level adversarial training scheme for zero-shot jailbreak defense, mostly &lt;5% attack success across three LLMs.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/65252">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Steering Beyond the Support: Adversarial Training on Unsupervised Jailbroken Activation Simulation&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Alignment, safety &amp; interpretability&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/65252&quot;, &quot;note&quot;: &quot;A bi-level adversarial training scheme for zero-shot jailbreak defense, mostly &lt;5% attack success across three LLMs.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Jailbreak Foundry: From Papers to Runnable Attacks for Reproducible Benchmarking</span> — <span class="pnote">A multi-agent system that turns published jailbreak papers into executable attack modules for reproducible safety benchmarks.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/65657">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Jailbreak Foundry: From Papers to Runnable Attacks for Reproducible Benchmarking&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Alignment, safety &amp; interpretability&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/65657&quot;, &quot;note&quot;: &quot;A multi-agent system that turns published jailbreak papers into executable attack modules for reproducible safety benchmarks.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">LALM-as-a-Judge: Benchmarking Large Audio-Language Models for Safety Evaluation in Multi-Turn Spoken Dialogues</span> — <span class="pnote">Benchmarks large audio-language models as safety judges in multi-turn spoken dialogue.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/66557">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;LALM-as-a-Judge: Benchmarking Large Audio-Language Models for Safety Evaluation in Multi-Turn Spoken Dialogues&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Alignment, safety &amp; interpretability&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/66557&quot;, &quot;note&quot;: &quot;Benchmarks large audio-language models as safety judges in multi-turn spoken dialogue.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>13 &middot; Theory: optimization &amp;amp; generalization</h3>
+    <ul class="papers">
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Generalization and Scaling Laws for Mixture-of-Experts Transformers</span> — <span class="pnote">A generalization/scaling theory for MoE Transformers that separates active per-input capacity from routing combinatorics.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/63463">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Generalization and Scaling Laws for Mixture-of-Experts Transformers&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Theory: optimization &amp; generalization&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/63463&quot;, &quot;note&quot;: &quot;A generalization/scaling theory for MoE Transformers that separates active per-input capacity from routing combinatorics.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Understanding Generalization and Forgetting in In-Context Continual Learning</span> — <span class="pnote">Extends single-task in-context-learning theory to task sequences to characterize generalization and forgetting.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/66171">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Understanding Generalization and Forgetting in In-Context Continual Learning&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Theory: optimization &amp; generalization&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/66171&quot;, &quot;note&quot;: &quot;Extends single-task in-context-learning theory to task sequences to characterize generalization and forgetting.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag icml">ICML</span> <span class="ptitle">Dynamics and representation structure of local approximations to gradient-based learning in linear recurrent neural networks</span> — <span class="pnote">Uses dynamical-systems theory on data-aligned linear RNNs to compare stability and convergence of local gradient approximations.</span>  <a class="url" href="https://icml.cc/virtual/2026/poster/60838">ICML</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Dynamics and representation structure of local approximations to gradient-based learning in linear recurrent neural networks&quot;, &quot;venue&quot;: &quot;ICML 2026&quot;, &quot;theme&quot;: &quot;Theory: optimization &amp; generalization&quot;, &quot;doi&quot;: &quot;&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;https://icml.cc/virtual/2026/poster/60838&quot;, &quot;note&quot;: &quot;Uses dynamical-systems theory on data-aligned linear RNNs to compare stability and convergence of local gradient approximations.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+
+  <h2 class="section">Sources &amp; method note</h2>
+  <p class="sources">ICML 2026 program (Seoul, July 6–11): accepted papers via <a href="https://icml.cc/virtual/2026/papers.html">icml.cc/virtual/2026</a> &middot; awards via the <a href="https://blog.icml.cc/2026/07/05/announcing-the-icml-2026-awards/">ICML 2026 awards blog</a> &middot; preprints on arXiv where verified.</p>
+  <p class="sources" style="margin-top:10px;"><b>How I built this:</b> I read across the ICML 2026 program and sorted a <b>curated sample</b> into the buckets above, weighting the self-improvement clusters because that was the year's throughline. This is <b>not</b> a complete pass — ICML 2026 accepted 6,600+ papers and I covered a fraction. Every paper here was checked against its <b>icml.cc/virtual/2026 program page</b> (which confirms the exact title and venue); ICML publishes through OpenReview/PMLR rather than assigning DOIs, so the link chip points at the program page, with arXiv added only where I could match a preprint. Nothing here is a guessed link.</p>
+  <footer>Prepared July 2026. A curated, verified sample of ICML 2026 — not the complete proceedings.</footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  var LS_CONFIG = "readinglist.config";
+  var LS_CACHE  = "readinglist.cache";
+  var API = "https://api.github.com";
+
+  function b64e(s){ return btoa(unescape(encodeURIComponent(s))); }
+  function b64d(b){ return decodeURIComponent(escape(atob(String(b).replace(/\n/g, "")))); }
+  function cfg(){ try{ return JSON.parse(localStorage.getItem(LS_CONFIG) || "null"); }catch(e){ return null; } }
+  function headers(c){
+    return {
+      "Authorization": "Bearer " + c.token,
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    };
+  }
+  function fileURL(c){
+    var path = String(c.path || "reading.json").split("/").map(encodeURIComponent).join("/");
+    return API + "/repos/" + encodeURIComponent(c.owner) + "/" + encodeURIComponent(c.repo) + "/contents/" + path;
+  }
+  function branch(c){ return c.branch || "main"; }
+  function uid(){ return "p" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+  function nowISO(){ return new Date().toISOString(); }
+  function keyOf(p){
+    var d = String(p.doi || "").trim().toLowerCase();
+    if(d) return "d:" + d;
+    return "t:" + String(p.title || "").trim().toLowerCase();
+  }
+  function emptyData(){ return { meta:{ title:"Reading list", schema:1, updated:null }, papers:[], reports:[] }; }
+
+  function toast(msg){
+    var t = document.getElementById("rl-toast");
+    if(!t){
+      t = document.createElement("div");
+      t.id = "rl-toast";
+      t.style.cssText = "position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:9px 15px;border-radius:8px;font-size:13px;z-index:9999;opacity:0;transition:opacity .2s;max-width:90%;text-align:center;";
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.style.opacity = ".96";
+    clearTimeout(t._h);
+    t._h = setTimeout(function(){ t.style.opacity = "0"; }, 2800);
+  }
+
+  function getFile(c){
+    return fetch(fileURL(c) + "?ref=" + encodeURIComponent(branch(c)), { headers: headers(c) }).then(function(r){
+      if(r.status === 404) return { data: emptyData(), sha: null };
+      if(r.status === 401) throw new Error("token rejected 401");
+      if(!r.ok) throw new Error("read " + r.status);
+      return r.json().then(function(j){
+        var d;
+        try{ d = JSON.parse(b64d(j.content)); }catch(e){ d = emptyData(); }
+        if(Array.isArray(d)) d = { meta:{}, papers:d, reports:[] };
+        if(!d || typeof d !== "object") d = emptyData();
+        if(!d.meta || typeof d.meta !== "object") d.meta = {};
+        if(!Array.isArray(d.papers)) d.papers = [];
+        if(!Array.isArray(d.reports)) d.reports = [];
+        return { data: d, sha: j.sha };
+      });
+    });
+  }
+  function writeFile(c, data, sha){
+    var body = {
+      message: "Add paper from conference report",
+      content: b64e(JSON.stringify(data, null, 2)),
+      branch: branch(c)
+    };
+    if(sha) body.sha = sha;
+    return fetch(fileURL(c), { method:"PUT", headers: headers(c), body: JSON.stringify(body) }).then(function(r){
+      if(!r.ok) throw new Error("write " + r.status);
+      return r.json().then(function(j){ return { sha: j.content && j.content.sha }; });
+    });
+  }
+
+  function appendPaper(c, obj){
+    var k = keyOf(obj);
+    return getFile(c).then(function(g){
+      if(g.data.papers.some(function(p){ return keyOf(p) === k; }))
+        return { status:"exists", data:g.data, sha:g.sha };
+      g.data.papers.push(obj);
+      g.data.meta.updated = nowISO();
+      return writeFile(c, g.data, g.sha).then(
+        function(res){ return { status:"added", data:g.data, sha:res.sha }; },
+        function(err){
+          if(!/ (409|422)$/.test(err.message)) throw err;   // only retry on a stale-sha conflict
+          return getFile(c).then(function(g2){
+            if(g2.data.papers.some(function(p){ return keyOf(p) === k; }))
+              return { status:"exists", data:g2.data, sha:g2.sha };
+            g2.data.papers.push(obj);
+            g2.data.meta.updated = nowISO();
+            return writeFile(c, g2.data, g2.sha).then(function(res2){
+              return { status:"added", data:g2.data, sha:res2.sha };
+            });
+          });
+        }
+      );
+    });
+  }
+
+  var known = {};
+  try{
+    var cache = JSON.parse(localStorage.getItem(LS_CACHE) || "null");
+    if(cache && cache.data && Array.isArray(cache.data.papers))
+      cache.data.papers.forEach(function(p){ known[keyOf(p)] = 1; });
+  }catch(e){}
+
+  function mark(btn, text){ btn.disabled = true; btn.textContent = text; btn.classList.add("added"); }
+
+  function add(btn){
+    var c = cfg();
+    if(!c || !c.owner || !c.repo || !c.token){
+      toast("Open your reading list (/reading/) and connect a token first.");
+      return;
+    }
+    var paper;
+    try{ paper = JSON.parse(btn.getAttribute("data-paper")); }catch(e){ return; }
+    var now = nowISO();
+    var obj = {
+      id: uid(),
+      title: paper.title || "",
+      venue: paper.venue || "",
+      theme: paper.theme || "Unsorted",
+      doi: paper.doi || "",
+      arxiv: paper.arxiv || null,
+      url: paper.url || "",
+      note: paper.note || "",
+      status: "to-read",
+      summary: "",
+      tags: [],
+      added: now,
+      updated: now
+    };
+    var orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Adding...";
+    appendPaper(c, obj).then(function(res){
+      try{ localStorage.setItem(LS_CACHE, JSON.stringify({ data: res.data, sha: res.sha })); }catch(e){}
+      known[keyOf(obj)] = 1;
+      if(res.status === "exists"){ mark(btn, "In list"); toast("Already in your reading list."); }
+      else{ mark(btn, "Added"); toast("Added to reading list: " + obj.theme); }
+    }).catch(function(err){
+      btn.disabled = false;
+      btn.textContent = orig;
+      toast("Couldn't add - " + (err.message || "error"));
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    var btns = document.querySelectorAll(".addrl");
+    for(var i = 0; i < btns.length; i++){
+      (function(b){
+        try{
+          var p = JSON.parse(b.getAttribute("data-paper"));
+          if(known[keyOf(p)]) mark(b, "In list");
+        }catch(e){}
+        b.addEventListener("click", function(){ add(b); });
+      })(btns[i]);
+    }
+  });
+})();
+</script>
+</body>
+</html>

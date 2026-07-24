@@ -103,11 +103,15 @@
     padding:1px 6px;border-radius:3px;text-transform:uppercase;}
   .chip.sigir{background:#e7f0fb;color:#1f5fb0;}
   .chip.ictir{background:#fdeee2;color:#b5651d;}
+  .chip.icml{background:#e6f4ea;color:#1b7f4b;}
+  .chip.acl{background:#fce8e6;color:#b32b23;}
   .chip.arxiv{background:#f0eafc;color:#6b3fa0;}
   .chip.generic{background:#eceff3;color:#4a5560;}
   @media (prefers-color-scheme: dark){
     .chip.sigir{background:#16263a;color:#5b9be8;}
     .chip.ictir{background:#3a2a18;color:#e0a15a;}
+    .chip.icml{background:#183024;color:#5cc48a;}
+    .chip.acl{background:#331a18;color:#e88a7e;}
     .chip.arxiv{background:#241a3a;color:#b394e8;}
     .chip.generic{background:#232830;color:#9aa4b2;}
   }
@@ -115,9 +119,11 @@
     padding:1px 6px;border-radius:3px;}
   .link-pill.doi{background:#eef4fc;color:#1f5fb0;}
   .link-pill.arx{background:#f0eafc;color:#6b3fa0;}
+  .link-pill.url{background:#e6f4ea;color:#1b7f4b;}
   @media (prefers-color-scheme: dark){
     .link-pill.doi{background:#16263a;color:#5b9be8;}
     .link-pill.arx{background:#241a3a;color:#b394e8;}
+    .link-pill.url{background:#183024;color:#5cc48a;}
   }
   select.status{font:inherit;font-size:11.5px;padding:3px 6px;border-radius:6px;
     border:1px solid var(--line);background:var(--bg);color:var(--ink);}
@@ -392,6 +398,7 @@
       theme: p.theme || "Unsorted",
       doi: p.doi || "",
       arxiv: p.arxiv || null,
+      url: p.url || "",
       note: p.note || "",
       status: st,
       summary: p.summary || "",
@@ -599,8 +606,18 @@
     // match a known venue anywhere in the tag so "SIGIR 2026" still colours as SIGIR
     if(v.indexOf("sigir") >= 0) return "sigir";
     if(v.indexOf("ictir") >= 0) return "ictir";
+    if(v.indexOf("icml") >= 0) return "icml";
+    if(v.indexOf("acl") >= 0) return "acl";
     if(v.indexOf("arxiv") >= 0) return "arxiv";
     return "generic";
+  }
+  function urlLabel(u){
+    u = String(u||"").toLowerCase();
+    if(u.indexOf("icml.cc") >= 0) return "ICML";
+    if(u.indexOf("openreview") >= 0) return "OpenReview";
+    if(u.indexOf("mlr.press") >= 0 || u.indexOf("proceedings.mlr") >= 0) return "PMLR";
+    if(u.indexOf("aclanthology") >= 0) return "ACL";
+    return "link";
   }
 
   function render(){
@@ -753,6 +770,11 @@
       var d = el("a","link-pill doi"); d.textContent = "DOI";
       d.href = p.doi; d.target = "_blank"; d.rel = "noopener";
       meta.appendChild(d);
+    }
+    if(p.url){
+      var u = el("a","link-pill url"); u.textContent = urlLabel(p.url);
+      u.href = p.url; u.target = "_blank"; u.rel = "noopener";
+      meta.appendChild(u);
     }
     if(p.arxiv){
       var a = el("a","link-pill arx"); a.textContent = "arXiv";

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My rough classification of the ACL 2026 papers</title>
+<style>
+  :root{--ink:#1a1a1a;--muted:#5b6470;--line:#e4e7ec;--accent:#1f5fb0;--accent-soft:#eef4fc;--bg:#fff;--chip:#f3f5f8;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:#f6f7f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;font-size:15px;}
+  .sheet{max-width:880px;margin:24px auto;background:var(--bg);padding:44px 52px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-radius:6px;}
+  header.masthead{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:22px;}
+  .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-size:25px;line-height:1.2;margin:6px 0 6px;}
+  .dek{color:var(--muted);font-size:14.5px;margin:0;}
+  .meta{margin-top:10px;font-size:12px;color:var(--muted);}
+  h2.section{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border-top:1px solid var(--line);padding-top:16px;margin:26px 0 12px;}
+  .theme{margin:0 0 16px;}
+  .theme h3{font-size:16px;margin:0 0 4px;display:flex;gap:9px;align-items:baseline;}
+  .num{color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums;}
+  .theme p{margin:2px 0 6px;}
+  .anchors{font-size:12.5px;color:var(--muted);}
+  .anchors b{color:var(--ink);font-weight:600;}
+  .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;padding:1px 6px;border-radius:3px;vertical-align:middle;}
+  .tag.sigir{background:#e7f0fb;color:#1f5fb0;}
+  .tag.ictir{background:#fdeee2;color:#b5651d;}
+  .tag.icml{background:#e6f4ea;color:#1b7f4b;}
+  .tag.acl{background:#fce8e6;color:#b32b23;}
+  .tag.generic{background:#eceff3;color:#4a5560;}
+  .callout{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 5px 5px 0;margin:18px 0;font-size:13.5px;}
+  .callout b{color:var(--ink);}
+  .appendix h2.section{border-top:2px solid var(--ink);}
+  .grp{margin:16px 0 4px;}
+  .grp h3{font-size:14.5px;margin:0 0 8px;color:var(--ink);background:var(--chip);padding:6px 10px;border-radius:4px;}
+  ul.papers{list-style:none;margin:0 0 14px;padding:0;}
+  ul.papers li{padding:6px 0;border-bottom:1px solid var(--line);font-size:13px;}
+  ul.papers li:last-child{border-bottom:none;}
+  .ptitle{font-weight:600;}
+  .pnote{color:var(--muted);}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a.doi,a.arx,a.url{font-size:10.5px;font-weight:700;letter-spacing:.03em;padding:1px 5px;border-radius:3px;white-space:nowrap;}
+  a.doi{background:#eef4fc;color:#1f5fb0;}
+  a.arx{background:#f0eafc;color:#6b3fa0;}
+  a.url{background:#e6f4ea;color:#1b7f4b;}
+  .addrl{font-size:10px;font-weight:700;letter-spacing:.03em;padding:1px 7px;margin-left:5px;border-radius:3px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;white-space:nowrap;vertical-align:middle;line-height:1.5;}
+  .addrl:hover{background:var(--accent);color:#fff;}
+  .addrl.added{border-color:var(--line);color:var(--muted);cursor:default;}
+  .addrl:disabled{cursor:default;opacity:.85;}
+  @media print{.addrl{display:none !important;} }
+  .sources{font-size:12px;color:var(--muted);}
+  .sources a{word-break:break-word;}
+  footer{margin-top:26px;border-top:1px solid var(--line);padding-top:12px;font-size:11.5px;color:var(--muted);}
+  @media print{body{background:#fff;}.sheet{box-shadow:none;margin:0;max-width:none;padding:0 6px;border-radius:0;}.appendix{page-break-before:always;}a{color:var(--ink);} }
+  @media(max-width:620px){.sheet{padding:26px 20px;margin:0;}h1{font-size:22px;} }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header class="masthead">
+    <div class="kicker">Computational Linguistics · ACL 2026</div>
+    <h1>My rough classification of the ACL 2026 papers</h1>
+    <p class="dek">I was going through the ACL 2026 papers (Main and Findings) and roughly classified them. The shape I kept seeing: <em>self-improvement crossed over from ML into NLP</em> — self-evolving agents, self-correction, and self-play show up as first-class methods, not gimmicks.</p>
+    <div class="meta">Scope: self-improvement, reasoning, agents/RAG, alignment, evaluation, efficiency, multilinguality, multimodal &amp; safety &nbsp;|&nbsp; a curated, verified sample &mdash; not all 4,400+ &nbsp;|&nbsp; <a href="/reading/">&#8599; Reading list</a></div>
+  </header>
+
+  <div class="callout"><b>My overall read:</b> the year's throughline is <b>self-improvement</b>. NLP papers stopped treating self-refinement as a prompting trick and started building it into training — self-evolving multi-agent teams, models that correct themselves against solvers and verifiers, and self-play with formal checks. The counter-current: RAG now has to defend against a corpus that is itself model-written.</div>
+
+  <h2 class="section">Roughly, the papers fell into these groups</h2>
+
+  <div class="theme">
+    <h3><span class="num">1</span> The self-improving agent becomes an ACL topic</h3>
+    <p>The headline shift: agents and models that improve from their own experience — self-evolving multi-agent teams, fully self-synthetic alignment data, test-time self-training. The frontier question is credit assignment: several of these only work because they pair self-generation with a verification gate before anything is written back.</p>
+    <p class="anchors"><b>Anchors:</b> TT-SI: Self-Improving LLM Agents with Test-Time Training <span class="tag acl">ACL Findings</span> (<a href="https://doi.org/10.18653/v1/2026.findings-acl.462">DOI</a> &middot; <a href="https://arxiv.org/abs/2510.07841">arXiv</a>) &middot; Aligning Large Language Models via Fully Self-Synthetic Data <span class="tag acl">ACL</span> (<a href="https://doi.org/10.18653/v1/2026.acl-long.1595">DOI</a> &middot; <a href="https://arxiv.org/abs/2510.06652">arXiv</a>) &middot; Self-Evolving Multi-Agent Systems via Textual Backpropagation <span class="tag acl">ACL Findings</span> (<a href="https://doi.org/10.18653/v1/2026.findings-acl.483">DOI</a> &middot; <a href="https://arxiv.org/abs/2506.09046">arXiv</a>)</p>
+  </div>
+  <div class="theme">
+    <h3><span class="num">2</span> Self-correction grows teeth</h3>
+    <p>Self-correction moved from “ask the model to try again” to structured loops grounded in an external signal — an ASP solver, a formal verifier, a reward model retrained on its own failures. The papers that work share a shape: the correction is checked by something the model cannot just talk its way past.</p>
+    <p class="anchors"><b>Anchors:</b> LLMs as ASP Programmers: Self-Correction Enables Task-Agnostic Nonmonotonic Reasoning <span class="tag acl">ACL Findings</span> (<a href="https://doi.org/10.18653/v1/2026.findings-acl.1151">DOI</a>) &middot; Teach a Reward Model to Correct Itself: Reward Guided Adversarial Failure Discovery <span class="tag acl">ACL</span> (<a href="https://doi.org/10.18653/v1/2026.acl-long.418">DOI</a>) &middot; QueueEDIT: Structural Self-Correction for Sequential Model Editing in LLMs <span class="tag acl">ACL Findings</span> (<a href="https://doi.org/10.18653/v1/2026.findings-acl.231">DOI</a> &middot; <a href="https://arxiv.org/abs/2506.17864">arXiv</a>)</p>
+  </div>
+  <div class="theme">
+    <h3><span class="num">3</span> Self-play and self-reward reach NLP</h3>
+    <p>Self-play and self-reward, mostly an ML story until now, showed up in language work — a generator/evaluator pair trained against each other under a formal-verification referee, and synthetic rubrics generated to reward-model your own outputs. The open question is the same as in ML: how do you keep the two halves honest.</p>
+    <p class="anchors"><b>Anchors:</b> Improving LLM Code Reasoning via Semantic Equivalence Self-Play with Formal Verification <span class="tag acl">ACL Findings</span> (<a href="https://doi.org/10.18653/v1/2026.findings-acl.1615">DOI</a> &middot; <a href="https://arxiv.org/abs/2604.17010">arXiv</a>) &middot; OpenRubrics: Towards Scalable Synthetic Rubric Generation for Reward Modeling and LLM Alignment <span class="tag acl">ACL</span> (<a href="https://doi.org/10.18653/v1/2026.acl-long.791">DOI</a>) &middot; Enhancing Long-Chain Reasoning Distillation through Error-Aware Self-Reflection <span class="tag acl">ACL Findings</span> (<a href="https://doi.org/10.18653/v1/2026.findings-acl.72">DOI</a> &middot; <a href="https://arxiv.org/abs/2505.22131">arXiv</a>)</p>
+  </div>
+  <div class="theme">
+    <h3><span class="num">4</span> RAG&#x27;s new worry: the corpus is now model-generated</h3>
+    <p>A pointed counter-theme: as the web fills with LLM output, retrieval starts eating its own tail. Papers this year detect model-generated contamination in the retrieval corpus, check knowledge-thought coherence in reasoning chains, and stream-detect hallucination as it forms. Faithfulness became an engineering target, not a caveat.</p>
+    <p class="anchors"><b>Anchors:</b> LLM-Generated Text May Harm Your Retrieval! A Robust Detection Strategy for RAG <span class="tag acl">ACL</span> (<a href="https://doi.org/10.18653/v1/2026.acl-long.1475">DOI</a>) &middot; CheckRLM: Effective Knowledge–Thought Coherence Checking in Retrieval-Augmented Reasoning <span class="tag acl">ACL</span> (<a href="https://doi.org/10.18653/v1/2026.acl-long.1780">DOI</a>) &middot; Streaming Hallucination Detection in Long Chain-of-Thought Reasoning <span class="tag acl">ACL Findings</span> (<a href="https://doi.org/10.18653/v1/2026.findings-acl.1064">DOI</a> &middot; <a href="https://arxiv.org/abs/2601.02170">arXiv</a>)</p>
+  </div>
+  <div class="theme">
+    <h3><span class="num">5</span> Reward modeling and judging get agentic</h3>
+    <p>Reward models and judges stopped being frozen scorers. This year they use tools, run curricula, and get benchmarked for their own vulnerability — a verifier that interleaves reasoning with tool calls, curriculum-ordered AI feedback, and writing benchmarks that show LLM-judges buckle under textual perturbation.</p>
+    <p class="anchors"><b>Anchors:</b> AgentV-RL: Scaling Reward Modeling with Agentic Verifier <span class="tag acl">ACL Findings</span> (<a href="https://doi.org/10.18653/v1/2026.findings-acl.1156">DOI</a>) &middot; Curriculum-RLAIF: Curriculum Alignment with Reinforcement Learning from AI Feedback <span class="tag acl">ACL Findings</span> (<a href="https://doi.org/10.18653/v1/2026.findings-acl.1685">DOI</a>) &middot; HoWToBench: Holistic Evaluation for LLM&#x27;s Writing Capability using Tree of Writing <span class="tag acl">ACL</span> (<a href="https://doi.org/10.18653/v1/2026.acl-long.317">DOI</a>)</p>
+  </div>
+
+  <h2 class="section">One quieter thread: multilingual reasoning, done efficiently</h2>
+  <p style="margin-top:0;font-size:13.5px;">A steady undercurrent kept pushing multilingual reasoning without blowing up the token budget: <b>Less Languages, Less Tokens</b> <span class="tag acl">ACL</span> (<a href="https://doi.org/10.18653/v1/2026.acl-long.1379">DOI</a>) cuts &gt;50% decoding cost across 18 languages, and <b>LANG</b> <span class="tag acl">ACL</span> (<a href="https://doi.org/10.18653/v1/2026.acl-long.2029">DOI</a>) uses language-adaptive hints so RL doesn't wreck language consistency.</p>
+
+  <footer>Every paper cited links to its ACL Anthology DOI (arXiv where a preprint was verified). Full annotated appendix follows.</footer>
+</div>
+
+<div class="sheet appendix">
+  <header class="masthead">
+    <div class="kicker">Appendix</div>
+    <h1>The full list, grouped the way I sorted it</h1>
+    <p class="dek">The ACL 2026 papers I went through, each with a one-line note and its ACL Anthology DOI (arXiv where I could verify a preprint). A curated sample of Main and Findings, not the whole proceedings.</p>
+  </header>
+
+  <div class="grp">
+    <h3>1 &middot; Self-improving &amp;amp; self-evolving LLM agents</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">TT-SI: Self-Improving LLM Agents with Test-Time Training</span> — <span class="pnote">Adapts an agent on the fly by test-time training on self-augmented uncertain instances: +5.48% accuracy with 68x fewer training samples.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.462">DOI</a> <a class="arx" href="https://arxiv.org/abs/2510.07841">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;TT-SI: Self-Improving LLM Agents with Test-Time Training&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving LLM agents&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.462&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2510.07841&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Adapts an agent on the fly by test-time training on self-augmented uncertain instances: +5.48% accuracy with 68x fewer training samples.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">Towards Self-Improving Error Diagnosis in Multi-Agent Systems</span> — <span class="pnote">ErrorProbe attributes semantic failures in multi-agent systems and updates memory only after successful verification.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.98">DOI</a> <a class="arx" href="https://arxiv.org/abs/2604.17658">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Towards Self-Improving Error Diagnosis in Multi-Agent Systems&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving LLM agents&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.98&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2604.17658&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;ErrorProbe attributes semantic failures in multi-agent systems and updates memory only after successful verification.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">Aligning Large Language Models via Fully Self-Synthetic Data</span> — <span class="pnote">SAO generates and self-evaluates all prompts, responses and preferences for alignment with no external data.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.1595">DOI</a> <a class="arx" href="https://arxiv.org/abs/2510.06652">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Aligning Large Language Models via Fully Self-Synthetic Data&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving LLM agents&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.1595&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2510.06652&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;SAO generates and self-evaluates all prompts, responses and preferences for alignment with no external data.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">EVOTOOL: Self-Evolving Tool-Use Policy Optimization via Blame-Aware Mutation and Diversity-Aware Selection</span> — <span class="pnote">Optimizes a modular tool-use policy through a self-evolving loop of trajectory collection, blame attribution and targeted mutation.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.2016">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;EVOTOOL: Self-Evolving Tool-Use Policy Optimization via Blame-Aware Mutation and Diversity-Aware Selection&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving LLM agents&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.2016&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Optimizes a modular tool-use policy through a self-evolving loop of trajectory collection, blame attribution and targeted mutation.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">Self-Evolving Multi-Agent Systems via Textual Backpropagation</span> — <span class="pnote">Agentic Neural Network: multi-agent teams self-evolve roles, prompts and coordination via a backprop-like backward phase.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.483">DOI</a> <a class="arx" href="https://arxiv.org/abs/2506.09046">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Self-Evolving Multi-Agent Systems via Textual Backpropagation&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving LLM agents&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.483&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2506.09046&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Agentic Neural Network: multi-agent teams self-evolve roles, prompts and coordination via a backprop-like backward phase.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">A Self-Evolving LLM Agent Framework for Role-Based Norm Compliance in Healthcare</span> — <span class="pnote">A healthcare agent with structured memory and dual-layer reflection that updates its prompts via preference-style optimization with AI feedback.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.1133">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;A Self-Evolving LLM Agent Framework for Role-Based Norm Compliance in Healthcare&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving LLM agents&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.1133&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;A healthcare agent with structured memory and dual-layer reflection that updates its prompts via preference-style optimization with AI feedback.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Demo</span> <span class="ptitle">AgentFactory: A Self-Evolving Framework Through Executable Subagent Accumulation and Reuse</span> — <span class="pnote">A demo framework whose library of executable subagents grows and improves over time to cut effort on similar tasks.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-demo.81">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;AgentFactory: A Self-Evolving Framework Through Executable Subagent Accumulation and Reuse&quot;, &quot;venue&quot;: &quot;ACL Demo 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving LLM agents&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-demo.81&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;A demo framework whose library of executable subagents grows and improves over time to cut effort on similar tasks.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">Improving Long-Context Translation via Self-Supervised Dual Learning</span> — <span class="pnote">LongDu self-improves long-document translation via back-translation reconstructability rewards, annotation-free.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.1257">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Improving Long-Context Translation via Self-Supervised Dual Learning&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Self-improving &amp; self-evolving LLM agents&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.1257&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;LongDu self-improves long-document translation via back-translation reconstructability rewards, annotation-free.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>2 &middot; Self-refinement, self-correction &amp;amp; self-critique</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">QueueEDIT: Structural Self-Correction for Sequential Model Editing in LLMs</span> — <span class="pnote">A structural mapping loss plus a queue that realigns previously edited parameters to self-correct degradation in sequential editing.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.231">DOI</a> <a class="arx" href="https://arxiv.org/abs/2506.17864">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;QueueEDIT: Structural Self-Correction for Sequential Model Editing in LLMs&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Self-refinement, self-correction &amp; self-critique&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.231&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2506.17864&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;A structural mapping loss plus a queue that realigns previously edited parameters to self-correct degradation in sequential editing.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">LLMs as ASP Programmers: Self-Correction Enables Task-Agnostic Nonmonotonic Reasoning</span> — <span class="pnote">An automated loop where structured feedback from an ASP solver drives iterative refinement of LLM-generated programs.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.1151">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;LLMs as ASP Programmers: Self-Correction Enables Task-Agnostic Nonmonotonic Reasoning&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Self-refinement, self-correction &amp; self-critique&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.1151&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;An automated loop where structured feedback from an ASP solver drives iterative refinement of LLM-generated programs.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">Invocation Refiner: A Plug-and-Play Module for Rectifying LLM Tool Invocations</span> — <span class="pnote">Takes a raw model output plus prompt and query and synthesizes corrected tool invocations.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.731">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Invocation Refiner: A Plug-and-Play Module for Rectifying LLM Tool Invocations&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Self-refinement, self-correction &amp; self-critique&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.731&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Takes a raw model output plus prompt and query and synthesizes corrected tool invocations.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">Teach a Reward Model to Correct Itself: Reward Guided Adversarial Failure Discovery for Robust Reward Modeling</span> — <span class="pnote">REFORM searches for reward-inconsistent variants and fine-tunes the reward model on a targeted augmentation of its own failures.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.418">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Teach a Reward Model to Correct Itself: Reward Guided Adversarial Failure Discovery for Robust Reward Modeling&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Self-refinement, self-correction &amp; self-critique&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.418&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;REFORM searches for reward-inconsistent variants and fine-tunes the reward model on a targeted augmentation of its own failures.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">Enhancing Long-Chain Reasoning Distillation through Error-Aware Self-Reflection</span> — <span class="pnote">ORION refines teacher chains-of-thought via error-aware self-reflection that incorporates the student&#x27;s own mistakes.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.72">DOI</a> <a class="arx" href="https://arxiv.org/abs/2505.22131">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Enhancing Long-Chain Reasoning Distillation through Error-Aware Self-Reflection&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Self-refinement, self-correction &amp; self-critique&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.72&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2505.22131&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;ORION refines teacher chains-of-thought via error-aware self-reflection that incorporates the student&#x27;s own mistakes.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>3 &middot; Self-play &amp;amp; self-reward</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">Improving LLM Code Reasoning via Semantic Equivalence Self-Play with Formal Verification</span> — <span class="pnote">A generator (Alice) and evaluator (Bob) train adversarially, refereed by formal proofs of program equivalence.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.1615">DOI</a> <a class="arx" href="https://arxiv.org/abs/2604.17010">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Improving LLM Code Reasoning via Semantic Equivalence Self-Play with Formal Verification&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Self-play &amp; self-reward&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.1615&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2604.17010&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;A generator (Alice) and evaluator (Bob) train adversarially, refereed by formal proofs of program equivalence.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">OpenRubrics: Towards Scalable Synthetic Rubric Generation for Reward Modeling and LLM Alignment</span> — <span class="pnote">Generates synthetic rubrics at scale for reward modeling and alignment — a self-reward-style pipeline.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.791">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;OpenRubrics: Towards Scalable Synthetic Rubric Generation for Reward Modeling and LLM Alignment&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Self-play &amp; self-reward&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.791&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Generates synthetic rubrics at scale for reward modeling and alignment — a self-reward-style pipeline.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>4 &middot; Reasoning &amp;amp; chain-of-thought</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL</span> <span class="ptitle">Look Light, Think Heavy: What Multimodal Chain-of-Thought Reasoning Can and Cannot Do</span> — <span class="pnote">Finds multimodal CoT handles verbal reflection but lacks deep visual introspection.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.387">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Look Light, Think Heavy: What Multimodal Chain-of-Thought Reasoning Can and Cannot Do&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Reasoning &amp; chain-of-thought&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.387&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Finds multimodal CoT handles verbal reflection but lacks deep visual introspection.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">Less Languages, Less Tokens: An Efficient Unified Logic Cross-lingual Chain-of-Thought Reasoning Framework</span> — <span class="pnote">UL-XCoT cuts &gt;50% decoding cost across 18 languages while keeping competitive cross-lingual reasoning.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.1379">DOI</a> <a class="arx" href="https://arxiv.org/abs/2604.20090">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Less Languages, Less Tokens: An Efficient Unified Logic Cross-lingual Chain-of-Thought Reasoning Framework&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Reasoning &amp; chain-of-thought&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.1379&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2604.20090&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;UL-XCoT cuts &gt;50% decoding cost across 18 languages while keeping competitive cross-lingual reasoning.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">Decoupling the Effect of Chain-of-Thought Reasoning: A Human Label Variation Perspective</span> — <span class="pnote">Reassesses the measured effect of chain-of-thought through the lens of human label variation.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.1103">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Decoupling the Effect of Chain-of-Thought Reasoning: A Human Label Variation Perspective&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Reasoning &amp; chain-of-thought&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.1103&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Reassesses the measured effect of chain-of-thought through the lens of human label variation.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>5 &middot; Agents, tools &amp;amp; retrieval-augmented generation</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL</span> <span class="ptitle">GTA: Generating Long-horizon Tasks for Web Agents at Scale</span> — <span class="pnote">Formalizes multi-hop web-agent task generation and releases a dynamic, reproducible benchmark.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.856">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;GTA: Generating Long-horizon Tasks for Web Agents at Scale&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Agents, tools &amp; retrieval-augmented generation&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.856&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Formalizes multi-hop web-agent task generation and releases a dynamic, reproducible benchmark.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">AgentGL: Towards Agentic Graph Learning with LLMs via Reinforcement Learning</span> — <span class="pnote">Equips LLM agents with graph-native tools and search-constrained thinking for multi-scale exploration via RL.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.1161">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;AgentGL: Towards Agentic Graph Learning with LLMs via Reinforcement Learning&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Agents, tools &amp; retrieval-augmented generation&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.1161&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Equips LLM agents with graph-native tools and search-constrained thinking for multi-scale exploration via RL.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">CheckRLM: Effective Knowledge–Thought Coherence Checking in Retrieval-Augmented Reasoning</span> — <span class="pnote">Extracts factual claims from reasoning chains to detect and correct knowledge inconsistencies at inference.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.1780">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;CheckRLM: Effective Knowledge–Thought Coherence Checking in Retrieval-Augmented Reasoning&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Agents, tools &amp; retrieval-augmented generation&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.1780&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Extracts factual claims from reasoning chains to detect and correct knowledge inconsistencies at inference.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>6 &middot; Alignment, RLHF &amp;amp; reward modeling</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL</span> <span class="ptitle">Reward Alignment Optimization: A Direct Point-wise Alignment Approach</span> — <span class="pnote">RAO uses an explicit reward model and a prefix-consistency principle for point-wise direct alignment.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.2027">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Reward Alignment Optimization: A Direct Point-wise Alignment Approach&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Alignment, RLHF &amp; reward modeling&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.2027&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;RAO uses an explicit reward model and a prefix-consistency principle for point-wise direct alignment.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">Curriculum-RLAIF: Curriculum Alignment with Reinforcement Learning from AI Feedback</span> — <span class="pnote">Presents AI-feedback preference data in order of increasing difficulty during alignment.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.1685">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Curriculum-RLAIF: Curriculum Alignment with Reinforcement Learning from AI Feedback&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Alignment, RLHF &amp; reward modeling&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.1685&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Presents AI-feedback preference data in order of increasing difficulty during alignment.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">AgentV-RL: Scaling Reward Modeling with Agentic Verifier</span> — <span class="pnote">Trains a verifier that interleaves tool use with internal reasoning via RL to scale reward modeling.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.1156">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;AgentV-RL: Scaling Reward Modeling with Agentic Verifier&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Alignment, RLHF &amp; reward modeling&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.1156&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Trains a verifier that interleaves tool use with internal reasoning via RL to scale reward modeling.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>7 &middot; Evaluation &amp;amp; LLM-as-judge</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL</span> <span class="ptitle">HoWToBench: Holistic Evaluation for LLM&#x27;s Capability in Human-level Writing using Tree of Writing</span> — <span class="pnote">A large Chinese writing benchmark over 12 genres showing LLM-as-judge practices are vulnerable to textual disturbance.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.317">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;HoWToBench: Holistic Evaluation for LLM&#x27;s Capability in Human-level Writing using Tree of Writing&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Evaluation &amp; LLM-as-judge&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.317&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;A large Chinese writing benchmark over 12 genres showing LLM-as-judge practices are vulnerable to textual disturbance.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">LiveCultureBench: a Multi-Agent, Multi-Cultural Benchmark for LLMs in Dynamic Social Simulations</span> — <span class="pnote">Embeds LLMs as agents in a simulated town, scoring task completion and adherence to socio-cultural norms.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.1247">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;LiveCultureBench: a Multi-Agent, Multi-Cultural Benchmark for LLMs in Dynamic Social Simulations&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Evaluation &amp; LLM-as-judge&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.1247&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Embeds LLMs as agents in a simulated town, scoring task completion and adherence to socio-cultural norms.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">Recovered in Translation: Efficient Pipeline for Automated Translation of Benchmarks and Datasets</span> — <span class="pnote">An efficient pipeline for automated benchmark/dataset translation, validated with reference-based and LLM-as-judge evaluation.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.2067">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Recovered in Translation: Efficient Pipeline for Automated Translation of Benchmarks and Datasets&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Evaluation &amp; LLM-as-judge&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.2067&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;An efficient pipeline for automated benchmark/dataset translation, validated with reference-based and LLM-as-judge evaluation.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>8 &middot; Efficiency &amp;amp; long-context</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL</span> <span class="ptitle">LongSpec: Long-Context Lossless Speculative Decoding with Efficient Drafting and Verification</span> — <span class="pnote">Lossless speculative decoding for long-context inference with efficient drafting and verification.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.83">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;LongSpec: Long-Context Lossless Speculative Decoding with Efficient Drafting and Verification&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Efficiency &amp; long-context&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.83&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Lossless speculative decoding for long-context inference with efficient drafting and verification.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">HybridKV: Hybrid KV Cache Compression for Efficient Multimodal Large Language Model Inference</span> — <span class="pnote">Hybrid KV-cache compression to speed up multimodal LLM inference.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.594">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;HybridKV: Hybrid KV Cache Compression for Efficient Multimodal Large Language Model Inference&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Efficiency &amp; long-context&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.594&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Hybrid KV-cache compression to speed up multimodal LLM inference.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>9 &middot; Multilinguality</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL</span> <span class="ptitle">VFA: Empowering Multilingual MLLMs via Vision-Free Adaptation</span> — <span class="pnote">Decouples multilingual language enhancement from visual alignment by composing complementary task vectors over a shared backbone.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.407">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;VFA: Empowering Multilingual MLLMs via Vision-Free Adaptation&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Multilinguality&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.407&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Decouples multilingual language enhancement from visual alignment by composing complementary task vectors over a shared backbone.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">LANG: Reinforcement Learning for Multilingual Reasoning with Language-Adaptive Hint Guidance</span> — <span class="pnote">Language-adaptive hints let RL improve multilingual reasoning without harming language consistency.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.2029">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;LANG: Reinforcement Learning for Multilingual Reasoning with Language-Adaptive Hint Guidance&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Multilinguality&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.2029&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Language-adaptive hints let RL improve multilingual reasoning without harming language consistency.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>10 &middot; Multimodal &amp;amp; vision-language</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL</span> <span class="ptitle">ReLook: Vision-Grounded RL with a Multimodal LLM Critic</span> — <span class="pnote">A vision-aware multimodal LLM critic supplies scores and feedback inside a vision-grounded RL loop.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.1167">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;ReLook: Vision-Grounded RL with a Multimodal LLM Critic&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Multimodal &amp; vision-language&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.1167&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;A vision-aware multimodal LLM critic supplies scores and feedback inside a vision-grounded RL loop.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">&quot;I See What You Did There&quot;: Can Large Vision-Language Models Understand Multimodal Puns?</span> — <span class="pnote">Probes whether large vision-language models can understand multimodal puns.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.444">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;\&quot;I See What You Did There\&quot;: Can Large Vision-Language Models Understand Multimodal Puns?&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Multimodal &amp; vision-language&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.444&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Probes whether large vision-language models can understand multimodal puns.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+  <div class="grp">
+    <h3>11 &middot; Safety, hallucination &amp;amp; factuality</h3>
+    <ul class="papers">
+      <li><span class="tag acl">ACL Findings</span> <span class="ptitle">Streaming Hallucination Detection in Long Chain-of-Thought Reasoning</span> — <span class="pnote">Treats hallucination in long CoT as an evolving latent state, enabling real-time streaming detection with evidence.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.findings-acl.1064">DOI</a> <a class="arx" href="https://arxiv.org/abs/2601.02170">arXiv</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;Streaming Hallucination Detection in Long Chain-of-Thought Reasoning&quot;, &quot;venue&quot;: &quot;ACL Findings 2026&quot;, &quot;theme&quot;: &quot;Safety, hallucination &amp; factuality&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.findings-acl.1064&quot;, &quot;arxiv&quot;: &quot;https://arxiv.org/abs/2601.02170&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Treats hallucination in long CoT as an evolving latent state, enabling real-time streaming detection with evidence.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">LLM-Generated Text May Harm Your Retrieval! A Robust Detection Strategy for Retrieval-Augmented Generation</span> — <span class="pnote">A robust detection strategy against LLM-generated text contaminating the external corpora RAG relies on.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.1475">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;LLM-Generated Text May Harm Your Retrieval! A Robust Detection Strategy for Retrieval-Augmented Generation&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Safety, hallucination &amp; factuality&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.1475&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;A robust detection strategy against LLM-generated text contaminating the external corpora RAG relies on.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+      <li><span class="tag acl">ACL</span> <span class="ptitle">When Efficiency Meets Safety: A Benchmark Security Analysis of KV Cache Compression in LLMs</span> — <span class="pnote">Benchmarks the security implications of KV-cache compression methods in LLMs.</span> <a class="doi" href="https://doi.org/10.18653/v1/2026.acl-long.1123">DOI</a> <button class="addrl" data-paper="{&quot;title&quot;: &quot;When Efficiency Meets Safety: A Benchmark Security Analysis of KV Cache Compression in LLMs&quot;, &quot;venue&quot;: &quot;ACL 2026&quot;, &quot;theme&quot;: &quot;Safety, hallucination &amp; factuality&quot;, &quot;doi&quot;: &quot;https://doi.org/10.18653/v1/2026.acl-long.1123&quot;, &quot;arxiv&quot;: &quot;&quot;, &quot;url&quot;: &quot;&quot;, &quot;note&quot;: &quot;Benchmarks the security implications of KV-cache compression methods in LLMs.&quot;}" title="Add to my reading list">+ Reading list</button></li>
+    </ul>
+  </div>
+
+  <h2 class="section">Sources &amp; method note</h2>
+  <p class="sources">ACL 2026 (San Diego, July 2–7): papers via the <a href="https://aclanthology.org/events/acl-2026/">ACL Anthology</a> (Main &amp; Findings) &middot; Paper Digest &middot; preprints on arXiv where verified.</p>
+  <p class="sources" style="margin-top:10px;"><b>How I built this:</b> I read across ACL 2026 Main and Findings and sorted a <b>curated sample</b> into the buckets above, weighting the self-improvement clusters because that was the throughline. This is <b>not</b> complete — ACL 2026 accepted ~2,300 Main plus ~2,160 Findings, and I covered a fraction. Every DOI is an <b>ACL Anthology DOI (10.18653 prefix)</b> confirmed against its Anthology page — none guessed — with arXiv added only where I could match a preprint by title.</p>
+  <footer>Prepared July 2026. A curated, verified sample of ACL 2026 (Main &amp;amp; Findings) — not the complete proceedings.</footer>
+</div>
+<script>
+(function(){
+  "use strict";
+  var LS_CONFIG = "readinglist.config";
+  var LS_CACHE  = "readinglist.cache";
+  var API = "https://api.github.com";
+
+  function b64e(s){ return btoa(unescape(encodeURIComponent(s))); }
+  function b64d(b){ return decodeURIComponent(escape(atob(String(b).replace(/\n/g, "")))); }
+  function cfg(){ try{ return JSON.parse(localStorage.getItem(LS_CONFIG) || "null"); }catch(e){ return null; } }
+  function headers(c){
+    return {
+      "Authorization": "Bearer " + c.token,
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    };
+  }
+  function fileURL(c){
+    var path = String(c.path || "reading.json").split("/").map(encodeURIComponent).join("/");
+    return API + "/repos/" + encodeURIComponent(c.owner) + "/" + encodeURIComponent(c.repo) + "/contents/" + path;
+  }
+  function branch(c){ return c.branch || "main"; }
+  function uid(){ return "p" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+  function nowISO(){ return new Date().toISOString(); }
+  function keyOf(p){
+    var d = String(p.doi || "").trim().toLowerCase();
+    if(d) return "d:" + d;
+    return "t:" + String(p.title || "").trim().toLowerCase();
+  }
+  function emptyData(){ return { meta:{ title:"Reading list", schema:1, updated:null }, papers:[], reports:[] }; }
+
+  function toast(msg){
+    var t = document.getElementById("rl-toast");
+    if(!t){
+      t = document.createElement("div");
+      t.id = "rl-toast";
+      t.style.cssText = "position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:9px 15px;border-radius:8px;font-size:13px;z-index:9999;opacity:0;transition:opacity .2s;max-width:90%;text-align:center;";
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.style.opacity = ".96";
+    clearTimeout(t._h);
+    t._h = setTimeout(function(){ t.style.opacity = "0"; }, 2800);
+  }
+
+  function getFile(c){
+    return fetch(fileURL(c) + "?ref=" + encodeURIComponent(branch(c)), { headers: headers(c) }).then(function(r){
+      if(r.status === 404) return { data: emptyData(), sha: null };
+      if(r.status === 401) throw new Error("token rejected 401");
+      if(!r.ok) throw new Error("read " + r.status);
+      return r.json().then(function(j){
+        var d;
+        try{ d = JSON.parse(b64d(j.content)); }catch(e){ d = emptyData(); }
+        if(Array.isArray(d)) d = { meta:{}, papers:d, reports:[] };
+        if(!d || typeof d !== "object") d = emptyData();
+        if(!d.meta || typeof d.meta !== "object") d.meta = {};
+        if(!Array.isArray(d.papers)) d.papers = [];
+        if(!Array.isArray(d.reports)) d.reports = [];
+        return { data: d, sha: j.sha };
+      });
+    });
+  }
+  function writeFile(c, data, sha){
+    var body = {
+      message: "Add paper from conference report",
+      content: b64e(JSON.stringify(data, null, 2)),
+      branch: branch(c)
+    };
+    if(sha) body.sha = sha;
+    return fetch(fileURL(c), { method:"PUT", headers: headers(c), body: JSON.stringify(body) }).then(function(r){
+      if(!r.ok) throw new Error("write " + r.status);
+      return r.json().then(function(j){ return { sha: j.content && j.content.sha }; });
+    });
+  }
+
+  function appendPaper(c, obj){
+    var k = keyOf(obj);
+    return getFile(c).then(function(g){
+      if(g.data.papers.some(function(p){ return keyOf(p) === k; }))
+        return { status:"exists", data:g.data, sha:g.sha };
+      g.data.papers.push(obj);
+      g.data.meta.updated = nowISO();
+      return writeFile(c, g.data, g.sha).then(
+        function(res){ return { status:"added", data:g.data, sha:res.sha }; },
+        function(err){
+          if(!/ (409|422)$/.test(err.message)) throw err;   // only retry on a stale-sha conflict
+          return getFile(c).then(function(g2){
+            if(g2.data.papers.some(function(p){ return keyOf(p) === k; }))
+              return { status:"exists", data:g2.data, sha:g2.sha };
+            g2.data.papers.push(obj);
+            g2.data.meta.updated = nowISO();
+            return writeFile(c, g2.data, g2.sha).then(function(res2){
+              return { status:"added", data:g2.data, sha:res2.sha };
+            });
+          });
+        }
+      );
+    });
+  }
+
+  var known = {};
+  try{
+    var cache = JSON.parse(localStorage.getItem(LS_CACHE) || "null");
+    if(cache && cache.data && Array.isArray(cache.data.papers))
+      cache.data.papers.forEach(function(p){ known[keyOf(p)] = 1; });
+  }catch(e){}
+
+  function mark(btn, text){ btn.disabled = true; btn.textContent = text; btn.classList.add("added"); }
+
+  function add(btn){
+    var c = cfg();
+    if(!c || !c.owner || !c.repo || !c.token){
+      toast("Open your reading list (/reading/) and connect a token first.");
+      return;
+    }
+    var paper;
+    try{ paper = JSON.parse(btn.getAttribute("data-paper")); }catch(e){ return; }
+    var now = nowISO();
+    var obj = {
+      id: uid(),
+      title: paper.title || "",
+      venue: paper.venue || "",
+      theme: paper.theme || "Unsorted",
+      doi: paper.doi || "",
+      arxiv: paper.arxiv || null,
+      url: paper.url || "",
+      note: paper.note || "",
+      status: "to-read",
+      summary: "",
+      tags: [],
+      added: now,
+      updated: now
+    };
+    var orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Adding...";
+    appendPaper(c, obj).then(function(res){
+      try{ localStorage.setItem(LS_CACHE, JSON.stringify({ data: res.data, sha: res.sha })); }catch(e){}
+      known[keyOf(obj)] = 1;
+      if(res.status === "exists"){ mark(btn, "In list"); toast("Already in your reading list."); }
+      else{ mark(btn, "Added"); toast("Added to reading list: " + obj.theme); }
+    }).catch(function(err){
+      btn.disabled = false;
+      btn.textContent = orig;
+      toast("Couldn't add - " + (err.message || "error"));
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    var btns = document.querySelectorAll(".addrl");
+    for(var i = 0; i < btns.length; i++){
+      (function(b){
+        try{
+          var p = JSON.parse(b.getAttribute("data-paper"));
+          if(known[keyOf(p)]) mark(b, "In list");
+        }catch(e){}
+        b.addEventListener("click", function(){ add(b); });
+      })(btns[i]);
+    }
+  });
+})();
+</script>
+</body>
+</html>

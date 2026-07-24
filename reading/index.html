@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Reading list</title>
+<style>
+  :root{
+    --ink:#1a1a1a;--muted:#5b6470;--line:#e4e7ec;--accent:#1f5fb0;
+    --accent-soft:#eef4fc;--bg:#fff;--page:#f6f7f9;--chip:#f3f5f8;
+    --ok:#1a8a4a;--warn:#b5651d;--err:#c0392b;--card:#fff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#e6e8eb;--muted:#9aa4b2;--line:#2a2f37;--accent:#5b9be8;
+      --accent-soft:#16263a;--bg:#161a1f;--page:#0f1216;--chip:#1c2129;
+      --ok:#4cc57e;--warn:#e0a15a;--err:#e8756a;--card:#1a1f26;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;font-size:15px;-webkit-text-size-adjust:100%;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  button{font:inherit;cursor:pointer;}
+  .wrap{max-width:960px;margin:0 auto;padding:20px 18px 80px;}
+
+  /* Top bar */
+  header.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    padding-bottom:14px;border-bottom:2px solid var(--ink);margin-bottom:18px;}
+  header.top h1{font-size:22px;margin:0;flex:1 1 auto;}
+  .btn{background:var(--bg);color:var(--ink);border:1px solid var(--line);
+    border-radius:7px;padding:7px 12px;font-size:13px;line-height:1;}
+  .btn:hover{border-color:var(--accent);}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .btn.small{padding:5px 9px;font-size:12px;}
+  .btn.ghost{background:transparent;border-color:transparent;color:var(--muted);}
+  .btn:disabled{opacity:.45;cursor:default;}
+
+  /* Sync indicator */
+  .sync{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);}
+  .dot{width:9px;height:9px;border-radius:50%;background:#9aa4b2;flex:none;}
+  .sync.state-synced .dot{background:var(--ok);}
+  .sync.state-loading .dot,.sync.state-saving .dot{background:var(--warn);animation:pulse 1s infinite;}
+  .sync.state-unsaved .dot{background:var(--warn);}
+  .sync.state-error .dot{background:var(--err);}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  /* Empty / connect state */
+  .empty{max-width:520px;margin:8vh auto;text-align:center;padding:0 16px;}
+  .empty h2{font-size:20px;margin:0 0 8px;}
+  .empty p{color:var(--muted);margin:0 0 20px;}
+
+  /* Reports strip */
+  .reports{margin:0 0 22px;}
+  .reports .rhead{display:flex;align-items:center;gap:10px;margin:0 0 10px;}
+  .reports .rhead h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--accent);margin:0;flex:1 1 auto;}
+  .rcards{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;}
+  .rcard{position:relative;flex:0 0 auto;min-width:180px;max-width:240px;
+    background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:12px 14px;}
+  .rcard .rvenue{font-size:11px;font-weight:700;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--accent);}
+  .rcard .rtitle{font-weight:600;font-size:14px;margin:3px 0;display:block;}
+  .rcard .rmeta{font-size:11.5px;color:var(--muted);}
+  .rcard .rnote{font-size:12px;color:var(--muted);margin-top:4px;}
+  .rcard .rx{position:absolute;top:6px;right:7px;border:none;background:transparent;
+    color:var(--muted);font-size:15px;line-height:1;padding:2px 4px;border-radius:5px;}
+  .rcard .rx:hover{color:var(--err);background:var(--chip);}
+
+  /* Counts */
+  .counts{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 16px;font-size:13px;color:var(--muted);}
+  .counts b{color:var(--ink);font-variant-numeric:tabular-nums;}
+
+  /* Toolbar */
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;align-items:center;}
+  .toolbar input[type=search],.toolbar select{
+    font:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--line);
+    border-radius:7px;background:var(--bg);color:var(--ink);}
+  .toolbar input[type=search]{flex:1 1 200px;min-width:150px;}
+
+  /* Groups + rows */
+  .group{margin:0 0 22px;}
+  .group>h3{font-size:14.5px;margin:0 0 8px;color:var(--ink);background:var(--chip);
+    padding:7px 11px;border-radius:6px;display:flex;justify-content:space-between;gap:10px;}
+  .group>h3 .gcount{color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums;}
+
+  .paper{border:1px solid var(--line);border-radius:9px;background:var(--card);
+    padding:11px 13px;margin:0 0 9px;}
+  .prow{display:flex;gap:11px;align-items:flex-start;}
+  .prow input[type=checkbox]{width:18px;height:18px;margin-top:2px;flex:none;cursor:pointer;}
+  .pmain{flex:1 1 auto;min-width:0;}
+  .ptitle{font-weight:600;font-size:14.5px;word-wrap:break-word;}
+  .paper.done .ptitle{text-decoration:line-through;color:var(--muted);}
+  .paper.done{opacity:.72;}
+  .pmeta{margin-top:3px;font-size:12px;color:var(--muted);display:flex;
+    flex-wrap:wrap;gap:6px 10px;align-items:center;}
+  .pnote{font-size:12.5px;color:var(--muted);margin-top:3px;}
+  .chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;
+    padding:1px 6px;border-radius:3px;text-transform:uppercase;}
+  .chip.sigir{background:#e7f0fb;color:#1f5fb0;}
+  .chip.ictir{background:#fdeee2;color:#b5651d;}
+  .chip.arxiv{background:#f0eafc;color:#6b3fa0;}
+  .chip.generic{background:#eceff3;color:#4a5560;}
+  @media (prefers-color-scheme: dark){
+    .chip.sigir{background:#16263a;color:#5b9be8;}
+    .chip.ictir{background:#3a2a18;color:#e0a15a;}
+    .chip.arxiv{background:#241a3a;color:#b394e8;}
+    .chip.generic{background:#232830;color:#9aa4b2;}
+  }
+  .link-pill{font-size:10.5px;font-weight:700;letter-spacing:.03em;
+    padding:1px 6px;border-radius:3px;}
+  .link-pill.doi{background:#eef4fc;color:#1f5fb0;}
+  .link-pill.arx{background:#f0eafc;color:#6b3fa0;}
+  @media (prefers-color-scheme: dark){
+    .link-pill.doi{background:#16263a;color:#5b9be8;}
+    .link-pill.arx{background:#241a3a;color:#b394e8;}
+  }
+  select.status{font:inherit;font-size:11.5px;padding:3px 6px;border-radius:6px;
+    border:1px solid var(--line);background:var(--bg);color:var(--ink);}
+  .notemark{color:var(--accent);font-weight:700;}
+  .pactions{margin-left:auto;display:flex;gap:6px;align-items:center;}
+
+  .summary-wrap{margin-top:9px;}
+  .summary-toggle{font-size:12px;color:var(--accent);background:none;border:none;padding:0;}
+  textarea.summary{width:100%;margin-top:8px;min-height:90px;resize:vertical;
+    font:inherit;font-size:13px;padding:9px 11px;border:1px solid var(--line);
+    border-radius:8px;background:var(--bg);color:var(--ink);line-height:1.5;}
+  textarea.summary:focus{outline:2px solid var(--accent-soft);border-color:var(--accent);}
+
+  /* Modal */
+  .modal-back{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;
+    align-items:flex-start;justify-content:center;padding:6vh 16px;z-index:50;overflow:auto;}
+  .modal-back.open{display:flex;}
+  .modal{background:var(--bg);border-radius:12px;max-width:460px;width:100%;
+    padding:22px 22px 20px;box-shadow:0 12px 40px rgba(0,0,0,.3);}
+  .modal h3{margin:0 0 4px;font-size:18px;}
+  .modal p.hint{margin:0 0 16px;font-size:12.5px;color:var(--muted);}
+  .field{margin:0 0 13px;}
+  .field label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;color:var(--muted);}
+  .field input,.field textarea,.field select{width:100%;font:inherit;font-size:14px;
+    padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);}
+  .field .sub{font-size:11px;color:var(--muted);margin-top:3px;}
+  .modal-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:18px;}
+  .modal-msg{font-size:12.5px;margin-top:10px;min-height:16px;}
+  .modal-msg.err{color:var(--err);}
+  .modal-msg.ok{color:var(--ok);}
+  .row2{display:flex;gap:11px;}
+  .row2>.field{flex:1;}
+
+  .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:8px;
+    font-size:13px;z-index:80;opacity:0;transition:opacity .2s;pointer-events:none;}
+  .toast.show{opacity:.95;}
+  .hidden{display:none !important;}
+  @media (max-width:620px){
+    .wrap{padding:14px 12px 80px;}
+    header.top h1{font-size:19px;width:100%;flex-basis:100%;}
+    .pactions{width:100%;margin-left:29px;margin-top:6px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Reading list</h1>
+    <span id="sync" class="sync state-idle"><span class="dot"></span><span id="syncLabel">not connected</span></span>
+    <button id="saveBtn" class="btn small hidden">Save to GitHub</button>
+    <button id="backupBtn" class="btn small ghost hidden" title="Download JSON">Backup</button>
+    <button id="settingsBtn" class="btn small">Settings</button>
+  </header>
+
+  <!-- EMPTY / CONNECT STATE -->
+  <section id="emptyState" class="empty">
+    <h2>Private reading list</h2>
+    <p>This page holds no data of its own. Connect a private GitHub repo with a fine-grained token to load your list.</p>
+    <button id="connectBtn" class="btn primary">Connect</button>
+  </section>
+
+  <!-- APP STATE -->
+  <main id="appState" class="hidden">
+    <!-- Reports strip -->
+    <section class="reports">
+      <div class="rhead">
+        <h2>Conference reports</h2>
+        <button id="addReportBtn" class="btn small">＋ Add report</button>
+      </div>
+      <div id="rcards" class="rcards"></div>
+    </section>
+
+    <div id="counts" class="counts"></div>
+
+    <div class="toolbar">
+      <input type="search" id="search" placeholder="Search title, note, summary…" autocomplete="off">
+      <select id="filterStatus">
+        <option value="">All statuses</option>
+        <option value="to-read">To read</option>
+        <option value="reading">Reading</option>
+        <option value="done">Done</option>
+      </select>
+      <select id="filterGroup"><option value="">All groups</option></select>
+      <select id="sortBy">
+        <option value="group">Sort: group</option>
+        <option value="title">Sort: title</option>
+        <option value="status">Sort: status</option>
+        <option value="updated">Sort: recently updated</option>
+      </select>
+      <button id="addPaperBtn" class="btn small primary">＋ Add paper</button>
+    </div>
+
+    <div id="list"></div>
+  </main>
+</div>
+
+<!-- Settings modal -->
+<div class="modal-back" id="settingsModal">
+  <div class="modal">
+    <h3>Connect / Settings</h3>
+    <p class="hint">Use a GitHub <b>fine-grained PAT</b> scoped to only your <code>reading-data</code> repo, with <b>Contents: Read and write</b>. The token is stored in this browser's localStorage only and never leaves this device.</p>
+    <div class="row2">
+      <div class="field">
+        <label for="cfgOwner">Owner</label>
+        <input id="cfgOwner" placeholder="your-github-user" autocapitalize="off" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="field">
+        <label for="cfgRepo">Repo</label>
+        <input id="cfgRepo" placeholder="reading-data" autocapitalize="off" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="cfgPath">Path</label>
+        <input id="cfgPath" placeholder="reading.json" autocapitalize="off" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="field">
+        <label for="cfgBranch">Branch</label>
+        <input id="cfgBranch" placeholder="main" autocapitalize="off" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <div class="field">
+      <label for="cfgToken">Token</label>
+      <input id="cfgToken" type="password" placeholder="github_pat_…" autocomplete="off" spellcheck="false">
+      <div class="sub">Stored locally. Disconnect clears it.</div>
+    </div>
+    <div class="modal-msg" id="settingsMsg"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="disconnectBtn">Disconnect</button>
+      <button class="btn" data-close>Cancel</button>
+      <button class="btn primary" id="connectSaveBtn">Connect</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add paper modal -->
+<div class="modal-back" id="paperModal">
+  <div class="modal">
+    <h3>Add paper</h3>
+    <p class="hint">Paste a title and optionally a DOI or arXiv link — the type is detected automatically.</p>
+    <div class="field">
+      <label for="npTitle">Title</label>
+      <input id="npTitle" placeholder="Paper title">
+    </div>
+    <div class="field">
+      <label for="npLink">Link (DOI or arXiv URL, optional)</label>
+      <input id="npLink" placeholder="https://doi.org/… or https://arxiv.org/abs/…" autocapitalize="off" spellcheck="false">
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="npVenue">Venue tag</label>
+        <input id="npVenue" placeholder="SIGIR / arXiv / …" autocapitalize="off">
+      </div>
+      <div class="field">
+        <label for="npTheme">Group</label>
+        <input id="npTheme" placeholder="1 · Group name">
+      </div>
+    </div>
+    <div class="field">
+      <label for="npNote">One-line note (optional)</label>
+      <input id="npNote" placeholder="what it does">
+    </div>
+    <div class="modal-msg" id="paperMsg"></div>
+    <div class="modal-actions">
+      <button class="btn" data-close>Cancel</button>
+      <button class="btn primary" id="paperSaveBtn">Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add report modal -->
+<div class="modal-back" id="reportModal">
+  <div class="modal">
+    <h3>Add report</h3>
+    <p class="hint">Link a published conference report (opens in a new tab).</p>
+    <div class="field">
+      <label for="nrTitle">Title</label>
+      <input id="nrTitle" placeholder="SIGIR 2026 — ranking &amp; retrieval">
+    </div>
+    <div class="field">
+      <label for="nrUrl">URL</label>
+      <input id="nrUrl" placeholder="/reviews/sigir-2026.html" autocapitalize="off" spellcheck="false">
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="nrVenue">Venue</label>
+        <input id="nrVenue" placeholder="SIGIR">
+      </div>
+      <div class="field">
+        <label for="nrDate">Date</label>
+        <input id="nrDate" placeholder="2026">
+      </div>
+    </div>
+    <div class="field">
+      <label for="nrNote">Note (optional)</label>
+      <input id="nrNote" placeholder="short description">
+    </div>
+    <div class="modal-msg" id="reportMsg"></div>
+    <div class="modal-actions">
+      <button class="btn" data-close>Cancel</button>
+      <button class="btn primary" id="reportSaveBtn">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+(function(){
+  // ---------- constants ----------
+  var LS_CONFIG = "readinglist.config";
+  var LS_CACHE  = "readinglist.cache";
+  var WRITE_DEBOUNCE = 2500;
+  var API = "https://api.github.com";
+
+  // ---------- state ----------
+  var config = { owner:"", repo:"", path:"reading.json", branch:"main", token:"" };
+  var data = normalize(null);
+  var sha = null;
+  var connected = false;
+  var dirty = false;
+  var writeTimer = null;
+  var syncState = "idle"; // idle|loading|synced|unsaved|saving|error
+  var openSummaries = {}; // id -> bool
+
+  // ---------- tiny DOM helpers ----------
+  function $(id){ return document.getElementById(id); }
+  function el(tag, cls){ var e = document.createElement(tag); if(cls) e.className = cls; return e; }
+  function esc(s){
+    return String(s==null?"":s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  }
+  function nowISO(){ return new Date().toISOString(); }
+  function uid(){
+    return "p" + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+  }
+
+  // ---------- base64 UTF-8 ----------
+  function b64encode(str){ return btoa(unescape(encodeURIComponent(str))); }
+  function b64decode(b64){ return decodeURIComponent(escape(atob(String(b64).replace(/\n/g,"")))); }
+
+  // ---------- normalize (tolerate old/partial files) ----------
+  function normalize(raw){
+    var d = raw;
+    if(Array.isArray(d)) d = { papers: d };
+    if(!d || typeof d !== "object") d = {};
+    var meta = d.meta && typeof d.meta === "object" ? d.meta : {};
+    var papers = Array.isArray(d.papers) ? d.papers : [];
+    var reports = Array.isArray(d.reports) ? d.reports : [];
+    return {
+      meta: {
+        title: meta.title || "Reading list",
+        description: meta.description || "",
+        schema: meta.schema || 1,
+        updated: meta.updated || null
+      },
+      papers: papers.map(normPaper),
+      reports: reports.map(normReport)
+    };
+  }
+  function normPaper(p){
+    p = p && typeof p === "object" ? p : {};
+    var st = p.status;
+    if(st !== "to-read" && st !== "reading" && st !== "done") st = "to-read";
+    return {
+      id: p.id || uid(),
+      title: p.title || "",
+      venue: p.venue || "",
+      theme: p.theme || "Unsorted",
+      doi: p.doi || "",
+      arxiv: p.arxiv || null,
+      note: p.note || "",
+      status: st,
+      summary: p.summary || "",
+      tags: Array.isArray(p.tags) ? p.tags : [],
+      added: p.added || null,
+      updated: p.updated || null
+    };
+  }
+  function normReport(r){
+    r = r && typeof r === "object" ? r : {};
+    return {
+      id: r.id || ("r" + uid()),
+      title: r.title || "",
+      url: r.url || "",
+      venue: r.venue || "",
+      date: r.date || "",
+      note: r.note || ""
+    };
+  }
+
+  // ---------- config persistence ----------
+  function loadConfig(){
+    try{
+      var raw = localStorage.getItem(LS_CONFIG);
+      if(raw){ var c = JSON.parse(raw); for(var k in c){ if(k in config) config[k] = c[k]; } }
+    }catch(e){}
+  }
+  function saveConfig(){
+    try{ localStorage.setItem(LS_CONFIG, JSON.stringify(config)); }catch(e){}
+  }
+  function loadCache(){
+    try{
+      var raw = localStorage.getItem(LS_CACHE);
+      if(raw){ var c = JSON.parse(raw); if(c && c.data){ data = normalize(c.data); sha = c.sha || null; } }
+    }catch(e){}
+  }
+  function saveCache(){
+    try{ localStorage.setItem(LS_CACHE, JSON.stringify({ data: data, sha: sha })); }catch(e){}
+  }
+  function hasConfig(){ return !!(config.owner && config.repo && config.token); }
+
+  // ---------- sync indicator ----------
+  function setSync(state){
+    syncState = state;
+    var labels = {
+      idle:"not connected", loading:"loading…", synced:"synced",
+      unsaved:"unsaved changes", saving:"saving…", error:"sync error"
+    };
+    var s = $("sync");
+    s.className = "sync state-" + state;
+    $("syncLabel").textContent = labels[state] || state;
+    var saveBtn = $("saveBtn");
+    if(state === "unsaved" || state === "error"){ saveBtn.classList.remove("hidden"); }
+    else { saveBtn.classList.add("hidden"); }
+  }
+
+  function markDirty(){
+    dirty = true;
+    setSync("unsaved");
+    saveCache();
+    scheduleWrite();
+  }
+
+  // ---------- GitHub REST ----------
+  function ghHeaders(){
+    return {
+      "Authorization": "Bearer " + config.token,
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    };
+  }
+  function contentsURL(){
+    // don't URL-encode the slashes in a nested path
+    return API + "/repos/" + encodeURIComponent(config.owner) + "/" +
+           encodeURIComponent(config.repo) + "/contents/" +
+           config.path.split("/").map(encodeURIComponent).join("/");
+  }
+
+  function ghGet(){
+    return fetch(contentsURL() + "?ref=" + encodeURIComponent(config.branch), { headers: ghHeaders() })
+      .then(function(res){
+        if(res.status === 404) return { missing:true };
+        if(res.status === 401) throw new Error("Unauthorized — check the token.");
+        if(!res.ok) throw new Error("GitHub read failed (" + res.status + ").");
+        return res.json().then(function(j){
+          return { content: b64decode(j.content), sha: j.sha };
+        });
+      });
+  }
+
+  function ghPut(message){
+    var body = {
+      message: message || "Update reading list",
+      content: b64encode(JSON.stringify(data, null, 2)),
+      branch: config.branch
+    };
+    if(sha) body.sha = sha;
+    return fetch(contentsURL(), {
+      method:"PUT", headers: ghHeaders(), body: JSON.stringify(body)
+    }).then(function(res){
+      if(res.status === 409 || res.status === 422){
+        // stale sha — refetch, retry once
+        return ghGet().then(function(g){
+          sha = g.missing ? null : g.sha;
+          var b2 = {
+            message: body.message,
+            content: body.content,
+            branch: config.branch
+          };
+          if(sha) b2.sha = sha;
+          return fetch(contentsURL(), { method:"PUT", headers: ghHeaders(), body: JSON.stringify(b2) })
+            .then(function(r2){
+              if(!r2.ok) throw new Error("Write retry failed (" + r2.status + ").");
+              return r2.json();
+            });
+        });
+      }
+      if(!res.ok) throw new Error("GitHub write failed (" + res.status + ").");
+      return res.json();
+    }).then(function(j){
+      if(j && j.content && j.content.sha) sha = j.content.sha;
+      return j;
+    });
+  }
+
+  // ---------- write scheduling ----------
+  function scheduleWrite(){
+    if(!connected) return;
+    if(writeTimer) clearTimeout(writeTimer);
+    writeTimer = setTimeout(function(){ writeTimer = null; flush(); }, WRITE_DEBOUNCE);
+  }
+  function flush(){
+    if(!connected || !dirty) return Promise.resolve();
+    if(writeTimer){ clearTimeout(writeTimer); writeTimer = null; }
+    data.meta.updated = nowISO();
+    setSync("saving");
+    return ghPut("Update reading list").then(function(){
+      dirty = false; saveCache(); setSync("synced");
+    }).catch(function(err){
+      setSync("error"); toast(err.message || "Save failed");
+    });
+  }
+
+  // ---------- connect / load ----------
+  function connect(){
+    if(!hasConfig()){ openSettings(); return; }
+    setSync("loading");
+    ghGet().then(function(g){
+      if(g.missing){
+        // create the file with an initial empty structure
+        data = normalize(null);
+        sha = null;
+        return ghPut("Initialize reading list").then(function(){
+          finishConnect();
+        });
+      }
+      try{ data = normalize(JSON.parse(g.content)); }
+      catch(e){ throw new Error("reading.json is not valid JSON."); }
+      sha = g.sha;
+      finishConnect();
+    }).catch(function(err){
+      connected = false;
+      setSync("error");
+      showEmpty();
+      toast(err.message || "Connection failed");
+    });
+  }
+  function finishConnect(){
+    connected = true;
+    dirty = false;
+    saveCache();
+    setSync("synced");
+    showApp();
+    render();
+  }
+
+  // ---------- view switching ----------
+  function showEmpty(){
+    $("emptyState").classList.remove("hidden");
+    $("appState").classList.add("hidden");
+    $("backupBtn").classList.add("hidden");
+  }
+  function showApp(){
+    $("emptyState").classList.add("hidden");
+    $("appState").classList.remove("hidden");
+    $("backupBtn").classList.remove("hidden");
+  }
+
+  // ---------- rendering ----------
+  function venueClass(v){
+    v = String(v||"").trim().toLowerCase();
+    if(v === "sigir") return "sigir";
+    if(v === "ictir") return "ictir";
+    if(v === "arxiv") return "arxiv";
+    return "generic";
+  }
+
+  function render(){
+    renderReports();
+    renderCounts();
+    renderGroupFilter();
+    renderList();
+  }
+
+  function renderReports(){
+    var box = $("rcards");
+    box.innerHTML = "";
+    if(!data.reports.length){
+      var em = el("div");
+      em.style.cssText = "font-size:12.5px;color:var(--muted);";
+      em.textContent = "No reports yet.";
+      box.appendChild(em);
+      return;
+    }
+    data.reports.forEach(function(r){
+      var c = el("div","rcard");
+      var x = el("button","rx");
+      x.textContent = "✕";
+      x.title = "Remove";
+      x.addEventListener("click", function(){ removeReport(r.id); });
+      c.appendChild(x);
+      c.innerHTML +=
+        '<div class="rvenue">' + esc(r.venue || "Report") + '</div>' +
+        '<a class="rtitle" href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.title || r.url) + '</a>' +
+        '<div class="rmeta">' + esc(r.date || "") + '</div>' +
+        (r.note ? '<div class="rnote">' + esc(r.note) + '</div>' : "");
+      box.appendChild(c);
+    });
+  }
+
+  function renderCounts(){
+    var total = data.papers.length;
+    var reading = 0, toread = 0, done = 0, notes = 0;
+    data.papers.forEach(function(p){
+      if(p.status === "reading") reading++;
+      else if(p.status === "done") done++;
+      else toread++;
+      if(p.summary && p.summary.trim()) notes++;
+    });
+    $("counts").innerHTML =
+      '<span><b>' + total + '</b> papers</span>' +
+      '<span><b>' + reading + '</b> reading</span>' +
+      '<span><b>' + toread + '</b> to read</span>' +
+      '<span><b>' + done + '</b> done</span>' +
+      '<span><b>' + notes + '</b> with notes</span>';
+  }
+
+  function renderGroupFilter(){
+    var sel = $("filterGroup");
+    var cur = sel.value;
+    var groups = uniqueThemes();
+    sel.innerHTML = '<option value="">All groups</option>';
+    groups.forEach(function(g){
+      var o = el("option");
+      o.value = g; o.textContent = g;
+      sel.appendChild(o);
+    });
+    if(groups.indexOf(cur) >= 0) sel.value = cur;
+  }
+  function uniqueThemes(){
+    var seen = {}, out = [];
+    data.papers.forEach(function(p){ if(!seen[p.theme]){ seen[p.theme] = 1; out.push(p.theme); } });
+    out.sort();
+    return out;
+  }
+
+  function statusRank(s){ return s === "reading" ? 0 : s === "to-read" ? 1 : 2; }
+
+  function currentPapers(){
+    var q = $("search").value.trim().toLowerCase();
+    var fs = $("filterStatus").value;
+    var fg = $("filterGroup").value;
+    return data.papers.filter(function(p){
+      if(fs && p.status !== fs) return false;
+      if(fg && p.theme !== fg) return false;
+      if(q){
+        var hay = (p.title + " " + p.note + " " + p.summary).toLowerCase();
+        if(hay.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderList(){
+    var list = $("list");
+    list.innerHTML = "";
+    var papers = currentPapers();
+    var sort = $("sortBy").value;
+
+    if(!papers.length){
+      var em = el("div");
+      em.style.cssText = "color:var(--muted);font-size:13.5px;padding:12px 2px;";
+      em.textContent = data.papers.length ? "No papers match the current filters." : "No papers yet — add one to get started.";
+      list.appendChild(em);
+      return;
+    }
+
+    if(sort === "group"){
+      // grouped rendering by theme
+      var byTheme = {};
+      papers.forEach(function(p){ (byTheme[p.theme] = byTheme[p.theme] || []).push(p); });
+      Object.keys(byTheme).sort().forEach(function(theme){
+        var arr = byTheme[theme];
+        var doneN = arr.filter(function(p){ return p.status === "done"; }).length;
+        var g = el("div","group");
+        var h = el("h3");
+        h.innerHTML = '<span>' + esc(theme) + '</span><span class="gcount">' + doneN + '/' + arr.length + '</span>';
+        g.appendChild(h);
+        arr.sort(function(a,b){ return a.title.localeCompare(b.title); })
+           .forEach(function(p){ g.appendChild(paperEl(p)); });
+        list.appendChild(g);
+      });
+    } else {
+      var sorted = papers.slice();
+      if(sort === "title") sorted.sort(function(a,b){ return a.title.localeCompare(b.title); });
+      else if(sort === "status") sorted.sort(function(a,b){ return statusRank(a.status) - statusRank(b.status) || a.title.localeCompare(b.title); });
+      else if(sort === "updated") sorted.sort(function(a,b){ return String(b.updated||"").localeCompare(String(a.updated||"")); });
+      sorted.forEach(function(p){ list.appendChild(paperEl(p)); });
+    }
+  }
+
+  function paperEl(p){
+    var wrap = el("div","paper" + (p.status === "done" ? " done" : ""));
+
+    var row = el("div","prow");
+    var cb = el("input"); cb.type = "checkbox"; cb.checked = p.status === "done";
+    cb.title = "Mark done";
+    cb.addEventListener("change", function(){
+      setPaper(p.id, { status: cb.checked ? "done" : "to-read" });
+    });
+    row.appendChild(cb);
+
+    var main = el("div","pmain");
+    var t = el("div","ptitle");
+    t.textContent = p.title || "(untitled)";
+    main.appendChild(t);
+
+    var meta = el("div","pmeta");
+    if(p.venue){
+      var chip = el("span","chip " + venueClass(p.venue));
+      chip.textContent = p.venue;
+      meta.appendChild(chip);
+    }
+    if(p.doi){
+      var d = el("a","link-pill doi"); d.textContent = "DOI";
+      d.href = p.doi; d.target = "_blank"; d.rel = "noopener";
+      meta.appendChild(d);
+    }
+    if(p.arxiv){
+      var a = el("a","link-pill arx"); a.textContent = "arXiv";
+      a.href = p.arxiv; a.target = "_blank"; a.rel = "noopener";
+      meta.appendChild(a);
+    }
+    if(p.summary && p.summary.trim()){
+      var nm = el("span","notemark"); nm.textContent = "● notes"; nm.title = "Has notes";
+      meta.appendChild(nm);
+    }
+
+    var actions = el("span","pactions");
+    var statusSel = el("select","status");
+    ["to-read","reading","done"].forEach(function(s){
+      var o = el("option"); o.value = s;
+      o.textContent = s === "to-read" ? "To read" : s === "reading" ? "Reading" : "Done";
+      if(p.status === s) o.selected = true;
+      statusSel.appendChild(o);
+    });
+    statusSel.addEventListener("change", function(){ setPaper(p.id, { status: statusSel.value }); });
+    actions.appendChild(statusSel);
+
+    var del = el("button","btn small ghost"); del.textContent = "✕"; del.title = "Delete paper";
+    del.addEventListener("click", function(){ removePaper(p.id); });
+    actions.appendChild(del);
+    meta.appendChild(actions);
+    main.appendChild(meta);
+
+    if(p.note){
+      var note = el("div","pnote"); note.textContent = p.note;
+      main.appendChild(note);
+    }
+
+    // summary
+    var sw = el("div","summary-wrap");
+    var isOpen = !!openSummaries[p.id] || (p.summary && p.summary.trim());
+    var toggle = el("button","summary-toggle");
+    toggle.textContent = isOpen ? "▾ Summary" : "▸ Add / edit summary";
+    var ta = el("textarea","summary");
+    ta.value = p.summary || "";
+    ta.placeholder = "Paste or type a summary… autosaves.";
+    if(!isOpen) ta.classList.add("hidden");
+    toggle.addEventListener("click", function(){
+      var hidden = ta.classList.toggle("hidden");
+      openSummaries[p.id] = !hidden;
+      toggle.textContent = hidden ? "▸ Add / edit summary" : "▾ Summary";
+      if(!hidden) ta.focus();
+    });
+    var debTimer = null;
+    ta.addEventListener("input", function(){
+      openSummaries[p.id] = true;
+      if(debTimer) clearTimeout(debTimer);
+      debTimer = setTimeout(function(){ setPaper(p.id, { summary: ta.value }, true); }, 700);
+    });
+    ta.addEventListener("blur", function(){
+      if(debTimer){ clearTimeout(debTimer); debTimer = null; }
+      var cur = findPaper(p.id);
+      if(cur && cur.summary !== ta.value) setPaper(p.id, { summary: ta.value }, true);
+    });
+    sw.appendChild(toggle);
+    sw.appendChild(ta);
+    main.appendChild(sw);
+
+    row.appendChild(main);
+    wrap.appendChild(row);
+    return wrap;
+  }
+
+  // ---------- mutations ----------
+  function findPaper(id){
+    for(var i=0;i<data.papers.length;i++){ if(data.papers[i].id === id) return data.papers[i]; }
+    return null;
+  }
+  function setPaper(id, patch, noRerender){
+    var p = findPaper(id);
+    if(!p) return;
+    for(var k in patch){ p[k] = patch[k]; }
+    p.updated = nowISO();
+    markDirty();
+    if(!noRerender) render();
+    else { renderCounts(); } // keep textarea focus during summary edits
+  }
+  function removePaper(id){
+    if(!confirm("Delete this paper from the list?")) return;
+    data.papers = data.papers.filter(function(p){ return p.id !== id; });
+    markDirty(); render();
+  }
+  function removeReport(id){
+    if(!confirm("Remove this report card?")) return;
+    data.reports = data.reports.filter(function(r){ return r.id !== id; });
+    markDirty(); renderReports();
+  }
+
+  function detectLink(url){
+    url = (url||"").trim();
+    var out = { doi:"", arxiv:null };
+    if(!url) return out;
+    if(/arxiv\.org/i.test(url)) out.arxiv = url;
+    else if(/doi\.org/i.test(url) || /^10\.\d/.test(url)){
+      out.doi = /^https?:/i.test(url) ? url : "https://doi.org/" + url;
+    } else {
+      out.doi = url; // fall back: treat as a DOI-ish link
+    }
+    return out;
+  }
+
+  function addPaperFromModal(){
+    var title = $("npTitle").value.trim();
+    if(!title){ modalMsg("paperMsg","Title is required.","err"); return; }
+    var link = detectLink($("npLink").value);
+    var venue = $("npVenue").value.trim();
+    if(!venue && link.arxiv) venue = "arXiv";
+    var p = normPaper({
+      id: uid(),
+      title: title,
+      venue: venue,
+      theme: $("npTheme").value.trim() || "Unsorted",
+      doi: link.doi,
+      arxiv: link.arxiv,
+      note: $("npNote").value.trim(),
+      status: "to-read",
+      added: nowISO(),
+      updated: nowISO()
+    });
+    data.papers.push(p);
+    markDirty();
+    closeModals(); render();
+    toast("Paper added");
+  }
+
+  function addReportFromModal(){
+    var title = $("nrTitle").value.trim();
+    var url = $("nrUrl").value.trim();
+    if(!title || !url){ modalMsg("reportMsg","Title and URL are required.","err"); return; }
+    data.reports.push(normReport({
+      id: "r" + uid(),
+      title: title, url: url,
+      venue: $("nrVenue").value.trim(),
+      date: $("nrDate").value.trim(),
+      note: $("nrNote").value.trim()
+    }));
+    markDirty();
+    closeModals(); renderReports();
+    toast("Report added");
+  }
+
+  // ---------- backup ----------
+  function backup(){
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type:"application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = el("a");
+    a.href = url;
+    a.download = "reading-" + nowISO().slice(0,10) + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  }
+
+  // ---------- modals ----------
+  function openSettings(){
+    $("cfgOwner").value = config.owner;
+    $("cfgRepo").value = config.repo;
+    $("cfgPath").value = config.path || "reading.json";
+    $("cfgBranch").value = config.branch || "main";
+    $("cfgToken").value = config.token;
+    modalMsg("settingsMsg","","");
+    openModal("settingsModal");
+  }
+  function saveSettingsAndConnect(){
+    config.owner = $("cfgOwner").value.trim();
+    config.repo = $("cfgRepo").value.trim();
+    config.path = $("cfgPath").value.trim() || "reading.json";
+    config.branch = $("cfgBranch").value.trim() || "main";
+    config.token = $("cfgToken").value.trim();
+    if(!hasConfig()){ modalMsg("settingsMsg","Owner, repo and token are all required.","err"); return; }
+    saveConfig();
+    modalMsg("settingsMsg","Connecting…","");
+    setSync("loading");
+    ghGet().then(function(g){
+      if(g.missing){
+        data = normalize(null); sha = null;
+        return ghPut("Initialize reading list").then(function(){ afterConnectOK(); });
+      }
+      try{ data = normalize(JSON.parse(g.content)); }
+      catch(e){ throw new Error("reading.json is not valid JSON."); }
+      sha = g.sha;
+      afterConnectOK();
+    }).catch(function(err){
+      setSync("error");
+      modalMsg("settingsMsg", err.message || "Connection failed", "err");
+    });
+  }
+  function afterConnectOK(){
+    connected = true; dirty = false; saveCache();
+    setSync("synced");
+    closeModals(); showApp(); render();
+    toast("Connected");
+  }
+  function disconnect(){
+    if(!confirm("Disconnect and clear the token + cached data from this device?")) return;
+    config.token = "";
+    saveConfig();
+    try{ localStorage.removeItem(LS_CACHE); }catch(e){}
+    connected = false; dirty = false; sha = null;
+    data = normalize(null);
+    setSync("idle");
+    closeModals(); showEmpty();
+    toast("Disconnected");
+  }
+
+  function openModal(id){ $(id).classList.add("open"); }
+  function closeModals(){
+    var ms = document.querySelectorAll(".modal-back");
+    for(var i=0;i<ms.length;i++) ms[i].classList.remove("open");
+  }
+  function modalMsg(id, text, kind){
+    var m = $(id);
+    m.textContent = text || "";
+    m.className = "modal-msg" + (kind ? " " + kind : "");
+  }
+
+  // ---------- toast ----------
+  var toastTimer = null;
+  function toast(msg){
+    var t = $("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    if(toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2200);
+  }
+
+  // ---------- wire up ----------
+  function bind(){
+    $("connectBtn").addEventListener("click", openSettings);
+    $("settingsBtn").addEventListener("click", openSettings);
+    $("connectSaveBtn").addEventListener("click", saveSettingsAndConnect);
+    $("disconnectBtn").addEventListener("click", disconnect);
+
+    $("saveBtn").addEventListener("click", function(){ flush(); });
+    $("backupBtn").addEventListener("click", backup);
+
+    $("addPaperBtn").addEventListener("click", function(){
+      $("npTitle").value=""; $("npLink").value=""; $("npVenue").value="";
+      $("npTheme").value=""; $("npNote").value=""; modalMsg("paperMsg","","");
+      openModal("paperModal"); $("npTitle").focus();
+    });
+    $("paperSaveBtn").addEventListener("click", addPaperFromModal);
+
+    $("addReportBtn").addEventListener("click", function(){
+      $("nrTitle").value=""; $("nrUrl").value=""; $("nrVenue").value="";
+      $("nrDate").value=""; $("nrNote").value=""; modalMsg("reportMsg","","");
+      openModal("reportModal"); $("nrTitle").focus();
+    });
+    $("reportSaveBtn").addEventListener("click", addReportFromModal);
+
+    // toolbar
+    $("search").addEventListener("input", renderList);
+    $("filterStatus").addEventListener("change", renderList);
+    $("filterGroup").addEventListener("change", renderList);
+    $("sortBy").addEventListener("change", renderList);
+
+    // close buttons + backdrop
+    document.addEventListener("click", function(e){
+      if(e.target.hasAttribute && e.target.hasAttribute("data-close")) closeModals();
+      if(e.target.classList && e.target.classList.contains("modal-back")) closeModals();
+    });
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape") closeModals();
+    });
+
+    // warn on unload if dirty
+    window.addEventListener("beforeunload", function(e){
+      if(dirty){ e.preventDefault(); e.returnValue = ""; return ""; }
+    });
+    // best-effort flush when tab hidden
+    document.addEventListener("visibilitychange", function(){
+      if(document.hidden && dirty) flush();
+    });
+  }
+
+  // ---------- boot ----------
+  loadConfig();
+  loadCache();
+  bind();
+  if(hasConfig()){
+    // show cached data immediately, then refresh from GitHub
+    if(data.papers.length || data.reports.length){ showApp(); render(); }
+    connect();
+  } else {
+    setSync("idle");
+    showEmpty();
+  }
+})();
+</script>
+</body>
+</html>

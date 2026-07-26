@@ -75,6 +75,26 @@
   .counts{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 16px;font-size:13px;color:var(--muted);}
   .counts b{color:var(--ink);font-variant-numeric:tabular-nums;}
 
+  /* Tabs + feeds */
+  .tabs{display:flex;gap:2px;margin:0 0 18px;border-bottom:1px solid var(--line);}
+  .tab{background:none;border:none;padding:9px 14px;font-size:14px;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;}
+  .tab.active{color:var(--ink);border-bottom-color:var(--accent);font-weight:600;}
+  .tab:hover{color:var(--ink);}
+  .tabbadge{display:inline-block;font-size:11px;background:var(--accent);color:#fff;border-radius:9px;padding:0 6px;font-weight:700;vertical-align:middle;}
+  .feed-src{font-size:12px;color:var(--muted);margin:0 0 16px;}
+  .feed-panel{margin:0 0 18px;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .feed-phead{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px;padding:11px 14px;background:var(--chip);}
+  .feed-phead h3{font-size:14.5px;margin:0;}
+  .feed-phead .fcount{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .feed-phead .fdesc{flex:1 1 100%;font-size:12px;color:var(--muted);margin:1px 0 0;}
+  .feed-status{font-size:12.5px;color:var(--muted);padding:12px 14px;font-style:italic;}
+  .feed-item{padding:11px 14px;border-top:1px solid var(--line);}
+  .feed-item .fi-title{font-weight:600;font-size:14px;word-wrap:break-word;}
+  .feed-item .fi-meta{margin-top:3px;font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;}
+  .feed-item .fi-reason{margin-top:4px;font-size:12.5px;color:var(--accent);}
+  .feed-item .fi-note{margin-top:3px;font-size:12.5px;color:var(--muted);}
+  .fi-add{margin-left:auto;}
+
   /* Toolbar */
   .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;align-items:center;}
   .toolbar input[type=search],.toolbar select{
@@ -193,6 +213,12 @@
 
   <!-- APP STATE -->
   <main id="appState" class="hidden">
+    <div class="tabs">
+      <button id="tabList" class="tab active">Reading list</button>
+      <button id="tabFeeds" class="tab">Feeds <span id="feedsBadge" class="tabbadge hidden"></span></button>
+    </div>
+
+    <div id="listView">
     <!-- Reports strip -->
     <section class="reports">
       <div class="rhead">
@@ -223,6 +249,11 @@
     </div>
 
     <div id="list"></div>
+    </div><!-- /listView -->
+
+    <div id="feedsView" class="hidden">
+      <div id="feedsBody"></div>
+    </div>
   </main>
 </div>
 
@@ -596,6 +627,7 @@
     setSync("synced");
     showApp();
     render();
+    feedsLoaded = false; loadFeeds();
   }
 
   // ---------- view switching ----------
@@ -992,6 +1024,7 @@
     connected = true; dirty = false; saveCache();
     setSync("synced");
     closeModals(); showApp(); render();
+    feedsLoaded = false; loadFeeds();
     toast("Connected");
   }
   function disconnect(){
@@ -1027,6 +1060,105 @@
     toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2200);
   }
 
+  // ---------- feeds ----------
+  var FEED_ORDER = ["must-not-miss","relevant-to-project","new-methods","useful-assets",
+    "emerging-clusters","missing-foundational","challenges-assumptions","transfer-opportunities","manual-acquisition"];
+  var feedsLoaded = false, feedsDoc = null;
+
+  function ghGetFile(path){
+    var url = API + "/repos/" + encodeURIComponent(config.owner) + "/" + encodeURIComponent(config.repo)
+      + "/contents/" + path.split("/").map(encodeURIComponent).join("/")
+      + "?ref=" + encodeURIComponent(config.branch);
+    return fetch(url, { headers: ghHeaders() }).then(function(res){
+      if(res.status === 404) return null;
+      if(!res.ok) return ghFail("Feeds read failed", res);
+      return res.json().then(function(j){ return JSON.parse(b64decode(j.content)); });
+    });
+  }
+  function normTitle(s){ return String(s||"").replace(/\s+/g," ").trim().toLowerCase(); }
+  function feedInList(it){ var k = normTitle(it.title); return data.papers.some(function(p){ return normTitle(p.title) === k; }); }
+
+  function showTab(which){
+    var isFeeds = which === "feeds";
+    $("listView").classList.toggle("hidden", isFeeds);
+    $("feedsView").classList.toggle("hidden", !isFeeds);
+    $("tabList").classList.toggle("active", !isFeeds);
+    $("tabFeeds").classList.toggle("active", isFeeds);
+    if(isFeeds && !feedsLoaded) loadFeeds();
+  }
+  function loadFeeds(){
+    feedsLoaded = true;
+    if(!$("feedsBody").innerHTML) $("feedsBody").innerHTML = '<div class="feed-status">Loading feeds…</div>';
+    return ghGetFile("feeds.json").then(function(doc){ feedsDoc = doc; renderFeeds(doc); })
+      .catch(function(e){ $("feedsBody").innerHTML = '<div class="feed-status">Couldn’t load feeds — ' + esc(e.message||"error") + '</div>'; });
+  }
+  function updateFeedsBadge(){
+    var n = 0;
+    if(feedsDoc && feedsDoc.feeds){
+      Object.keys(feedsDoc.feeds).forEach(function(k){
+        (feedsDoc.feeds[k].items || []).forEach(function(it){ if(!feedInList(it)) n++; });
+      });
+    }
+    var b = $("feedsBadge");
+    if(n > 0){ b.textContent = n; b.classList.remove("hidden"); } else b.classList.add("hidden");
+  }
+  function renderFeeds(doc){
+    var body = $("feedsBody"); body.innerHTML = "";
+    if(!doc){ body.innerHTML = '<div class="feed-status">No feeds yet — they populate as venue ingestion runs.</div>'; updateFeedsBadge(); return; }
+    if(doc.source || doc.generated_at){
+      var s = el("div","feed-src");
+      s.textContent = (doc.source || "") + (doc.generated_at ? "  ·  generated " + doc.generated_at : "");
+      body.appendChild(s);
+    }
+    var order = FEED_ORDER.slice();
+    Object.keys(doc.feeds || {}).forEach(function(k){ if(order.indexOf(k) < 0) order.push(k); });
+    order.forEach(function(k){
+      var f = doc.feeds[k]; if(!f) return;
+      var items = f.items || [];
+      var panel = el("div","feed-panel");
+      var head = el("div","feed-phead");
+      head.innerHTML = '<h3>' + esc(f.title || k) + '</h3><span class="fcount">' + items.length + '</span>'
+        + (f.desc ? '<div class="fdesc">' + esc(f.desc) + '</div>' : '');
+      panel.appendChild(head);
+      if(items.length){ items.forEach(function(it){ panel.appendChild(feedItemEl(it)); }); }
+      else { var st = el("div","feed-status"); st.textContent = f.status || "Nothing here right now."; panel.appendChild(st); }
+      body.appendChild(panel);
+    });
+    updateFeedsBadge();
+  }
+  function feedItemEl(it){
+    var d = el("div","feed-item");
+    var t = el("div","fi-title"); t.textContent = it.title || "(untitled)"; d.appendChild(t);
+    var meta = el("div","fi-meta");
+    if(it.venue){ var c = el("span","chip " + venueClass(it.venue)); c.textContent = it.venue; meta.appendChild(c); }
+    if(it.topic){ var tp = el("span"); tp.textContent = it.topic; meta.appendChild(tp); }
+    if(it.doi){ var a = el("a","link-pill doi"); a.textContent = "DOI"; a.href = it.doi; a.target = "_blank"; a.rel = "noopener"; meta.appendChild(a); }
+    if(it.url){ var u = el("a","link-pill url"); u.textContent = urlLabel(it.url); u.href = it.url; u.target = "_blank"; u.rel = "noopener"; meta.appendChild(u); }
+    if(it.arxiv){ var x = el("a","link-pill arx"); x.textContent = "arXiv"; x.href = it.arxiv; x.target = "_blank"; x.rel = "noopener"; meta.appendChild(x); }
+    var act = el("span","fi-add");
+    var btn = el("button","btn small");
+    if(feedInList(it)){ btn.textContent = "✓ In list"; btn.disabled = true; btn.className = "btn small ghost"; }
+    else { btn.textContent = "＋ List"; btn.className = "btn small primary"; btn.addEventListener("click", function(){ addFromFeed(it, btn); }); }
+    act.appendChild(btn); meta.appendChild(act);
+    d.appendChild(meta);
+    if(it.reason){ var r = el("div","fi-reason"); r.textContent = it.reason; d.appendChild(r); }
+    if(it.note){ var n = el("div","fi-note"); n.textContent = it.note; d.appendChild(n); }
+    return d;
+  }
+  function addFromFeed(it, btn){
+    if(feedInList(it)){ btn.textContent = "✓ In list"; btn.disabled = true; btn.className = "btn small ghost"; return; }
+    var now = nowISO();
+    data.papers.push(normPaper({
+      id: uid(), title: it.title || "", venue: it.venue || "", theme: it.topic || "Unsorted",
+      doi: it.doi || "", arxiv: it.arxiv || null, url: it.url || "", note: it.note || "",
+      status: "to-read", added: now, updated: now
+    }));
+    markDirty();
+    btn.textContent = "✓ Added"; btn.disabled = true; btn.className = "btn small ghost";
+    renderCounts(); updateFeedsBadge();
+    toast("Added to reading list");
+  }
+
   // ---------- wire up ----------
   function bind(){
     $("connectBtn").addEventListener("click", openSettings);
@@ -1036,6 +1168,9 @@
 
     $("saveBtn").addEventListener("click", function(){ flush(); });
     $("backupBtn").addEventListener("click", backup);
+
+    $("tabList").addEventListener("click", function(){ showTab("list"); });
+    $("tabFeeds").addEventListener("click", function(){ showTab("feeds"); });
 
     $("addPaperBtn").addEventListener("click", function(){
       $("npTitle").value=""; $("npLink").value=""; $("npVenue").value="";

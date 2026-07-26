@@ -16,4 +16,7 @@ children:
   - title: divider
   - title: blog
     permalink: /blog/
+  - title: divider
+  - title: reading
+    permalink: /reading/
 ---

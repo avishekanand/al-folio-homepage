@@ -132,6 +132,11 @@
 
   .summary-wrap{margin-top:9px;}
   .summary-toggle{font-size:12px;color:var(--accent);background:none;border:none;padding:0;}
+  .save-status{font-size:11px;margin-left:9px;color:var(--muted);vertical-align:middle;}
+  .save-status.saved{color:var(--ok);}
+  .save-status.saving{color:var(--warn);}
+  .save-status.unsaved{color:var(--warn);}
+  .save-status.err{color:var(--err);}
   textarea.summary{width:100%;margin-top:8px;min-height:90px;resize:vertical;
     font:inherit;font-size:13px;padding:9px 11px;border:1px solid var(--line);
     border-radius:8px;background:var(--bg);color:var(--ink);line-height:1.5;}
@@ -543,15 +548,20 @@
     if(writeTimer) clearTimeout(writeTimer);
     writeTimer = setTimeout(function(){ writeTimer = null; flush(); }, WRITE_DEBOUNCE);
   }
+  // one-shot listeners fired when the next GitHub write finishes (used by summary boxes)
+  var saveWaiters = [];
+  function onNextSave(cb){ saveWaiters.push(cb); }
+  function notifyWaiters(ok){ var w = saveWaiters; saveWaiters = []; w.forEach(function(cb){ try{ cb(ok); }catch(e){} }); }
+
   function flush(){
     if(!connected || !dirty) return Promise.resolve();
     if(writeTimer){ clearTimeout(writeTimer); writeTimer = null; }
     data.meta.updated = nowISO();
     setSync("saving");
     return ghPut("Update reading list").then(function(){
-      dirty = false; saveCache(); setSync("synced");
+      dirty = false; saveCache(); setSync("synced"); notifyWaiters(true);
     }).catch(function(err){
-      setSync("error"); toast(err.message || "Save failed");
+      setSync("error"); toast(err.message || "Save failed"); notifyWaiters(false);
     });
   }
 
@@ -813,9 +823,11 @@
     var isOpen = !!openSummaries[p.id] || (p.summary && p.summary.trim());
     var toggle = el("button","summary-toggle");
     toggle.textContent = isOpen ? "▾ Summary" : "▸ Add / edit summary";
+    var sstatus = el("span","save-status");
+    if(p.summary && p.summary.trim()){ sstatus.textContent = "Saved ✓"; sstatus.className = "save-status saved"; }
     var ta = el("textarea","summary");
     ta.value = p.summary || "";
-    ta.placeholder = "Paste or type a summary… autosaves.";
+    ta.placeholder = "Paste or type a summary… saves automatically to GitHub.";
     if(!isOpen) ta.classList.add("hidden");
     toggle.addEventListener("click", function(){
       var hidden = ta.classList.toggle("hidden");
@@ -823,18 +835,28 @@
       toggle.textContent = hidden ? "▸ Add / edit summary" : "▾ Summary";
       if(!hidden) ta.focus();
     });
+    function setStatus(text, cls){ sstatus.textContent = text; sstatus.className = "save-status " + (cls || ""); }
+    function saveSummary(){
+      var cur = findPaper(p.id);
+      if(!cur || cur.summary === ta.value){ return; }
+      setStatus("Saving…", "saving");
+      setPaper(p.id, { summary: ta.value }, true);   // updates data + marks dirty + schedules the write
+      if(!connected){ setStatus("Saved on device — connect to sync", "unsaved"); return; }
+      onNextSave(function(ok){ if(ok) setStatus("Saved ✓", "saved"); else setStatus("Save failed — will retry", "err"); });
+    }
     var debTimer = null;
     ta.addEventListener("input", function(){
       openSummaries[p.id] = true;
+      setStatus("Unsaved…", "unsaved");
       if(debTimer) clearTimeout(debTimer);
-      debTimer = setTimeout(function(){ setPaper(p.id, { summary: ta.value }, true); }, 700);
+      debTimer = setTimeout(saveSummary, 700);
     });
     ta.addEventListener("blur", function(){
       if(debTimer){ clearTimeout(debTimer); debTimer = null; }
-      var cur = findPaper(p.id);
-      if(cur && cur.summary !== ta.value) setPaper(p.id, { summary: ta.value }, true);
+      saveSummary();
     });
     sw.appendChild(toggle);
+    sw.appendChild(sstatus);
     sw.appendChild(ta);
     main.appendChild(sw);
 

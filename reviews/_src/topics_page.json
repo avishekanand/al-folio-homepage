@@ -1,0 +1,42 @@
+{
+  "_comment": "One-pager content for the cross-conference by-topic view. build_topics.py fills in 'themes' from the aggregation over all *_data.json reports; edit prose/anchors here.",
+  "year": "2026",
+  "output": "by-topic.html",
+  "meta": {
+    "kicker": "Topic-centric view · across conferences",
+    "title": "My reading, by research topic",
+    "dek": "The same papers as my per-conference reports, but re-sorted <em>by topic across venues</em> — so work on the same problem from different conferences sits together. Ordered by how central each topic is to what I work on; peripheral topics are kept but grouped at the end.",
+    "meta_html": "Aggregated from my conference reports &nbsp;|&nbsp; a curated, verified sample &mdash; not the full proceedings &nbsp;|&nbsp; <a href=\"/reading/\">&#8599; Reading list</a>"
+  },
+  "takeaway": "<b>Why this view:</b> the interesting movements are <b>cross-venue</b>. Self-improvement and reasoning-intensive retrieval show up at an IR venue, an ML venue and an NLP venue at once — you only see that if you drop the conference boundary and read by topic.",
+  "shifts_heading": "What the cross-venue view makes obvious",
+  "shifts": [
+    {"n":"1","heading":"Self-improvement is venue-agnostic",
+     "prose":"The self-improving / self-evolving agent is no longer an ML curiosity — the same idea (improve from your own experience, gated by a verifier) shows up at ICML and ACL in the same season. Read by conference you'd think it was three separate trends; read by topic it's clearly one.",
+     "anchors":[
+       {"title":"MemEvolve: Meta-Evolution of Agent Memory Systems","venue":"ICML","url":"https://icml.cc/virtual/2026/poster/61379"},
+       {"title":"TT-SI: Self-Improving LLM Agents with Test-Time Training","venue":"ACL Findings","doi":"https://doi.org/10.18653/v1/2026.findings-acl.462"},
+       {"title":"Toward Training Superintelligent Software Agents through Self-Play SWE-RL","venue":"ICML","url":"https://icml.cc/virtual/2026/poster/66747"}
+     ]},
+    {"n":"2","heading":"Retrieval learned to reason — everywhere",
+     "prose":"Reasoning-intensive retrieval and agentic search are a shared obsession across SIGIR, ICML and ACL, all circling the BRIGHT benchmark and the deep-research agent. The methods that travel best are about representations and distillation, which is why I keep those core even when the surrounding topic isn't.",
+     "anchors":[
+       {"title":"DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research","venue":"ICML","url":"https://icml.cc/virtual/2026/poster/65886"},
+       {"title":"Agentic-R: Learning to Retrieve for Agentic Search","venue":"ACL Findings","doi":"https://doi.org/10.18653/v1/2026.findings-acl.785"},
+       {"title":"ReasonEmbed: Enhanced Text Embeddings for Reasoning-Intensive Document Retrieval","venue":"ACL","arxiv":"https://arxiv.org/abs/2510.08252"}
+     ]},
+    {"n":"3","heading":"The judge and the verifier are the shared bottleneck",
+     "prose":"Whether the paper is about ranking, self-reward, or alignment, it eventually leans on a model judging a model. The cross-venue signal is that everyone now treats the judge as something to be measured and defended, not trusted.",
+     "anchors":[
+       {"title":"Quantifying Biases in LLM-as-a-Judge Evaluations","venue":"ICML","url":"https://icml.cc/virtual/2026/poster/61443"},
+       {"title":"AgentV-RL: Scaling Reward Modeling with Agentic Verifier","venue":"ACL Findings","doi":"https://doi.org/10.18653/v1/2026.findings-acl.1156"},
+       {"title":"When to Trust the Cheap Check: Weak and Strong Verification for Reasoning","venue":"ICML","url":"https://icml.cc/virtual/2026/poster/62754"}
+     ]}
+  ],
+  "appendix_title": "Every catalogued paper, grouped by topic",
+  "appendix_dek": "Core topics first, then the ones less central to my work. Each paper keeps its venue chip so you can see which conference it came from; links are the venue's canonical one (DOI, ICML program page, or arXiv).",
+  "sources_html": "Aggregated from my conference reports: <a href=\"/reviews/sigir-ictir-2026.html\">SIGIR/ICTIR</a> &middot; <a href=\"/reviews/icml-2026.html\">ICML</a> &middot; <a href=\"/reviews/acl-2026.html\">ACL</a>.",
+  "method_html": "<b>How I built this:</b> build_topics.py re-sorts the papers from every conference report into one taxonomy (<code>topics.json</code>), deduplicating by title. It <b>fails</b> if a report uses a theme that isn't a known topic, so the view can't silently drift. Ordering reflects <b>my</b> interests — retrieval/ranking, self-improvement and ranking-relevant methods (distillation, learnt representations) up top; recommendation, LTR-fairness, diffusion and multimodal/speech grouped as <b>less central</b> at the end. Inherits each source report's coverage caveats.",
+  "footer_onepager": "A topic-centric view across my conference reports. Full grouped list follows.",
+  "footer_appendix": "Generated by build_topics.py. Papers carry their original venue chip and canonical link."
+}

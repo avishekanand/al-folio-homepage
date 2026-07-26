@@ -1,0 +1,1613 @@
+{
+  "_comment": "Appendix-only backfill of the SIGIR/ICTIR 2026 report (its HTML was authored elsewhere). Used for the by-topic aggregation; not regenerated (no 'output'), so the published sigir-ictir-2026.html stays canonical.",
+  "year": "2026",
+  "aggregate_only": true,
+  "themes": [
+    {
+      "num": "1",
+      "name": "Reasoning-first ranking & LLM rerankers",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "Rank-R1: Enhancing Reasoning in LLM-based Document Rerankers via Reinforcement Learning",
+          "note": "RL-trained reranker that reasons over query and candidates before ordering.",
+          "doi": "https://doi.org/10.1145/3805712.3809961",
+          "arxiv": "https://arxiv.org/abs/2503.06034"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Think When Needed: Model-Aware Reasoning Routing for LLM-based Ranking",
+          "note": "Spends reasoning only on queries that need it; routes the rest to cheap scoring.",
+          "doi": "https://doi.org/10.1145/3805712.3809709"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "When Vision Meets Texts in Listwise Reranking",
+          "note": "Listwise LLM reranking that jointly reasons over visual and textual candidates.",
+          "doi": "https://doi.org/10.1145/3805712.3809723"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "On the Robustness of LLM Re-Rankings",
+          "note": "Stress-tests how stable LLM re-ranking is under perturbation.",
+          "doi": "https://doi.org/10.1145/3805712.3809883"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "The Vulnerability of LLM Rankers to Prompt Injection Attacks",
+          "note": "Shows LLM rankers can be gamed by injected instructions in documents.",
+          "doi": "https://doi.org/10.1145/3805712.3808553"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "CRED: Calibrated Relational Enhanced Distillation for LLM-Based Pointwise Reranking",
+          "note": "Distillation to make pointwise LLM reranking calibrated and cheaper.",
+          "doi": "https://doi.org/10.1145/3805712.3809850"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Consensus-Anchored Expansion for Noise-Resilient Re-ranking",
+          "note": "Anchors on consensus signals to keep re-ranking robust to noise.",
+          "doi": "https://doi.org/10.1145/3805712.3809634"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Domain-Specific Reranking: When is Adaptation Worth the Cost?",
+          "note": "Empirically maps when domain adaptation of rerankers pays off.",
+          "doi": "https://doi.org/10.1145/3805712.3808400"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Revisiting Text Ranking in Deep Research",
+          "note": "Re-examines classic text ranking inside deep-research pipelines.",
+          "doi": "https://doi.org/10.1145/3805712.3808557"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "One Pass, Any Order: Position-Invariant Listwise Reranking for LLM-Based Recommendation",
+          "note": "Removes position bias from listwise LLM reranking for rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809952"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "When Search Is Not Enough: Ranking Content for Query-Less Browse Surfaces",
+          "note": "Ranking where there is no query, only a browse surface.",
+          "doi": "https://doi.org/10.1145/3805712.3808435"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "From Unstructured to Structured: LLM-Guided Attribute Graphs for Entity Search and Ranking",
+          "note": "Builds attribute graphs with LLMs to rank entities.",
+          "doi": "https://doi.org/10.1145/3805712.3808501"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Temporal User-Agnostic Ranking: Detecting Preference Evolution while Preserving Ethical Principles",
+          "note": "Ranks over time without per-user profiling.",
+          "doi": "https://doi.org/10.1145/3805712.3809900"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Learning to Summarize for Search Relevance with Reinforcement Learning",
+          "note": "RL-tuned summaries used as a search-relevance signal.",
+          "doi": "https://doi.org/10.1145/3805712.3808491"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "rerankers: A Lightweight Unified Toolkit for Reranking Approaches",
+          "note": "Open toolkit unifying many reranking methods behind one API.",
+          "doi": "https://doi.org/10.1145/3805712.3808630"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Does Form Affect Function? An Extended Study of LLM Re-Ranking Behavior",
+          "note": "Probes whether reasoning rerankers are stable across prompt/format.",
+          "doi": "https://doi.org/10.1145/3805713.3820410"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Ranking Passages in Relevant Documents Using LLMs",
+          "note": "Intra-document passage ranking from LLM relevance signals.",
+          "doi": "https://doi.org/10.1145/3805713.3820407"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Adaptive Re-Ranking",
+          "note": "Adjusts re-ranking depth/effort per query rather than a fixed cutoff.",
+          "doi": "https://doi.org/10.1145/3805713.3820436"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Entity Labels Are Not Entity Signals: A Framework for Observable Relevance in Document Re-Ranking",
+          "note": "Separates surface entity labels from signals that drive relevance.",
+          "doi": "https://doi.org/10.1145/3805713.3820411"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Rank-ICL: Ranking-based In-context Learning for Search Result Explanation",
+          "note": "Ranking-based in-context examples to explain results.",
+          "doi": "https://doi.org/10.1145/3805713.3820420"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Rank, Don't Generate: Statement-level Ranking for Explainable Recommendation",
+          "note": "Ranks candidate explanation statements instead of generating text.",
+          "doi": "https://doi.org/10.1145/3805713.3820414"
+        }
+      ]
+    },
+    {
+      "num": "2",
+      "name": "Retrieval for agents, deep research, RAG & QA",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "HiRA: Decoupling Planning and Execution with Hierarchical Reasoning in Deep Search",
+          "note": "Separates strategic planning from specialized execution in deep search.",
+          "doi": "https://doi.org/10.1145/3805712.3809666"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Learning to Retrieve from Agent Trajectories",
+          "note": "Trains the retriever directly on agent interaction data.",
+          "doi": "https://doi.org/10.1145/3805712.3809675",
+          "arxiv": "https://arxiv.org/abs/2604.04949"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Agentic Search in the Wild: Intents and Trajectory Dynamics from 14M+ Real Search Requests",
+          "note": "Large-scale empirical characterization of how agents search.",
+          "doi": "https://doi.org/10.1145/3805712.3809627",
+          "arxiv": "https://arxiv.org/abs/2601.17617"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Towards Knowledgeable Deep Research: Framework and Benchmark",
+          "note": "New framework and benchmark for knowledge-grounded deep research.",
+          "doi": "https://doi.org/10.1145/3805712.3809617"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Deep Search with Hierarchical Meta-Cognitive Monitoring Inspired by Cognitive Neuroscience",
+          "note": "Adds explicit hierarchical metacognition to deep-search control.",
+          "doi": "https://doi.org/10.1145/3805712.3809549"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "SmartSearch: Process Reward-Guided Query Refinement for Search Agents",
+          "note": "Process rewards and dual-level credit to improve agent queries.",
+          "doi": "https://doi.org/10.1145/3805712.3809700"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Personalized Deep Research: A User-Centric Framework, Dataset, and Hybrid Evaluation",
+          "note": "Personalizes deep research with a dataset and hybrid evaluation.",
+          "doi": "https://doi.org/10.1145/3805712.3808609"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Mixture-of-Retrieval Experts for Reasoning-Guided Multimodal Knowledge Exploitation",
+          "note": "Routes among specialized retrievers for multimodal reasoning.",
+          "doi": "https://doi.org/10.1145/3805712.3809588"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Exploration-and-Thinking: Agentic Reasoning over Knowledge Graphs via LLM-RL Synergy",
+          "note": "LLM+RL agent that reasons over knowledge graphs.",
+          "doi": "https://doi.org/10.1145/3805712.3809649"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "STRIDE: Strategic Iterative Decision-Making for Retrieval-Augmented Multi-Hop QA",
+          "note": "Iterative decision-making for multi-hop RAG question answering.",
+          "doi": "https://doi.org/10.1145/3805712.3809703"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Question-Adaptive Graph Learning for Multi-hop Retrieval Augmented Generation",
+          "note": "Graph learning tailored per question for multi-hop RAG.",
+          "doi": "https://doi.org/10.1145/3805712.3809693"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Incentivizing Retrieval-Augmented Generation via Inner Adaptive Context Selection",
+          "note": "Learns to select context inside the RAG loop.",
+          "doi": "https://doi.org/10.1145/3805712.3809671"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Numerical Hallucinations in Retrieval-Augmented Generation: Detection and Analysis",
+          "note": "Detects and analyzes number errors in RAG output.",
+          "doi": "https://doi.org/10.1145/3805712.3809882"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "PurifAI: Detecting and Fixing Search-Induced Distortions in Web-Augmented LLMs",
+          "note": "Cleans distortions introduced by web search into LLM answers.",
+          "doi": "https://doi.org/10.1145/3805712.3809751"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Policy-Guided RAG: Enforcing Verbatim and Controlled Synthesis",
+          "note": "Constrains RAG generation to policy-verbatim synthesis.",
+          "doi": "https://doi.org/10.1145/3805712.3808490"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Fast and Faithful: Real-Time Verification for Long-Document RAG Systems",
+          "note": "Real-time faithfulness verification for long-document RAG.",
+          "doi": "https://doi.org/10.1145/3805712.3808493"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "How Should Multimodal Information Be Chunked for Complex Question Answering?",
+          "note": "Studies chunking strategies for multimodal QA.",
+          "doi": "https://doi.org/10.1145/3805712.3808358"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Reward Shaping for Robust Refusal in Small Language Models for RAG QA",
+          "note": "Teaches small models to refuse when RAG evidence is weak.",
+          "doi": "https://doi.org/10.1145/3805712.3809891"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "CroSearch-R1: Better Leveraging Cross-lingual Knowledge for Retrieval-Augmented Generation",
+          "note": "Cross-lingual knowledge use in RAG.",
+          "doi": "https://doi.org/10.1145/3805712.3809921"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Hierarchical Embedding Fusion for Retrieval-Augmented Code Generation",
+          "note": "Fuses embeddings for retrieval-augmented code generation.",
+          "doi": "https://doi.org/10.1145/3805712.3809571"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "SRAG: A Lightweight and Specialized Retrieval-augmented Generation System at the Edge",
+          "note": "Compact RAG system that runs at the edge.",
+          "doi": "https://doi.org/10.1145/3805712.3809702"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "MCP Servers for Pyserini and RankLLM: Enabling Agentic Retrieval-Augmented Generation",
+          "note": "MCP server wrappers to plug IR tools into agents.",
+          "doi": "https://doi.org/10.1145/3805712.3808376"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "AgentSim: A Platform for Verifiable Agent-Trace Simulation",
+          "note": "Simulation platform for reproducible agent traces.",
+          "doi": "https://doi.org/10.1145/3805712.3808577"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "WebMall - A Multi-Shop Benchmark for Evaluating Web Agents",
+          "note": "Benchmark for shopping web agents.",
+          "doi": "https://doi.org/10.1145/3805712.3808592"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Evaluation of Agents under Simulated AI Marketplace Dynamics",
+          "note": "Evaluates agents inside a simulated AI marketplace.",
+          "doi": "https://doi.org/10.1145/3805712.3808542"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Learning from Natural Language Feedback for Personalized Question Answering",
+          "note": "Uses NL feedback instead of scalar rewards for personalized QA.",
+          "doi": "https://doi.org/10.1145/3805712.3809747"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Learning to Trust: Dynamic Utilization of RAG for E-commerce Search Relevance",
+          "note": "Decides when to trust RAG for e-commerce relevance.",
+          "doi": "https://doi.org/10.1145/3805712.3808439"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "DeepResearchGym: A Free, Transparent, and Reproducible Sandbox for Deep Research",
+          "note": "Open, reproducible evaluation environment for deep-research agents.",
+          "doi": "https://doi.org/10.1145/3805713.3820409"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Towards Adaptive and Retriever-friendly Retrieval-augmented Generation via Reinforcement Learning",
+          "note": "RL-tunes generation to be easier for the retriever to support.",
+          "doi": "https://doi.org/10.1145/3805713.3820432"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Plan-and-Refine in RAG: Diverse and Comprehensive Responses via Global Exploration and Local Exploitation",
+          "note": "Global+local search for more complete RAG answers.",
+          "doi": "https://doi.org/10.1145/3805713.3820415"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Beyond Relevance: On the Relationship Between Retrieval and RAG Information Coverage",
+          "note": "Retrieval relevance and answer coverage are different objectives.",
+          "doi": "https://doi.org/10.1145/3805713.3820424"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Uncertainty Quantification for Multimodal Retrieval Augmented Generation",
+          "note": "Confidence estimates across retrieval and generation in multimodal RAG.",
+          "doi": "https://doi.org/10.1145/3805713.3820431"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "RoTRAG: Rule of Thumb Reasoning for Conversation Harm Detection with RAG",
+          "note": "Retrieves heuristics to detect harmful conversation.",
+          "doi": "https://doi.org/10.1145/3805713.3820397"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "RAAD: Retrieval-Augmented Ambiguity Detection via Answer Diversity",
+          "note": "Uses answer diversity to flag ambiguous questions.",
+          "doi": "https://doi.org/10.1145/3805713.3820422"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Preventing Content Leakage in LLM-Based Medical RAG: Structure-Only Retrieval",
+          "note": "Structure-only retrieval for leak-free clinical summarization.",
+          "doi": "https://doi.org/10.1145/3805713.3820416"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "As We May Search",
+          "note": "Vision piece re-imagining search in the agentic era.",
+          "doi": "https://doi.org/10.1145/3805713.3820402"
+        }
+      ]
+    },
+    {
+      "num": "3",
+      "name": "Evaluation, relevance judgments & LLM-as-judge",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "Topic-Specific Classifiers are Better Relevance Judges than Prompted LLMs",
+          "note": "Lightweight classifiers can out-judge prompted LLMs.",
+          "doi": "https://doi.org/10.1145/3805712.3809713"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Formalized Information Needs Improve Large-Language-Model Relevance Judgments",
+          "note": "Formalizing the need sharpens LLM label quality.",
+          "doi": "https://doi.org/10.1145/3805712.3809561"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Learning to Rank with Multi-Criteria LLM-Judge Annotations",
+          "note": "Trains rankers from multi-criteria LLM judgments.",
+          "doi": "https://doi.org/10.1145/3805712.3809580"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "When LLM Judges Inflate Scores: Exploring Overrating in Relevance Assessment",
+          "note": "Documents systematic over-rating by LLM judges.",
+          "doi": "https://doi.org/10.1145/3805712.3809905"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Humans, LLMs, and Measures Do Not Align in Attributed Information Retrieval",
+          "note": "Human, LLM, and metric judgments diverge on attributed IR.",
+          "doi": "https://doi.org/10.1145/3805712.3809867"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Mine over Yours: How Authorship Biases Evaluation in Generative Information Retrieval",
+          "note": "Shows authorship bias in generative-IR evaluation.",
+          "doi": "https://doi.org/10.1145/3805712.3809948"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Hybrid Pooling with LLMs via Relevance Context Learning",
+          "note": "LLM-assisted pooling to build test collections cheaply.",
+          "doi": "https://doi.org/10.1145/3805712.3809669"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Stop Using the Wilcoxon Test: Myth, Misconception and Misuse in IR Research",
+          "note": "Methodological critique of a staple significance test.",
+          "doi": "https://doi.org/10.1145/3805712.3808540"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "The Powerless Noise: How Experimental Settings Shape the Reported Power of Noise",
+          "note": "How experimental design distorts reported statistical power.",
+          "doi": "https://doi.org/10.1145/3805712.3808556"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Towards a Relevance Posterior in Neural Information Access",
+          "note": "Argues for a posterior over relevance, not point labels.",
+          "doi": "https://doi.org/10.1145/3805712.3808541"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "G-CoS: An Interpretable Gain-Cost Framework for User Satisfaction Estimation in Generative IR",
+          "note": "Interpretable gain-cost model of user satisfaction.",
+          "doi": "https://doi.org/10.1145/3805712.3809934"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Decision-Theoretic Stopping Rules for Document Screening",
+          "note": "When to stop screening under a decision-theoretic objective.",
+          "doi": "https://doi.org/10.1145/3805712.3809548"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "How Variability Influences Podcast Search: Queries, Transcriptions, and Judges",
+          "note": "Transcription and judge variability move podcast-search results.",
+          "doi": "https://doi.org/10.1145/3805712.3809668"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Reasoning with Large Language Models for Relevance Judgements",
+          "note": "Tests reasoning-augmented LLMs as relevance assessors.",
+          "doi": "https://doi.org/10.1145/3805713.3820403"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "LLM-Driven Usefulness Judgment for Web Search Evaluation",
+          "note": "Moves from relevance to usefulness as the LLM-judged signal.",
+          "doi": "https://doi.org/10.1145/3805713.3820429"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "DoGMaTiQ: Automated Generation of Question-and-Answer Nuggets for Report Evaluation",
+          "note": "Auto-generates nuggets to evaluate long-form reports.",
+          "doi": "https://doi.org/10.1145/3805713.3820425"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Search Arena Meets Nuggets: Explanations and Diagnostics for LLM Response Evaluation",
+          "note": "Arena comparison plus nugget diagnostics.",
+          "doi": "https://doi.org/10.1145/3805713.3820418"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Bridging the Gap between Subsampled and Full-Corpus Evaluation",
+          "note": "Reconciles cheap subsampled with full-corpus evaluation.",
+          "doi": "https://doi.org/10.1145/3805713.3820404"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "To Believe or Not To Believe: Supporting-Information Tools for Judging AI Veracity",
+          "note": "Which supporting tools help humans judge AI truthfulness.",
+          "doi": "https://doi.org/10.1145/3805713.3820430"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "ARIC: A Cognitive Framework for Explanatory Narrative Evaluation in CIS",
+          "note": "Cognitive framework for evaluating explanations in conversational IR.",
+          "doi": "https://doi.org/10.1145/3805713.3820401"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Proposing an Evaluation Framework for Legal Case Retrieval Beyond Binary Relevance",
+          "note": "Bibliographic-coupling approach to graded legal-retrieval evaluation.",
+          "doi": "https://doi.org/10.1145/3805713.3820412"
+        }
+      ]
+    },
+    {
+      "num": "4",
+      "name": "Dense / sparse / multi-vector retrieval & efficiency",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "Scaling Laws for Embedding Dimension in Information Retrieval",
+          "note": "First principled scaling curve for retrieval embedding size.",
+          "doi": "https://doi.org/10.1145/3805712.3809708",
+          "arxiv": "https://arxiv.org/abs/2602.05062"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Efficient Sparse Retrieval with Lightweight Superblock Pruning",
+          "note": "Superblock pruning to speed up learned-sparse retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809739"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Why Advanced Encoders Lag on Sparse Retrieval? Bridging Vocabulary Gaps",
+          "note": "Diagnoses and closes the vocabulary gap for strong encoders.",
+          "doi": "https://doi.org/10.1145/3805712.3809724"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Multi-Vector Index Compression in Any Modality",
+          "note": "Modality-agnostic compression for multi-vector indexes.",
+          "doi": "https://doi.org/10.1145/3805712.3809589"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "A Voronoi Cell Formulation for Principled Token Pruning in Late-Interaction Retrieval Models",
+          "note": "Geometry-grounded token pruning for ColBERT-style retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809726"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Comparing Token Pruning Approaches for Multi-Vector Retrieval",
+          "note": "Head-to-head study of late-interaction token pruning.",
+          "doi": "https://doi.org/10.1145/3805712.3808564"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Sparton: Fast and Memory-Efficient Triton Kernel for Learned Sparse Retrieval",
+          "note": "GPU kernel making learned-sparse retrieval fast and lean.",
+          "doi": "https://doi.org/10.1145/3805712.3809976"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "LACONIC: Dense-Level Effectiveness for Scalable Sparse Retrieval via Two-Phase Training",
+          "note": "Two-phase curriculum lifts sparse retrieval to dense quality.",
+          "doi": "https://doi.org/10.1145/3805712.3809869"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "From Tokens to Concepts: Leveraging SAE for SPLADE",
+          "note": "Sparse autoencoders to interpret and improve SPLADE.",
+          "doi": "https://doi.org/10.1145/3805712.3809565"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Scalable K-Means Guided Partitioning for Block-based Sparse Document Retrieval",
+          "note": "Cluster-guided partitioning for faster sparse retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809971"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Internalizing Explicit Reasoning into Latent Space for Dense Retrieval",
+          "note": "Self-distills chain-of-thought into the dense embedding.",
+          "doi": "https://doi.org/10.1145/3805712.3809575"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "ARHN: Answer-Centric Relabeling of Hard Negatives with Open-Source LLMs for Dense Retrieval",
+          "note": "LLM-relabeled hard negatives for dense retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809628"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Constructing Hard-Positive Query-Document Pairs for Dense Retrieval via Phrase Representativeness",
+          "note": "Builds hard positives to train dense retrievers.",
+          "doi": "https://doi.org/10.1145/3805712.3809734"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Beyond Hard Negatives: The Importance of Score Distribution in Knowledge Distillation",
+          "note": "Score distribution, not just negatives, matters in distillation.",
+          "doi": "https://doi.org/10.1145/3805712.3809843"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Negative Data Mining for Contrastive Learning in Dense Retrieval at IKEA.com",
+          "note": "Industrial negative mining for dense retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3808441"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "The Matryoshka Hypencoder",
+          "note": "Nested-dimension hypernetwork encoder for flexible embeddings.",
+          "doi": "https://doi.org/10.1145/3805712.3809980"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Semantic Recall for Vector Search",
+          "note": "Improving recall in vector search.",
+          "doi": "https://doi.org/10.1145/3805712.3809894"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Benchmarking Filtered Approximate Nearest Neighbor Search on Transformer-based Embedding Vectors",
+          "note": "Benchmark of filtered ANN over transformer vectors.",
+          "doi": "https://doi.org/10.1145/3805712.3809731"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "RankEvolve: Automating the Discovery of Retrieval Algorithms via LLM-Driven Evolution",
+          "note": "LLM-driven evolutionary search for retrieval algorithms.",
+          "doi": "https://doi.org/10.1145/3805712.3809962"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "A Parametric Memory Head for Continual Generative Retrieval",
+          "note": "Memory head for continually-updating generative retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809725"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Efficient Continual Adaptation of Generative Retrieval Systems over Dynamic Corpora",
+          "note": "Keeps generative retrieval current as corpora change.",
+          "doi": "https://doi.org/10.1145/3805712.3808359"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "PrepRet: Automated Data Preparation Pipeline Selection for Neural Retrieval",
+          "note": "Auto-selects data-prep pipelines for neural retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809885"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Revisiting BM25 Feedback Models using HyDE",
+          "note": "Combines classic PRF with hypothetical-document embeddings.",
+          "doi": "https://doi.org/10.1145/3805712.3809889"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Auditing Query Drift: Do Users Actually Benefit from Pseudo-Relevance Feedback?",
+          "note": "Questions whether PRF actually helps users.",
+          "doi": "https://doi.org/10.1145/3805712.3809916"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Clustering-Based Methods for Vector-Based Pseudo-Relevance Feedback",
+          "note": "Cluster-based PRF for dense retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809919"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Insights into the Efficiency of Open-Source Score-at-a-Time Search Engines (Reproducibility)",
+          "note": "Reproducibility study of score-at-a-time engines.",
+          "doi": "https://doi.org/10.1145/3805712.3808554"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Reproduction Beyond Benchmarks: ConstBERT and ColBERT-v2 Across Backends and Query Distributions",
+          "note": "Reproduces late-interaction models across backends.",
+          "doi": "https://doi.org/10.1145/3805712.3808561"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "A Replicability Study of Joint Product Quantisation for Space-Efficient Dense Retrieval",
+          "note": "Replicates joint PQ for compact dense retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3808565"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "A Replicability Study of XTR",
+          "note": "Reproduces and stress-tests the XTR multi-vector retriever.",
+          "doi": "https://doi.org/10.1145/3805713.3820423"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Model Merging as an Alternative to Fine-Tuning for a Multi-Domain Dense Retriever",
+          "note": "Merges domain experts instead of fine-tuning on combined data.",
+          "doi": "https://doi.org/10.1145/3805713.3820398"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Analysis of Reasoning-Intensive Retrieval in Japanese",
+          "note": "Reasoning-heavy retrieval beyond English.",
+          "doi": "https://doi.org/10.1145/3805713.3820433"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Effectiveness of Sparse Retrieval for Automated Fact-Checking",
+          "note": "Revisits learned-sparse retrieval for evidence finding.",
+          "doi": "https://doi.org/10.1145/3805713.3820434"
+        }
+      ]
+    },
+    {
+      "num": "5",
+      "name": "Learning-to-rank theory, bias, click models & fairness",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "Diagnosing Identifiability in Two-Tower Models for Unbiased Learning to Rank",
+          "note": "Identifiability conditions for two-tower unbiased LTR.",
+          "doi": "https://doi.org/10.1145/3805712.3809640"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Logit Inflation in ListMLE: Theoretical Analysis and Mitigation Strategies",
+          "note": "Diagnoses and fixes a pathology in the ListMLE loss.",
+          "doi": "https://doi.org/10.1145/3805712.3809676"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "LearnDCG: End-to-End Joint Optimization of Ranker and Loss in Neural Ranking",
+          "note": "Jointly learns the ranker and its ranking loss.",
+          "doi": "https://doi.org/10.1145/3805712.3809872"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "OPS: An Order-Preserving Sorting Network for Information Retrieval",
+          "note": "Differentiable order-preserving sorting for ranking.",
+          "doi": "https://doi.org/10.1145/3805712.3809596"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Unifying On- and Off-Policy Variance Reduction Methods",
+          "note": "Unified variance reduction for counterfactual/LTR estimation.",
+          "doi": "https://doi.org/10.1145/3805712.3809903"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Additive Control Variates Dominate Self-Normalisation in Off-Policy Evaluation",
+          "note": "Better estimators for off-policy IR evaluation.",
+          "doi": "https://doi.org/10.1145/3805712.3809837"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Variance Reduction for Heavy-Tailed Monetization Metrics in Ranking Experiments",
+          "note": "Post-stratification for noisy ranking A/B metrics.",
+          "doi": "https://doi.org/10.1145/3805712.3808428"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "CLAX: Fast and Flexible Neural Click Models in JAX",
+          "note": "Fast neural click-model library.",
+          "doi": "https://doi.org/10.1145/3805712.3808584"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "An Epistemic Position-Based Click Model: From Interactions to Distributions of Relevance and Bias",
+          "note": "Click model yielding distributions over relevance and bias.",
+          "doi": "https://doi.org/10.1145/3805712.3809529"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Post-hoc Provider Fairness Adaptation via Hierarchical Exposure Alignment",
+          "note": "Exposure-aligned provider fairness applied post-hoc.",
+          "doi": "https://doi.org/10.1145/3805712.3809597"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Adaptive Autoguidance for Item-Side Fairness in Diffusion Recommender Systems",
+          "note": "Item-side fairness for diffusion recommenders.",
+          "doi": "https://doi.org/10.1145/3805712.3809912"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Exposure-Based Reinforcement Learning to Rank",
+          "note": "RL-to-rank driven by exposure rather than raw clicks.",
+          "doi": "https://doi.org/10.1145/3805713.3820396"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "A Theoretical Framework for Risk Analysis of Stochastic Rankers",
+          "note": "Formal risk analysis for rankers that sample orderings.",
+          "doi": "https://doi.org/10.1145/3805713.3820421"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "From Noise to Order: Learning to Rank via Denoising Diffusion",
+          "note": "Casts ranking as a denoising-diffusion process.",
+          "doi": "https://doi.org/10.1145/3805713.3820437"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Prior-Data Fitted Networks as Tabular Foundation Models for Ranking in Low-Data Settings",
+          "note": "Brings PFNs to ranking where labels are scarce.",
+          "doi": "https://doi.org/10.1145/3805713.3820419"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Relaxed Term Matching for Neural Axiomatic Diagnostics",
+          "note": "Axiomatic diagnostics adapted to neural rankers.",
+          "doi": "https://doi.org/10.1145/3805713.3820405"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Stability in Competitive Search with Results Diversification",
+          "note": "Game-theoretic stability when content competes.",
+          "doi": "https://doi.org/10.1145/3805713.3820417"
+        }
+      ]
+    },
+    {
+      "num": "6",
+      "name": "Generative recommendation, semantic IDs & LLM recommenders",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "Universal Item Tokenization for Transferable Generative Recommendation",
+          "note": "Transferable item tokenization across domains.",
+          "doi": "https://doi.org/10.1145/3805712.3809720"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Semantic IDs for Recommender Systems at Snapchat: Use Cases, Challenges, Design Choices",
+          "note": "Production use of semantic IDs at Snapchat.",
+          "doi": "https://doi.org/10.1145/3805712.3808405"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "SID-Coord: Coordinating Semantic IDs for ID-based Ranking in Short-Video Search",
+          "note": "Coordinates semantic IDs with ID-based ranking.",
+          "doi": "https://doi.org/10.1145/3805712.3808436"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Mitigating Collaborative Semantic ID Staleness in Generative Retrieval",
+          "note": "Keeps semantic IDs fresh in generative retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809877"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Verifiable Reasoning for LLM-based Generative Recommendation",
+          "note": "Adds verifiable reasoning traces to LLM recommenders.",
+          "doi": "https://doi.org/10.1145/3805712.3809622"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Beyond the Single Path: Divergent Reasoning for LLM-based Recommendation",
+          "note": "Counters reasoning-path collapse in LLM recommenders.",
+          "doi": "https://doi.org/10.1145/3805712.3809732"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Think, But Don't Tell: Implicit Reasoning for Sequential Recommendation via Multi-Teacher Distillation",
+          "note": "Distills large-model reasoning into lightweight recommenders.",
+          "doi": "https://doi.org/10.1145/3805712.3809758"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "BEAR: Towards Beam-Search-Aware Optimization for Recommendation with LLMs",
+          "note": "Aligns training with beam search in LLM rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809533"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "GFlowGR: Fine-tuning Generative Recommendation Frameworks with Generative Flow Networks",
+          "note": "GFlowNets for generative recommendation.",
+          "doi": "https://doi.org/10.1145/3805712.3809663"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Beyond Static Best-of-N: Bayesian List-wise Alignment for LLM-based Recommendation",
+          "note": "Bayesian listwise alignment for LLM rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809535"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Adaptive Mix Preference Optimization for Generative Recommendation",
+          "note": "Mixed preference optimization for generative rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809727"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Learning Decomposed Contextual Token Representations for Generative Recommendation",
+          "note": "Decomposed token representations for generative rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809578"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "LWGR: Lagrangian-Constrained Personalized World Knowledge for Generative Recommendation",
+          "note": "Injects constrained world knowledge into generative rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809677"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "AIPO: Adaptive Anchored Intent-aware Policy Optimization for Generative Recommendation",
+          "note": "Intent-aware policy optimization for generative rec.",
+          "doi": "https://doi.org/10.1145/3805712.3808424"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "GenRec: A Preference-Oriented Generative Framework for Large-Scale Recommendation",
+          "note": "Preference-oriented generative rec at scale.",
+          "doi": "https://doi.org/10.1145/3805712.3808437"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "M2GR: Generative User Interest Modeling via Multi-Granularity Multi-Objective CoT",
+          "note": "Multi-granularity CoT for industrial generative rec.",
+          "doi": "https://doi.org/10.1145/3805712.3808461"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Large-Scale Online Learning for Generative List Recommendation in E-commerce",
+          "note": "Online learning for generative list rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809577"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Full Retraining, Incremental Fine-tuning, and Hybrid Serving for Industrial Generative Recommenders",
+          "note": "Serving strategies for industrial generative rec.",
+          "doi": "https://doi.org/10.1145/3805712.3808403"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "GNN-Based Item Indexing for LLM-Enhanced Recommendation",
+          "note": "GNN item indexing to feed LLM recommenders.",
+          "doi": "https://doi.org/10.1145/3805712.3809568"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Modular Representation Compression: Adapting LLM Representations for Efficient Recommendation",
+          "note": "Controls modularity of LLM representations for rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809681"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "ItemRAG: Item-Based Retrieval-Augmented Generation for LLM-Based Recommendation",
+          "note": "Item-based RAG for LLM recommenders.",
+          "doi": "https://doi.org/10.1145/3805712.3809942"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Unifying Search and Recommendation in LLMs via Gradient Multi-Subspace Tuning",
+          "note": "One LLM for both search and recommendation.",
+          "doi": "https://doi.org/10.1145/3805712.3809719"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Beyond Item IDs: Scaling Short-Form-Video Recommendation via Semantic-Native Long Sequence Modeling",
+          "note": "Semantic-native sequences for short-video rec.",
+          "doi": "https://doi.org/10.1145/3805712.3808503"
+        }
+      ]
+    },
+    {
+      "num": "7",
+      "name": "Recommendation: sequential, multimodal, graph, CF, CTR & ads",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "SpecTran: Spectral-Aware Transformer-based Adapter for LLM-Enhanced Sequential Recommendation",
+          "note": "Spectral adapter for LLM-enhanced sequential rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809701"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Contrastive Flow Matching for Collaborative Filtering",
+          "note": "Flow matching applied to collaborative filtering.",
+          "doi": "https://doi.org/10.1145/3805712.3809735"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Revisiting Collaborative Filtering by Unleashing the Power of Similarity",
+          "note": "Rethinks similarity in collaborative filtering.",
+          "doi": "https://doi.org/10.1145/3805712.3809606"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Adaptive Rich-kernelized Contrastive Learning for Collaborative Filtering",
+          "note": "Kernelized contrastive CF.",
+          "doi": "https://doi.org/10.1145/3805712.3809527"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "MLLMRec: A Preference Reasoning Paradigm with Graph Refinement for Multimodal Recommendation",
+          "note": "Preference reasoning + graph refinement for multimodal rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809749"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Robust Multimodal Recommendation via Graph Retrieval-Enhanced Modality Completion",
+          "note": "Completes missing modalities via graph retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809607"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "DIGEST: Dynamic Graph Refinement with Dual Contrastive Semantic Transfer for Multimodal Recommendation",
+          "note": "Dynamic graph refinement for multimodal rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809642"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Structural and Disentangled Adaptation of Large VLMs for Multimodal Recommendation",
+          "note": "Adapts VLMs for multimodal rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809977"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "From Raw Features to Effective Embeddings: Multimodal Recipe Recommendation",
+          "note": "Three-stage embeddings for recipe rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809863"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Countering Interest Over-Smoothing: Distilling Latent Factors via Diffusion for Multi-Interest Retrieval",
+          "note": "Diffusion to preserve diverse user interests.",
+          "doi": "https://doi.org/10.1145/3805712.3809736"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Inferring Targets from Calibrated Hesitations in Multi-Behavior Recommendation",
+          "note": "Uses hesitation signals in multi-behavior rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809574"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Exploring Test-time Scaling via Prediction Merging on Large-Scale Recommendation",
+          "note": "Test-time scaling by merging predictions.",
+          "doi": "https://doi.org/10.1145/3805712.3809740"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Optimizing Marketing Subsidies via Counterfactual Learning with Asymmetric Reward",
+          "note": "Counterfactual learning for subsidy allocation.",
+          "doi": "https://doi.org/10.1145/3805712.3809750"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "From Clues to Generation: Language-Guided Conditional Diffusion for Cross-Domain Recommendation",
+          "note": "Language-guided diffusion for cross-domain rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809563"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Bridging Behavior and Semantics for Time-aware Cross-Domain Sequential Recommendation",
+          "note": "Time-aware cross-domain sequential rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809733"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Fusion and Alignment Enhancement with LLMs for Tail-item Sequential Recommendation",
+          "note": "LLM help for long-tail items.",
+          "doi": "https://doi.org/10.1145/3805712.3809741"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "AsarRec: Adaptive Sequential Augmentation for Robust Self-supervised Sequential Recommendation",
+          "note": "Augmentation for robust self-supervised seq rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809629"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "HyFormer: Revisiting Sequence Modeling and Feature Interaction in CTR Prediction",
+          "note": "Rethinks CTR sequence + feature interaction.",
+          "doi": "https://doi.org/10.1145/3805712.3809745"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Understanding DNNs in Feature Interaction Models: A Dimensional Collapse Perspective",
+          "note": "Explains feature-interaction models via dimensional collapse.",
+          "doi": "https://doi.org/10.1145/3805712.3809983"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Equip Pre-ranking with Target Attention by Residual Quantization",
+          "note": "Target attention for efficient pre-ranking.",
+          "doi": "https://doi.org/10.1145/3805712.3809857"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Generative Auto-Bidding with Unified Modeling and Exploration",
+          "note": "Generative auto-bidding for ads.",
+          "doi": "https://doi.org/10.1145/3805712.3809661"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "DIVER: Unlocking Diversity in Ad Headline Generation with Large Language Models",
+          "note": "Diverse ad-headline generation.",
+          "doi": "https://doi.org/10.1145/3805712.3808496"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Debiased Recommendation Beyond the Positive Propensity Assumption",
+          "note": "Debiasing without the positive-propensity assumption.",
+          "doi": "https://doi.org/10.1145/3805712.3809636"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Beyond Dense Connectivity: Explicit Sparsity for Scalable Recommendation",
+          "note": "Explicit sparsity for scalable rec.",
+          "doi": "https://doi.org/10.1145/3805712.3809630"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "RecQuest: Towards Estimating User Domain Knowledge in Conversational Recommender Systems",
+          "note": "Infers a user's expertise to adapt conversational recommendation.",
+          "doi": "https://doi.org/10.1145/3805713.3820438"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Equity by Design? On the Trade-Offs in Fairness-Driven Recommendation in Heterogeneous Two-Sided Markets",
+          "note": "Analyzes fairness trade-offs across two-sided markets.",
+          "doi": "https://doi.org/10.1145/3805713.3820413"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "RAMP: Robust Ad Recommendation Under Limited Personalized-Feature Availability via Masking and Alignment",
+          "note": "Masking + alignment for ad rec when personalization is sparse.",
+          "doi": "https://doi.org/10.1145/3805713.3820399"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "RIDRec: Retrieval-Enhanced Intent Diffusion for Anonymous Short-Session Recommendation",
+          "note": "Diffusion over retrieved intents for cold, anonymous sessions.",
+          "doi": "https://doi.org/10.1145/3805713.3820428"
+        }
+      ]
+    },
+    {
+      "num": "8",
+      "name": "Multimodal, cross-modal & structured retrieval",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "Attention Grounded Enhancement for Visual Document Retrieval",
+          "note": "Grounds attention to improve document-image retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809532"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "ReAlign: Optimizing the Visual Document Retriever with Reasoning-Guided Fine-Grained Alignment",
+          "note": "Reasoning-guided alignment for visual-doc retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809602"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Generation-Augmented Video Corpus Moment Retrieval",
+          "note": "Reframes moment retrieval as generative understanding.",
+          "doi": "https://doi.org/10.1145/3805712.3809742"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "From Interference to Stability: Video Moment Retrieval with Relevance Feedback",
+          "note": "Relevance feedback for video moment retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809564"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Unifying Granularity and Reliability: Text-based Person Retrieval",
+          "note": "Robust, efficient text-based person retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809718"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Corpus-Centric Learning for Zero-Shot Table Retrieval",
+          "note": "Zero-shot retrieval over tabular corpora.",
+          "doi": "https://doi.org/10.1145/3805712.3809544"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "FollowTable: A Benchmark for Instruction-Following Table Retrieval",
+          "note": "Benchmark for instruction-conditioned table retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809658"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Visual-RAG: Benchmarking Text-to-Image Retrieval Augmented Generation",
+          "note": "Benchmark for text-to-image RAG.",
+          "doi": "https://doi.org/10.1145/3805712.3808615"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Spectral-Adaptive Adversarial Hashing for Robust Image Retrieval",
+          "note": "Adversarially robust hashing for image retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809611"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "A Sketch+Text Composed Image Retrieval Dataset for Thangka",
+          "note": "Composed image retrieval dataset (Thangka art).",
+          "doi": "https://doi.org/10.1145/3805712.3808581"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Agentic Spatio-Temporal Grounding via Collaborative Reasoning",
+          "note": "Agentic grounding across space and time.",
+          "doi": "https://doi.org/10.1145/3805712.3809528"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "FAST-MEL: Fast, Accurate, Storage-Efficient Multimodal Entity Linking",
+          "note": "Efficient multimodal entity linking.",
+          "doi": "https://doi.org/10.1145/3805712.3809860"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "CoMCo: Consistency-Aware Multi-Agent Coordination for Zero-Shot Cross-Modal Entity Matching",
+          "note": "Multi-agent zero-shot cross-modal matching.",
+          "doi": "https://doi.org/10.1145/3805712.3809543"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Beyond Unimodal Perspectives: Generative Retrieval with Multimodal Semantics",
+          "note": "Generative retrieval with multimodal semantics.",
+          "doi": "https://doi.org/10.1145/3805712.3809844"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Learning Noise-Resilient and Transferable Graph-Text Alignment via Dynamic Quality Assessment",
+          "note": "Robust graph-text alignment.",
+          "doi": "https://doi.org/10.1145/3805712.3809579"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Seeing the Whole Through the Parts: Object Discovery via Semantic Part Mining",
+          "note": "Weakly-supervised object discovery.",
+          "doi": "https://doi.org/10.1145/3805712.3809753"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Adaptive Token-Aware Query Reformulation for Text-to-Image Retrieval",
+          "note": "Token-aware reformulation for cross-modal retrieval.",
+          "doi": "https://doi.org/10.1145/3805713.3820400"
+        }
+      ]
+    },
+    {
+      "num": "9",
+      "name": "Search behavior, query & intent understanding, GenAI-vs-search",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "An Eye Tracking Study: Are AI Overviews Changing Search Behavior?",
+          "note": "Eye-tracking evidence on AI Overviews' effect on attention.",
+          "doi": "https://doi.org/10.1145/3805712.3809530"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "How Generative AI Disrupts Search: An Empirical Study of Google Search, Gemini, and AI Overviews",
+          "note": "Measures GenAI's effect on real search outcomes.",
+          "doi": "https://doi.org/10.1145/3805712.3809667"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "A Comparative Study of Users' Information-Seeking Across Search Engines and Generative AI Chatbots",
+          "note": "Search vs. chatbot information-seeking behavior.",
+          "doi": "https://doi.org/10.1145/3805712.3809525"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "From Lab to Reality: An Eye-tracking Study of How Users are Influenced to Search in the Era of GenAI",
+          "note": "How GenAI influences search behavior, in situ.",
+          "doi": "https://doi.org/10.1145/3805712.3808365"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Following the Eye-Tracking Evidence: Established Web-Search Assumptions Fail in Carousel Interfaces",
+          "note": "Position-bias assumptions break in carousels.",
+          "doi": "https://doi.org/10.1145/3805712.3809657"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Understanding and Modeling Heterogeneous Search Behavior",
+          "note": "Models the diversity of real search strategies.",
+          "doi": "https://doi.org/10.1145/3805712.3809618"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "User Search Behavior and Knowledge Effects in a Hybrid Search Environment",
+          "note": "Knowledge effects in hybrid (classic+AI) search.",
+          "doi": "https://doi.org/10.1145/3805712.3808356"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Characterising the Effects of Social Conformity on Information Seeking in Mixed Human-AI Environments",
+          "note": "Social conformity in human-AI search.",
+          "doi": "https://doi.org/10.1145/3805712.3808362"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Cognitive Style Shapes Search Behaviours: An fNIRS Study of Exploratory Search",
+          "note": "Brain-imaging study of exploratory search.",
+          "doi": "https://doi.org/10.1145/3805712.3809541"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Cross-Sensory Comparison of EEG Signals for Brain-Based Information Retrieval",
+          "note": "EEG signals for brain-based IR.",
+          "doi": "https://doi.org/10.1145/3805712.3809922"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "What Gets Cited: Competitive GEO in AI Answer Engines",
+          "note": "Generative-engine optimization in AI answer engines.",
+          "doi": "https://doi.org/10.1145/3805712.3808445"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Recasting Web-Scale Query Suggestion as Dense Retrieval",
+          "note": "Query suggestion via dense retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3809694"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Automating Generation of Long-Form Queries",
+          "note": "Synthesizes human-style long queries.",
+          "doi": "https://doi.org/10.1145/3805712.3809917"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "IPQA: A Benchmark for Core Intent Identification in Personalized Question Answering",
+          "note": "Benchmark for personalized-QA intent.",
+          "doi": "https://doi.org/10.1145/3805712.3809674"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "NeurPIU: Neurobiologically Inspired Personalized Intent Understanding in LLMs",
+          "note": "Bio-inspired personalized intent modeling.",
+          "doi": "https://doi.org/10.1145/3805712.3809593"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Agentic Query Reformulation for Contextualized Hyper-Personalized Product Search",
+          "note": "Agentic reformulation for product search.",
+          "doi": "https://doi.org/10.1145/3805712.3808502"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Beyond Semantic Similarity: Explicit Intent Modeling for Query-Product Matching",
+          "note": "Explicit intent for query-product matching.",
+          "doi": "https://doi.org/10.1145/3805712.3808500"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Behavioral Feature Boosting via Substitute Relationships for E-commerce Search",
+          "note": "Substitute-aware features for e-commerce search.",
+          "doi": "https://doi.org/10.1145/3805712.3808391"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "When & How to Write for Personalized Demand-aware Query Rewriting in Video Search",
+          "note": "Personalized query rewriting for video search.",
+          "doi": "https://doi.org/10.1145/3805712.3808395"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Demand-Calibrated Facet Diversification with Deployable Soft Quotas for E-Commerce Search",
+          "note": "Facet diversification with soft quotas.",
+          "doi": "https://doi.org/10.1145/3805712.3809638"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Policy-Grounded Dynamic Facet Suggestions for Job Search",
+          "note": "Dynamic facet suggestions for job search.",
+          "doi": "https://doi.org/10.1145/3805712.3808443"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Synthetic Data Powers Product Retrieval for Long-tail Knowledge-Intensive Queries",
+          "note": "Synthetic data for long-tail product retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3808409"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "SkyDistill: Navigating Fuzzy Flight Search Ranking via Precise Intent Distillation",
+          "note": "Intent distillation for flight-search ranking.",
+          "doi": "https://doi.org/10.1145/3805712.3808396"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "KARMA: Knowledge-Action Regularized Multimodal Alignment for Personalized Search at Taobao",
+          "note": "Multimodal personalized search in production.",
+          "doi": "https://doi.org/10.1145/3805712.3808509"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Evaluating Proactivity in Conversational Search through Anticipatory Retrieval",
+          "note": "Measures proactive/anticipatory conversational search.",
+          "doi": "https://doi.org/10.1145/3805712.3808361"
+        }
+      ]
+    },
+    {
+      "num": "10",
+      "name": "Fact-checking, verification & harmful-content detection",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "Multi-Sourced, Multi-Agent Evidence Retrieval for Fact-Checking",
+          "note": "Multi-agent evidence retrieval for fact-checking.",
+          "doi": "https://doi.org/10.1145/3805712.3809686"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Towards Evidence-Aware Retrieval and Verification for Scientific Fact-Checking",
+          "note": "Evidence-aware retrieval for science claims.",
+          "doi": "https://doi.org/10.1145/3805712.3808354"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Attend to Fragments: How Key Information Affects LLMs for Factual Inconsistency Detection",
+          "note": "Fragment attention for inconsistency detection.",
+          "doi": "https://doi.org/10.1145/3805712.3809915"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Mitigating Adversarial Attacks by Transferring LLM-generated Narrative Reasoning for Robust Fake News Detection",
+          "note": "Narrative reasoning transfer for fake-news robustness.",
+          "doi": "https://doi.org/10.1145/3805712.3809585"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "ExDR: Explanation-driven Dynamic Retrieval Enhancement for Multimodal Fake News Detection",
+          "note": "Explanation-driven retrieval for multimodal fake news.",
+          "doi": "https://doi.org/10.1145/3805712.3809648"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Retrieval-Augmented Multimodal Model for Fake News Detection",
+          "note": "RAG-style multimodal fake-news detection.",
+          "doi": "https://doi.org/10.1145/3805712.3809605"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "AdversarialCoT: Single-Document Retrieval Poisoning for LLM Reasoning",
+          "note": "Shows retrieval-poisoning attacks on LLM reasoning.",
+          "doi": "https://doi.org/10.1145/3805712.3809838"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "JARVIS: An Evidence-Grounded Retrieval System for Interpretable Deceptive Reviews Adjudication",
+          "note": "Evidence-grounded detection of deceptive reviews.",
+          "doi": "https://doi.org/10.1145/3805712.3808429"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "EVADE-Bench: Multimodal Benchmark for Evaluating and Enhancing Evasive Content Detection",
+          "note": "Benchmark for evasive-content detection.",
+          "doi": "https://doi.org/10.1145/3805712.3808579"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Deja Vu in Plots: Cross-Session Evidence with Retrieval-Augmented LLMs for Live Streaming Risk Assessment",
+          "note": "Cross-session RAG for live-streaming risk.",
+          "doi": "https://doi.org/10.1145/3805712.3809737"
+        }
+      ]
+    },
+    {
+      "num": "11",
+      "name": "Domain, specialized retrieval & resources",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "RULER: Robust Unified LLM-based Efficient Retrieval for Legal Information",
+          "note": "Unified LLM retrieval tuned for legal search.",
+          "doi": "https://doi.org/10.1145/3805712.3809698"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Enhancing Judgment Document Generation via Agentic Legal Information Collection and Rubric-Guided Optimization",
+          "note": "Agentic legal-document generation.",
+          "doi": "https://doi.org/10.1145/3805712.3809928"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "KCC: Korean Civil Case Dataset for Legal Information Retrieval",
+          "note": "Korean legal-IR dataset.",
+          "doi": "https://doi.org/10.1145/3805712.3808594"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "ViCSR: A Benchmark and Two-Stage Framework for Vietnamese Case-to-Statute Retrieval",
+          "note": "Vietnamese case-to-statute retrieval.",
+          "doi": "https://doi.org/10.1145/3805712.3808526"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "CTCL: A Cross-Language Benchmark for Matching Patients to Clinical Trials",
+          "note": "Patient-to-trial matching benchmark.",
+          "doi": "https://doi.org/10.1145/3805712.3808620"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Improving Amharic Information Retrieval with Translative and Multi-Agent Debate RAG",
+          "note": "Multilingual RAG for Amharic.",
+          "doi": "https://doi.org/10.1145/3805712.3808532"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Morphology-Aware Retrieval for Low-Resource Environments: Shona",
+          "note": "Morphology-aware retrieval for Shona.",
+          "doi": "https://doi.org/10.1145/3805712.3808522"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Building Foundations for IR in Extremely Low-Resource Ethnic Languages: Tanzania",
+          "note": "IR foundations for Tanzanian languages.",
+          "doi": "https://doi.org/10.1145/3805712.3808525"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "SQuTR: A Robustness Benchmark for Spoken Query to Text Retrieval under Acoustic Noise",
+          "note": "Spoken-query retrieval robustness benchmark.",
+          "doi": "https://doi.org/10.1145/3805712.3808600"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "CSyMR: Benchmarking Compositional Music Information Retrieval in Symbolic Music Reasoning",
+          "note": "Symbolic-music IR benchmark.",
+          "doi": "https://doi.org/10.1145/3805712.3809923"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Multilingual and Domain-Agnostic Tip-of-the-Tongue Query Generation for Simulated Evaluation",
+          "note": "Tip-of-the-tongue query generation.",
+          "doi": "https://doi.org/10.1145/3805712.3808626"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "The Wikidata Query Logs Dataset",
+          "note": "Large Wikidata query-log resource.",
+          "doi": "https://doi.org/10.1145/3805712.3808612"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Retrieve, Rerank, Answer, Experiment: Hands-On IR Research with PyTerrier",
+          "note": "Hands-on IR research toolkit resource.",
+          "doi": "https://doi.org/10.1145/3805712.3808640"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "T-RADAR: Simulating Trademark Examination as an Interactive Retrieval Interface",
+          "note": "Trademark-examination retrieval interface.",
+          "doi": "https://doi.org/10.1145/3805712.3808379"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Is It Novel and Why? Fine-Grained Patent Novelty Prediction Based on Passage Retrieval",
+          "note": "Passage retrieval for patent-novelty judgments.",
+          "doi": "https://doi.org/10.1145/3805712.3809576"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Interpretable Legal Similarity: From Embeddings to Obligations",
+          "note": "Maps legal embedding similarity to obligations.",
+          "doi": "https://doi.org/10.1145/3805713.3820406"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "A Comprehensive Taxonomy of Temporal Dimensions in Natural Language Queries",
+          "note": "Organizes how time appears in queries.",
+          "doi": "https://doi.org/10.1145/3805713.3820426"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "MedQueryIntent: A Large-Scale Benchmark Dataset for Medical Search Intent Classification",
+          "note": "Benchmark for medical query intent.",
+          "doi": "https://doi.org/10.1145/3805713.3820435"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "Patent Representation Learning via Self-supervision",
+          "note": "Self-supervised patent representations.",
+          "doi": "https://doi.org/10.1145/3805713.3820439"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "A Design Science Framework for Human-Agent Teams in Information Retrieval",
+          "note": "Design-science view of human+agent IR.",
+          "doi": "https://doi.org/10.1145/3805713.3820408"
+        },
+        {
+          "venue": "ICTIR",
+          "title": "TopicTune: A Topic Alignment Approach to Improve LLM Reasoning on Social Questions",
+          "note": "Topic alignment to steer LLM reasoning.",
+          "doi": "https://doi.org/10.1145/3805713.3820427"
+        }
+      ]
+    },
+    {
+      "num": "12",
+      "name": "Perspectives & position papers",
+      "papers": [
+        {
+          "venue": "SIGIR",
+          "title": "Emancipatory Information Retrieval: Towards Critical IR Theories and Practices",
+          "note": "Critical-theory agenda for IR.",
+          "doi": "https://doi.org/10.1145/3805712.3809405"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Question Answering Fit for Purpose: A Perspective From NLP and User Modeling",
+          "note": "Perspective on purpose-fit QA.",
+          "doi": "https://doi.org/10.1145/3805712.3809406"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "From Search to Ask to Act: The Evolution of Information Access in the Age of Large Models and Agents",
+          "note": "Perspective on the search-to-agent evolution.",
+          "doi": "https://doi.org/10.1145/3805712.3809404"
+        },
+        {
+          "venue": "SIGIR",
+          "title": "Multi-Agentic Recommender Systems: Foundations, Perspectives, and Lessons from Large-Scale Deployments",
+          "note": "Perspective on multi-agent recommenders.",
+          "doi": "https://doi.org/10.1145/3805712.3808643"
+        }
+      ]
+    }
+  ]
+}

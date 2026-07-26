@@ -58,13 +58,13 @@
 <body>
 <div class="sheet">
   <header class="masthead">
-    <div class="kicker">Topic-centric view · SIGIR · ICTIR · ICML · ACL 2026</div>
+    <div class="kicker">Topic-centric view · across conferences</div>
     <h1>My reading, by research topic</h1>
-    <p class="dek">The same papers as my per-conference reports, but re-sorted <em>by topic across venues</em> — so SIGIR, ICTIR, ICML and ACL work on the same problem sits together. Ordered by how central each topic is to what I work on; peripheral topics are kept but grouped at the end.</p>
-    <div class="meta">Aggregated from my SIGIR/ICTIR, ICML and ACL 2026 reports &nbsp;|&nbsp; a curated, verified sample &mdash; not the full proceedings &nbsp;|&nbsp; <a href="/reading/">&#8599; Reading list</a></div>
+    <p class="dek">The same papers as my per-conference reports, but re-sorted <em>by topic across venues</em> — so work on the same problem from different conferences sits together. Ordered by how central each topic is to what I work on; peripheral topics are kept but grouped at the end.</p>
+    <div class="meta">Aggregated from my conference reports &nbsp;|&nbsp; a curated, verified sample &mdash; not the full proceedings &nbsp;|&nbsp; <a href="/reading/">&#8599; Reading list</a></div>
   </header>
 
-  <div class="callout"><b>Why this view:</b> the interesting movements this year are <b>cross-venue</b>. Self-improvement and reasoning-intensive retrieval show up at an IR venue, an ML venue and an NLP venue at once — you only see that if you drop the conference boundary and read by topic.</div>
+  <div class="callout"><b>Why this view:</b> the interesting movements are <b>cross-venue</b>. Self-improvement and reasoning-intensive retrieval show up at an IR venue, an ML venue and an NLP venue at once — you only see that if you drop the conference boundary and read by topic.</div>
 
   <h2 class="section">What the cross-venue view makes obvious</h2>
 
@@ -75,7 +75,7 @@
   </div>
   <div class="theme">
     <h3><span class="num">2</span> Retrieval learned to reason — everywhere</h3>
-    <p>Reasoning-intensive retrieval and agentic search are a shared obsession across SIGIR, ICML and ACL, all circling the BRIGHT benchmark and the deep-research agent. The methods that travel best are the ones about representations and distillation, which is exactly why I keep those in the core even when the surrounding topic isn't.</p>
+    <p>Reasoning-intensive retrieval and agentic search are a shared obsession across SIGIR, ICML and ACL, all circling the BRIGHT benchmark and the deep-research agent. The methods that travel best are about representations and distillation, which is why I keep those core even when the surrounding topic isn't.</p>
     <p class="anchors"><b>Anchors:</b> DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research <span class="tag icml">ICML</span> (<a href="https://icml.cc/virtual/2026/poster/65886">ICML</a>) &middot; Agentic-R: Learning to Retrieve for Agentic Search <span class="tag acl">ACL Findings</span> (<a href="https://doi.org/10.18653/v1/2026.findings-acl.785">DOI</a>) &middot; ReasonEmbed: Enhanced Text Embeddings for Reasoning-Intensive Document Retrieval <span class="tag acl">ACL</span> (<a href="https://arxiv.org/abs/2510.08252">arXiv</a>)</p>
   </div>
   <div class="theme">
@@ -85,7 +85,7 @@
   </div>
 
 
-  <footer>A topic-centric view across SIGIR/ICTIR, ICML and ACL 2026. Full grouped list follows.</footer>
+  <footer>A topic-centric view across my conference reports. Full grouped list follows.</footer>
 </div>
 
 <div class="sheet appendix">
@@ -589,9 +589,9 @@
   </div>
 
   <h2 class="section">Sources &amp; method note</h2>
-  <p class="sources">Aggregated from my three 2026 reports: <a href="/reviews/sigir-ictir-2026.html">SIGIR/ICTIR</a> &middot; <a href="/reviews/icml-2026.html">ICML</a> &middot; <a href="/reviews/acl-2026.html">ACL</a>.</p>
-  <p class="sources" style="margin-top:10px;"><b>How I built this:</b> I re-sorted the papers from my three conference reports into a single topic taxonomy (see <code>RESEARCH-TOPICS.md</code>), deduplicating by title. Ordering reflects <b>my</b> interests — retrieval/ranking, self-improvement and ranking-relevant methods like distillation and learnt representations up top; recommendation, LTR-fairness, diffusion and multimodal/speech grouped as <b>less central</b> at the end. It inherits each source report's coverage caveats — a curated, verified sample, not complete proceedings.</p>
-  <footer>Prepared July 2026. Papers carry their original venue chip and canonical link.</footer>
+  <p class="sources">Aggregated from my conference reports: <a href="/reviews/sigir-ictir-2026.html">SIGIR/ICTIR</a> &middot; <a href="/reviews/icml-2026.html">ICML</a> &middot; <a href="/reviews/acl-2026.html">ACL</a>.</p>
+  <p class="sources" style="margin-top:10px;"><b>How I built this:</b> build_topics.py re-sorts the papers from every conference report into one taxonomy (<code>topics.json</code>), deduplicating by title. It <b>fails</b> if a report uses a theme that isn't a known topic, so the view can't silently drift. Ordering reflects <b>my</b> interests — retrieval/ranking, self-improvement and ranking-relevant methods (distillation, learnt representations) up top; recommendation, LTR-fairness, diffusion and multimodal/speech grouped as <b>less central</b> at the end. Inherits each source report's coverage caveats.</p>
+  <footer>Generated by build_topics.py. Papers carry their original venue chip and canonical link.</footer>
 </div>
 <script>
 (function(){

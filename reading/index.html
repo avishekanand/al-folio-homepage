@@ -148,6 +148,15 @@
   select.status{font:inherit;font-size:11.5px;padding:3px 6px;border-radius:6px;
     border:1px solid var(--line);background:var(--bg);color:var(--ink);}
   .notemark{color:var(--accent);font-weight:700;}
+  .rate{background:none;border:none;padding:2px 4px;font-size:14px;line-height:1;border-radius:6px;
+    filter:grayscale(1);opacity:.5;cursor:pointer;}
+  .rate:hover{opacity:.9;filter:none;background:var(--chip);}
+  .rate.active{opacity:1;filter:none;}
+  .rate.active.up{background:var(--accent-soft);}
+  .rate.active.down{background:var(--chip);}
+  .paper.rated-up{border-left:3px solid var(--accent);}
+  .paper.rated-down{opacity:.55;}
+  .paper.rated-down .ptitle{color:var(--muted);}
   .pactions{margin-left:auto;display:flex;gap:6px;align-items:center;}
 
   .summary-wrap{margin-top:9px;}
@@ -239,6 +248,13 @@
         <option value="done">Done</option>
       </select>
       <select id="filterGroup"><option value="">All groups</option></select>
+      <select id="filterRating">
+        <option value="">All papers</option>
+        <option value="up">👍 To cite</option>
+        <option value="down">👎 Ignored</option>
+        <option value="none">Unrated</option>
+        <option value="hidedown">Hide ignored</option>
+      </select>
       <select id="sortBy">
         <option value="group">Sort: group</option>
         <option value="title">Sort: title</option>
@@ -435,6 +451,7 @@
       doi: p.doi || "",
       arxiv: p.arxiv || null,
       url: p.url || "",
+      rating: (p.rating === "up" || p.rating === "down") ? p.rating : "",
       note: p.note || "",
       status: st,
       summary: p.summary || "",
@@ -697,19 +714,21 @@
 
   function renderCounts(){
     var total = data.papers.length;
-    var reading = 0, toread = 0, done = 0, notes = 0;
+    var reading = 0, toread = 0, done = 0, notes = 0, cite = 0;
     data.papers.forEach(function(p){
       if(p.status === "reading") reading++;
       else if(p.status === "done") done++;
       else toread++;
       if(p.summary && p.summary.trim()) notes++;
+      if(p.rating === "up") cite++;
     });
     $("counts").innerHTML =
       '<span><b>' + total + '</b> papers</span>' +
       '<span><b>' + reading + '</b> reading</span>' +
       '<span><b>' + toread + '</b> to read</span>' +
       '<span><b>' + done + '</b> done</span>' +
-      '<span><b>' + notes + '</b> with notes</span>';
+      '<span><b>' + notes + '</b> with notes</span>' +
+      '<span title="Thumbs-up: to cite/refer later">👍 <b>' + cite + '</b> to cite</span>';
   }
 
   function renderGroupFilter(){
@@ -737,9 +756,14 @@
     var q = $("search").value.trim().toLowerCase();
     var fs = $("filterStatus").value;
     var fg = $("filterGroup").value;
+    var fr = $("filterRating").value;
     return data.papers.filter(function(p){
       if(fs && p.status !== fs) return false;
       if(fg && p.theme !== fg) return false;
+      if(fr === "up" && p.rating !== "up") return false;
+      if(fr === "down" && p.rating !== "down") return false;
+      if(fr === "none" && p.rating) return false;
+      if(fr === "hidedown" && p.rating === "down") return false;
       if(q){
         var hay = (p.title + " " + p.note + " " + p.summary).toLowerCase();
         if(hay.indexOf(q) < 0) return false;
@@ -787,7 +811,7 @@
   }
 
   function paperEl(p){
-    var wrap = el("div","paper" + (p.status === "done" ? " done" : ""));
+    var wrap = el("div","paper" + (p.status === "done" ? " done" : "") + (p.rating ? " rated-" + p.rating : ""));
 
     var row = el("div","prow");
     var cb = el("input"); cb.type = "checkbox"; cb.checked = p.status === "done";
@@ -829,6 +853,19 @@
     }
 
     var actions = el("span","pactions");
+
+    // thumbs — up = cite/refer later, down = ignore for now
+    function rateBtn(val, glyph, title){
+      var b = el("button","rate" + (p.rating === val ? " active " + val : ""));
+      b.textContent = glyph; b.title = title;
+      b.addEventListener("click", function(){
+        setPaper(p.id, { rating: p.rating === val ? "" : val });
+      });
+      return b;
+    }
+    actions.appendChild(rateBtn("up", "👍", "To cite / refer later"));
+    actions.appendChild(rateBtn("down", "👎", "Ignore for now (non-urgent)"));
+
     var statusSel = el("select","status");
     ["to-read","reading","done"].forEach(function(s){
       var o = el("option"); o.value = s;
@@ -1190,6 +1227,7 @@
     $("search").addEventListener("input", renderList);
     $("filterStatus").addEventListener("change", renderList);
     $("filterGroup").addEventListener("change", renderList);
+    $("filterRating").addEventListener("change", renderList);
     $("sortBy").addEventListener("change", renderList);
 
     // close buttons + backdrop

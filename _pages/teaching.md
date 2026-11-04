@@ -42,9 +42,11 @@ In this course, students explore the principles and practices of information ret
 
 This course delves into the field of Natural Language Processing, covering both the theoretical and practical aspects. Students learn about text processing, language modeling, syntactic and semantic analysis, and large-language models. The course emphasizes hands-on projects and applications of NLP techniques in real-world scenarios.
 
+[Course materials &amp; schedule]({{ '/assets/teaching/nlp/' | relative_url }})
+
 [Studyguide Link](https://studiegids.tudelft.nl/courses/study-guide/educations/14803)
 
-[Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774756)
+[Brightspace 2026-27](https://brightspace.tudelft.nl/d2l/home/864611)
 
 ---
 

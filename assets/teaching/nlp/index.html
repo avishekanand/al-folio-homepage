@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DSAIT4090 · Natural Language Processing</title>
+<style>
+  :root{--bg:#f6f7f9;--panel:#fff;--ink:#1a1d21;--muted:#5b6672;--line:#e3e7ec;--accent:#2f6df6;--soft:#eaf1ff;
+    --am:#2f6df6;--pm:#7a52d6;--en:#0e9b9b;--gu:#cf4d8f;--shadow:0 1px 2px rgba(20,30,50,.06),0 4px 16px rgba(20,30,50,.05)}
+  @media(prefers-color-scheme:dark){:root{--bg:#0f1216;--panel:#171b21;--ink:#e7ebf0;--muted:#9aa6b2;--line:#262c35;
+    --accent:#5b8dff;--soft:#1a2436;--am:#5b8dff;--pm:#a98cf0;--en:#2bb3b3;--gu:#e06aa6;--shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35)}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 64px}
+  header.top{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  .top-in{max-width:1000px;margin:0 auto;padding:13px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .brand{font-weight:700} .brand small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+  .ql{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .chip{padding:6px 11px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:13px;font-weight:600}
+  .hero{padding:26px 0 6px} .hero h1{margin:0 0 4px;font-size:25px;letter-spacing:-.3px} .hero p{margin:0;color:var(--muted)}
+  section{margin-top:30px} .sh{display:flex;align-items:baseline;gap:12px;margin:0 0 12px}
+  .sh h2{margin:0;font-size:18px} .sh .note{color:var(--muted);font-size:13px}
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel);box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px}
+  th,td{text-align:left;padding:6px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--bg)}
+  tbody tr:last-child td{border-bottom:none}
+  .date{font-weight:700;white-space:nowrap}
+  .slot{display:block;padding:4px 9px;border-radius:6px;border-left:3px solid var(--line)}
+  .am{background:rgba(47,109,246,.10);border-left-color:var(--am)} .pm{background:rgba(122,82,214,.11);border-left-color:var(--pm)}
+  .en{background:rgba(14,155,155,.12);border-left-color:var(--en)} .gu{background:rgba(207,77,143,.11);border-left-color:var(--gu)}
+  .who{font-size:11px;color:var(--muted);margin-left:5px} .room{display:block;font-size:10.5px;color:var(--muted);margin-top:1px}
+  .room::before{content:"📍 "} .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:600;background:var(--soft);color:var(--accent)}
+  .dash{color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:13px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:7px}
+  .card h3{margin:0;font-size:14.5px;line-height:1.35} .card p{margin:0;color:var(--muted);font-size:12.5px}
+  .card .f{margin-top:auto;padding-top:4px;font-size:12px}
+  .tag{font-size:12px;font-weight:700;color:var(--accent)} .flag{font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--line);padding:2px 7px;border-radius:999px}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;overflow-x:auto;font-size:12.5px}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:10px}
+  .sw{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:5px}
+  footer{margin-top:38px;color:var(--muted);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <div class="brand">DSAIT4090 · Natural Language Processing <small>MSc DSAIT · TU Delft · 2026–2027 · Period 2</small></div>
+  <nav class="ql">
+    <a class="chip" href="https://brightspace.tudelft.nl/d2l/home/864611" target="_blank" rel="noopener">Brightspace</a>
+    <a class="chip" href="https://studiegids.tudelft.nl/courses/study-guide/educations/14803" target="_blank" rel="noopener">Study guide</a>
+    <a class="chip" href="#data">Data</a>
+    <a class="chip" href="https://avishekanand.com/teaching/">← Teaching</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>Course materials</h1>
+    <p>Lectures are on Thursdays. Teaching team: J. Yang (responsible), C. Lofi, A. Anand. Assessment: 20% individual assignments + 80% group project.</p>
+  </div>
+
+  <section id="schedule">
+    <div class="sh"><h2>Schedule</h2><span class="note">Thursdays · morning 08:45 (CEG Lecture Hall E) · afternoon 13:45 (EEMCS Chip)</span></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Date</th><th>Morning</th><th>Afternoon</th><th>Assignment out</th></tr></thead>
+      <tbody>
+        <tr><td class="date">12 Nov</td><td><span class="slot pm">Intro to NLP + Logistics<span class="who">Yang</span><span class="room">CEG Lecture Hall E</span></span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+        <tr><td class="date">19 Nov</td><td><span class="slot am">Lexical Analysis + Language Modelling<span class="who">Anand</span><span class="room">CEG Lecture Hall E</span></span></td><td><span class="dash">—</span></td><td><span class="pill">A1</span></td></tr>
+        <tr><td class="date">26 Nov</td><td><span class="slot am">Text Classification + Embeddings<span class="who">Anand</span><span class="room">CEG Lecture Hall E</span></span></td><td><span class="slot pm">Syntax and Semantics<span class="who">Yang</span><span class="room">EEMCS Chip</span></span></td><td><span class="pill">A2</span></td></tr>
+        <tr><td class="date">3 Dec</td><td><span class="slot am">Discriminative Task<span class="who">Anand</span><span class="room">CEG Lecture Hall E</span></span></td><td><span class="slot pm">Neural LM &amp; Contextual Embeddings<span class="who">Yang</span><span class="room">EEMCS Chip</span></span></td><td><span class="pill">A3</span></td></tr>
+        <tr><td class="date">10 Dec</td><td><span class="slot am">Generative Modelling<span class="who">Anand</span><span class="room">CEG Lecture Hall E</span></span></td><td><span class="slot pm">Text Generation Tasks<span class="who">Yang</span><span class="room">EEMCS Chip</span></span></td><td><span class="pill">A4</span></td></tr>
+        <tr><td class="date">17 Dec</td><td><span class="slot pm">Retrieval-based LMs<span class="who">Yang</span><span class="room">CEG Lecture Hall E</span></span></td><td><span class="slot en">Alignment<span class="who">guest</span><span class="room">EEMCS Chip</span></span></td><td><span class="pill">A5</span></td></tr>
+        <tr><td class="date">7 Jan</td><td><span class="slot am">Interpretability<span class="who">Anand</span><span class="room">CEG Lecture Hall E</span></span></td><td><span class="slot gu">Agents<span class="who">guest</span><span class="room">EEMCS Chip</span></span></td><td><span class="dash">—</span></td></tr>
+        <tr><td class="date">14 Jan</td><td><span class="slot am">LLM Serving<span class="who">Anand</span><span class="room">CEG Lecture Hall E</span></span></td><td><span class="slot pm">Robustness<span class="who">Yang</span><span class="room">EEMCS Chip</span></span></td><td class="dash">final project due</td></tr>
+      </tbody>
+    </table></div>
+    <div class="legend"><span><i class="sw" style="background:var(--am)"></i>Anand</span><span><i class="sw" style="background:var(--pm)"></i>Yang</span><span><i class="sw" style="background:var(--en)"></i>/<i class="sw" style="background:var(--gu)"></i> guest</span></div>
+  </section>
+
+  <section id="assignments">
+    <div class="sh"><h2>Assignments</h2><span class="note">Individual · auto-graded + short reflection · laptop-runnable (no GPU required)</span></div>
+    <div class="grid">
+      <a class="card" href="assignments/A1_tokenization_lm.pdf"><div class="tag">A1</div><h3>Tokenization &amp; statistical LM</h3><p>BPE, n-gram LM, perplexity per-token vs per-byte, GPT-2.</p></a>
+      <a class="card" href="assignments/A2_evaluation.pdf"><div class="tag">A2</div><h3>Evaluation &amp; error analysis</h3><p>Precision/recall/F1, per-subgroup fairness, error taxonomy.</p></a>
+      <a class="card" href="assignments/A3_discriminative.pdf"><div class="tag">A3</div><h3>Discriminative fine-tuning</h3><p>Bag-of-words → embeddings → DistilBERT.</p></a>
+      <a class="card" href="assignments/A4_generative.pdf"><div class="tag">A4</div><h3>Generative fine-tuning</h3><p>Fine-tune GPT-2; canaries &amp; a memorisation/extraction attack.</p></a>
+      <a class="card" href="assignments/A5_inference_service.pdf"><div class="tag">A5</div><h3>Using the inference service</h3><p>Batched client, latency sweep, token/compute budget.</p></a>
+      <a class="card" href="assignments/A6_probing_optional.pdf"><div class="tag">A6 · optional</div><h3>Probing &amp; interpretability</h3><p>Per-layer probes / attribution. Findings-only.</p></a>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sh"><h2>Group project briefs</h2><span class="note">Course-long group project (research &amp; development) · 80% of the grade</span></div>
+    <div class="grid">
+      <a class="card" href="projects/NLP_course_project.pdf"><h3>GP Consultation Summaries (SOAP)</h3><p>LLM summarisation + an LLM-as-judge benchmark + human-eval alignment.</p><div class="f"><span class="flag">flagship</span></div></a>
+      <a class="card" href="projects/project3.pdf"><h3>RAG for Open-Domain Complex QA</h3><p>Context-quality ablations in retrieval-augmented generation.</p></a>
+      <a class="card" href="projects/project5.pdf"><h3>Characterising Toxicity in LLMs</h3><p>Generate → score → attribution → lexical/syntactic analysis.</p></a>
+      <a class="card" href="projects/project6.pdf"><h3>Model Leakage: attack &amp; defend GPT-2</h3><p>Membership-inference / extraction attacks and defences.</p></a>
+      <a class="card" href="projects/project2.pdf"><h3>Timeline-based List QA</h3><p>Closed-book vs RAG; temporal reasoning over lists.</p></a>
+      <a class="card" href="projects/project4.pdf"><h3>Numerical &amp; Temporal Fact Checking</h3><p>Improve NLI veracity prediction + claim decomposition.</p></a>
+      <a class="card" href="projects/project1.pdf"><h3>Knowledge Base Question Answering</h3><p>Semantic-parsing + IR-based KBQA with pretrained models.</p></a>
+    </div>
+  </section>
+
+  <section id="data">
+    <div class="sh"><h2>Data &amp; starter</h2><span class="note">Data is a public Kaggle competition; models come from HuggingFace</span></div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">
+      <a class="card" href="https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification" target="_blank" rel="noopener"><div class="tag">↗ Kaggle</div><h3>Jigsaw Unintended Bias in Toxicity</h3><p>Join the competition to get the data. Binary toxicity + identity subgroups; comment text for LM work.</p></a>
+      <a class="card" href="data/dsait4090-starter.zip"><div class="tag">⬇︎ starter.zip</div><h3>Starter code</h3><p>Kaggle data loader, submission checker, requirements.</p></a>
+    </div>
+    <p style="margin-top:12px;color:var(--muted);font-size:13px">Join the Kaggle competition, set up API credentials, then the starter loader derives the splits:</p>
+    <pre>from load_data import load_textclf, load_lm   # starter.zip
+data = load_textclf()          # train / validation / test  (toxicity + identity subgroups)
+train, heldout = load_lm()     # raw comment text for language-model work
+# models come from HuggingFace as usual (transformers)</pre>
+    <p style="color:var(--muted);font-size:12.5px">Content note: the comments can contain offensive language.</p>
+  </section>
+
+  <footer>DSAIT4090 Natural Language Processing · TU Delft · <a href="https://avishekanand.com">avishekanand.com</a></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3 · Embeddings — study deck</title>
+<style>
+:root{
+    --bg:#17140f; --panel:#1f1b15; --panel2:#241f18; --ink:#ece7dd; --muted:#9a9488;
+    --line:#352f26; --grid:#2a241d;
+    --accent:#d2674f; --cool:#79aba8; --gold:#c89a5c;
+    --serif:Georgia,'Iowan Old Style','Times New Roman',serif;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box} html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);overflow:hidden}
+  a{color:var(--cool);text-decoration:none;border-bottom:1px solid currentColor}
+  a:hover{color:var(--accent)}
+  .slide{position:fixed;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:5.5vh 8vw;animation:fade .32s ease}
+  .slide.on{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes growrule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @media (prefers-reduced-motion:no-preference){
+    .rise{animation:rise .52s both cubic-bezier(.22,.68,.24,1);animation-delay:var(--d,0ms)}
+    .rule.rise{transform-origin:left center;animation:rise .52s both cubic-bezier(.22,.68,.24,1),growrule .5s both ease;animation-delay:var(--d,0ms)}
+  }
+  .kicker{color:var(--accent);font-size:1.0rem;letter-spacing:.09em;text-transform:uppercase}
+  h1.t{font-size:2.6rem;line-height:1.12;margin:.06em 0 .10em;font-weight:400;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-style:italic;font-size:1.22rem;margin:0 0 .15em}
+  .rule{width:118px;height:2px;background:var(--accent);margin:.5em 0 .9em}
+  .lead{font-size:1.32rem;line-height:1.5;max-width:66ch;margin:.1em 0 .5em}
+  .lead b{color:var(--ink);font-weight:400;border-bottom:1px solid var(--accent)}
+  ul.pts{list-style:none;margin:.2em 0 0;padding:0;max-width:70ch}
+  ul.pts li{position:relative;padding-left:1.3em;margin:.42em 0;font-size:1.2rem;line-height:1.4}
+  ul.pts li::before{content:"—";position:absolute;left:0;color:var(--cool)}
+  ul.pts li small{color:var(--muted);font-size:.92em}
+  ul.pts li b{color:var(--cool);font-weight:400}
+  .defbox{background:var(--panel);border:1px solid var(--line);border-radius:9px;
+    padding:.7em 1em;margin:.2em 0;font-size:1.12rem;line-height:1.45;max-width:70ch}
+  .defbox .lab{color:var(--gold);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.2em}
+  .math{font-style:italic;font-size:1.4rem;margin:.3em 0;line-height:1.5}
+  .math .op{font-style:normal;color:var(--muted)}
+  .frac{display:inline-block;text-align:center;font-size:.9em;vertical-align:middle}
+  .frac .d{border-top:1px solid var(--muted);padding-top:1px}
+  .ex{color:var(--muted);font-size:1.1rem;margin-top:.45em;max-width:70ch} .ex b{color:var(--cool);font-weight:400}
+  .mono{font-family:var(--mono);color:var(--cool);font-size:1.02rem;line-height:1.7}
+  table.g{border-collapse:collapse;margin-top:.4em;font-size:1.15rem}
+  table.g td{padding:4px 22px 4px 0} table.g td.h{color:var(--muted);font-style:italic}
+  .title{justify-content:center}
+  .title .kicker{font-size:1.1rem} .title h1{font-size:3.8rem;margin:.08em 0;font-weight:400}
+  .title .by{color:var(--muted);margin-top:1.0em;font-size:1.12rem}
+  .question{align-items:center;justify-content:center;text-align:center}
+  .question .qlab{color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-size:.95rem;
+    display:flex;align-items:center;gap:.55em}
+  .question .qlab::before,.question .qlab::after{content:"";width:46px;height:1px;background:var(--accent);opacity:.6}
+  .question .q{font-size:2.35rem;line-height:1.3;max-width:24ch;margin:.7em auto .2em;font-weight:400}
+  .question .qsub{color:var(--muted);font-style:italic;font-size:1.18rem;max-width:52ch;margin:.3em auto 0}
+  .question .think{margin-top:1.8em;color:var(--muted);font-size:.95rem;opacity:.75;letter-spacing:.03em}
+  .question .think b{color:var(--cool);font-weight:400}
+  .clip{justify-content:center}
+  .clip .cap{color:var(--muted);font-size:1.0rem;margin-top:.7em;text-align:center}
+  .clip .cap b{color:var(--accent);font-weight:400}
+  .callout{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:9px;padding:.85em 1.15em;margin:.55em 0;max-width:72ch}
+  .callout .lab{color:var(--accent);font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;display:block;margin-bottom:.3em}
+  .callout p{margin:.15em 0;font-size:1.16rem;line-height:1.46}
+  .callout b{color:var(--cool);font-weight:400}
+  .callout .num{font-family:var(--mono);color:var(--gold);font-size:.95em}
+  .punch{margin-top:.8em;color:var(--accent);font-size:1.18rem}
+  #num{position:fixed;right:16px;top:12px;color:var(--muted);font-size:.9rem;z-index:5}
+  #hint{position:fixed;left:16px;top:12px;color:var(--muted);font-size:.82rem;z-index:5;opacity:.5}
+  #bar{position:fixed;left:0;right:0;bottom:0;height:3px;background:var(--grid);z-index:5}
+  #barfill{height:100%;background:var(--accent);width:0;transition:width .3s}
+  .secmark{position:fixed;left:16px;bottom:12px;color:var(--muted);font-size:.82rem;z-index:5;opacity:.6}
+
+  /* ---- centered, responsive fill ---- */
+  .slide{padding:clamp(1.3rem,4.5vh,3.4rem) clamp(1rem,4vw,3rem);align-items:stretch}
+  .wrap{width:min(1500px,90vw);margin-inline:auto}
+  .question .wrap,.clip .wrap,.title .wrap{width:min(1340px,90vw)}
+  .kicker{font-size:clamp(.85rem,1.25vw,1.05rem)}
+  h1.t{font-size:clamp(1.7rem,3.6vw,3.4rem)}
+  .clip h1.t{font-size:clamp(1.4rem,2.4vw,2.2rem)}
+  .title h1{font-size:clamp(2.4rem,6vw,4.8rem)}
+  .sub{font-size:clamp(1.02rem,1.7vw,1.5rem)}
+  .lead{font-size:clamp(1.1rem,2.05vw,1.78rem);max-width:none}
+  .defbox{font-size:clamp(1.05rem,1.75vw,1.55rem);max-width:none}
+  ul.pts{max-width:none}
+  ul.pts li{font-size:clamp(1.05rem,1.9vw,1.65rem)}
+  .math{font-size:clamp(1.1rem,2.15vw,1.9rem)}
+  table.g{font-size:clamp(1.02rem,1.75vw,1.45rem)}
+  .ex{font-size:clamp(.96rem,1.5vw,1.28rem);max-width:none}
+  .callout{max-width:none}
+  .callout p{font-size:clamp(1.05rem,1.85vw,1.6rem)}
+  .punch{font-size:clamp(1.05rem,1.8vw,1.5rem)}
+  .question .q{font-size:clamp(1.6rem,4vw,3.4rem);max-width:20ch}
+  .question .qsub{font-size:clamp(1.02rem,1.7vw,1.45rem)}
+  .clip .cap{font-size:clamp(.9rem,1.4vw,1.18rem)}
+
+  /* ---- figures (DM decks: embedded PPTX figures) ---- */
+  .slide.fig{align-items:center;text-align:center}
+  .figwrap{margin:.3em auto 0;text-align:center;max-width:100%}
+  .figwrap img{max-height:58vh;max-width:min(82vw,1120px);border-radius:10px;
+    border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.5);background:#0d0b08;object-fit:contain}
+  .figwrap img.plate{background:#f6f1e7;padding:.7em}        /* line-art / white-bg figures */
+  .figcap{color:var(--muted);font-size:clamp(.92rem,1.45vw,1.2rem);line-height:1.45;
+    margin:.65em auto 0;max-width:74ch;text-align:center}
+  .figcap b{color:var(--accent);font-weight:400}
+  .figcap .k{color:var(--cool)}
+  .twofig{display:flex;gap:1.3em;align-items:center;justify-content:center;flex-wrap:wrap}
+  .twofig .figwrap{margin:0}
+  .twofig img{max-height:46vh;max-width:min(42vw,560px)}
+  /* section divider */
+  .divider{justify-content:center;align-items:flex-start}
+  .divider .part{color:var(--gold);font-size:clamp(.9rem,1.4vw,1.1rem);letter-spacing:.16em;text-transform:uppercase}
+  .divider h1{font-size:clamp(2.2rem,5vw,4rem);font-weight:400;margin:.12em 0 .25em;line-height:1.08}
+  .divider .sub{max-width:60ch}
+  /* grid of mini-cards */
+  .cards{display:flex;gap:1.1em;margin-top:.5em;flex-wrap:wrap}
+  .card{flex:1;min-width:240px;background:var(--panel);border:1px solid var(--line);
+    border-top:3px solid var(--accent);border-radius:10px;padding:.9em 1.1em}
+  .card h3{margin:0 0 .35em;font-size:clamp(1.1rem,1.9vw,1.55rem);font-weight:400;color:var(--ink)}
+  .card.cool{border-top-color:var(--cool)} .card.gold{border-top-color:var(--gold)}
+  .card ul{list-style:none;margin:.2em 0 0;padding:0}
+  .card li{font-size:clamp(.95rem,1.5vw,1.2rem);color:var(--muted);margin:.26em 0;line-height:1.35}
+  .card li::before{content:"·";color:var(--cool);margin-right:.5em}
+  /* two-column content (text beside a figure) */
+  .split{display:flex;gap:1.6em;align-items:center}
+  .split .col{flex:1;min-width:0} .split .colfig{flex:0 0 auto}
+  .split .colfig img{max-height:52vh;max-width:min(42vw,540px)}
+  @media (max-aspect-ratio:1/1){ .split{flex-direction:column} .figwrap img{max-height:46vh} }
+
+</style>
+</head>
+<body>
+<div id="hint">← →/space · click bg to advance · F fullscreen</div><div id="num"></div>
+
+<!-- ============== TITLE ============== -->
+<section class="slide title" data-sec="Embeddings">
+  <div class="kicker">CSE2525 · Data Mining · 2025–26</div>
+  <h1>Embeddings</h1>
+  <div class="sub">From sparse hand-crafted features to dense, semantic vectors — word2vec for text and random-walk embeddings (DeepWalk, node2vec) for graphs.</div>
+  <div class="rule"></div>
+  <div class="by">A. Anand · lecture 8 study deck</div>
+</section>
+
+<!-- ============== PART I — FROM DATA TO VECTORS ============== -->
+<section class="slide title divider" data-sec="Part I · From data to vectors">
+  <div class="part">Part I</div>
+  <h1>From raw data to vectors</h1>
+  <div class="sub">Every learning algorithm eats vectors. How do we turn tables, text and graphs into them — and why the obvious way is a bad one.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide" data-sec="1 · Vectorizing input">
+  <div class="kicker">The ML pipeline needs numbers</div>
+  <h1 class="t">How do we vectorize the input?</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">The classic ML pipeline</span>
+    raw data → <b>compute features</b> → learning algorithm → model → deploy on test → output.
+    Everything downstream assumes each instance is already a <b>vector</b>.</div>
+  <ul class="pts">
+    <li>But raw data comes in many shapes: <b>tabular</b>, <b>text</b>, <b>graph</b>, …</li>
+    <li>The first — often overlooked — step is choosing how each instance becomes a point in some feature space.</li>
+    <li>This choice decides whether distances, similarity and learning will actually work.</li>
+  </ul>
+</section>
+
+<section class="slide" data-sec="1 · Data as vectors">
+  <div class="kicker">One recipe per data type</div>
+  <h1 class="t">Instances as vectors</h1><div class="rule"></div>
+  <div class="cards">
+    <div class="card"><h3>Tabular</h3>
+      <ul><li>Each <b>row</b> = an instance vector</li><li>Each <b>column</b> = a dimension</li><li>Values already numeric</li></ul></div>
+    <div class="card cool"><h3>Text</h3>
+      <ul><li>Each <b>word</b> = a dimension</li><li>Bag of words: value = word frequency</li><li>Vocabulary-sized vectors</li></ul></div>
+    <div class="card gold"><h3>Graph</h3>
+      <ul><li>Each <b>vertex</b> = a dimension</li><li>Dim = 1 if an edge to that vertex</li><li>A vertex = one row of the adjacency matrix</li></ul></div>
+  </div>
+  <div class="ex">All three give the same thing: a long, mostly-zero vector in a vocabulary- or vertex-sized space.</div>
+</section>
+
+<section class="slide" data-sec="1 · The problem">
+  <div class="kicker">Typical hand-crafted feature space</div>
+  <h1 class="t">What is the problem?</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">These representations are…</span>
+    <p><b>Sparse</b> — almost all entries are zero · <b>Large</b> — one dimension per word / vertex ·
+      <b>Non-semantic</b> — dimensions carry no meaning · <b>Hand-crafted</b> — you choose the features by hand.</p>
+    <p>We want the opposite: <b>dense</b>, <b>smaller</b>, <b>semantic</b>, and <b>automatically</b> extracted.</p>
+  </div>
+</section>
+
+<section class="slide fig" data-sec="1 · Automatic features">
+  <div class="kicker">The goal of this lecture</div>
+  <h1 class="t">Automatic feature extraction</h1>
+  <div class="figwrap"><img class="plate" src="figs/auto_feature.png" alt="Documents, tables and graphs map to a sparse large vector, then to a small dense vector"></div>
+  <div class="figcap">Raw text / tables / graphs first map to a <b>sparse, large, hand-crafted</b> space; embeddings add a
+    second step to a <b>dense, small, semantic</b> space that is <span class="k">learned, not designed</span>.</div>
+</section>
+
+<section class="slide" data-sec="1 · Sparse issues">
+  <div class="kicker">Why one-hot / bag-of-words hurts</div>
+  <h1 class="t">Issues with sparse representations</h1><div class="rule"></div>
+  <ul class="pts">
+    <li><b>Distances are misleading</b> — in very high dimensions everything is roughly equidistant.</li>
+    <li><b>Vocabulary mismatch</b> — <i>hotel</i> and <i>motel</i> share no dimension, so they look unrelated.</li>
+    <li><b>Large space requirements</b> — vectors as wide as the whole vocabulary.</li>
+    <li>These are <b>local (1-hot)</b> representations: each word is its own isolated axis.</li>
+  </ul>
+  <div class="math">(w<sup>hotel</sup>)<span class="op">ᵀ</span> w<sup>motel</sup> <span class="op">=</span> (w<sup>hotel</sup>)<span class="op">ᵀ</span> w<sup>cat</sup> <span class="op">=</span> 0</div>
+  <div class="ex">Any two distinct one-hot words are <b>orthogonal</b> — the dot product is 0 whether the words are near-synonyms or unrelated.</div>
+</section>
+
+<section class="slide fig" data-sec="1 · Local vs distributed">
+  <div class="kicker">One-hot vs. distributed</div>
+  <h1 class="t">Local vs. distributed representations</h1>
+  <div class="figwrap"><img class="plate" src="figs/sparse_1hot_distributed.png" alt="banana, mango, dog as one-hot vectors vs distributed vectors with interpretable features"></div>
+  <div class="figcap"><b>Local (1-hot):</b> one active dimension per word — no shared structure.
+    <b>Distributed:</b> meaning is <span class="k">spread across many features</span> (barks, fruit, has-tail, …),
+    so <i>banana</i> and <i>mango</i> now overlap.</div>
+</section>
+
+<section class="slide" data-sec="1 · Graph sparsity">
+  <div class="kicker">Same disease for graphs</div>
+  <h1 class="t">Sparsity in adjacency matrices</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Adjacency rows are sparse too</span>
+    <p>A vertex's row in the adjacency matrix is <b>sparse, large, non-semantic and hand-crafted</b> — the number of
+      edges is <b>far smaller</b> than the number of vertices (<span class="num">#edges ≪ #vertices</span>).</p>
+    <p>So both <b>text</b> and <b>graphs</b> need the same cure: learn a dense, low-dimensional, semantic embedding.</p>
+  </div>
+</section>
+
+<!-- ============== PART II — WORD EMBEDDINGS ============== -->
+<section class="slide title divider" data-sec="Part II · Word embeddings">
+  <div class="part">Part II</div>
+  <h1>Word embeddings</h1>
+  <div class="sub">Learn a vector per word so that words used in similar contexts land close together — word2vec.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide fig" data-sec="2 · What we want">
+  <div class="kicker">The objective in one picture</div>
+  <h1 class="t">What we want from an embedding</h1>
+  <div class="figwrap"><img class="plate" src="figs/what_we_want_word.png" alt="High-dimensional space maps to low-dimensional embedding space; encoders place u and v as z_u, z_v"></div>
+  <div class="figcap">Encode each word so that <b>similarity in the embedding space</b> (e.g. the <span class="k">dot product</span> z<sub>u</sub>ᵀz<sub>v</sub>)
+    approximates <b>similarity in its textual context</b> — many features → a few <i>semantic</i> ones.</div>
+</section>
+
+<section class="slide" data-sec="2 · Context">
+  <div class="kicker">The distributional hypothesis</div>
+  <h1 class="t">What is “context”?</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Distributional similarity</span>
+    “You shall know a word by <b>the company it keeps</b>.” — J. R. Firth, 1957.
+    Words that occur in <b>similar contexts</b> have similar meanings.</div>
+  <ul class="pts">
+    <li><i>“We took two hours to reach the <b>top</b> of the hill.”</i></li>
+    <li><i>“The <b>top</b> of the hill had the best view.”</i></li>
+    <li><i>“This purple <b>top</b> will go well with my blue jeans.”</i></li>
+  </ul>
+  <div class="ex">The surrounding words tell you which sense of <b>top</b> is meant — context <i>is</i> the signal we learn from.</div>
+</section>
+
+<section class="slide" data-sec="2 · Word2vec idea">
+  <div class="kicker">Word2Vec · key idea</div>
+  <h1 class="t">Context provides meaning</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">The duck test</span>
+    “If it walks like a duck and quacks like a duck, it must be a duck.” The blanks share a <b>context</b>:
+    <span class="mono">like a __ and quacks</span> · <span class="mono">like a __ it must</span> · <span class="mono">be a __</span>.</div>
+  <ul class="pts">
+    <li>Form <b>⟨word, context⟩ pairs</b> by sliding a window over the text.</li>
+    <li>Learn vectors so a word <b>predicts</b> the words around it.</li>
+    <li>Q: how do we turn “predict the context” into something trainable?</li>
+  </ul>
+</section>
+
+<section class="slide fig" data-sec="2 · Word2vec model">
+  <div class="kicker">The encoder view</div>
+  <h1 class="t">The word2vec model</h1>
+  <div class="figwrap"><img class="plate" src="figs/word2vec_arch.png" alt="word2vec encoder: context vector times W_in to hidden representation times W_out to center word"></div>
+  <div class="figcap">Context vector × <b>W<sub>in</sub></b> → a small <b>hidden representation</b> × <b>W<sub>out</sub></b> → predicted center word.
+    Input/output are <span class="k">vocabulary-sized</span> (millions); the hidden layer is tiny (≈ <b>300</b>).</div>
+</section>
+
+<section class="slide fig" data-sec="2 · Multi-class view">
+  <div class="kicker">Reading it as classification</div>
+  <h1 class="t">Word2vec as multi-class classification</h1>
+  <div class="figwrap"><img class="plate" src="figs/multiclass_net.png" alt="Bowtie network: input layer size V, hidden layer size N, output layer size V"></div>
+  <div class="figcap">A shallow net: input layer <b>W</b><sub>V×N</sub> → hidden <b>h</b> → output <b>W′</b><sub>N×V</sub>.
+    Given a word we <b>predict its context</b>; <span class="k">each vocabulary word is one output class</span>.</div>
+</section>
+
+<section class="slide" data-sec="2 · Training">
+  <div class="kicker">How the parameters are learned</div>
+  <h1 class="t">Training with gradient descent</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Softmax over the vocabulary</span>
+    The output layer turns scores into probabilities with a <b>softmax</b>, trained against the true context word
+    with <b>cross-entropy loss</b>.</div>
+  <div class="math">ŷ<sub>ij</sub> <span class="op">=</span> softmax(w<sub>j</sub> · x<sub>i</sub>) <span class="op">=</span>
+    <span class="frac"><span class="n">e<sup>&nbsp;w<sub>j</sub> · x<sub>i</sub></sup></span><br><span class="d">∑<sub>ℓ=1</sub><sup>V</sup> e<sup>&nbsp;w<sub>ℓ</sub> · x<sub>i</sub></sup></span></span></div>
+  <div class="ex">Scores = dot products of the center word with every vocabulary word; gradient descent nudges the vectors to raise the true context word's probability.</div>
+</section>
+
+<section class="slide" data-sec="2 · Negative sampling">
+  <div class="kicker">Making softmax affordable · not exam material</div>
+  <h1 class="t">Negative sampling</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Why the denominator hurts</span>
+    <p>The softmax denominator sums over <b>all V words</b> — with V in the millions, every update is far too expensive.</p>
+    <p><b>Negative sampling:</b> instead of all N words, update only the <b>true context word</b> plus a few
+      <span class="num">C</span> random “negative” words. Cheap, and works well in practice.</p>
+  </div>
+  <div class="ex">Marked in the slides as <b>not exam material</b> — but it is exactly what makes word2vec (and node2vec) trainable at scale.</div>
+</section>
+
+<section class="slide fig" data-sec="2 · Where embeddings live">
+  <div class="kicker">The answer to “where are the embeddings?”</div>
+  <h1 class="t">Parameters <i>are</i> the embeddings</h1>
+  <div class="figwrap"><img class="plate" src="figs/params_embeddings.png" alt="Bowtie network with the hidden layer highlighted as the word embedding"></div>
+  <div class="figcap">We never use the predictions — we keep the <b>weights</b>. The hidden-layer vector for a word <i>is</i> its
+    <span class="k">word embedding</span>; the task was just a pretext to learn good vectors.</div>
+</section>
+
+<section class="slide fig" data-sec="2 · Two matrices">
+  <div class="kicker">Input vs. output embeddings</div>
+  <h1 class="t">Word2vec learns two matrices</h1>
+  <div class="figwrap"><img class="plate" src="figs/w2v_embeddings.png" alt="Embedding matrix and Context matrix, each vocab_size by embedding_size"></div>
+  <div class="figcap">Both <b>W<sub>in</sub></b> (the <b>Embedding</b> matrix) and <b>W<sub>out</sub></b> (the <b>Context</b> matrix) are
+    <span class="k">vocab × embedding-size</span>. The input embeddings are usually taken as the final word vectors.</div>
+</section>
+
+<section class="slide" data-sec="2 · Geometry">
+  <div class="kicker">What the vectors capture</div>
+  <h1 class="t">The geometry of embeddings</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Analogies become arithmetic</span>
+    Directions in the space encode relationships, so analogies can be solved by adding and subtracting vectors.</div>
+  <div class="math">vec(king) <span class="op">−</span> vec(man) <span class="op">+</span> vec(woman) <span class="op">≈</span> vec(queen)</div>
+  <ul class="pts">
+    <li>The <i>man → woman</i> direction is roughly the same as <i>king → queen</i>.</li>
+    <li>Good embeddings are often <b>pre-computed</b> and freely available (e.g. via <b>gensim</b>).</li>
+  </ul>
+</section>
+
+<!-- ============== PART III — APPLYING WORD EMBEDDINGS ============== -->
+<section class="slide title divider" data-sec="Part III · Applying embeddings">
+  <div class="part">Part III</div>
+  <h1>Applying embeddings to supervised tasks</h1>
+  <div class="sub">Embeddings are learned without labels — then plugged into a supervised model as features.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide fig" data-sec="3 · Text classification">
+  <div class="kicker">Documents → classes</div>
+  <h1 class="t">Text classification</h1>
+  <div class="figwrap"><img class="plate" src="figs/text_classification.png" alt="Documents coloured by class feed the train/test ML pipeline"></div>
+  <div class="figcap">Embed each document, then run the ordinary pipeline — <b>train data</b> → learning algorithm → <b>model</b> →
+    predict the label (<span class="k">Physics · Chemistry · Maths</span>) of a new document.</div>
+</section>
+
+<section class="slide" data-sec="3 · Documents from words">
+  <div class="kicker">From words to documents</div>
+  <h1 class="t">Representing a whole document</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Bag of word-vectors</span>
+    Each word is a vector. Represent a document as the <b>average</b> (or <b>sum</b>) of the vectors of the words it contains.</div>
+  <ul class="pts">
+    <li>Simple, fast, and surprisingly strong as a baseline document representation.</li>
+    <li>Order is ignored — it is still a <i>bag</i> — but each dimension is now <b>semantic</b>, not a raw word count.</li>
+    <li>Libraries such as <b>gensim</b> provide word2vec and these aggregations out of the box.</li>
+  </ul>
+</section>
+
+<!-- ============== PART IV — GRAPH EMBEDDINGS ============== -->
+<section class="slide title divider" data-sec="Part IV · Graph embeddings">
+  <div class="part">Part IV</div>
+  <h1>Graph embeddings</h1>
+  <div class="sub">Reuse the word2vec idea on networks: random walks play the role of sentences — DeepWalk and node2vec.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide fig" data-sec="4 · What we want">
+  <div class="kicker">The objective, for nodes</div>
+  <h1 class="t">What we want from node embeddings</h1>
+  <div class="figwrap"><img class="plate" src="figs/graph_what_we_want.png" alt="Original network maps via encoders to points z_u, z_v in embedding space"></div>
+  <div class="figcap">Encode each node so that <b>similarity in the embedding space</b> (the dot product z<sub>u</sub>ᵀz<sub>v</sub>)
+    approximates <b>similarity in the original network</b>. <span class="k">Same recipe as words — different notion of context.</span></div>
+</section>
+
+<section class="slide" data-sec="4 · RW motivation">
+  <div class="kicker">Node embeddings · motivation from word2vec</div>
+  <h1 class="t">Context on a graph = random walks</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">The analogy</span>
+    In text, a sliding window gives each word its context. On a graph there is no linear order — so we
+    <b>generate sequences by walking</b> the network.</div>
+  <ul class="pts">
+    <li><b>Random walks</b> turn a graph into many short “sentences” of nodes.</li>
+    <li>Nodes that <b>co-occur on walks</b> play the role of words that co-occur in context.</li>
+    <li>Then run <b>exactly the same</b> skip-gram training on those sequences.</li>
+  </ul>
+</section>
+
+<section class="slide fig" data-sec="4 · RW embeddings">
+  <div class="kicker">The random-walk objective</div>
+  <h1 class="t">Random-walk embeddings</h1>
+  <div class="figwrap"><img class="plate" src="figs/randomwalk_embed.png" alt="Graph with a highlighted walk, probability P_R(v|u), and the angle between z_i and z_j"></div>
+  <div class="figcap">Make <b>z<sub>u</sub>ᵀz<sub>v</sub></b> approximate the probability that <i>u</i> and <i>v</i>
+    <span class="k">co-occur on a random walk</span> under strategy <b>R</b>: estimate P<sub>R</sub>(v | u), then optimize the vectors to encode it.</div>
+</section>
+
+<section class="slide fig" data-sec="4 · Pipeline">
+  <div class="kicker">Lab 3 is built on this</div>
+  <h1 class="t">Putting it together: two stages</h1>
+  <div class="figwrap"><img class="plate" src="figs/pipeline.png" alt="Pipeline: sampling random walks, training skip-gram model, computing embeddings"></div>
+  <div class="figcap"><b>1 · Create training data</b> — sample random walks (fixed-window or biased).
+    <b>2 · Train / optimize</b> — given an input node, predict its walk neighbours with
+    <span class="k">skip-gram + negative sampling</span>, then read off the embeddings.</div>
+</section>
+
+<section class="slide fig" data-sec="4 · DeepWalk">
+  <div class="kicker">Fixed-window walks</div>
+  <h1 class="t">DeepWalk: unbiased fixed walks</h1>
+  <div class="figwrap"><img class="plate" src="figs/deepwalk.png" alt="A short random walk u, s1, s2, w, s3 with equal probability of each neighbour"></div>
+  <div class="figcap">Start at a random node, move to <b>each neighbour with equal probability</b>, and stop after a fixed length.
+    <span class="k">The same node may be sampled several times</span> in one walk.</div>
+</section>
+
+<section class="slide fig" data-sec="4 · node2vec BFS/DFS">
+  <div class="kicker">Biased walks · node2vec</div>
+  <h1 class="t">node2vec: BFS vs. DFS neighbourhoods</h1>
+  <div class="figwrap"><img class="plate" src="figs/node2vec_bfsdfs.png" alt="Graph showing BFS neighbourhood s1 s2 s3 and DFS neighbourhood s4 s5 s6 of node u"></div>
+  <div class="figcap">Two ways to define a neighbourhood N<sub>R</sub>(u): <b>BFS</b> stays close — a <span class="k">local, microscopic</span> view
+    of structure; <b>DFS</b> wanders far — a <span class="k">global, macroscopic</span> view. node2vec interpolates between them.</div>
+</section>
+
+<section class="slide fig" data-sec="4 · node2vec p & q">
+  <div class="kicker">The return and in-out parameters</div>
+  <h1 class="t">node2vec: biasing the walk with p and q</h1>
+  <div class="figwrap"><img class="plate" src="figs/node2vec_pq.png" alt="Transition probabilities from the current node weighted 1/p back, 1 to a shared neighbour, 1/q outward"></div>
+  <div class="figcap">From the current node: go <b>back</b> (weight <b>1/p</b>), stay at the same distance (weight <b>1</b>),
+    or move <b>outward</b> (weight <b>1/q</b>). <span class="k">p controls revisiting; q trades BFS-like vs DFS-like exploration.</span></div>
+</section>
+
+<section class="slide" data-sec="4 · RW optimization">
+  <div class="kicker">The loss, and why it is hard</div>
+  <h1 class="t">Random-walk optimization</h1><div class="rule"></div>
+  <div class="math">L <span class="op">=</span> ∑<sub>u∈V</sub> ∑<sub>v∈N<sub>R</sub>(u)</sub> <span class="op">−log</span>
+    <span class="frac"><span class="n">exp(z<sub>u</sub>ᵀz<sub>v</sub>)</span><br><span class="d">∑<sub>n∈V</sub> exp(z<sub>u</sub>ᵀz<sub>n</sub>)</span></span></div>
+  <ul class="pts">
+    <li>Sum over all start nodes <b>u</b>, and over each node <b>v</b> seen on walks from <b>u</b>.</li>
+    <li>The fraction is the <b>predicted probability</b> that <b>u</b> and <b>v</b> co-occur on a walk.</li>
+    <li>Done naïvely the nested sum is <b>O(|V|²)</b> — too expensive.</li>
+  </ul>
+  <div class="math">L <span class="op">≈</span> log σ(z<sub>u</sub>ᵀz<sub>v</sub>) <span class="op">−</span> ∑<sub>i=1</sub><sup>k</sup> log σ(z<sub>u</sub>ᵀz<sub>n<sub>i</sub></sub>) ,&nbsp; n<sub>i</sub> ∼ P<sub>V</sub></div>
+  <div class="ex">Negative sampling again: normalise against <b>k random negatives</b> instead of all nodes (σ = sigmoid). <small>not exam material</small></div>
+</section>
+
+<section class="slide fig" data-sec="4 · Node classification">
+  <div class="kicker">Embeddings first, labels later</div>
+  <h1 class="t">Downstream: node classification</h1>
+  <div class="figwrap"><img class="plate" src="figs/node_classification.png" alt="A node u maps via f to a d-dimensional vector; some nodes are coloured by class, one marked ?"></div>
+  <div class="figcap">Learn f : u → ℝ<sup>d</sup> <b>without labels</b>, then train a classifier on a <b>subset of labelled nodes</b>
+    to predict the rest (<span class="k">? → Physics / Chemistry / Maths</span>).</div>
+</section>
+
+<!-- ============== SUMMARY ============== -->
+<section class="slide" data-sec="Summary">
+  <div class="kicker">Lecture 8 · wrap-up</div>
+  <h1 class="t">Summary</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Take away</span>
+    <p>Hand-crafted features are <b>sparse, large, non-semantic</b>. <b>Embeddings</b> replace them with
+      <b>dense, small, semantic</b> vectors where similarity ≈ dot product.</p>
+    <p><b>word2vec</b> learns word vectors by predicting context over ⟨word, context⟩ pairs; the <b>hidden-layer weights</b>
+      are the embeddings, made trainable by <b>negative sampling</b>. Analogies become vector arithmetic.</p>
+    <p><b>Graph embeddings</b> reuse the idea: <b>random walks</b> are sentences. <b>DeepWalk</b> uses fixed unbiased walks;
+      <b>node2vec</b> biases them with <b>p, q</b> to blend BFS (local) and DFS (global). Same skip-gram objective.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="References">
+  <div class="kicker">Where to read more</div>
+  <h1 class="t">References</h1><div class="rule"></div>
+  <ul class="pts">
+    <li>Mikolov et al., <i>Distributed Representations of Words and Phrases and their Compositionality</i>, NeurIPS 2013.</li>
+    <li>Perozzi, Al-Rfou &amp; Skiena, <i>DeepWalk: Online Learning of Social Representations</i>, KDD 2014.</li>
+    <li>Grover &amp; Leskovec, <i>node2vec: Scalable Feature Learning for Networks</i>, KDD 2016.</li>
+    <li>Hamilton, <i>Graph Representation Learning</i> — <a href="https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book.pdf" target="_blank" rel="noopener">grl_book</a>. Code: <b>gensim</b>. Blog: <i>The Illustrated Word2vec</i> (jalammar).</li>
+  </ul>
+</section>
+
+<div class="secmark" id="sec"></div>
+<div id="bar"><div id="barfill"></div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+slides.forEach(s=>{ const w=document.createElement('div'); w.className='wrap';
+  while(s.firstChild) w.appendChild(s.firstChild); s.appendChild(w); });
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  num.textContent=(i+1)+' / '+slides.length;
+  barfill.style.width=(i/(slides.length-1)*100)+'%';
+  sec.textContent=slides[i].dataset.sec||'';
+  reveal(slides[i]);
+}
+const ANIM_SEL='.kicker,h1.t,.title h1,.divider h1,.sub,.rule,.lead,.defbox,ul.pts,.callout,.math,.ex,table.sched,table.g,.figwrap,.figcap,.card,.twofig,.punch,.by,.part';
+function reveal(s){ s.querySelectorAll(ANIM_SEL).forEach((el,k)=>{ el.classList.remove('rise'); void el.offsetWidth; el.style.setProperty('--d',(k*65)+'ms'); el.classList.add('rise'); }); }
+function next(){show(i+1)} function prev(){show(i-1)}
+addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  else if(e.key==='Home')show(0); else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{ if(e.target.closest('a'))return; next(); });
+const num=document.getElementById('num'), barfill=document.getElementById('barfill'), sec=document.getElementById('sec');
+function fromHash(){ const n=parseInt((location.hash||'').replace('#',''),10); return isNaN(n)?0:n-1; }
+addEventListener('hashchange',()=>show(fromHash()));
+show(fromHash());
+</script>
+</body></html>

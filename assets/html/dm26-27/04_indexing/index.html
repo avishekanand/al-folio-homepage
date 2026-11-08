@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>12 · Indexing Text — study deck</title>
+<style>
+:root{
+    --bg:#17140f; --panel:#1f1b15; --panel2:#241f18; --ink:#ece7dd; --muted:#9a9488;
+    --line:#352f26; --grid:#2a241d;
+    --accent:#d2674f; --cool:#79aba8; --gold:#c89a5c;
+    --serif:Georgia,'Iowan Old Style','Times New Roman',serif;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box} html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);overflow:hidden}
+  a{color:var(--cool);text-decoration:none;border-bottom:1px solid currentColor}
+  a:hover{color:var(--accent)}
+  .slide{position:fixed;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:5.5vh 8vw;animation:fade .32s ease}
+  .slide.on{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes growrule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @media (prefers-reduced-motion:no-preference){
+    .rise{animation:rise .52s both cubic-bezier(.22,.68,.24,1);animation-delay:var(--d,0ms)}
+    .rule.rise{transform-origin:left center;animation:rise .52s both cubic-bezier(.22,.68,.24,1),growrule .5s both ease;animation-delay:var(--d,0ms)}
+  }
+  .kicker{color:var(--accent);font-size:1.0rem;letter-spacing:.09em;text-transform:uppercase}
+  h1.t{font-size:2.6rem;line-height:1.12;margin:.06em 0 .10em;font-weight:400;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-style:italic;font-size:1.22rem;margin:0 0 .15em}
+  .rule{width:118px;height:2px;background:var(--accent);margin:.5em 0 .9em}
+  .lead{font-size:1.32rem;line-height:1.5;max-width:66ch;margin:.1em 0 .5em}
+  .lead b{color:var(--ink);font-weight:400;border-bottom:1px solid var(--accent)}
+  ul.pts{list-style:none;margin:.2em 0 0;padding:0;max-width:70ch}
+  ul.pts li{position:relative;padding-left:1.3em;margin:.42em 0;font-size:1.2rem;line-height:1.4}
+  ul.pts li::before{content:"—";position:absolute;left:0;color:var(--cool)}
+  ul.pts li small{color:var(--muted);font-size:.92em}
+  ul.pts li b{color:var(--cool);font-weight:400}
+  .defbox{background:var(--panel);border:1px solid var(--line);border-radius:9px;
+    padding:.7em 1em;margin:.2em 0;font-size:1.12rem;line-height:1.45;max-width:70ch}
+  .defbox .lab{color:var(--gold);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.2em}
+  .math{font-style:italic;font-size:1.4rem;margin:.3em 0;line-height:1.5}
+  .math .op{font-style:normal;color:var(--muted)}
+  .frac{display:inline-block;text-align:center;font-size:.9em;vertical-align:middle}
+  .frac .d{border-top:1px solid var(--muted);padding-top:1px}
+  .ex{color:var(--muted);font-size:1.1rem;margin-top:.45em;max-width:70ch} .ex b{color:var(--cool);font-weight:400}
+  .mono{font-family:var(--mono);color:var(--cool);font-size:1.02rem;line-height:1.7}
+  table.g{border-collapse:collapse;margin-top:.4em;font-size:1.15rem}
+  table.g td{padding:4px 22px 4px 0} table.g td.h{color:var(--muted);font-style:italic}
+  .title{justify-content:center}
+  .title .kicker{font-size:1.1rem} .title h1{font-size:3.8rem;margin:.08em 0;font-weight:400}
+  .title .by{color:var(--muted);margin-top:1.0em;font-size:1.12rem}
+  .question{align-items:center;justify-content:center;text-align:center}
+  .question .qlab{color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-size:.95rem;
+    display:flex;align-items:center;gap:.55em}
+  .question .qlab::before,.question .qlab::after{content:"";width:46px;height:1px;background:var(--accent);opacity:.6}
+  .question .q{font-size:2.35rem;line-height:1.3;max-width:24ch;margin:.7em auto .2em;font-weight:400}
+  .question .qsub{color:var(--muted);font-style:italic;font-size:1.18rem;max-width:52ch;margin:.3em auto 0}
+  .question .think{margin-top:1.8em;color:var(--muted);font-size:.95rem;opacity:.75;letter-spacing:.03em}
+  .question .think b{color:var(--cool);font-weight:400}
+  .clip{justify-content:center}
+  .clip .cap{color:var(--muted);font-size:1.0rem;margin-top:.7em;text-align:center}
+  .clip .cap b{color:var(--accent);font-weight:400}
+  .videowrap{position:relative;margin:.3em auto 0;max-width:72vw;width:max-content;
+    border-radius:10px;overflow:hidden;box-shadow:0 10px 36px rgba(0,0,0,.45);border:1px solid var(--line)}
+  .videowrap video{display:block;max-height:60vh;max-width:72vw;background:#000}
+  .playov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    z-index:3;cursor:pointer;background:linear-gradient(rgba(23,20,15,.12),rgba(23,20,15,.35))}
+  .playov .pb{width:84px;height:84px;border-radius:50%;background:rgba(210,103,79,.94);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;padding-left:6px;
+    box-shadow:0 6px 20px rgba(0,0,0,.4)}
+  .callout{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:9px;padding:.85em 1.15em;margin:.55em 0;max-width:72ch}
+  .callout .lab{color:var(--accent);font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;display:block;margin-bottom:.3em}
+  .callout p{margin:.15em 0;font-size:1.16rem;line-height:1.46}
+  .callout b{color:var(--cool);font-weight:400}
+  .callout .num{font-family:var(--mono);color:var(--gold);font-size:.95em}
+  .punch{margin-top:.8em;color:var(--accent);font-size:1.18rem}
+  #num{position:fixed;right:16px;top:12px;color:var(--muted);font-size:.9rem;z-index:5}
+  #hint{position:fixed;left:16px;top:12px;color:var(--muted);font-size:.82rem;z-index:5;opacity:.5}
+  #bar{position:fixed;left:0;right:0;bottom:0;height:3px;background:var(--grid);z-index:5}
+  #barfill{height:100%;background:var(--accent);width:0;transition:width .3s}
+  .secmark{position:fixed;left:16px;bottom:12px;color:var(--muted);font-size:.82rem;z-index:5;opacity:.6}
+
+  /* ---- centered, responsive fill ---- */
+  .slide{padding:clamp(1.3rem,4.5vh,3.4rem) clamp(1rem,4vw,3rem);align-items:stretch}
+  .wrap{width:min(1500px,90vw);margin-inline:auto}
+  .question .wrap,.clip .wrap,.title .wrap{width:min(1340px,90vw)}
+  .kicker{font-size:clamp(.85rem,1.25vw,1.05rem)}
+  h1.t{font-size:clamp(1.7rem,3.6vw,3.4rem)}
+  .clip h1.t{font-size:clamp(1.4rem,2.4vw,2.2rem)}
+  .title h1{font-size:clamp(2.4rem,6vw,4.8rem)}
+  .sub{font-size:clamp(1.02rem,1.7vw,1.5rem)}
+  .lead{font-size:clamp(1.1rem,2.05vw,1.78rem);max-width:none}
+  .defbox{font-size:clamp(1.05rem,1.75vw,1.55rem);max-width:none}
+  ul.pts{max-width:none}
+  ul.pts li{font-size:clamp(1.05rem,1.9vw,1.65rem)}
+  .math{font-size:clamp(1.1rem,2.15vw,1.9rem)}
+  table.g{font-size:clamp(1.02rem,1.75vw,1.45rem)}
+  .ex{font-size:clamp(.96rem,1.5vw,1.28rem);max-width:none}
+  .callout{max-width:none}
+  .callout p{font-size:clamp(1.05rem,1.85vw,1.6rem)}
+  .punch{font-size:clamp(1.05rem,1.8vw,1.5rem)}
+  .question .q{font-size:clamp(1.6rem,4vw,3.4rem);max-width:20ch}
+  .question .qsub{font-size:clamp(1.02rem,1.7vw,1.45rem)}
+  .videowrap{max-width:min(80vw,1180px)}
+  .videowrap video{max-height:66vh;max-width:min(80vw,1180px)}
+  .clip .cap{font-size:clamp(.9rem,1.4vw,1.18rem)}
+  @media (max-aspect-ratio:1/1){ .videowrap video{max-height:50vh} }
+
+  /* ---- figures (DM decks: embedded PPTX figures) ---- */
+  .slide.fig{align-items:center;text-align:center}
+  .figwrap{margin:.3em auto 0;text-align:center;max-width:100%}
+  .figwrap img{max-height:58vh;max-width:min(82vw,1120px);border-radius:10px;
+    border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.5);background:#0d0b08;object-fit:contain}
+  .figwrap img.plate{background:#f6f1e7;padding:.7em}        /* line-art / white-bg figures */
+  .figcap{color:var(--muted);font-size:clamp(.92rem,1.45vw,1.2rem);line-height:1.45;
+    margin:.65em auto 0;max-width:74ch;text-align:center}
+  .figcap b{color:var(--accent);font-weight:400}
+  .figcap .k{color:var(--cool)}
+  .twofig{display:flex;gap:1.3em;align-items:center;justify-content:center;flex-wrap:wrap}
+  .twofig .figwrap{margin:0}
+  .twofig img{max-height:46vh;max-width:min(42vw,560px)}
+  /* section divider */
+  .divider{justify-content:center;align-items:flex-start}
+  .divider .part{color:var(--gold);font-size:clamp(.9rem,1.4vw,1.1rem);letter-spacing:.16em;text-transform:uppercase}
+  .divider h1{font-size:clamp(2.2rem,5vw,4rem);font-weight:400;margin:.12em 0 .25em;line-height:1.08}
+  .divider .sub{max-width:60ch}
+  /* grid of mini-cards for the three verticals / content maps */
+  .cards{display:flex;gap:1.1em;margin-top:.5em;flex-wrap:wrap}
+  .card{flex:1;min-width:240px;background:var(--panel);border:1px solid var(--line);
+    border-top:3px solid var(--accent);border-radius:10px;padding:.9em 1.1em}
+  .card h3{margin:0 0 .35em;font-size:clamp(1.1rem,1.9vw,1.55rem);font-weight:400;color:var(--ink)}
+  .card.cool{border-top-color:var(--cool)} .card.gold{border-top-color:var(--gold)}
+  .card ul{list-style:none;margin:.2em 0 0;padding:0}
+  .card li{font-size:clamp(.95rem,1.5vw,1.2rem);color:var(--muted);margin:.26em 0;line-height:1.35}
+  .card li::before{content:"·";color:var(--cool);margin-right:.5em}
+  /* two-column content (text beside a figure) */
+  .split{display:flex;gap:1.6em;align-items:center}
+  .split .col{flex:1;min-width:0} .split .colfig{flex:0 0 auto}
+  .split .colfig img{max-height:52vh;max-width:min(42vw,540px)}
+  @media (max-aspect-ratio:1/1){ .split{flex-direction:column} .figwrap img{max-height:46vh} }
+  /* tighten tables for schedule */
+  table.sched{border-collapse:collapse;margin-top:.3em;font-size:clamp(.82rem,1.35vw,1.08rem);width:100%}
+  table.sched th,table.sched td{padding:5px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.sched th{color:var(--gold);font-weight:400;font-style:normal;letter-spacing:.03em}
+  table.sched td.d{color:var(--cool);white-space:nowrap} table.sched tr.off td{color:var(--muted);opacity:.7}
+
+  /* ---- postings tables (this deck) ---- */
+  table.post{border-collapse:separate;border-spacing:0 7px;margin-top:.4em;font-size:clamp(1rem,1.7vw,1.4rem)}
+  table.post td{padding:0}
+  table.post .term{font-family:var(--mono);color:var(--cool);padding:.28em .9em;background:var(--panel);
+    border:1px solid var(--line);border-radius:7px;text-align:center;min-width:5.5em}
+  table.post .arrow{color:var(--muted);padding:0 .6em}
+  table.post .cells{font-family:var(--mono);letter-spacing:.02em}
+  table.post .cell{display:inline-block;min-width:1.7em;padding:.22em .35em;margin-right:4px;text-align:center;
+    background:var(--panel2);border:1px solid var(--line);border-radius:5px;color:var(--ink)}
+  table.post .cell.hit{border-color:var(--accent);color:var(--gold)}
+</style>
+</head>
+<body>
+<div id="hint">← →/space · click bg to advance · F fullscreen</div><div id="num"></div>
+
+<!-- ============== TITLE ============== -->
+<section class="slide title" data-sec="Indexing Text">
+  <div class="kicker">CSE2525 · Data Mining · 2025–26</div>
+  <h1>Indexing Text</h1>
+  <div class="sub">How do we store a billion documents so we can answer a query in under 200&nbsp;ms? The inverted index, query processing, layout and construction.</div>
+  <div class="rule"></div>
+  <div class="by">A. Anand · lecture 12 study deck</div>
+</section>
+
+<!-- ============== PART I ============== -->
+<section class="slide title divider" data-sec="Part I · Retrieval &amp; the index">
+  <div class="part">Part I</div>
+  <h1>Retrieval &amp; the inverted index</h1>
+  <div class="sub">From an information need to a data structure that finds matching documents fast.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide" data-sec="1 · Text mining tasks">
+  <div class="kicker">Why we index text</div>
+  <h1 class="t">Text mining tasks</h1><div class="rule"></div>
+  <div class="cards">
+    <div class="card"><h3>Categorization</h3>
+      <ul><li>Label web pages, tweets, news</li><li>Spam / topic / sentiment</li><li>Supervised over text features</li></ul></div>
+    <div class="card cool"><h3>Finding relevant information</h3>
+      <ul><li>Information <b>retrieval</b> (search)</li><li>Plagiarism detection</li><li>Patent-violation finding</li></ul></div>
+    <div class="card gold"><h3>Clustering &amp; topics</h3>
+      <ul><li>Latent topic discovery</li><li>Document clustering</li><li>Unsupervised structure</li></ul></div>
+  </div>
+  <div class="ex">All of these first need the text in a form we can <b>search and count</b> quickly — that form is the <b>index</b>.</div>
+</section>
+
+<section class="slide" data-sec="1 · The retrieval problem">
+  <div class="kicker">Application · web search</div>
+  <h1 class="t">Information need → query → relevance</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Three definitions</span>
+    <b style="color:var(--ink);border-bottom:1px solid var(--accent)">Information need</b> — the topic a user wants to know about ·
+    <b style="color:var(--ink);border-bottom:1px solid var(--accent)">Query</b> — a translation of that need into input for the engine ·
+    <b style="color:var(--ink);border-bottom:1px solid var(--accent)">Relevance</b> — a document is relevant if it (partially) answers the need.</div>
+  <ul class="pts">
+    <li>Need: <i>“Where can I download the latest Eclipse beta for macOS?”</i> → query <span class="mono">eclipse download osx</span>.</li>
+    <li>Queries are <b>incomplete, underspecified and ambiguous</b> — the engine still must rank well.</li>
+    <li>Pipeline: crawl &amp; <b>index</b> the collection → retrieve &amp; <b>score / rank</b> results → present.</li>
+    <li>Budget for the whole retrieval step: <span class="mono">&lt; 100–200 ms</span>. <small>Slides credit: C. Hauff.</small></li>
+  </ul>
+</section>
+
+<section class="slide fig" data-sec="1 · App · plagiarism">
+  <div class="kicker">Application · plagiarism detection</div>
+  <h1 class="t">Finding re-used text</h1>
+  <div class="figwrap"><img class="plate" src="figs/plagiarism.png" alt="Two passages with overlapping highlighted sentences matched against Wikipedia"></div>
+  <div class="figcap">The same “finding relevant information” machinery matches a passage against a huge
+    reference collection — here a sentence echoing a <b>Wikipedia</b> source. <span class="k">Retrieval under the hood.</span></div>
+</section>
+
+<section class="slide fig" data-sec="1 · App · vector search">
+  <div class="kicker">Application · vector / embedding search</div>
+  <h1 class="t">Search beyond keywords</h1>
+  <div class="figwrap"><img class="plate" src="figs/vector_search.png" alt="Pet images laid out in 2D embedding space, similar breeds clustered together"></div>
+  <div class="figcap">Items embedded as vectors cluster by <b>similarity</b>; a query finds its nearest neighbours.
+    Modern search mixes this with the classic inverted index. <span class="k">(Google vector search.)</span></div>
+</section>
+
+<section class="slide fig" data-sec="1 · Inverted index">
+  <div class="kicker">The core data structure</div>
+  <h1 class="t">The inverted index: lexicon → postings</h1>
+  <div class="figwrap"><img class="plate" src="figs/lexicon_postings.png" alt="Terms but, heavier, is, jupiter each pointing to a sorted list of docIDs"></div>
+  <div class="figcap">For each <b>term</b> <i>t</i> we store a <b>postings list</b>: every <span class="k">docID</span> containing <i>t</i>,
+    kept <b>sorted</b>. The <b>lexicon</b> maps terms → their list. A <b>posting</b> = ⟨docID, score, positions, …⟩.</div>
+</section>
+
+<section class="slide" data-sec="1 · Lexicon">
+  <div class="kicker">The dictionary / vocabulary</div>
+  <h1 class="t">The lexicon stores per-term statistics</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">A lexicon entry (example)</span>
+    <span class="mono" style="color:var(--gold)">&lt; delft ; location:82271 ; tid:12 ; df:23 , … &gt;</span></div>
+  <ul class="pts">
+    <li><b>Postings-list location</b> — a pointer to where the list lives, for retrieval.</li>
+    <li><b>Term identifier (tid)</b> — for lookups, matching and range queries.</li>
+    <li><b>Document frequency (df)</b> and statistics — needed for <b>ranking</b>.</li>
+    <li>Two classic implementations: a <b>hash-based</b> lexicon and a <b>B+-tree</b> lexicon.</li>
+  </ul>
+</section>
+
+<section class="slide fig" data-sec="1 · Hash lexicon">
+  <div class="kicker">Lexicon data structure · option A</div>
+  <h1 class="t">Hash-based lexicon</h1>
+  <div class="figwrap"><img class="plate" src="figs/hash_lexicon.png" alt="Hash table array with collision chains of terms and their ids"></div>
+  <div class="figcap"><b>Constant-time</b> lookups via a hash table; collisions resolved by chaining.
+    But: the whole lexicon must sit <b>in memory</b>, updates are hard, and
+    <span class="k">range / substring / matching queries are not supported.</span></div>
+</section>
+
+<section class="slide fig" data-sec="1 · B+-tree lexicon">
+  <div class="kicker">Lexicon data structure · option B</div>
+  <h1 class="t">B+-tree lexicon</h1>
+  <div class="figwrap"><img class="plate" src="figs/btree_lexicon.png" alt="B+-tree over term ranges with linked leaf nodes pointing to term entries"></div>
+  <div class="figcap">Lookups in <span class="mono">O(log n)</span>, range search in <span class="mono">O(log n + k)</span>.
+    Leaf nodes are <b>linked</b> for efficient range scans, it handles <b>vocabulary dynamics</b> (added / removed terms),
+    and <span class="k">works on secondary storage.</span></div>
+</section>
+
+<!-- ============== PART II ============== -->
+<section class="slide title divider" data-sec="Part II · Query processing">
+  <div class="part">Part II</div>
+  <h1>Query processing</h1>
+  <div class="sub">Walking the postings lists to answer Boolean and ranked queries — one term at a time, or one document at a time.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide" data-sec="2 · Boolean queries">
+  <div class="kicker">Query: <span class="mono" style="text-transform:none">is heavier</span></div>
+  <h1 class="t">Conjunctive vs. disjunctive queries</h1><div class="rule"></div>
+  <table class="post">
+    <tr><td class="term">heavier</td><td class="arrow">→</td><td class="cells"><span class="cell hit">3</span><span class="cell hit">5</span></td></tr>
+    <tr><td class="term">is</td><td class="arrow">→</td><td class="cells"><span class="cell">1</span><span class="cell hit">3</span><span class="cell">4</span><span class="cell hit">5</span></td></tr>
+  </table>
+  <div class="callout"><span class="lab">Two modes over the same lists</span>
+    <p><b>Conjunctive</b> — <span class="mono">is AND heavier</span> = <b>intersection</b> = {<span class="num">3, 5</span>}.</p>
+    <p><b>Disjunctive</b> — <span class="mono">is OR heavier</span> = <b>union</b> = {<span class="num">1, 3, 4, 5</span>}.</p>
+    <p>Lists are <b>sorted by docID</b>, so both are a single <b>merge-style walk</b> — no random lookups.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="2 · Term-at-a-time">
+  <div class="kicker">Query processing strategy A</div>
+  <h1 class="t">Term-at-a-time</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Idea</span>
+    Process <b>one postings list fully</b> before the next. Keep in-memory <b>accumulators</b>
+    (one partial score per candidate doc) and update them as each list streams by.</div>
+  <ul class="pts">
+    <li>Read <span class="mono">is</span>: seed accumulators for docs 1, 3, 4, 5.</li>
+    <li>Read <span class="mono">heavier</span>: add its contribution to docs 3 and 5.</li>
+    <li>At the end, accumulators hold the <b>final scores</b>; sort to rank.</li>
+    <li><b>Best for disjunctive queries</b> — every matching doc gets an accumulator.</li>
+  </ul>
+</section>
+
+<section class="slide" data-sec="2 · Doc-at-a-time">
+  <div class="kicker">Query processing strategy B</div>
+  <h1 class="t">Document-at-a-time</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Idea</span>
+    Open a <b>pointer into every list at once</b> and move them together, computing each
+    document's full score before advancing — natural for <b>intersections</b>.</div>
+  <ul class="pts">
+    <li>Find the <b>max docID</b> currently under any pointer.</li>
+    <li>Advance every other pointer <b>up to that docID</b>.</li>
+    <li>If <b>all pointers agree</b> on the same docID → report it, then step all forward by one.</li>
+    <li>Only one accumulator needed at a time → <b>low memory</b>, good for conjunctive queries.</li>
+  </ul>
+</section>
+
+<section class="slide fig" data-sec="2 · Skip lists">
+  <div class="kicker">Faster intersections</div>
+  <h1 class="t">Skip lists over postings</h1>
+  <div class="figwrap"><img class="plate" src="figs/skip_lists.png" alt="Two postings lists with skip pointers jumping ahead to speed up intersection"></div>
+  <div class="figcap">A <b>skip list</b> is a secondary index over a postings list: skip pointers jump ahead so a
+    doc-at-a-time walk can <b>leap past</b> non-matching docs. Skip every <span class="mono">√(list length)</span> postings
+    for a good <span class="k">time/space trade-off.</span></div>
+</section>
+
+<!-- ============== PART III ============== -->
+<section class="slide title divider" data-sec="Part III · Layout &amp; storage">
+  <div class="part">Part III</div>
+  <h1>Index layout &amp; storage</h1>
+  <div class="sub">What a posting actually holds, how it maps onto disk blocks, and the forward index.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide" data-sec="3 · Logical layout">
+  <div class="kicker">What a posting contains</div>
+  <h1 class="t">Logical layout: a sequence of postings</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Each posting carries</span>
+    a <b>docID</b>, a <b>tf-idf score</b> (or other weight), and <b>term positions</b> within the document — and more as needed.</div>
+  <div class="math">w<sub>t,d</sub> <span class="op">=</span> tf<sub>t,d</sub> <span class="op">×</span> idf<sub>t</sub>
+    <span class="op">=</span> tf<sub>t,d</sub> <span class="op">×</span> log
+    <span class="frac"><span>N</span><span class="d">df<sub>t</sub></span></span></div>
+  <div class="ex">The weight stored in a posting is typically <b>tf-idf</b>: term frequency <b>tf<sub>t,d</sub></b>
+    (how often <i>t</i> occurs in <i>d</i>) damped by inverse document frequency <b>idf<sub>t</sub></b> over
+    <b>N</b> documents, so common terms count for less.</div>
+</section>
+
+<section class="slide fig" data-sec="3 · Physical layout">
+  <div class="kicker">On disk</div>
+  <h1 class="t">Physical layout: parallel arrays</h1>
+  <div class="figwrap"><img class="plate" src="figs/physical_layout.png" alt="A postings list split into parallel arrays: docIDs, weights, position counts, positions, with df on top"></div>
+  <div class="figcap">The list header stores <b>df</b> (# docs with the term). The body is split into <b>parallel streams</b>:
+    <span class="k">docIDs, weights, position counts, term positions</span> — each stream compresses well on its own.</div>
+</section>
+
+<section class="slide fig" data-sec="3 · Data organization">
+  <div class="kicker">Blocks &amp; chunks</div>
+  <h1 class="t">Data organization: caching vs. decompression</h1>
+  <div class="figwrap"><img class="plate" src="figs/data_organization.png" alt="Inverted index split into data blocks and list chunks with annotations"></div>
+  <div class="figcap"><b>Data blocks</b> (say 64&nbsp;KB) are the unit of <b>list caching</b>; <b>list chunks</b> (say 128 postings)
+    are the unit of <b>decompression</b>. Many chunks are skipped, few blocks read; the system may
+    <span class="k">prefetch</span> the next ~2&nbsp;MB from disk.</div>
+</section>
+
+<section class="slide fig" data-sec="3 · Forward index">
+  <div class="kicker">The other direction</div>
+  <h1 class="t">Forward index: doc → terms</h1>
+  <div class="figwrap"><img class="plate" src="figs/forward_index.png" alt="A document id mapped to its ordered sequence of term ids"></div>
+  <div class="figcap">The <b>forward index</b> maps each <b>docID → its term-ids</b> in original order. It powers
+    <span class="k">snippet generation</span>, proximity features for ranking, and per-doc term distributions for query expansion.</div>
+</section>
+
+<!-- ============== PART IV ============== -->
+<section class="slide title divider" data-sec="Part IV · Index construction">
+  <div class="part">Part IV</div>
+  <h1>Index construction</h1>
+  <div class="sub">Inversion: turning a pile of documents into postings lists — in memory, on disk, and across a cluster.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide" data-sec="4 · Inversion">
+  <div class="kicker">Building the index</div>
+  <h1 class="t">Inversion: documents → postings</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Setup</span>
+    Given documents <b>D</b>, each a <b>bag of terms</b>, build the postings lists. This process is called
+    <b style="color:var(--ink);border-bottom:1px solid var(--accent)">inversion</b>.</div>
+  <div class="cards">
+    <div class="card"><h3>Memory-based</h3>
+      <ul><li>Entirely in RAM</li><li>Small collections where index + lexicon fit</li></ul></div>
+    <div class="card cool"><h3>Sort-based (disk)</h3>
+      <ul><li>External sort on term-ids</li><li>When D ≫ memory M</li></ul></div>
+    <div class="card gold"><h3>Merge-based (disk)</h3>
+      <ul><li>Build partial indexes, merge</li><li>Good for updates</li></ul></div>
+  </div>
+</section>
+
+<section class="slide fig" data-sec="4 · Memory inversion">
+  <div class="kicker">In-memory inversion</div>
+  <h1 class="t">Memory-based inversion</h1>
+  <div class="figwrap"><img class="plate" src="figs/memory_inversion.png" alt="Two documents parsed into term-position pairs feeding a dictionary that builds postings for 'the'"></div>
+  <div class="figcap">Stream each doc as <span class="mono">[term, &lt;positions&gt;]</span> through a <b>dictionary</b> for fast single-term
+    lookup/insert, appending to an <b>extensible postings list</b> per term. <span class="k">Fits only small collections.</span></div>
+</section>
+
+<section class="slide" data-sec="4 · Sort-based">
+  <div class="kicker">When D ≫ memory</div>
+  <h1 class="t">Sort-based inversion &amp; its cost</h1><div class="rule"></div>
+  <ul class="pts">
+    <li>See inversion as an <b>external sort</b> on term identifiers for data that won't fit in RAM.</li>
+    <li>Read a chunk of size <b>M</b>, sort it, write it back; then <b>multiway-merge</b> the D/M sorted runs.</li>
+    <li>Shortcomings: the <b>dictionary may not fit</b>, and intermediate data needs <b>large scratch space</b>.</li>
+  </ul>
+  <div class="callout"><span class="lab">Exercise · cost model</span>
+    <p>With <b>N</b> postings total, <b>M</b> fitting in memory, disk read/write cost <b>c</b> per posting:
+      each posting is written out and read back during merging, so cost scales as roughly
+      <span class="num">2cN</span> (≈ one write + one read per posting), vs. <span class="num">~0</span> extra I/O for a pure in-memory sort when N ≤ M.</p>
+  </div>
+</section>
+
+<section class="slide fig" data-sec="4 · Merge-based">
+  <div class="kicker">Partial indexes</div>
+  <h1 class="t">Merge-based inversion</h1>
+  <div class="figwrap"><img class="plate" src="figs/merge_inversion.png" alt="Documents build several in-memory partial indexes of size M, written to disk, then merged into one"></div>
+  <div class="figcap">Build an in-memory index of size <b>M</b>, flush it as a <b>partial index</b> with a local lexicon
+    (postings <b>compressed</b>), repeat, then <b>multi-way merge</b> matching lists into one index.
+    <span class="k">Naturally supports updates on new data.</span></div>
+</section>
+
+<section class="slide fig" data-sec="4 · Map-Reduce">
+  <div class="kicker">Distributed construction</div>
+  <h1 class="t">Inversion with Map-Reduce</h1>
+  <div class="figwrap"><img class="plate" src="figs/mapreduce.png" alt="Two documents through mappers emitting word,freq pairs, shuffled and summed by reducers"></div>
+  <div class="figcap"><b>Map</b> emits <span class="mono">⟨term, posting⟩</span> per document · <b>Shuffle</b> groups pairs by term across the network ·
+    <b>Reduce</b> concatenates/aggregates all postings of one term into its <span class="k">final postings list.</span></div>
+</section>
+
+<!-- ============== SUMMARY ============== -->
+<section class="slide" data-sec="Summary">
+  <div class="kicker">Lecture 12 · wrap-up</div>
+  <h1 class="t">Summary</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Take away</span>
+    <p>The <b>inverted index</b> maps each term to a <b>sorted postings list</b> of docIDs (with scores and positions);
+      a <b>lexicon</b> (hash or <b>B+-tree</b>) finds the right list.</p>
+    <p>Queries are answered by walking lists — <b>term-at-a-time</b> (accumulators, disjunctive) or
+      <b>doc-at-a-time</b> (aligned pointers, conjunctive), sped up with <b>skip lists</b>.</p>
+    <p>Postings are stored as <b>parallel, compressed streams</b> in blocks/chunks; built by <b>inversion</b> —
+      in memory, by <b>sort</b> or <b>merge</b> on disk, or distributed via <b>Map-Reduce</b>.</p>
+  </div>
+</section>
+
+<div class="secmark" id="sec"></div>
+<div id="bar"><div id="barfill"></div></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+slides.forEach(s=>{ const w=document.createElement('div'); w.className='wrap';
+  while(s.firstChild) w.appendChild(s.firstChild); s.appendChild(w); });
+slides.forEach(s=>{
+  const wrap=s.querySelector('.videowrap'); if(!wrap||!wrap.dataset.src) return;
+  const v=document.createElement('video');
+  v.src=wrap.dataset.src; if(wrap.dataset.poster) v.poster=wrap.dataset.poster;
+  v.controls=true; v.playsInline=true; v.preload='metadata';
+  const ov=document.createElement('div'); ov.className='playov'; ov.innerHTML='<div class="pb">▶</div>';
+  wrap.appendChild(v); wrap.appendChild(ov);
+  ov.addEventListener('click',e=>{e.stopPropagation(); v.play(); });
+  v.addEventListener('playing',()=>ov.style.display='none');
+  v.addEventListener('pause',()=>{ if(!v.ended) ov.style.display='flex'; });
+});
+function show(n){
+  const cur0=slides[i]; const v0=cur0&&cur0.querySelector('video'); if(v0)v0.pause();
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  num.textContent=(i+1)+' / '+slides.length;
+  barfill.style.width=(i/(slides.length-1)*100)+'%';
+  sec.textContent=slides[i].dataset.sec||'';
+  const s=slides[i], v=s.querySelector('video'), ov=s.querySelector('.playov');
+  if(v){ v.currentTime=0; if(ov)ov.style.display='flex'; }
+  reveal(s);
+}
+const ANIM_SEL='.kicker,h1.t,.title h1,.divider h1,.sub,.rule,.lead,.defbox,ul.pts,.callout,.math,.ex,table.sched,table.g,table.post,.figwrap,.figcap,.card,.twofig,.punch,.by,.part';
+function reveal(s){ s.querySelectorAll(ANIM_SEL).forEach((el,k)=>{ el.classList.remove('rise'); void el.offsetWidth; el.style.setProperty('--d',(k*65)+'ms'); el.classList.add('rise'); }); }
+function next(){show(i+1)} function prev(){show(i-1)}
+addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  else if(e.key==='Home')show(0); else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{ if(e.target.closest('video')||e.target.closest('.playov')||e.target.closest('a'))return; next(); });
+const num=document.getElementById('num'), barfill=document.getElementById('barfill'), sec=document.getElementById('sec');
+function fromHash(){ const n=parseInt((location.hash||'').replace('#',''),10); return isNaN(n)?0:n-1; }
+addEventListener('hashchange',()=>show(fromHash()));
+show(fromHash());
+
+</script>
+</body></html>

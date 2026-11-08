@@ -14,6 +14,8 @@ nav_order: 6
 
 This course introduces students to the fundamental concepts and techniques of data mining. Topics include data preprocessing, probabilistic counting, dimensionality reduction, clustering, anomaly detection, and mining text and graph data. The course also includes practical sessions where students apply these techniques using popular data mining tools and software.
 
+[Interactive study decks (2026–27)]({{ '/assets/html/dm26-27/' | relative_url }}) — animated, self-contained lecture decks for exam prep.
+
 [Studyguide Link](https://studiegids.tudelft.nl/opleidingen/study-guide/educations/13603#/details/14273)
 
 [Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774633)

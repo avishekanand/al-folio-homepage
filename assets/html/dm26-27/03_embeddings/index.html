@@ -129,6 +129,27 @@
   .split .colfig img{max-height:52vh;max-width:min(42vw,540px)}
   @media (max-aspect-ratio:1/1){ .split{flex-direction:column} .figwrap img{max-height:46vh} }
 
+
+  /* embeddings: hand-built SVG visuals */
+  .vzwrap{text-align:center;margin:.35em auto}
+  .vz{display:block;margin:.2em auto;max-width:min(80vw,1020px);width:100%;height:auto}
+  .vz text{font-family:var(--serif)}
+  .vz .lab{fill:var(--muted);font-size:3px;font-style:italic}
+  .vz .labk{fill:var(--cool);font-size:3px} .vz .laba{fill:var(--accent);font-size:3px}
+  .vz .z{fill:var(--panel);stroke:var(--line);stroke-width:.3}
+  .vz .hot{fill:var(--accent);stroke:var(--line);stroke-width:.3}
+  .vz .d{stroke:var(--line);stroke-width:.3}
+  .vz .box{fill:var(--panel2);stroke:var(--line);stroke-width:.5}
+  .vz .arr{stroke:var(--muted);stroke-width:.6;fill:none}
+  .vz .edge{stroke:var(--line);stroke-width:.5} .vz .walk{stroke:var(--accent);stroke-width:1.1}
+  .vz .node{fill:var(--panel);stroke:var(--cool);stroke-width:.5}
+  .vz .nodew{fill:var(--accent);stroke:none}
+  .vz .ring{fill:none;stroke:var(--line);stroke-width:.4;stroke-dasharray:1.6 1.2}
+  .vz .wA{fill:var(--cool);font-size:3.2px} .vz .wB{fill:var(--gold);font-size:3.2px}
+  .vz .mat{fill:var(--panel);stroke:var(--line);stroke-width:.4}
+  .vz .hl{fill:rgba(210,103,79,.22)}
+  .vz .ana{stroke:var(--cool);stroke-width:.8;fill:none;marker-end:url(#a)}
+  .vz .anad{stroke:var(--accent);stroke-width:.7;fill:none;stroke-dasharray:1.5 1.2}
 </style>
 </head>
 <body>
@@ -212,7 +233,14 @@
 <section class="slide fig" data-sec="1 · Local vs distributed">
   <div class="kicker">One-hot vs. distributed</div>
   <h1 class="t">Local vs. distributed representations</h1>
-  <div class="figwrap"><img class="plate" src="figs/sparse_1hot_distributed.png" alt="banana, mango, dog as one-hot vectors vs distributed vectors with interpretable features"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 40" class="vz"><defs><marker id="a" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--cool)"/></marker><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<text class="lab" x="4" y="9">one-hot · 50,000 dims, a single 1</text>
+<rect class="z" x="4.0" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="7.9" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="11.8" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="15.7" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="19.6" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="23.5" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="hot" x="27.4" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="31.3" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="35.2" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="39.1" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="43.0" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="46.9" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="50.8" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="54.7" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="58.6" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="62.5" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="66.4" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="70.3" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="74.2" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="78.1" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="82.0" y="11" width="3.6" height="3.6" rx="0.4"/><rect class="z" x="85.9" y="11" width="3.6" height="3.6" rx="0.4"/>
+<path class="arr" marker-end="url(#m)" d="M50,22 L50,27"/>
+<text class="labk" x="52" y="25.5">× E (lookup)</text>
+<text class="lab" x="4" y="33">embedding · ~300 dims, every entry meaningful</text>
+<rect class="d" x="4.0" y="35" width="4.6" height="4.6" rx="0.5" fill="#6d8f8c"/><rect class="d" x="9.0" y="35" width="4.6" height="4.6" rx="0.5" fill="#c89a5c"/><rect class="d" x="14.0" y="35" width="4.6" height="4.6" rx="0.5" fill="#b5674f"/><rect class="d" x="19.0" y="35" width="4.6" height="4.6" rx="0.5" fill="#7a9e86"/><rect class="d" x="24.0" y="35" width="4.6" height="4.6" rx="0.5" fill="#c08a5a"/><rect class="d" x="29.0" y="35" width="4.6" height="4.6" rx="0.5" fill="#6d8f8c"/>
+</svg></div>
   <div class="figcap"><b>Local (1-hot):</b> one active dimension per word — no shared structure.
     <b>Distributed:</b> meaning is <span class="k">spread across many features</span> (barks, fruit, has-tail, …),
     so <i>banana</i> and <i>mango</i> now overlap.</div>
@@ -246,7 +274,14 @@
 <section class="slide fig" data-sec="2 · What we want">
   <div class="kicker">The objective in one picture</div>
   <h1 class="t">What we want from an embedding</h1>
-  <div class="figwrap"><img class="plate" src="figs/what_we_want_word.png" alt="High-dimensional space maps to low-dimensional embedding space; encoders place u and v as z_u, z_v"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 54" class="vz">
+<ellipse class="ring" cx="29" cy="22" rx="12" ry="10"/>
+<ellipse class="ring" cx="70" cy="42" rx="13" ry="9"/>
+<circle class="node" cx="26" cy="20" r="1.1"/><text class="wA" x="28" y="21">planet</text><circle class="node" cx="34" cy="16" r="1.1"/><text class="wA" x="36" y="17">moon</text><circle class="node" cx="22" cy="27" r="1.1"/><text class="wA" x="24" y="28">star</text><circle class="node" cx="33" cy="26" r="1.1"/><text class="wA" x="35" y="27">ice</text>
+<circle class="node" cx="66" cy="40" r="1.1" style="stroke:var(--gold)"/><text class="wB" x="68" y="41">parliament</text><circle class="node" cx="76" cy="36" r="1.1" style="stroke:var(--gold)"/><text class="wB" x="78" y="37">senate</text><circle class="node" cx="72" cy="46" r="1.1" style="stroke:var(--gold)"/><text class="wB" x="74" y="47">tax</text><circle class="node" cx="62" cy="46" r="1.1" style="stroke:var(--gold)"/><text class="wB" x="64" y="47">vote</text>
+<text class="lab" x="29" y="40" text-anchor="middle">same company → close</text>
+<text class="lab" x="70" y="9" text-anchor="middle">different company → far apart</text>
+</svg></div>
   <div class="figcap">Encode each word so that <b>similarity in the embedding space</b> (e.g. the <span class="k">dot product</span> z<sub>u</sub>ᵀz<sub>v</sub>)
     approximates <b>similarity in its textual context</b> — many features → a few <i>semantic</i> ones.</div>
 </section>
@@ -267,7 +302,7 @@
 
 <section class="slide" data-sec="2 · Word2vec idea">
   <div class="kicker">Word2Vec · key idea</div>
-  <h1 class="t">Context provides meaning</h1><div class="rule"></div>
+  <h1 class="t">A word is known by the company it keeps</h1><div class="rule"></div>
   <div class="defbox"><span class="lab">The duck test</span>
     “If it walks like a duck and quacks like a duck, it must be a duck.” The blanks share a <b>context</b>:
     <span class="mono">like a __ and quacks</span> · <span class="mono">like a __ it must</span> · <span class="mono">be a __</span>.</div>
@@ -281,7 +316,21 @@
 <section class="slide fig" data-sec="2 · Word2vec model">
   <div class="kicker">The encoder view</div>
   <h1 class="t">The word2vec model</h1>
-  <div class="figwrap"><img class="plate" src="figs/word2vec_arch.png" alt="word2vec encoder: context vector times W_in to hidden representation times W_out to center word"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 46" class="vz"><defs><marker id="a" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--cool)"/></marker><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<text class="lab" x="10" y="8" text-anchor="middle">one-hot (V)</text>
+<rect class="z" x="7.0" y="11" width="6" height="6" rx="0.4"/><rect class="z" x="7" y="11" width="6" height="2.7" rx="0.3"/><rect class="z" x="7" y="14" width="6" height="2.7" rx="0.3"/><rect class="z" x="7" y="17" width="6" height="2.7" rx="0.3"/><rect class="z" x="7" y="20" width="6" height="2.7" rx="0.3"/><rect class="hot" x="7" y="23" width="6" height="2.7" rx="0.3"/><rect class="z" x="7" y="26" width="6" height="2.7" rx="0.3"/><rect class="z" x="7" y="29" width="6" height="2.7" rx="0.3"/><rect class="z" x="7" y="32" width="6" height="2.7" rx="0.3"/><rect class="z" x="7" y="35" width="6" height="2.7" rx="0.3"/><rect class="z" x="7" y="38" width="6" height="2.7" rx="0.3"/><rect class="z" x="7" y="41" width="6" height="2.7" rx="0.3"/>
+<rect class="box" x="22" y="14" width="12" height="22" rx="1"/><text class="labk" x="28" y="26" text-anchor="middle">E</text><text class="lab" x="28" y="30" text-anchor="middle">V×d</text>
+<path class="arr" marker-end="url(#m)" d="M14,25 L21,25"/>
+<text class="laba" x="46" y="19" text-anchor="middle">v</text>
+<rect class="hot" x="43" y="21" width="6" height="2.7" rx="0.3"/><rect class="hot" x="43" y="24" width="6" height="2.7" rx="0.3"/><rect class="hot" x="43" y="27" width="6" height="2.7" rx="0.3"/><rect class="hot" x="43" y="30" width="6" height="2.7" rx="0.3"/>
+<text class="lab" x="46" y="41" text-anchor="middle">bottleneck (d)</text>
+<path class="arr" marker-end="url(#m)" d="M35,25 L41,25"/>
+<rect class="box" x="56" y="14" width="12" height="22" rx="1"/><text class="labk" x="62" y="26" text-anchor="middle">U</text><text class="lab" x="62" y="30" text-anchor="middle">d×V</text>
+<path class="arr" marker-end="url(#m)" d="M50,25 L55,25"/>
+<text class="lab" x="86" y="8" text-anchor="middle">softmax over V</text>
+<rect class="z" x="80" y="11" width="6" height="2.7" rx="0.3"/><rect class="z" x="80" y="14" width="6" height="2.7" rx="0.3"/><rect class="z" x="80" y="17" width="6" height="2.7" rx="0.3"/><rect class="hot" x="80" y="20" width="12" height="2.7" rx="0.3"/><rect class="z" x="80" y="23" width="6" height="2.7" rx="0.3"/><rect class="z" x="80" y="26" width="6" height="2.7" rx="0.3"/><rect class="z" x="80" y="29" width="6" height="2.7" rx="0.3"/><rect class="z" x="80" y="32" width="6" height="2.7" rx="0.3"/><rect class="z" x="80" y="35" width="6" height="2.7" rx="0.3"/><rect class="z" x="80" y="38" width="6" height="2.7" rx="0.3"/><rect class="z" x="80" y="41" width="6" height="2.7" rx="0.3"/>
+<path class="arr" marker-end="url(#m)" d="M69,25 L79,25"/>
+</svg></div>
   <div class="figcap">Context vector × <b>W<sub>in</sub></b> → a small <b>hidden representation</b> × <b>W<sub>out</sub></b> → predicted center word.
     Input/output are <span class="k">vocabulary-sized</span> (millions); the hidden layer is tiny (≈ <b>300</b>).</div>
 </section>
@@ -327,7 +376,14 @@
 <section class="slide fig" data-sec="2 · Two matrices">
   <div class="kicker">Input vs. output embeddings</div>
   <h1 class="t">Word2vec learns two matrices</h1>
-  <div class="figwrap"><img class="plate" src="figs/w2v_embeddings.png" alt="Embedding matrix and Context matrix, each vocab_size by embedding_size"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 44" class="vz">
+<text class="labk" x="22" y="8" text-anchor="middle">E — input / center</text>
+<rect class="mat" x="10" y="11" width="25" height="30"/><rect class="hl" x="10" y="21" width="25" height="5"/><line x1="10" y1="16" x2="35" y2="16" stroke="var(--line)" stroke-width="0.3"/><line x1="10" y1="21" x2="35" y2="21" stroke="var(--line)" stroke-width="0.3"/><line x1="10" y1="26" x2="35" y2="26" stroke="var(--line)" stroke-width="0.3"/><line x1="10" y1="31" x2="35" y2="31" stroke="var(--line)" stroke-width="0.3"/><line x1="10" y1="36" x2="35" y2="36" stroke="var(--line)" stroke-width="0.3"/><line x1="15" y1="11" x2="15" y2="41" stroke="var(--line)" stroke-width="0.3"/><line x1="20" y1="11" x2="20" y2="41" stroke="var(--line)" stroke-width="0.3"/><line x1="25" y1="11" x2="25" y2="41" stroke="var(--line)" stroke-width="0.3"/><line x1="30" y1="11" x2="30" y2="41" stroke="var(--line)" stroke-width="0.3"/>
+<text class="lab" x="1" y="24">word i →</text>
+<text class="labk" x="70" y="8" text-anchor="middle">U — output / context</text>
+<rect class="mat" x="58" y="11" width="25" height="30"/><rect class="hl" x="58" y="21" width="25" height="5"/><line x1="58" y1="16" x2="83" y2="16" stroke="var(--line)" stroke-width="0.3"/><line x1="58" y1="21" x2="83" y2="21" stroke="var(--line)" stroke-width="0.3"/><line x1="58" y1="26" x2="83" y2="26" stroke="var(--line)" stroke-width="0.3"/><line x1="58" y1="31" x2="83" y2="31" stroke="var(--line)" stroke-width="0.3"/><line x1="58" y1="36" x2="83" y2="36" stroke="var(--line)" stroke-width="0.3"/><line x1="63" y1="11" x2="63" y2="41" stroke="var(--line)" stroke-width="0.3"/><line x1="68" y1="11" x2="68" y2="41" stroke="var(--line)" stroke-width="0.3"/><line x1="73" y1="11" x2="73" y2="41" stroke="var(--line)" stroke-width="0.3"/><line x1="78" y1="11" x2="78" y2="41" stroke="var(--line)" stroke-width="0.3"/>
+<text class="lab" x="50" y="42" text-anchor="middle">every word gets two vectors — one row in each table</text>
+</svg></div>
   <div class="figcap">Both <b>W<sub>in</sub></b> (the <b>Embedding</b> matrix) and <b>W<sub>out</sub></b> (the <b>Context</b> matrix) are
     <span class="k">vocab × embedding-size</span>. The input embeddings are usually taken as the final word vectors.</div>
 </section>
@@ -335,6 +391,17 @@
 <section class="slide" data-sec="2 · Geometry">
   <div class="kicker">What the vectors capture</div>
   <h1 class="t">The geometry of embeddings</h1><div class="rule"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 46" class="vz"><defs><marker id="a" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--cool)"/></marker><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<line class="ana" x1="24" y1="36" x2="24" y2="16"/>
+<line class="ana" x1="70" y1="36" x2="70" y2="16"/>
+<line class="anad" x1="24" y1="16" x2="70" y2="16"/>
+<circle class="node" cx="24" cy="36" r="1.2"/><text class="wA" x="16" y="40">man</text>
+<circle class="node" cx="24" cy="16" r="1.2"/><text class="wA" x="16" y="14">king</text>
+<circle class="node" cx="70" cy="36" r="1.2"/><text class="wB" x="72" y="40">woman</text>
+<circle class="nodew" cx="70" cy="16" r="1.4"/><text class="laba" x="72" y="14">queen</text>
+<text class="labk" x="12" y="27">+royal</text><text class="labk" x="58" y="27">+royal</text>
+<text class="lab" x="50" y="44" text-anchor="middle">king − man + woman ≈ queen — a direction the model was never told</text>
+</svg></div>
   <div class="defbox"><span class="lab">Analogies become arithmetic</span>
     Directions in the space encode relationships, so analogies can be solved by adding and subtracting vectors.</div>
   <div class="math">vec(king) <span class="op">−</span> vec(man) <span class="op">+</span> vec(woman) <span class="op">≈</span> vec(queen)</div>
@@ -404,7 +471,17 @@
 <section class="slide fig" data-sec="4 · RW embeddings">
   <div class="kicker">The random-walk objective</div>
   <h1 class="t">Random-walk embeddings</h1>
-  <div class="figwrap"><img class="plate" src="figs/randomwalk_embed.png" alt="Graph with a highlighted walk, probability P_R(v|u), and the angle between z_i and z_j"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 44" class="vz"><defs><marker id="a" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--cool)"/></marker><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<line class="edge" x1="12" y1="14" x2="26" y2="10"/><line class="edge" x1="12" y1="14" x2="20" y2="26"/><line class="walk" x1="26" y1="10" x2="36" y2="22"/><line class="edge" x1="20" y1="26" x2="30" y2="34"/><line class="walk" x1="20" y1="26" x2="10" y2="34"/><line class="edge" x1="30" y1="34" x2="36" y2="22"/><line class="edge" x1="10" y1="34" x2="30" y2="34"/><line class="walk" x1="26" y1="10" x2="20" y2="26"/>
+<circle class="node" cx="12" cy="14" r="2.2"/><circle class="nodew" cx="26" cy="10" r="2.2"/><circle class="nodew" cx="20" cy="26" r="2.2"/><circle class="nodew" cx="10" cy="34" r="2.2"/><circle class="node" cx="30" cy="34" r="2.2"/><circle class="nodew" cx="36" cy="22" r="2.2"/>
+<text class="lab" x="23" y="42" text-anchor="middle">a random walk</text>
+<path class="arr" marker-end="url(#m)" d="M40,24 L48,24"/>
+<text class="laba" x="62" y="20" text-anchor="middle">“ 4 3 2 6 ”</text>
+<text class="lab" x="62" y="26" text-anchor="middle">walk = a sentence</text>
+<path class="arr" marker-end="url(#m)" d="M74,24 L82,24"/>
+<rect class="d" x="88" y="16.0" width="8" height="2.8" rx="0.4" fill="#6d8f8c"/><rect class="d" x="88" y="19.4" width="8" height="2.8" rx="0.4" fill="#c89a5c"/><rect class="d" x="88" y="22.8" width="8" height="2.8" rx="0.4" fill="#b5674f"/>
+<text class="lab" x="92" y="14" text-anchor="middle">node vectors</text>
+</svg></div>
   <div class="figcap">Make <b>z<sub>u</sub>ᵀz<sub>v</sub></b> approximate the probability that <i>u</i> and <i>v</i>
     <span class="k">co-occur on a random walk</span> under strategy <b>R</b>: estimate P<sub>R</sub>(v | u), then optimize the vectors to encode it.</div>
 </section>

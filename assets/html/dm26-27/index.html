@@ -10,19 +10,21 @@
     min-height:100vh;padding:clamp(2rem,7vw,5rem) clamp(1.1rem,6vw,5rem)}
   .kicker{color:var(--accent);letter-spacing:.11em;text-transform:uppercase;font-size:clamp(.8rem,1.3vw,1rem)}
   h1{font-weight:400;font-size:clamp(2rem,5.5vw,3.6rem);margin:.15em 0 .1em;letter-spacing:-.01em}
-  .sub{color:var(--muted);font-style:italic;font-size:clamp(1.05rem,2vw,1.4rem);max-width:60ch;margin:.2em 0 0}
+  .sub{color:var(--muted);font-style:italic;font-size:clamp(1.05rem,2vw,1.4rem);max-width:62ch;margin:.2em 0 0}
   .rule{width:120px;height:2px;background:var(--accent);margin:1.1em 0 2em}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1em;max-width:1100px}
-  a.card{display:block;text-decoration:none;color:inherit;background:var(--panel);
-    border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:12px;
-    padding:1.1em 1.25em;transition:transform .15s ease,border-color .15s ease}
-  a.card:nth-child(3n+2){border-top-color:var(--cool)} a.card:nth-child(3n){border-top-color:var(--gold)}
-  a.card:hover{transform:translateY(-3px);border-color:var(--accent)}
-  a.card .n{color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
-  a.card h2{font-weight:400;font-size:clamp(1.3rem,2.4vw,1.7rem);margin:.25em 0 .3em}
-  a.card p{color:var(--muted);font-size:1rem;line-height:1.45;margin:0}
-  a.card .meta{color:var(--cool);font-size:.85rem;margin-top:.7em}
-  footer{color:var(--muted);font-size:.95rem;margin-top:2.6em;max-width:70ch;line-height:1.5}
+  .card{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--accent);
+    border-radius:12px;padding:1.1em 1.25em;transition:transform .15s ease,border-color .15s ease;display:flex;flex-direction:column}
+  .card:nth-child(3n+2){border-top-color:var(--cool)} .card:nth-child(3n){border-top-color:var(--gold)}
+  .card:hover{transform:translateY(-3px);border-color:var(--accent)}
+  a.cardmain{display:block;text-decoration:none;color:inherit;flex:1}
+  .card .n{color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+  .card h2{font-weight:400;font-size:clamp(1.3rem,2.4vw,1.7rem);margin:.25em 0 .3em}
+  .card p{color:var(--muted);font-size:1rem;line-height:1.45;margin:0}
+  .meta{color:var(--muted);font-size:.9rem;margin-top:.9em;display:flex;justify-content:space-between;align-items:center;gap:1em}
+  .meta a{color:var(--cool);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:.12em .7em;white-space:nowrap}
+  .meta a:hover{color:var(--accent);border-color:var(--accent)}
+  footer{color:var(--muted);font-size:.95rem;margin-top:2.6em;max-width:72ch;line-height:1.5}
   footer b{color:var(--ink);font-weight:400}
   @media (prefers-color-scheme:light){
     :root{--bg:#f6f1e7;--panel:#fff;--ink:#241f18;--muted:#6b6457;--line:#e2d9c8}
@@ -33,38 +35,45 @@
   <div class="kicker">CSE2525 · Data Mining · 2026–27</div>
   <h1>Study decks</h1>
   <div class="sub">Interactive, self-contained lecture decks — this year with an information-access focus.
-    Open one, then use ← → or click to advance · <code>F</code> for fullscreen.</div>
+    Open one, then use ← → or click / swipe to advance · <code>F</code> fullscreen · <code>L</code> light/dark.
+    Each deck is also available as a PDF.</div>
   <div class="rule"></div>
   <div class="grid">
-    <a class="card" href="01_introduction/index.html">
+    <div class="card"><a class="cardmain" href="01_introduction/index.html">
       <div class="n">Lecture 1</div><h2>Introduction</h2>
-      <p>What data mining is · DM vs ML vs data management · John Snow &amp; a word of caution.</p>
-      <div class="meta">38 slides</div></a>
-    <a class="card" href="02_distances/index.html">
+      <p>What data mining is · DM vs ML vs data management · John Snow &amp; famous examples · a word of caution.</p></a>
+      <div class="meta"><span>42 slides</span><a href="01_introduction/01_introduction.pdf">PDF ↓</a></div></div>
+
+    <div class="card"><a class="cardmain" href="02_distances/index.html">
       <div class="n">Lecture 2</div><h2>Distances &amp; Similarity</h2>
-      <p>Metrics, cosine / Euclidean / Hamming, and a near-duplicate case study.</p>
-      <div class="meta">30 slides</div></a>
-    <a class="card" href="03_embeddings/index.html">
+      <p>Metrics, cosine / Euclidean / Hamming, and two case studies.</p></a>
+      <div class="meta"><span>32 slides</span><a href="02_distances/02_distances.pdf">PDF ↓</a></div></div>
+
+    <div class="card"><a class="cardmain" href="03_embeddings/index.html">
       <div class="n">Lecture 3</div><h2>Embeddings</h2>
-      <p>From raw data to vectors · word2vec · graph embeddings (DeepWalk / node2vec).</p>
-      <div class="meta">35 slides</div></a>
-    <a class="card" href="04_indexing/index.html">
+      <p>From raw data to vectors · word2vec · graph embeddings (DeepWalk / node2vec).</p></a>
+      <div class="meta"><span>39 slides</span><a href="03_embeddings/03_embeddings.pdf">PDF ↓</a></div></div>
+
+    <div class="card"><a class="cardmain" href="04_indexing/index.html">
       <div class="n">Lecture 4</div><h2>Indexing Text</h2>
-      <p>Inverted index, query processing, TF-IDF, and index construction.</p>
-      <div class="meta">27 slides</div></a>
-    <a class="card" href="05_graphs/index.html">
+      <p>Inverted index, query processing, TF-IDF, index construction.</p></a>
+      <div class="meta"><span>28 slides</span><a href="04_indexing/04_indexing.pdf">PDF ↓</a></div></div>
+
+    <div class="card"><a class="cardmain" href="05_graphs/index.html">
       <div class="n">Lecture 5</div><h2>Graph Mining</h2>
-      <p>Properties, centrality, Girvan–Newman, spectral clustering, node embeddings.</p>
-      <div class="meta">39 slides</div></a>
-    <a class="card" href="06_wrap/index.html">
+      <p>Properties, centrality, Girvan–Newman, spectral clustering, node embeddings.</p></a>
+      <div class="meta"><span>40 slides</span><a href="05_graphs/05_graphs.pdf">PDF ↓</a></div></div>
+
+    <div class="card"><a class="cardmain" href="06_wrap/index.html">
       <div class="n">Wrap-up</div><h2>Exam Prep</h2>
-      <p>Recap across embeddings · graphs · indexing, with exam-material checklists.</p>
-      <div class="meta">19 slides</div></a>
-    <a class="card" href="07_minhash_lsh/index.html">
+      <p>Recap across embeddings · graphs · indexing, with exam-material checklists.</p></a>
+      <div class="meta"><span>19 slides</span><a href="06_wrap/06_wrap.pdf">PDF ↓</a></div></div>
+
+    <div class="card"><a class="cardmain" href="07_minhash_lsh/index.html">
       <div class="n">Lecture 7</div><h2>MinHashing &amp; LSH</h2>
-      <p>Jaccard, shingling, MinHash signatures, LSH banding and the S-curve — similar items at scale.</p>
-      <div class="meta">23 slides</div></a>
+      <p>Jaccard, shingling, MinHash signatures, LSH banding and the S-curve.</p></a>
+      <div class="meta"><span>23 slides</span><a href="07_minhash_lsh/07_minhash_lsh.pdf">PDF ↓</a></div></div>
   </div>
-  <footer>A. Anand · with J. Urbano &amp; N. Tömen. Built for exam prep — each deck is a single self-contained page.
-    Best viewed on a laptop; works on mobile too.</footer>
+  <footer>A. Anand, with J. Urbano &amp; N. Tömen. Built for exam prep — each deck is a single self-contained page.
+    Best on a laptop; works on mobile too.</footer>
 </body></html>

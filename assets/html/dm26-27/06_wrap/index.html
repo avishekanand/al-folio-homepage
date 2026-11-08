@@ -111,7 +111,7 @@
   .slide.fig{align-items:center;text-align:center}
   .figwrap{margin:.3em auto 0;text-align:center;max-width:100%}
   .figwrap img{max-height:58vh;max-width:min(82vw,1120px);border-radius:10px;
-    border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.5);background:#0d0b08;object-fit:contain}
+    border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.5);background:var(--panel2);object-fit:contain}
   .figwrap img.plate{background:#f6f1e7;padding:.7em}        /* line-art / white-bg figures */
   .figcap{color:var(--muted);font-size:clamp(.92rem,1.45vw,1.2rem);line-height:1.45;
     margin:.65em auto 0;max-width:74ch;text-align:center}
@@ -145,10 +145,31 @@
   table.sched th{color:var(--gold);font-weight:400;font-style:normal;letter-spacing:.03em}
   table.sched td.d{color:var(--cool);white-space:nowrap} table.sched tr.off td{color:var(--muted);opacity:.7}
 
+
+  /* ---- light / bright mode ---- */
+  :root[data-theme="light"]{
+    --bg:#f5efe2; --panel:#ffffff; --panel2:#faf5ec; --ink:#2a241c; --muted:#6f685b;
+    --line:#e3dac8; --grid:#ece3d2;
+    --accent:#c0583f; --cool:#4f8481; --gold:#a9772c;
+  }
+  #theme{position:fixed;right:50px;top:9px;z-index:6;background:transparent;border:1px solid var(--line);
+    color:var(--muted);border-radius:6px;width:27px;height:24px;cursor:pointer;font-size:14px;line-height:1;padding:0}
+  #theme:hover{color:var(--accent);border-color:var(--accent)}
+  /* ---- print -> PDF: all slides, one per page, native theme ---- */
+  @page{size:1600px 900px;margin:0}
+  @media print{
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    html,body{height:auto;overflow:visible}
+    #hint,#num,#bar,.secmark,#theme{display:none !important}
+    .slide{position:relative !important;display:flex !important;inset:auto !important;
+      width:1600px;height:900px;break-after:page;page-break-after:always;animation:none !important}
+    .slide:last-child{break-after:auto;page-break-after:auto}
+    .rise{animation:none !important;opacity:1 !important;transform:none !important}
+  }
 </style>
 </head>
 <body>
-<div id="hint">← →/space · tap / swipe to advance · F fullscreen</div><div id="num"></div>
+<div id="hint">← →/space · tap / swipe to advance · F fullscreen</div><div id="num"></div><button id="theme" title="Light / dark (L)">◐</button>
 
 <!-- ============== TITLE ============== -->
 <section class="slide title" data-sec="Wrap-up &amp; Exam Prep">
@@ -411,9 +432,10 @@ addEventListener('keydown',e=>{
   if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next();}
   else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev();}
   else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  else if(e.key==='l'||e.key==='L'){toggleTheme();}
   else if(e.key==='Home')show(0); else if(e.key==='End')show(slides.length-1);
 });
-addEventListener('click',e=>{ if(e.target.closest('video')||e.target.closest('.playov')||e.target.closest('a'))return; next(); });
+addEventListener('click',e=>{ if(e.target.closest('video')||e.target.closest('.playov')||e.target.closest('a')||e.target.closest('#theme'))return; next(); });
 const num=document.getElementById('num'), barfill=document.getElementById('barfill'), sec=document.getElementById('sec');
 function fromHash(){ const n=parseInt((location.hash||'').replace('#',''),10); return isNaN(n)?0:n-1; }
 addEventListener('hashchange',()=>show(fromHash()));
@@ -422,5 +444,15 @@ show(fromHash());
 
 /* mobile swipe nav (tight) */
 (function(){var sx=0,sy=0,lastSwipe=0;addEventListener('touchstart',function(e){var t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;},{passive:true});addEventListener('touchend',function(e){if(e.target&&e.target.closest&&(e.target.closest('video')||e.target.closest('.playov')||e.target.closest('a')))return;var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(Math.abs(dx)>28&&Math.abs(dx)>Math.abs(dy)*1.2){lastSwipe=Date.now();e.preventDefault();if(dx<0){next();}else{prev();}}},{passive:false});addEventListener('click',function(e){if(Date.now()-lastSwipe<600){e.stopImmediatePropagation();e.preventDefault();}},true);})();
+
+/* light/dark theme toggle (persisted) */
+(function(){var r=document.documentElement;
+  if(localStorage.getItem('deck-theme')==='light')r.setAttribute('data-theme','light');
+  window.toggleTheme=function(){var l=r.getAttribute('data-theme')==='light';
+    if(l){r.removeAttribute('data-theme');localStorage.setItem('deck-theme','dark');}
+    else{r.setAttribute('data-theme','light');localStorage.setItem('deck-theme','light');}};
+  var b=document.getElementById('theme');
+  if(b)b.addEventListener('click',function(e){e.stopPropagation();toggleTheme();});
+})();
 </script>
 </body></html>

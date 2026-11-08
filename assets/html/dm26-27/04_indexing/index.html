@@ -222,6 +222,13 @@
     Modern search mixes this with the classic inverted index. <span class="k">(Google vector search.)</span></div>
 </section>
 
+<section class="slide question" data-sec="1 · Inverted index">
+  <div class="qlab">Question</div>
+  <div class="q">You have a collection of <b>millions</b> of documents, each ~1000 words. To find every document that contains a keyword — say <i>“tu delft”</i> — what <b>data structure</b> could you build so you <b>avoid</b> scanning the whole collection on every query?</div>
+  <div class="qsub">Scanning every document for every query is hopeless at this scale.</div>
+  <div class="think"><b>Think</b> — then → for the answer.</div>
+</section>
+
 <section class="slide fig" data-sec="1 · Inverted index">
   <div class="kicker">The core data structure</div>
   <h1 class="t">The inverted index: lexicon → postings</h1>

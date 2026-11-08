@@ -147,343 +147,361 @@
   table.sched th{color:var(--gold);font-weight:400;font-style:normal;letter-spacing:.03em}
   table.sched td.d{color:var(--cool);white-space:nowrap} table.sched tr.off td{color:var(--muted);opacity:.7}
 
+
+  /* rebuild: concept tables + opening scatter */
+  table.gt{border-collapse:collapse;width:100%;margin:.35em 0;font-size:clamp(.95rem,1.55vw,1.28rem)}
+  table.gt th{text-align:left;color:var(--gold);font-weight:400;font-style:normal;padding:.4em .75em;border-bottom:1px solid var(--line)}
+  table.gt td{padding:.4em .75em;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.34}
+  table.gt td:first-child{color:var(--cool)}
+  table.gt tr:last-child td{border-bottom:none}
+  table.gt b{color:var(--ink);font-weight:400}
+  table.gt .hit{color:var(--accent)}
+  .scatter{display:block;margin:.3em auto .2em;max-width:min(66vw,720px);width:100%;height:auto}
+  .scatter circle.a{fill:var(--cool)} .scatter circle.b{fill:var(--gold)}
+  .scatter .ring{fill:rgba(210,103,79,.06);stroke:var(--accent);stroke-width:.5;stroke-dasharray:2 1.6}
+  .scatter .anom{fill:none;stroke:var(--accent);stroke-width:.9}
+  .scatter .star{fill:var(--accent)}
+  .scatter text{fill:var(--muted);font-size:3.1px;font-style:italic}
 </style>
 </head>
 <body>
 <div id="hint">← →/space · tap / swipe to advance · F fullscreen</div><div id="num"></div>
 
 <!-- ============== TITLE ============== -->
-<section class="slide title" data-sec="Distances &amp; Similarity">
+
+<!-- ============== TITLE ============== -->
+<section class="slide title" data-sec="Distances &amp; similarity">
   <div class="kicker">CSE2525 · Data Mining · 2025–26</div>
   <h1>Distances &amp; Similarity</h1>
-  <div class="sub">A case study — how to <i>compute</i> distances and how to <i>apply</i> them, through two real problems: recommending similar items, and catching near-duplicate videos.</div>
+  <div class="sub">Choosing a distance is choosing which patterns an algorithm can see — worked through two case studies.</div>
   <div class="rule"></div>
-  <div class="by">A. Anand · lecture 3 (part 1) study deck</div>
+  <div class="by">A. Anand · study deck</div>
 </section>
 
-<!-- ============== PART I — FOUNDATIONS ============== -->
-<section class="slide title divider" data-sec="Part I · Foundations">
+<!-- ============== PART I — WHY DISTANCE ============== -->
+<section class="slide title divider" data-sec="Part I · Why distance">
   <div class="part">Part I</div>
-  <h1>What is a distance?</h1>
-  <div class="sub">A single number that captures how alike two objects are — and the four properties that make it a <i>metric</i>.</div>
+  <h1>Why distance underlies data mining</h1>
+  <div class="sub">Before any formula: what does a distance actually let us <i>do</i>?</div>
   <div class="rule"></div>
 </section>
 
-<section class="slide" data-sec="1 · What is a distance">
-  <div class="kicker">The one idea behind the whole lecture</div>
-  <h1 class="t">What is a distance?</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">Definition</span>
-    A distance is a measure <b style="color:var(--ink);border-bottom:1px solid var(--accent)">d(·,·)</b> of how much
-    two objects <i>look like</i> each other — small when they are similar, large when they differ.</div>
-  <ul class="pts">
-    <li>Objects become <b>points / vectors</b>; the distance is the geometry between them.</li>
-    <li>Example: points <span class="num">x=(5,5)</span> and <span class="num">y=(4,7)</span> in the plane — what <i>should</i> their distance be?</li>
-    <li>The answer is never automatic: it depends on <b>which features</b> you use and <b>which distance function</b> you pick.</li>
-  </ul>
-</section>
-
-<section class="slide" data-sec="1 · Metric properties">
-  <div class="kicker">Not every d() is a metric</div>
-  <h1 class="t">What is a distance <i>metric</i>?</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">A metric d(x,y) must satisfy four properties</span>
-    These are what let us reason about a distance geometrically and trust that "close" behaves sensibly.</div>
-  <div class="cards">
-    <div class="card"><h3>Non-negativity</h3><ul><li class="nob"><span class="math">d(x,y) ≥ 0</span></li><li>distance is never negative</li></ul></div>
-    <div class="card cool"><h3>Identity</h3><ul><li class="nob"><span class="math">d(x,y)=0 ⇔ x=y</span></li><li>zero only for the same object</li></ul></div>
-    <div class="card gold"><h3>Symmetry</h3><ul><li class="nob"><span class="math">d(x,y)=d(y,x)</span></li><li>direction does not matter</li></ul></div>
-    <div class="card"><h3>Triangle inequality</h3><ul><li class="nob"><span class="math">d(x,z) ≤ d(x,y)+d(y,z)</span></li><li>no shortcut through a third point</li></ul></div>
+<section class="slide" data-sec="1 · The central idea">
+  <div class="kicker">The one argument of this lecture</div>
+  <h1 class="t">Mining is deciding what belongs together</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Central idea</span>
+    <p>Data mining discovers patterns by deciding <b>which objects belong together</b>.
+      <b>Representation</b> and <b>distance</b> are what make that decision precise.</p>
+    <p>So the interesting question isn’t “what’s the formula” — it’s <i>which differences we choose to let matter</i>.</p>
   </div>
-  <div class="ex">Keep this checklist handy — for every distance we meet, we will ask: <b>is it actually a metric?</b></div>
+  <div class="ex">Provocation to hold onto: <b>can we change the discovered patterns without changing the data?</b></div>
 </section>
 
-<!-- ============== CASE STUDY 1 ============== -->
-<section class="slide title divider" data-sec="Part II · Case study 1">
-  <div class="part">Case study 1</div>
-  <h1>Finding similar items</h1>
-  <div class="sub">Recommending "products related to this item" on an e-commerce catalogue — and all the modelling choices hiding behind it.</div>
-  <div class="rule"></div>
-</section>
-
-<section class="slide fig" data-sec="2 · Suggest similar items">
-  <div class="kicker">The task</div>
-  <h1 class="t">"I want to suggest similar items…"</h1>
-  <div class="figwrap"><img class="plate" src="figs/similar_items.png" alt="Amazon 'Products related to this item' carousel of LEGO sets"></div>
-  <div class="figcap">Given one product, surface the <b>k most similar</b> others — and keep them meaningfully
-    <span class="k">different from</span> the item you are already looking at. Everything hinges on how we measure "similar".</div>
-</section>
-
-<section class="slide fig" data-sec="2 · What are the features">
-  <div class="kicker">Before any distance — what describes a product?</div>
-  <h1 class="t">What are the features?</h1>
-  <div class="figwrap"><img class="plate" src="figs/amazon_taxonomy.jpg" alt="Amazon category browser: All Categories &gt; Garden &amp; Outdoors &gt; Outdoor Lighting"></div>
-  <div class="figcap">A product carries <b>category</b> (taxonomy path), <b>title / description</b> text,
-    <b>price</b>, and <b>reviews</b>. <span class="k">Each is a different data type — and each needs its own distance.</span></div>
-</section>
-
-<section class="slide" data-sec="2 · General recipe">
-  <div class="kicker">The general recipe</div>
-  <h1 class="t">Turn similarity into a distance table</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">Set-up</span>
-    Build a <b>products × products</b> matrix where cell <span class="num">(i,j)</span> holds the distance
-    between product i and product j (e.g. <span class="num">0.34</span>). The k nearest to i are its recommendations.</div>
-  <ul class="pts">
-    <li>The hard questions come first: <b>on which feature do we compute the distance?</b></li>
-    <li>And: <b>how do we choose the best feature</b> among category, text, price, reviews?</li>
-    <li>Different features give different neighbours — the choice <i>is</i> the model.</li>
-  </ul>
-</section>
-
-<section class="slide fig" data-sec="2 · Product taxonomy">
-  <div class="kicker">Feature 1 · category</div>
-  <h1 class="t">A product taxonomy is a tree</h1>
-  <div class="figwrap"><img class="plate" src="figs/product_taxonomy.png" alt="Taxonomy tree: ALL -&gt; Detergents / Beverages -&gt; ... -&gt; item level products"></div>
-  <div class="figcap">From <b>Level 0 (ALL)</b> down to individual items. Two products sit at leaves;
-    their relatedness is <span class="k">how far apart they are in the tree.</span></div>
-</section>
-
-<section class="slide" data-sec="2 · Taxonomy distance">
-  <div class="kicker">Distance on a tree</div>
-  <h1 class="t">Taxonomy distance = shortest path</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">Idea</span>
-    Define the distance between two categories as the <b>length of the shortest path</b> between their nodes
-    in the taxonomy tree (up to a common ancestor and back down).</div>
-  <div class="callout"><span class="lab">Is it a metric?</span>
-    <p>Yes — shortest-path length on a tree is <b>non-negative</b>, is <b>zero only for the same node</b>,
-      is <b>symmetric</b>, and <b>obeys the triangle inequality</b>. A rare case where all four hold cleanly.</p>
-  </div>
-</section>
-
-<section class="slide" data-sec="2 · Text · cosine">
-  <div class="kicker">Feature 2 · text</div>
-  <h1 class="t">Text-based distance — cosine similarity</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">Represent the text as a vector</span>
-    Titles and descriptions become term/count vectors. We compare their <b>direction</b>, not their length —
-    a long description should not be "far" from a short one just for being long.</div>
-  <ul class="pts">
-    <li>A good distance must be <b>discriminative</b>: near for genuinely similar text, far for unrelated text.</li>
-    <li>Cosine looks at the <b>angle</b> between vectors — it ignores magnitude (document length).</li>
-  </ul>
-</section>
-
-<section class="slide" data-sec="2 · Cosine distance">
-  <div class="kicker">The formula</div>
-  <h1 class="t">Cosine distance</h1><div class="rule"></div>
-  <div class="math">d(<b>a</b>,<b>b</b>) <span class="op">=</span> 1 − cos(θ) <span class="op">=</span> 1 −
-    <span class="frac"><span class="n"><b>a</b> · <b>b</b></span><br><span class="d">‖<b>a</b>‖ ‖<b>b</b>‖</span></span></div>
-  <ul class="pts">
-    <li>cos(θ) = <span class="num">1</span> → same direction → distance <span class="num">0</span> (identical).</li>
-    <li>cos(θ) = <span class="num">0</span> → orthogonal → distance <span class="num">1</span> (no shared terms).</li>
-    <li>Only the <b>direction</b> of the vectors matters, never their length.</li>
-  </ul>
-  <div class="ex">Great for text; also the workhorse distance for embeddings later in the course.</div>
-</section>
-
-<section class="slide" data-sec="2 · Price · Euclidean">
-  <div class="kicker">Feature 3 · price (and other numbers)</div>
-  <h1 class="t">Price: Euclidean distance</h1><div class="rule"></div>
-  <div class="math">d(<b>a</b>,<b>b</b>) <span class="op">=</span> √<span style="border-top:1px solid var(--muted);padding:0 .15em">
-    ∑<sub>d=1</sub><sup>D</sup> (a<sub>d</sub> − b<sub>d</sub>)²</span> <span class="op">=</span> ‖<b>a</b> − <b>b</b>‖</div>
-  <ul class="pts">
-    <li>The straight-line ("as the crow flies") distance between two numeric vectors.</li>
-    <li>For a single number like price it is simply <span class="math">|a − b|</span>.</li>
-    <li>A proper metric — but sensitive to <b>scale</b>, which is the next problem.</li>
-  </ul>
-</section>
-
-<section class="slide fig" data-sec="2 · Normalization">
-  <div class="kicker">When price is a bad feature</div>
-  <h1 class="t">Normalize before you measure</h1>
-  <div class="figwrap"><img class="plate" src="figs/gaussians.png" alt="Gaussian curves with different means and variances"></div>
-  <div class="figcap">Raw price dominates small-scale features and distributions differ wildly.
-    Use <b>normalized distances</b> with mean μ and std-dev σ: <span class="k">z = (x − μ)/σ</span> puts every feature on a common, comparable scale.</div>
-</section>
-
-<section class="slide fig" data-sec="2 · Reviews">
-  <div class="kicker">Feature 4 · reviews</div>
-  <h1 class="t">Reviews as a feature</h1>
-  <div class="figwrap"><img class="plate" src="figs/reviews_hist.png" alt="Customer reviews histogram: 4.8 of 5, star rating distribution"></div>
-  <div class="figcap">The rating <b>distribution</b> (how many 5-, 4-, 3-star…) is itself a vector you can compare.
-    Two products with similar review shapes may be similarly received. <span class="k">But reviews are not always available…</span></div>
-</section>
-
-<section class="slide" data-sec="2 · Cold start">
-  <div class="kicker">When reviews are a bad feature</div>
-  <h1 class="t">The cold-start problem</h1><div class="rule"></div>
-  <div class="callout"><span class="lab">Key problem</span>
-    <p>A brand-new product has <b>few or no reviews</b> — the feature is <b>sparse</b> or missing exactly
-      where we most want a recommendation.</p>
-    <p>A distance built only on reviews is <b>unreliable</b> for new items. Prefer features that are
-      non-sparse and available from day one, or combine several.</p>
-  </div>
-</section>
-
-<section class="slide" data-sec="2 · Choosing a feature">
-  <div class="kicker">One data type, one distance</div>
-  <h1 class="t">How to choose a feature &amp; its distance</h1><div class="rule"></div>
-  <div class="cards">
-    <div class="card"><h3>Numerical</h3><ul><li>price, rating</li><li><b>Euclidean</b>, Manhattan</li><li>normalize for scale</li></ul></div>
-    <div class="card cool"><h3>Categorical</h3><ul><li>brand, category</li><li>taxonomy <b>shortest path</b></li><li>Jaccard on sets</li></ul></div>
-    <div class="card gold"><h3>Text</h3><ul><li>titles, reviews</li><li><b>cosine</b>, Jaccard, edit distance</li><li>direction over length</li></ul></div>
-  </div>
-  <div class="ex">The right distance depends on the <b>data type</b> — and a good feature is non-sparse, reliable, and predictive.</div>
-</section>
-
-<section class="slide" data-sec="2 · Design-space lessons">
-  <div class="kicker">What case study 1 teaches</div>
-  <h1 class="t">Lessons about the design space</h1><div class="rule"></div>
-  <ul class="pts">
-    <li><b>Heterogeneous data types</b> — numerical (price, rating), categorical (brand, category), and text (reviews) all coexist.</li>
-    <li><b>Pick the correct distance</b> for each — is it a metric? Handle normalizing, missing values, "equally spread vs. equally distant".</li>
-    <li><b>Be mindful of the real objective</b> — are you optimizing for <b>clicks</b>, or for <b>buys</b>? The best distance depends on what you actually want.</li>
-  </ul>
-</section>
-
-<section class="slide" data-sec="2 · Pipeline">
-  <div class="kicker">Case study 1 · the whole pipeline</div>
-  <h1 class="t">From objective to algorithm</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">Objective: show k related items</span>
-    A sequence of deliberate choices turns a vague goal into a running recommender.</div>
-  <ul class="pts">
-    <li><b>Which feature(s)?</b> Non-sparse, reliable, predictive, robust to outliers.</li>
-    <li><b>Which distance function?</b> e.g. text → Jaccard, edit distance, cosine.</li>
-    <li><b>Transformations?</b> scaling, normalization — what does the distribution look like?</li>
-    <li><b>Feasibility &amp; objective?</b> What is computationally feasible; what is the objective function.</li>
-    <li><b>Hyperparameters</b> — here, the <b>k</b> in k-nearest-neighbours.</li>
-  </ul>
-</section>
-
-<!-- ============== CASE STUDY 2 ============== -->
-<section class="slide title divider" data-sec="Part III · Case study 2">
-  <div class="part">Case study 2</div>
-  <h1>Near-duplicate detection</h1>
-  <div class="sub">At YouTube scale, how do you tell whether an uploaded video is a near-copy of something already there?</div>
-  <div class="rule"></div>
-</section>
-
-<section class="slide" data-sec="3 · Why it matters">
-  <div class="kicker">The scale &amp; the stakes</div>
-  <h1 class="t">YouTube: find near-duplicates of an upload</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">The firehose</span>
-    An average of <b>2,500 new videos per minute</b> — about <span class="num">183 hours</span> of content,
-    average length <span class="num">4.4 min</span>. Given a query upload, which existing videos are near-duplicates?</div>
-  <div class="callout"><span class="lab">Why we care</span>
-    <p>In <span class="num">2007</span>, <b>Viacom sued YouTube for over $1 billion</b>, followed by class-action
-      suits from sports channels. <b>Copyright</b> makes near-duplicate detection a business-critical problem.</p>
-  </div>
-</section>
-
-<section class="slide fig" data-sec="3 · Near-duplicates">
-  <div class="kicker">CC_WEB_VIDEO dataset</div>
-  <h1 class="t">What a near-duplicate looks like</h1>
-  <div class="figwrap"><img class="plate" src="figs/near_duplicates.png" alt="Grid: query videos (left) and their near-duplicate versions with overlays, recolouring, cropping"></div>
-  <div class="figcap"><b>Left</b> = query video; <b>right</b> = near-duplicates — re-encoded, overlaid with text,
-    recoloured, or cropped. <span class="k">Pixel-identical they are not; perceptually they are the same clip.</span></div>
-</section>
-
-<section class="slide" data-sec="3 · Exact vs near">
-  <div class="kicker">Two very different problems</div>
-  <h1 class="t">Exact vs. near duplicates</h1><div class="rule"></div>
-  <div class="cards">
-    <div class="card"><h3>Exact duplicates — easy</h3>
-      <ul><li>Hash the entire bit stream</li><li>Cryptographic hash for distinctness</li>
-        <li><b>Avalanche effect:</b> a tiny input change flips much of the hash</li></ul></div>
-    <div class="card cool"><h3>Near duplicates — hard</h3>
-      <ul><li>Avalanche is now a <b>bug, not a feature</b></li>
-        <li>We <i>want</i> similar inputs → similar hashes</li>
-        <li>Need a <b>perceptual</b>, not cryptographic, hash</li></ul></div>
-  </div>
-  <div class="ex">A cryptographic hash makes "one pixel changed" look as different as a totally unrelated video — useless here.</div>
-</section>
-
-<section class="slide" data-sec="3 · Perceptual hashing">
-  <div class="kicker">The tool</div>
-  <h1 class="t">Perceptual video hashing (pHash)</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">pHash · phash.org</span>
-    A <b>perceptual hash</b> maps each video to a short <b>binary fingerprint</b> so that
-    perceptually similar videos get <b>similar hashes</b> (small bit-difference).</div>
-  <ul class="pts">
-    <li>Hard to <b>invert</b> — you cannot recover the video from the hash.</li>
-    <li><b>Concise</b> — every video becomes, say, a 16- or 32-bit code.</li>
-    <li>Example codes: <span class="mono">1001000100011100</span> vs <span class="mono">1101000110011100</span> — how far apart?</li>
-  </ul>
-</section>
-
-<section class="slide" data-sec="3 · Hamming distance">
-  <div class="kicker">Distance between bit strings</div>
-  <h1 class="t">Hamming distance</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">Definition</span>
-    The <b>Hamming distance</b> between two equal-length bit strings is the <b>number of positions</b> at which they differ.</div>
-  <table class="g">
-    <tr><td class="h">A</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
-    <tr><td class="h">B</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
-    <tr><td class="h"></td><td></td><td style="color:var(--accent)">✗</td><td></td><td style="color:var(--accent)">✗</td><td></td><td style="color:var(--accent)">✗</td><td></td><td></td></tr>
+<section class="slide" data-sec="1 · One picture, four tasks">
+  <div class="kicker">Distance is a shared building block</div>
+  <h1 class="t">One dataset — four questions</h1><div class="rule"></div>
+  <svg viewBox="0 0 100 56" class="scatter" aria-label="points with a query, its neighbourhood, two groups and an outlier">
+  <circle class="ring" cx="34" cy="33" r="15"/>
+  <circle class="a" cx="18" cy="40" r="2"/><circle class="a" cx="26" cy="31" r="2"/>
+  <circle class="a" cx="22" cy="44" r="2"/><circle class="a" cx="30" cy="38" r="2"/>
+  <circle class="a" cx="15" cy="31" r="2"/><circle class="a" cx="40" cy="42" r="2"/>
+  <circle class="b" cx="68" cy="18" r="2"/><circle class="b" cx="76" cy="23" r="2"/>
+  <circle class="b" cx="71" cy="12" r="2"/><circle class="b" cx="81" cy="18" r="2"/>
+  <circle class="b" cx="74" cy="28" r="2"/><circle class="b" cx="63" cy="24" r="2"/>
+  <polygon class="star" points="34,28.5 35.4,32.4 39.5,32.4 36.2,34.9 37.4,38.8 34,36.4 30.6,38.8 31.8,34.9 28.5,32.4 32.6,32.4"/>
+  <circle class="anom" cx="92" cy="49" r="2.3"/>
+  <text x="34" y="20.5" text-anchor="middle">new object?</text>
+  <text x="92" y="44" text-anchor="middle">far out</text>
+</svg>
+  <table class="gt">
+    <tr><th>Mining task</th><th>The question, expressed through distance</th></tr>
+    <tr><td>Classification</td><td>Which <b>labelled</b> examples are <b>closest</b> to this new object?</td></tr>
+    <tr><td>Clustering</td><td>Which objects are <b>close enough</b> to form groups?</td></tr>
+    <tr><td>Anomaly detection</td><td>Which objects are <b>far</b> from the usual observations?</td></tr>
+    <tr><td>Similarity search</td><td>Which existing objects are <b>closest</b> to this query?</td></tr>
   </table>
-  <div class="math" style="margin-top:.6em">Hamming = <span class="num">3</span> &nbsp;·&nbsp; Normalized Hamming =
-    <span class="frac"><span class="n">Hamming</span><br><span class="d">length</span></span> = <span class="num">3/8</span></div>
 </section>
 
-<section class="slide" data-sec="3 · Hash properties">
-  <div class="kicker">What makes a good perceptual hash</div>
-  <h1 class="t">Robustness and fragility</h1><div class="rule"></div>
-  <div class="cards">
-    <div class="card"><h3>Robustness</h3>
-      <ul><li>Same content → <b>d ≈ 0</b></li><li>Survives re-encoding, overlays, recolouring</li><li>Near-duplicates stay near</li></ul></div>
-    <div class="card gold"><h3>Fragility / unpredictability</h3>
-      <ul><li>Different content → <b>d ≈ 0.5</b> (as random)</li><li>Keyed: same key, different video → d ≈ 0.5</li><li>Different keys, same video → d ≈ 0.5</li></ul></div>
-  </div>
-  <div class="ex">We measure all of this with <b>normalized Hamming distance = Hamming / length</b>.</div>
+<section class="slide" data-sec="1 · A needed caveat">
+  <div class="kicker">Don’t overclaim</div>
+  <h1 class="t">Distance is a common language — not a law</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Honest qualification</span>
+    Many methods use distance <b style="color:var(--ink);border-bottom:1px solid var(--accent)">explicitly</b>. Others use
+    related notions — <b>similarity</b>, <b>reconstruction error</b>, <b>divergence</b>. Distance gives a shared
+    vocabulary, but <i>not every method requires a metric</i>.</div>
+  <div class="ex">We’ll still see that changing the distance changes the <b>neighbours</b>, the <b>groups</b>, and what counts as <b>far</b>.</div>
 </section>
 
-<section class="slide" data-sec="3 · Finding near-dups">
-  <div class="kicker">A two-phase pipeline</div>
-  <h1 class="t">How to find near-duplicates now</h1><div class="rule"></div>
-  <div class="cards">
-    <div class="card"><h3>Phase 1 · fast filter</h3>
-      <ul><li><b>pHash</b> every video; compare by Hamming distance</li><li>Calibrate a similarity <b>threshold</b> (domain knowledge, visualization)</li><li>Output candidates c<sub>1</sub>…c<sub>k</sub></li></ul></div>
-    <div class="card cool"><h3>Phase 2 · slow double-check</h3>
-      <ul><li>Annotate (q, candidate) pairs</li><li>Train an <b>ML model</b>: {near-dup, not near-dup}</li><li>Runs <b>only</b> on phase-1 output</li></ul></div>
-  </div>
-  <div class="ex">pHash is a <b>blackbox</b> with known limitations — the cheap filter narrows millions down to a handful the expensive model can judge.</div>
+<!-- ============== PART II — THE MODELLING DECISION ============== -->
+<section class="slide title divider" data-sec="Part II · The modelling decision">
+  <div class="part">Part II</div>
+  <h1>Task → representation → distance</h1>
+  <div class="sub">The choice of distance <i>is</i> the model — so make the choice deliberately.</div>
+  <div class="rule"></div>
 </section>
 
-<section class="slide" data-sec="3 · What to worry about">
-  <div class="kicker">The objective shapes the threshold</div>
-  <h1 class="t">What should you be bothered about?</h1><div class="rule"></div>
+<section class="slide" data-sec="2 · Similar how?">
+  <div class="kicker">“Similar” is ambiguous on purpose</div>
+  <h1 class="t">Close in what sense?</h1><div class="rule"></div>
   <ul class="pts">
-    <li><b>Short vs. long videos</b> — does the hash behave the same across lengths?</li>
-    <li>Do we care about <b>missing</b> a true duplicate? → optimize for <b>recall</b> (don't let copyright slip through).</li>
-    <li>Do we care about <b>falsely flagging</b> an honest upload? → optimize for <b>precision</b>.</li>
+    <li>Two shoes can be <b>close in price</b> but <b>different in purpose</b>.</li>
+    <li>Two products can have <b>similar descriptions</b> but very <b>different prices</b>.</li>
+    <li>Two visually similar products may be <b>substitutes</b>; two bought-together products may be <b>complements</b>.</li>
   </ul>
-  <div class="callout"><span class="lab">Two objectives, in tension</span>
-    <p><b>Maximize recall</b> — don't miss any near-duplicate. <b>Don't erroneously label</b> an original as a duplicate.
-      The threshold you pick trades one against the other.</p>
+  <div class="callout"><span class="lab">Consequence</span>
+    <p>Different features give <b>different neighbours</b>. Picking the feature and the distance <i>is</i> picking the model —
+      this is the most important idea in the lecture, so we put it first.</p>
   </div>
 </section>
 
-<section class="slide" data-sec="3 · General recipe">
-  <div class="kicker">The same shape everywhere</div>
-  <h1 class="t">Fast filter → slow check: a general recipe</h1><div class="rule"></div>
+<section class="slide" data-sec="2 · The decision sequence">
+  <div class="kicker">Four decisions, in order</div>
+  <h1 class="t">Task → representation → distance → decision</h1><div class="rule"></div>
+  <table class="gt">
+    <tr><th>Choice</th><th>What it determines</th></tr>
+    <tr><td>Task</td><td>What “similar” <b>should</b> mean</td></tr>
+    <tr><td>Representation</td><td>What information is <b>available</b> for comparison</td></tr>
+    <tr><td>Distance</td><td>Which differences <b>matter</b>, and how much</td></tr>
+    <tr><td>Decision rule</td><td>What we <b>do</b> with the resulting distances (e.g. top-k)</td></tr>
+  </table>
+  <div class="ex">And you don’t always need a vector first — <b>trees, strings and sets</b> have distances directly.</div>
+</section>
+
+<!-- ============== PART III — METRICS AS GUARANTEES ============== -->
+<section class="slide title divider" data-sec="Part III · Metrics">
+  <div class="part">Part III</div>
+  <h1>Metrics as useful guarantees</h1>
+  <div class="sub">What properties make a distance predictable — and fast?</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide" data-sec="3 · The four axioms">
+  <div class="kicker">Each axiom buys you something</div>
+  <h1 class="t">The axioms, with their payoff</h1><div class="rule"></div>
+  <table class="gt">
+    <tr><th>Property</th><th>What it guarantees</th></tr>
+    <tr><td>Non-negativity &nbsp;<small>d(x,y) ≥ 0</small></td><td>Difference has a meaningful <b>zero baseline</b></td></tr>
+    <tr><td>Identity of indiscernibles &nbsp;<small>d(x,y)=0 ⇔ x=y</small></td><td>Distinct objects stay <b>distinguishable</b></td></tr>
+    <tr><td>Symmetry &nbsp;<small>d(x,y)=d(y,x)</small></td><td>Comparing A to B equals B to A</td></tr>
+    <tr><td>Triangle inequality &nbsp;<small>d(x,z) ≤ d(x,y)+d(y,z)</small></td><td>Known distances <b>constrain</b> unknown ones</td></tr>
+  </table>
+</section>
+
+<section class="slide" data-sec="3 · Triangle payoff">
+  <div class="kicker">Why the triangle inequality earns its keep</div>
+  <h1 class="t">Metric structure lets us skip work</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Pruning with the triangle inequality</span>
+    A query <i>q</i> is distance <span class="num">10</span> from a reference <i>r</i>. A candidate <i>c</i> is distance
+    <span class="num">2</span> from <i>r</i>. Then <i>c</i> must be at least
+    <b style="color:var(--ink);border-bottom:1px solid var(--accent)">10 − 2 = 8</b> from <i>q</i>.</div>
+  <div class="callout"><span class="lab">So</span>
+    <p>If we only want neighbours within distance <span class="num">3</span>, we can <b>discard <i>c</i> without ever computing d(q,c)</b>.</p>
+    <p>That is the computational reason metric structure matters — it powers indexes that avoid the full n² comparisons.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="3 · Two questions">
+  <div class="kicker">Keep these separate</div>
+  <h1 class="t">Valid metric ≠ useful distance</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Ask both, independently</span>
+    <p><b>1 · Is it a mathematically valid metric?</b> &nbsp; <b>2 · Does it capture the similarity our task needs?</b></p>
+    <p>Neither answer settles the other. A valid metric can be <b>useless</b> for a task; a genuinely useful
+      dissimilarity need not satisfy <b>every</b> axiom. We’ll see both in the case studies.</p>
+  </div>
+</section>
+
+<!-- ============== PART IV — CASE 1: PRODUCTS ============== -->
+<section class="slide title divider" data-sec="Part IV · Products">
+  <div class="part">Part IV · Case study 1</div>
+  <h1>Products: which differences matter</h1>
+  <div class="sub">Designing a similarity, as a sequence of decisions.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide fig" data-sec="4 · Define relevance">
+  <div class="kicker">“I want to suggest similar items”</div>
+  <h1 class="t">First decide what relevance means</h1>
+  <div class="figwrap"><img class="plate" src="figs/similar_items.png" alt="Amazon 'products related to this item' carousel"></div>
+  <div class="figcap">What makes a product a <b>useful</b> recommendation for another — shared category? co-purchase?
+    <span class="k">“related items” / clicks vs. purchases</span> define the target before any distance is chosen.</div>
+</section>
+
+<section class="slide" data-sec="4 · Choose representations">
+  <div class="kicker">What information is available</div>
+  <h1 class="t">Four representations of a product</h1><div class="rule"></div>
   <div class="cards">
-    <div class="card"><h3>Near-duplicates</h3><ul><li>Filter: pHash + Hamming</li><li>Check: ML on (q, cand)</li><li>→ {near-dup, not}</li></ul></div>
-    <div class="card cool"><h3>Web search</h3><ul><li>Filter: lexical match via index</li><li>Check: ML ranker on (q, doc)</li><li>→ {relevant, not}</li></ul></div>
-    <div class="card gold"><h3>Question answering</h3><ul><li>Filter: lexical match via index</li><li>Check: read docs, find answer span</li><li>→ answer containment</li></ul></div>
+    <div class="card"><h3>Category</h3><ul><li>Where it sits in the catalogue tree</li></ul></div>
+    <div class="card cool"><h3>Text</h3><ul><li>Title &amp; description terms</li></ul></div>
+    <div class="card gold"><h3>Price</h3><ul><li>A single numeric feature</li></ul></div>
+    <div class="card"><h3>Reviews</h3><ul><li>Ratings &amp; their distribution</li></ul></div>
   </div>
-  <div class="ex">A cheap recall-oriented filter, then an expensive precise model — <b>only on the filter's output.</b></div>
+  <div class="ex">Each representation needs its <b>own</b> distance — and each will disagree about who the neighbours are.</div>
 </section>
 
-<!-- ============== SUMMARY ============== -->
-<section class="slide" data-sec="Summary">
-  <div class="kicker">Lecture 3 · wrap-up</div>
-  <h1 class="t">Summary</h1><div class="rule"></div>
-  <div class="callout"><span class="lab">Take away</span>
-    <p>A <b>distance</b> measures how alike two objects are; a <b>metric</b> adds four guarantees —
-      non-negativity, identity, symmetry, triangle inequality.</p>
-    <p>There is no universal distance. Match it to the <b>data type</b>: taxonomy shortest-path for categories,
-      <b>cosine</b> for text, <b>Euclidean</b> (normalized) for numbers, <b>Hamming</b> for binary fingerprints.</p>
-    <p>Real systems are <b>pipelines</b>: choose features, choose a distance, normalize, calibrate a threshold —
-      then a <b>fast filter + slow ML check</b>, always driven by the actual objective.</p>
+<section class="slide fig" data-sec="4 · Category distance">
+  <div class="kicker">Category → a tree</div>
+  <h1 class="t">Taxonomy distance = shortest path</h1>
+  <div class="figwrap"><img class="plate" src="figs/product_taxonomy.png" alt="Product category taxonomy tree"></div>
+  <div class="figcap">Distance = path length up to a common ancestor and back down. <b>A metric on category nodes.</b>
+    But <span class="k">distinct products in the same category have distance 0</span> — the representation, not the metric, is the limit.</div>
+</section>
+
+<section class="slide" data-sec="4 · Text distance">
+  <div class="kicker">Text → direction of a term vector</div>
+  <h1 class="t">Cosine: similar wording, any length</h1><div class="rule"></div>
+  <div class="math">cos(θ) <span class="op">=</span> (a · b) / (‖a‖ ‖b‖) &nbsp;&nbsp; d<sub>cos</sub> <span class="op">=</span> 1 − cos(θ)</div>
+  <div class="callout"><span class="lab">Read it carefully</span>
+    <p>Only the <b>direction</b> of the term vectors matters, never their length — great for descriptions of different sizes.</p>
+    <p><b>Mind two traps:</b> distance 0 means <b>same direction, not identical</b> (proportional vectors collapse to 0);
+      and <b>1 − cos θ is not a true metric</b> — it can violate the triangle inequality. Useful, but not a metric.</p>
   </div>
 </section>
+
+<section class="slide fig" data-sec="4 · Price &amp; scaling">
+  <div class="kicker">Price → Euclidean, but beware units</div>
+  <h1 class="t">Standardize — then don’t over-trust it</h1>
+  <div class="figwrap"><img class="plate" src="figs/gaussians.png" alt="Feature distributions with different scales"></div>
+  <div class="figcap">Raw price dominates small-scale features, so standardize: <b>z = (x − μ)/σ</b>.
+    But equal scale ≠ equal <b>relevance</b>, and it <span class="k">does not remove outlier sensitivity</span> — scaling is not a priority decision.</div>
+</section>
+
+<section class="slide fig" data-sec="4 · Incomplete evidence">
+  <div class="kicker">Reviews → sparse &amp; cold-start</div>
+  <h1 class="t">What about products with no history?</h1>
+  <div class="figwrap"><img class="plate" src="figs/reviews_hist.png" alt="Histogram of review counts / ratings"></div>
+  <div class="figcap">Most products have <b>few reviews</b>; brand-new ones have <b>none</b> (cold start).
+    The distance must degrade gracefully when a representation is <span class="k">missing or thin</span>.</div>
+</section>
+
+<section class="slide" data-sec="4 · Worked comparison">
+  <div class="kicker">See the choice change the answer</div>
+  <h1 class="t">One query, three candidates, three rankings</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Query</span> a <b>running shoe</b> · €120 · <i>Footwear › Running</i> · “lightweight breathable running shoe”.</div>
+  <table class="gt">
+    <tr><th>Candidate</th><th>By price</th><th>By category</th><th>By text</th></tr>
+    <tr><td>A · trail running shoe (€130)</td><td>near (Δ10)</td><td class="hit">nearest — same “Running”</td><td class="hit">near — “running shoe”</td></tr>
+    <tr><td>B · running socks (€15)</td><td>far (Δ105)</td><td>far — Apparel › Socks</td><td class="hit">near — “breathable lightweight running”</td></tr>
+    <tr><td>C · formal dress shoe (€125)</td><td class="hit">nearest (Δ5)</td><td>mid — shares “Footwear”</td><td>far — only “shoe”</td></tr>
+  </table>
+  <div class="ex">Price crowns a <b>dress shoe</b>; text pulls in <b>socks</b>; only the right representation ranks the other
+    <b>running shoe</b> first. <b>The distance is the model.</b></div>
+</section>
+
+<section class="slide" data-sec="4 · Combine honestly">
+  <div class="kicker">From objective to algorithm</div>
+  <h1 class="t">Combine distances — weights are priorities</h1><div class="rule"></div>
+  <div class="math">d(x,y) <span class="op">=</span> w<sub>c</sub>·d<sub>category</sub> + w<sub>t</sub>·d<sub>text</sub> + w<sub>p</sub>·d<sub>price</sub></div>
+  <div class="callout"><span class="lab">Two warnings that ride together</span>
+    <p>The terms must be on <b>comparable scales</b> before you add them — exactly the standardization point again.</p>
+    <p>The weights <b>w</b> encode <b>priorities</b>; they are the model’s hyperparameters. Standardization does not choose them for you —
+      <b>you</b> decide what should matter. Then rank the top-k neighbours and evaluate against real clicks/purchases.</p>
+  </div>
+</section>
+
+<!-- ============== PART V — CASE 2: VIDEOS ============== -->
+<section class="slide title divider" data-sec="Part V · Videos">
+  <div class="part">Part V · Case study 2</div>
+  <h1>Videos: which differences to ignore</h1>
+  <div class="sub">Invariance, thresholds, and a system that scales.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide fig" data-sec="5 · The task">
+  <div class="kicker">YouTube: near-duplicates of an upload</div>
+  <h1 class="t">Equivalent for our task, different in the bytes</h1>
+  <div class="figwrap"><img class="plate" src="figs/near_duplicates.png" alt="A query video and several near-duplicates"></div>
+  <div class="figcap">What should be <b>ignored</b>: re-encoding, modest colour changes, logos/overlays, small crops.
+    <span class="k">The job is the opposite of case 1 — choosing differences to discard.</span></div>
+</section>
+
+<section class="slide" data-sec="5 · Why raw fails">
+  <div class="kicker">Byte equality is the wrong tool</div>
+  <h1 class="t">Exact ≠ near</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">The failure</span>
+    Byte equality and <b>cryptographic hashes</b> (MD5, SHA) are designed so one changed pixel flips the whole digest.
+    They detect <b>identical files</b>, never <b>perceptually similar</b> ones.</div>
+  <div class="ex">We need a representation where <b>small perceptual changes → small distance</b>.</div>
+</section>
+
+<section class="slide" data-sec="5 · Perceptual fingerprint">
+  <div class="kicker">Construct the right representation</div>
+  <h1 class="t">Perceptual hashing (pHash)</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">The general idea</span>
+    <p>Reduce each frame to a short <b>fingerprint</b> that survives re-encoding and minor edits — typically from
+      low-frequency structure, so cosmetic changes don’t move it.</p>
+    <p><b>Keep the idea separate from any one scheme.</b> Code length, keyed behaviour and non-invertibility are
+      properties of <i>particular</i> hashes, not defining features of perceptual hashing in general.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="5 · Compare fingerprints">
+  <div class="kicker">Compare → Hamming distance</div>
+  <h1 class="t">Count the differing bits</h1><div class="rule"></div>
+  <div class="math">a = 1011<b style="color:var(--accent)">0</b>010 &nbsp; b = 1011<b style="color:var(--accent)">1</b>010 &nbsp;→&nbsp; d<sub>Hamming</sub> = 1</div>
+  <div class="callout"><span class="lab">Back to Part III</span>
+    <p>Hamming distance <b>is a proper metric</b> on fingerprints — all four axioms hold.</p>
+    <p>Yet <b>distinct videos can share a fingerprint</b>. A metric <i>in the representation space</i> does not guarantee the
+      <b>originals</b> are distinguishable — the same lesson as taxonomy-distance on products.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="5 · Threshold &amp; errors">
+  <div class="kicker">Make a decision, accept errors</div>
+  <h1 class="t">Pick a threshold — trade off the two mistakes</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Decision rule</span> call it a near-duplicate when Hamming distance ≤ <b>τ</b>.</div>
+  <ul class="pts">
+    <li><b>Threshold too tight</b> → miss real duplicates (<b>false negatives</b>).</li>
+    <li><b>Threshold too loose</b> → flag unrelated videos (<b>false positives</b>).</li>
+    <li>τ is chosen from data — exactly the kind of knob the <b>task</b>, not the metric, decides.</li>
+  </ul>
+</section>
+
+<section class="slide" data-sec="5 · The system">
+  <div class="kicker">Make it scale</div>
+  <h1 class="t">Fast filter → slow check</h1><div class="rule"></div>
+  <div class="math" style="font-size:clamp(1rem,1.9vw,1.5rem)">cheap candidate generation &nbsp;→&nbsp; expensive exact verification</div>
+  <div class="callout"><span class="lab">The recipe (you’ll see it again)</span>
+    <p>Generate a small candidate set cheaply (fingerprint buckets / LSH), then verify the few survivors with the
+      expensive comparison. <b>Never materialise all n² distances.</b></p>
+    <p>The same shape powers web search, retrieval and question answering — a recurring pattern this year.</p>
+  </div>
+</section>
+
+<!-- ============== PART VI — SYNTHESIS ============== -->
+<section class="slide title divider" data-sec="Synthesis">
+  <div class="part">Synthesis</div>
+  <h1>Change the distance, change the patterns</h1>
+  <div class="sub">Why this one choice ripples through every task.</div>
+  <div class="rule"></div>
+</section>
+
+<section class="slide" data-sec="6 · What changes">
+  <div class="kicker">Back to the four tasks</div>
+  <h1 class="t">Changing the distance changes the answer</h1><div class="rule"></div>
+  <ul class="pts">
+    <li>Nearest neighbours change → <b>classifications and recommendations</b> change.</li>
+    <li>Neighbourhoods change → <b>clusters and density estimates</b> change.</li>
+    <li>What counts as “far” changes → <b>detected anomalies</b> change.</li>
+  </ul>
+  <table class="gt">
+    <tr><th>Case</th><th>Main lesson</th></tr>
+    <tr><td>Products</td><td>Choosing <b>which differences matter</b></td></tr>
+    <tr><td>Videos</td><td>Choosing <b>which differences to ignore</b></td></tr>
+  </table>
+</section>
+
+<section class="slide" data-sec="Summary">
+  <div class="kicker">Take away · and a transfer exercise</div>
+  <h1 class="t">Choosing a distance is choosing what you can see</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">The message</span>
+    <p>Task → representation → distance → decision. Metrics buy <b>predictability and speed</b>; but a valid metric and a
+      <b>task-useful</b> distance are two separate questions.</p>
+    <p><b>Choosing a distance is choosing which patterns an algorithm can see.</b></p>
+  </div>
+  <div class="ex"><b>Transfer:</b> for detecting duplicate <b>news articles</b> — what representation would you choose,
+    which changes should be ignored, and how would you evaluate the result?</div>
+</section>
+
 
 <div class="secmark" id="sec"></div>
 <div id="bar"><div id="barfill"></div></div>

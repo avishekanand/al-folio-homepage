@@ -150,6 +150,15 @@
   .vz .hl{fill:rgba(210,103,79,.22)}
   .vz .ana{stroke:var(--cool);stroke-width:.8;fill:none;marker-end:url(#a)}
   .vz .anad{stroke:var(--accent);stroke-width:.7;fill:none;stroke-dasharray:1.5 1.2}
+
+  .vz .nodeA{fill:var(--panel);stroke:var(--cool);stroke-width:.6}
+  .vz .nodeB{fill:var(--panel);stroke:var(--gold);stroke-width:.6}
+  .vz .fA{fill:var(--cool)} .vz .fB{fill:var(--gold)}
+  .vz .q{fill:none;stroke:var(--accent);stroke-width:.8;stroke-dasharray:1.4 1.1}
+  .vz .bfs{stroke:var(--cool);stroke-width:1.2} .vz .dfs{stroke:var(--accent);stroke-width:1.2}
+  .vz .tok{fill:var(--panel);stroke:var(--line);stroke-width:.4}
+  .vz .pipe-s1{fill:rgba(121,171,168,.12);stroke:var(--cool);stroke-width:.5}
+  .vz .pipe-s2{fill:rgba(210,103,79,.12);stroke:var(--accent);stroke-width:.5}
 </style>
 </head>
 <body>
@@ -212,7 +221,17 @@
 <section class="slide fig" data-sec="1 · Automatic features">
   <div class="kicker">The goal of this lecture</div>
   <h1 class="t">Automatic feature extraction</h1>
-  <div class="figwrap"><img class="plate" src="figs/auto_feature.png" alt="Documents, tables and graphs map to a sparse large vector, then to a small dense vector"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 40" class="vz"><defs><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<text class="lab" x="10" y="10" text-anchor="middle">raw input</text>
+<rect class="tok" x="4" y="12" width="12" height="3.2" rx="0.4"/><rect class="tok" x="4" y="16" width="12" height="3.2" rx="0.4"/><rect class="tok" x="4" y="20" width="12" height="3.2" rx="0.4"/><rect class="tok" x="4" y="24" width="12" height="3.2" rx="0.4"/><rect class="tok" x="4" y="28" width="12" height="3.2" rx="0.4"/>
+<path class="arr" marker-end="url(#m)" d="M18,16 L26,16"/><text class="labk" x="22" y="13" text-anchor="middle" style="font-size:2.6px">you design</text>
+<text class="lab" x="40" y="10" text-anchor="middle">hand-crafted features</text>
+<rect class="z" x="30" y="14" width="3.4" height="3.4" rx="0.4"/><rect class="z" x="34" y="14" width="3.4" height="3.4" rx="0.4"/><rect class="z" x="38" y="14" width="3.4" height="3.4" rx="0.4"/><rect class="z" x="42" y="14" width="3.4" height="3.4" rx="0.4"/><rect class="z" x="46" y="14" width="3.4" height="3.4" rx="0.4"/><rect class="z" x="50" y="14" width="3.4" height="3.4" rx="0.4"/>
+<path class="arr" marker-end="url(#m)" d="M18,26 L26,26"/><text class="laba" x="22" y="31" text-anchor="middle" style="font-size:2.6px">model learns</text>
+<text class="lab" x="40" y="24" text-anchor="middle">learned embedding</text>
+<rect class="d" x="30" y="28" width="3.4" height="3.4" rx="0.4" fill="#6d8f8c"/><rect class="d" x="34" y="28" width="3.4" height="3.4" rx="0.4" fill="#c89a5c"/><rect class="d" x="38" y="28" width="3.4" height="3.4" rx="0.4" fill="#b5674f"/><rect class="d" x="42" y="28" width="3.4" height="3.4" rx="0.4" fill="#7a9e86"/><rect class="d" x="46" y="28" width="3.4" height="3.4" rx="0.4" fill="#c08a5a"/><rect class="d" x="50" y="28" width="3.4" height="3.4" rx="0.4" fill="#6d8f8c"/>
+<text class="lab" x="76" y="20" text-anchor="middle">same job — but the<tspan class="laba"> features are learned,</tspan> not engineered</text>
+</svg></div>
   <div class="figcap">Raw text / tables / graphs first map to a <b>sparse, large, hand-crafted</b> space; embeddings add a
     second step to a <b>dense, small, semantic</b> space that is <span class="k">learned, not designed</span>.</div>
 </section>
@@ -270,6 +289,22 @@
   <div class="sub">Learn a vector per word so that words used in similar contexts land close together — word2vec.</div>
   <div class="rule"></div>
 </section>
+
+<section class="slide" data-sec="2 · What an embedding is">
+  <div class="kicker">The definition</div>
+  <h1 class="t">What is an embedding?</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Definition</span>
+    An <b style="color:var(--ink);border-bottom:1px solid var(--accent)">embedding</b> is a <b>learned</b>, <b>dense</b>,
+    low-dimensional vector that represents an object — a word, a node, a product — so that
+    <b>similar objects get nearby vectors</b>.</div>
+  <ul class="pts">
+    <li><b>Learned</b>, not hand-designed — the values come from training.</li>
+    <li><b>Dense</b> (~100–300 numbers), unlike a sparse one-hot of size |vocabulary|.</li>
+    <li>Geometry carries meaning: <b>distance / direction</b> in the space stands for relationships.</li>
+  </ul>
+</section>
+
+
 
 <section class="slide fig" data-sec="2 · What we want">
   <div class="kicker">The objective in one picture</div>
@@ -338,7 +373,14 @@
 <section class="slide fig" data-sec="2 · Multi-class view">
   <div class="kicker">Reading it as classification</div>
   <h1 class="t">Word2vec as multi-class classification</h1>
-  <div class="figwrap"><img class="plate" src="figs/multiclass_net.png" alt="Bowtie network: input layer size V, hidden layer size N, output layer size V"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 34" class="vz"><defs><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<rect class="box" x="4" y="12" width="16" height="10" rx="1"/><text class="labk" x="12" y="18.5" text-anchor="middle">water</text>
+<path class="arr" marker-end="url(#m)" d="M21,17 L29,17"/><text class="lab" x="25" y="14" text-anchor="middle" style="font-size:2.6px">E,U</text>
+<text class="lab" x="70" y="9" text-anchor="middle">softmax over the whole vocabulary</text>
+<rect class="z" x="34" y="12.0" width="9" height="1.9" rx="0.3"/><rect class="z" x="34" y="14.3" width="5" height="1.9" rx="0.3"/><rect class="z" x="34" y="16.6" width="22" height="1.9" rx="0.3"/><rect class="hot" x="34" y="18.9" width="30" height="1.9" rx="0.3"/><rect class="z" x="34" y="21.2" width="4" height="1.9" rx="0.3"/><rect class="z" x="34" y="23.5" width="14" height="1.9" rx="0.3"/><rect class="z" x="34" y="25.8" width="6" height="1.9" rx="0.3"/><rect class="z" x="34" y="28.1" width="9" height="1.9" rx="0.3"/>
+<text class="laba" x="66" y="20" text-anchor="start" style="font-size:2.8px">spots (the true neighbour)</text>
+<text class="lab" x="50" y="33" text-anchor="middle">one center word → a probability for <tspan class="labk">every</tspan> vocabulary word</text>
+</svg></div>
   <div class="figcap">A shallow net: input layer <b>W</b><sub>V×N</sub> → hidden <b>h</b> → output <b>W′</b><sub>N×V</sub>.
     Given a word we <b>predict its context</b>; <span class="k">each vocabulary word is one output class</span>.</div>
 </section>
@@ -365,10 +407,22 @@
   <div class="ex">Marked in the slides as <b>not exam material</b> — but it is exactly what makes word2vec (and node2vec) trainable at scale.</div>
 </section>
 
+<section class="slide question" data-sec="2 · Where embeddings live">
+  <div class="qlab">Question</div>
+  <div class="q">A trained word2vec model has learned good vectors. <b>Where do those vectors actually live</b> — which numbers in the model are the parameters you updated?</div>
+  <div class="qsub">The model is “just” two matrices.</div>
+  <div class="think"><b>Think</b> — then → for the answer.</div>
+</section>
+
 <section class="slide fig" data-sec="2 · Where embeddings live">
   <div class="kicker">The answer to “where are the embeddings?”</div>
   <h1 class="t">Parameters <i>are</i> the embeddings</h1>
-  <div class="figwrap"><img class="plate" src="figs/params_embeddings.png" alt="Bowtie network with the hidden layer highlighted as the word embedding"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 44" class="vz"><defs><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<text class="labk" x="33" y="9" text-anchor="middle">embedding matrix E &nbsp;(V × d)</text>
+<rect class="mat" x="20" y="12" width="25.200000000000003" height="29.400000000000002"/><rect class="hl" x="20" y="24.6" width="25.200000000000003" height="4.2"/><line x1="20" y1="16.2" x2="45.2" y2="16.2" stroke="var(--line)" stroke-width="0.3"/><line x1="20" y1="20.4" x2="45.2" y2="20.4" stroke="var(--line)" stroke-width="0.3"/><line x1="20" y1="24.6" x2="45.2" y2="24.6" stroke="var(--line)" stroke-width="0.3"/><line x1="20" y1="28.8" x2="45.2" y2="28.8" stroke="var(--line)" stroke-width="0.3"/><line x1="20" y1="33.0" x2="45.2" y2="33.0" stroke="var(--line)" stroke-width="0.3"/><line x1="20" y1="37.2" x2="45.2" y2="37.2" stroke="var(--line)" stroke-width="0.3"/><line x1="24.2" y1="12" x2="24.2" y2="41.400000000000006" stroke="var(--line)" stroke-width="0.3"/><line x1="28.4" y1="12" x2="28.4" y2="41.400000000000006" stroke="var(--line)" stroke-width="0.3"/><line x1="32.6" y1="12" x2="32.6" y2="41.400000000000006" stroke="var(--line)" stroke-width="0.3"/><line x1="36.8" y1="12" x2="36.8" y2="41.400000000000006" stroke="var(--line)" stroke-width="0.3"/><line x1="41.0" y1="12" x2="41.0" y2="41.400000000000006" stroke="var(--line)" stroke-width="0.3"/>
+<text class="laba" x="49" y="27.5" text-anchor="start">← row = “cat”</text>
+<text class="lab" x="50" y="40" text-anchor="middle">the numbers in these rows <tspan class="laba">are</tspan> the parameters θ — gradient descent updates them directly</text>
+</svg></div>
   <div class="figcap">We never use the predictions — we keep the <b>weights</b>. The hidden-layer vector for a word <i>is</i> its
     <span class="k">word embedding</span>; the task was just a pretext to learn good vectors.</div>
 </section>
@@ -422,7 +476,18 @@
 <section class="slide fig" data-sec="3 · Text classification">
   <div class="kicker">Documents → classes</div>
   <h1 class="t">Text classification</h1>
-  <div class="figwrap"><img class="plate" src="figs/text_classification.png" alt="Documents coloured by class feed the train/test ML pipeline"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 36" class="vz"><defs><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<text class="lab" x="12" y="10" text-anchor="middle">document</text>
+<rect class="tok" x="4" y="12" width="16" height="3.2" rx="0.4"/><rect class="tok" x="4" y="16" width="16" height="3.2" rx="0.4"/><rect class="tok" x="4" y="20" width="16" height="3.2" rx="0.4"/><rect class="tok" x="4" y="24" width="16" height="3.2" rx="0.4"/>
+<path class="arr" marker-end="url(#m)" d="M22,20 L30,20"/><text class="lab" x="26" y="17" text-anchor="middle">look up</text>
+<rect class="d" x="33" y="12" width="10" height="3.2" rx="0.4" fill="#6d8f8c"/><rect class="d" x="33" y="16" width="10" height="3.2" rx="0.4" fill="#c89a5c"/><rect class="d" x="33" y="20" width="10" height="3.2" rx="0.4" fill="#b5674f"/><rect class="d" x="33" y="24" width="10" height="3.2" rx="0.4" fill="#7a9e86"/>
+<path class="arr" marker-end="url(#m)" d="M45,20 L53,20"/><text class="lab" x="49" y="17" text-anchor="middle">average</text>
+<rect class="d" x="56.0" y="18" width="3" height="3.2" rx="0.4" fill="#6d8f8c"/><rect class="d" x="59.3" y="18" width="3" height="3.2" rx="0.4" fill="#c89a5c"/><rect class="d" x="62.6" y="18" width="3" height="3.2" rx="0.4" fill="#b5674f"/><rect class="d" x="65.9" y="18" width="3" height="3.2" rx="0.4" fill="#7a9e86"/><rect class="d" x="69.2" y="18" width="3" height="3.2" rx="0.4" fill="#c08a5a"/>
+<text class="lab" x="64" y="14" text-anchor="middle">doc vector</text>
+<path class="arr" marker-end="url(#m)" d="M74,20 L82,20"/>
+<rect class="box" x="83" y="15" width="13" height="9" rx="1"/><text class="labk" x="89.5" y="20.5" text-anchor="middle">clf</text>
+<text class="lab" x="50" y="34" text-anchor="middle">a whole document becomes one vector — the <tspan class="labk">average of its word vectors</tspan></text>
+</svg></div>
   <div class="figcap">Embed each document, then run the ordinary pipeline — <b>train data</b> → learning algorithm → <b>model</b> →
     predict the label (<span class="k">Physics · Chemistry · Maths</span>) of a new document.</div>
 </section>
@@ -450,9 +515,21 @@
 <section class="slide fig" data-sec="4 · What we want">
   <div class="kicker">The objective, for nodes</div>
   <h1 class="t">What we want from node embeddings</h1>
-  <div class="figwrap"><img class="plate" src="figs/graph_what_we_want.png" alt="Original network maps via encoders to points z_u, z_v in embedding space"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 50" class="vz"><defs><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<line class="edge" x1="18" y1="19" x2="31" y2="13"/><line class="edge" x1="18" y1="19" x2="14" y2="33"/><line class="edge" x1="18" y1="19" x2="29" y2="31"/><line class="edge" x1="31" y1="13" x2="29" y2="31"/><line class="edge" x1="14" y1="33" x2="29" y2="31"/><line class="edge" x1="69" y1="17" x2="82" y2="25"/><line class="edge" x1="69" y1="17" x2="72" y2="38"/><line class="edge" x1="82" y1="25" x2="72" y2="38"/><line class="edge" x1="82" y1="25" x2="85" y2="40"/><line class="edge" x1="72" y1="38" x2="85" y2="40"/><line class="edge" x1="29" y1="31" x2="69" y2="17"/><circle class="fA" cx="18" cy="19" r="2.1"/><circle class="fA" cx="31" cy="13" r="2.1"/><circle class="fA" cx="14" cy="33" r="2.1"/><circle class="fA" cx="29" cy="31" r="2.1"/><circle class="fB" cx="69" cy="17" r="2.1"/><circle class="fB" cx="82" cy="25" r="2.1"/><circle class="fB" cx="72" cy="38" r="2.1"/><circle class="fB" cx="85" cy="40" r="2.1"/>
+<ellipse class="ring" cx="23" cy="25" rx="13" ry="12"/><ellipse class="ring" cx="77" cy="30" rx="12" ry="11"/>
+<path class="arr" marker-end="url(#m)" d="M90,28 L96,28"/>
+<text class="lab" x="50" y="48" text-anchor="middle">nodes close in the graph should get <tspan class="labk">nearby vectors</tspan></text>
+</svg></div>
   <div class="figcap">Encode each node so that <b>similarity in the embedding space</b> (the dot product z<sub>u</sub>ᵀz<sub>v</sub>)
     approximates <b>similarity in the original network</b>. <span class="k">Same recipe as words — different notion of context.</span></div>
+</section>
+
+<section class="slide question" data-sec="4 · RW motivation">
+  <div class="qlab">Question</div>
+  <div class="q">Word2vec needs a word’s <b>context window</b>. A graph has <b>no sentences</b> and no left/right order. How could we reuse the very same method to embed <b>nodes</b>?</div>
+  <div class="qsub">What plays the role of “a sentence” on a graph?</div>
+  <div class="think"><b>Think</b> — then → for the answer.</div>
 </section>
 
 <section class="slide" data-sec="4 · RW motivation">
@@ -487,9 +564,17 @@
 </section>
 
 <section class="slide fig" data-sec="4 · Pipeline">
-  <div class="kicker">Lab 3 is built on this</div>
+  <div class="kicker">Used in the lab</div>
   <h1 class="t">Putting it together: two stages</h1>
-  <div class="figwrap"><img class="plate" src="figs/pipeline.png" alt="Pipeline: sampling random walks, training skip-gram model, computing embeddings"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 34" class="vz"><defs><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<rect class="pipe-s1" x="4" y="8" width="42" height="18" rx="2"/>
+<text class="labk" x="25" y="15" text-anchor="middle">Stage 1 · unsupervised</text>
+<text class="lab" x="25" y="21" text-anchor="middle">graph → walks → node vectors</text>
+<path class="arr" marker-end="url(#m)" d="M47,17 L53,17"/>
+<rect class="pipe-s2" x="54" y="8" width="42" height="18" rx="2"/>
+<text class="laba" x="75" y="15" text-anchor="middle">Stage 2 · supervised</text>
+<text class="lab" x="75" y="21" text-anchor="middle">vectors + labels → classifier</text>
+</svg></div>
   <div class="figcap"><b>1 · Create training data</b> — sample random walks (fixed-window or biased).
     <b>2 · Train / optimize</b> — given an input node, predict its walk neighbours with
     <span class="k">skip-gram + negative sampling</span>, then read off the embeddings.</div>
@@ -498,7 +583,10 @@
 <section class="slide fig" data-sec="4 · DeepWalk">
   <div class="kicker">Fixed-window walks</div>
   <h1 class="t">DeepWalk: unbiased fixed walks</h1>
-  <div class="figwrap"><img class="plate" src="figs/deepwalk.png" alt="A short random walk u, s1, s2, w, s3 with equal probability of each neighbour"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 50" class="vz"><defs><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<line class="walk" x1="18" y1="19" x2="31" y2="13"/><line class="walk" x1="18" y1="19" x2="14" y2="33"/><line class="edge" x1="18" y1="19" x2="29" y2="31"/><line class="walk" x1="31" y1="13" x2="29" y2="31"/><line class="edge" x1="14" y1="33" x2="29" y2="31"/><line class="edge" x1="69" y1="17" x2="82" y2="25"/><line class="edge" x1="69" y1="17" x2="72" y2="38"/><line class="edge" x1="82" y1="25" x2="72" y2="38"/><line class="edge" x1="82" y1="25" x2="85" y2="40"/><line class="edge" x1="72" y1="38" x2="85" y2="40"/><line class="walk" x1="29" y1="31" x2="69" y2="17"/><circle class="nodew" cx="18" cy="19" r="2.1"/><circle class="nodew" cx="31" cy="13" r="2.1"/><circle class="nodew" cx="14" cy="33" r="2.1"/><circle class="nodew" cx="29" cy="31" r="2.1"/><circle class="nodew" cx="69" cy="17" r="2.1"/><circle class="node" cx="82" cy="25" r="2.1"/><circle class="node" cx="72" cy="38" r="2.1"/><circle class="node" cx="85" cy="40" r="2.1"/>
+<text class="lab" x="50" y="48" text-anchor="middle">DeepWalk: take <tspan class="labk">uniform fixed-length walks</tspan> from every node → “sentences”</text>
+</svg></div>
   <div class="figcap">Start at a random node, move to <b>each neighbour with equal probability</b>, and stop after a fixed length.
     <span class="k">The same node may be sampled several times</span> in one walk.</div>
 </section>
@@ -506,7 +594,14 @@
 <section class="slide fig" data-sec="4 · node2vec BFS/DFS">
   <div class="kicker">Biased walks · node2vec</div>
   <h1 class="t">node2vec: BFS vs. DFS neighbourhoods</h1>
-  <div class="figwrap"><img class="plate" src="figs/node2vec_bfsdfs.png" alt="Graph showing BFS neighbourhood s1 s2 s3 and DFS neighbourhood s4 s5 s6 of node u"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 50" class="vz"><defs><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<line class="edge" x1="18" y1="19" x2="31" y2="13"/><line class="edge" x1="18" y1="19" x2="14" y2="33"/><line class="edge" x1="18" y1="19" x2="29" y2="31"/><line class="edge" x1="31" y1="13" x2="29" y2="31"/><line class="edge" x1="14" y1="33" x2="29" y2="31"/><line class="edge" x1="69" y1="17" x2="82" y2="25"/><line class="edge" x1="69" y1="17" x2="72" y2="38"/><line class="edge" x1="82" y1="25" x2="72" y2="38"/><line class="edge" x1="82" y1="25" x2="85" y2="40"/><line class="edge" x1="72" y1="38" x2="85" y2="40"/><line class="edge" x1="29" y1="31" x2="69" y2="17"/>
+<line class="bfs" x1="29" y1="31" x2="18" y2="19"/><line class="bfs" x1="29" y1="31" x2="31" y2="13"/><line class="bfs" x1="29" y1="31" x2="14" y2="33"/>
+<line class="dfs" x1="29" y1="31" x2="69" y2="17"/><line class="dfs" x1="82" y1="25" x2="85" y2="40"/><line class="dfs" x1="69" y1="17" x2="82" y2="25"/>
+<circle class="node" cx="18" cy="19" r="2.1"/><circle class="node" cx="31" cy="13" r="2.1"/><circle class="node" cx="14" cy="33" r="2.1"/><circle class="nodew" cx="29" cy="31" r="2.1"/><circle class="node" cx="69" cy="17" r="2.1"/><circle class="node" cx="82" cy="25" r="2.1"/><circle class="node" cx="72" cy="38" r="2.1"/><circle class="node" cx="85" cy="40" r="2.1"/>
+<text class="labk" x="8" y="10">BFS · local (structural role)</text>
+<text class="laba" x="58" y="47">DFS · far-reaching (community)</text>
+</svg></div>
   <div class="figcap">Two ways to define a neighbourhood N<sub>R</sub>(u): <b>BFS</b> stays close — a <span class="k">local, microscopic</span> view
     of structure; <b>DFS</b> wanders far — a <span class="k">global, macroscopic</span> view. node2vec interpolates between them.</div>
 </section>
@@ -514,7 +609,14 @@
 <section class="slide fig" data-sec="4 · node2vec p & q">
   <div class="kicker">The return and in-out parameters</div>
   <h1 class="t">node2vec: biasing the walk with p and q</h1>
-  <div class="figwrap"><img class="plate" src="figs/node2vec_pq.png" alt="Transition probabilities from the current node weighted 1/p back, 1 to a shared neighbour, 1/q outward"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 46" class="vz"><defs><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<line class="edge" x1="20" y1="30" x2="45" y2="30"/><line class="edge" x1="45" y1="30" x2="70" y2="16"/><line class="edge" x1="45" y1="30" x2="72" y2="34"/><line class="edge" x1="20" y1="30" x2="70" y2="16"/>
+<circle class="node" cx="20" cy="30" r="2.2"/><text class="lab" x="20" y="36" text-anchor="middle">t</text>
+<circle class="nodew" cx="45" cy="30" r="2.4"/><text class="laba" x="45" y="36" text-anchor="middle">v (here)</text>
+<circle class="node" cx="70" cy="16" r="2.2"/><circle class="node" cx="72" cy="34" r="2.2"/>
+<text class="labk" x="30" y="22">return 1/p</text><text class="lab" x="60" y="12">stay close q big</text><text class="lab" x="62" y="40">go far q small</text>
+<text class="lab" x="50" y="44" text-anchor="middle">p, q bias the walk between BFS-like and DFS-like exploration</text>
+</svg></div>
   <div class="figcap">From the current node: go <b>back</b> (weight <b>1/p</b>), stay at the same distance (weight <b>1</b>),
     or move <b>outward</b> (weight <b>1/q</b>). <span class="k">p controls revisiting; q trades BFS-like vs DFS-like exploration.</span></div>
 </section>
@@ -536,7 +638,10 @@
 <section class="slide fig" data-sec="4 · Node classification">
   <div class="kicker">Embeddings first, labels later</div>
   <h1 class="t">Downstream: node classification</h1>
-  <div class="figwrap"><img class="plate" src="figs/node_classification.png" alt="A node u maps via f to a d-dimensional vector; some nodes are coloured by class, one marked ?"></div>
+  <div class="vzwrap"><svg viewBox="0 0 100 50" class="vz"><defs><marker id="m" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
+<line class="edge" x1="18" y1="19" x2="31" y2="13"/><line class="edge" x1="18" y1="19" x2="14" y2="33"/><line class="edge" x1="18" y1="19" x2="29" y2="31"/><line class="edge" x1="31" y1="13" x2="29" y2="31"/><line class="edge" x1="14" y1="33" x2="29" y2="31"/><line class="edge" x1="69" y1="17" x2="82" y2="25"/><line class="edge" x1="69" y1="17" x2="72" y2="38"/><line class="edge" x1="82" y1="25" x2="72" y2="38"/><line class="edge" x1="82" y1="25" x2="85" y2="40"/><line class="edge" x1="72" y1="38" x2="85" y2="40"/><line class="edge" x1="29" y1="31" x2="69" y2="17"/><circle class="fA" cx="18" cy="19" r="2.1"/><circle class="fA" cx="31" cy="13" r="2.1"/><circle class="fA" cx="14" cy="33" r="2.1"/><circle class="fA" cx="29" cy="31" r="2.1"/><circle class="fB" cx="69" cy="17" r="2.1"/><circle class="fB" cx="82" cy="25" r="2.1"/><circle class="q" cx="72" cy="38" r="2.4"/><text class="laba" x="72" y="39" text-anchor="middle" style="font-size:3px">?</text><circle class="fB" cx="85" cy="40" r="2.1"/>
+<text class="lab" x="50" y="48" text-anchor="middle">embed every node, then a classifier labels the <tspan class="laba">unknown</tspan> from its neighbours’ vectors</text>
+</svg></div>
   <div class="figcap">Learn f : u → ℝ<sup>d</sup> <b>without labels</b>, then train a classifier on a <b>subset of labelled nodes</b>
     to predict the rest (<span class="k">? → Physics / Chemistry / Maths</span>).</div>
 </section>

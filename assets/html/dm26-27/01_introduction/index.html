@@ -411,16 +411,17 @@
 
 <section class="slide" data-sec="1 · The three verticals">
   <div class="kicker">The spine of the whole course</div>
-  <h1 class="t">Three verticals: Distances · Matrices · Counting</h1><div class="rule"></div>
+  <h1 class="t">Three verticals: Distances · Matrices · Retrieval</h1><div class="rule"></div>
   <div class="cards">
     <div class="card"><h3>Distances</h3>
-      <ul><li>Similarity &amp; metrics</li><li>Computation, DTW</li><li>Text &amp; graph embeddings</li></ul></div>
+      <ul><li>Similarity &amp; metrics, DTW</li><li>Text &amp; graph embeddings</li><li>Clustering</li><li>Hashing &amp; MinHash / LSH <small>(counting lives here)</small></li></ul></div>
     <div class="card cool"><h3>Matrices</h3>
       <ul><li>Representation, properties, operations</li><li>Factorization &amp; decompositions</li><li>Dimensionality reduction (PCA)</li></ul></div>
-    <div class="card gold"><h3>Counting</h3>
-      <ul><li>Hashing &amp; sketching</li><li>Clustering</li><li>Anomaly detection</li></ul></div>
+    <div class="card gold"><h3>Retrieval</h3>
+      <ul><li>Indexing &amp; the inverted index</li><li>Ranking</li><li>Evaluation</li><li>Near-duplicate / similar-item search</li></ul></div>
   </div>
-  <div class="ex">Every topic in this course hangs off one of these three ideas. Keep them in mind as a map.</div>
+  <div class="ex">This year’s shift: <b>counting folds into Distances</b>, and <b>Retrieval</b> becomes its own vertical —
+    the information-access focus. Every topic hangs off one of these three.</div>
 </section>
 
 <section class="slide" data-sec="1 · Schedule">
@@ -443,7 +444,7 @@
 </section>
 
 <section class="slide" data-sec="1 · Teaching methods">
-  <div class="kicker">17 lectures · 3 labs</div>
+  <div class="kicker">17 lectures · 1 lab</div>
   <h1 class="t">How the teaching works</h1><div class="rule"></div>
   <ul class="pts">
     <li><b>17 lectures</b> — 13 content, 2 invited, 1 intro, plus Q&amp;A sessions.</li>
@@ -474,7 +475,7 @@
   <h1 class="t">Lab sessions</h1><div class="rule"></div>
   <ul class="pts">
     <li><b>One lab assignment</b> this year, in student pairs — Tuesday mornings (08:45), assistance and feedback on the spot.</li>
-    <li>Two parts: <b>algorithm implementation</b> (Distances / Matrices / Counting) and
+    <li>Two parts: <b>algorithm implementation</b> (Distances / Matrices / Retrieval) and
       <b>a pipeline</b> (transform → analyse → visualise). <b>No Kaggle</b> this year.</li>
     <li>Example: implement <b>DTW &amp; PCA</b> from scratch, then build and evaluate the pipeline.</li>
     <li>Everything is built <b>from scratch</b> — no scikit-learn or other ML toolkits.</li>
@@ -540,17 +541,17 @@
 </section>
 
 <section class="slide" data-sec="3 · Content map">
-  <div class="kicker">Distances · Matrices · Counting</div>
+  <div class="kicker">Distances · Matrices · Retrieval</div>
   <h1 class="t">The whole course on one map</h1><div class="rule"></div>
   <div class="cards">
     <div class="card"><h3>Distances</h3>
-      <ul><li>Similarity, metrics, computation</li><li>DTW</li><li>Text embeddings</li><li>Graph embeddings</li></ul></div>
+      <ul><li>Similarity, metrics, DTW</li><li>Text &amp; graph embeddings</li><li>Clustering</li><li>Hashing · MinHash / LSH</li></ul></div>
     <div class="card cool"><h3>Matrices</h3>
-      <ul><li>Representation, properties, operations</li><li>Factorization</li><li>Decompositions</li><li>Dimensionality reduction</li></ul></div>
-    <div class="card gold"><h3>Counting</h3>
-      <ul><li>Hashing</li><li>Clustering</li><li>Anomaly detection</li><li>Sketching</li></ul></div>
+      <ul><li>Representation, properties, operations</li><li>Factorization &amp; decompositions</li><li>Dimensionality reduction (PCA)</li></ul></div>
+    <div class="card gold"><h3>Retrieval</h3>
+      <ul><li>Indexing · inverted index</li><li>Ranking</li><li>Evaluation</li><li>Similar-item / near-duplicate search</li></ul></div>
   </div>
-  <div class="ex">When a new topic appears, ask: <i>is this fundamentally a distance, a matrix, or a counting problem?</i></div>
+  <div class="ex">When a new topic appears, ask: <i>is this fundamentally a distance, a matrix, or a retrieval problem?</i></div>
 </section>
 
 <!-- ============== PART IV — A WORD OF CAUTION ============== -->
@@ -625,7 +626,7 @@
   <div class="callout"><span class="lab">Take away</span>
     <p><b>Data mining</b> = extract useful information from a large volume of data and turn it into an
       understandable structure. It focuses on the <b>input and output</b> ends of the ML pipeline, often unsupervised.</p>
-    <p>Organised around three verticals — <b>Distances · Matrices · Counting</b>. Grading: <b>labs 30%</b> (2 of them),
+    <p>Organised around three verticals — <b>Distances · Matrices · Retrieval</b>. Grading: <b>labs 30%</b>,
       <b>exam 70%</b>.</p>
     <p>It’s called the skill of the 21st century — <b>but tread with caution.</b> Survivorship bias, Clever Hans,
       shortcut learning and multiple comparisons are waiting to fool you.</p>

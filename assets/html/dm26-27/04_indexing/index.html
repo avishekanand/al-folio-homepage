@@ -158,7 +158,7 @@
 </style>
 </head>
 <body>
-<div id="hint">← →/space · click bg to advance · F fullscreen</div><div id="num"></div>
+<div id="hint">← →/space · tap / swipe to advance · F fullscreen</div><div id="num"></div>
 
 <!-- ============== TITLE ============== -->
 <section class="slide title" data-sec="Indexing Text">
@@ -488,5 +488,8 @@ function fromHash(){ const n=parseInt((location.hash||'').replace('#',''),10); r
 addEventListener('hashchange',()=>show(fromHash()));
 show(fromHash());
 
+
+/* mobile swipe nav (tight) */
+(function(){var sx=0,sy=0,lastSwipe=0;addEventListener('touchstart',function(e){var t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;},{passive:true});addEventListener('touchend',function(e){if(e.target&&e.target.closest&&(e.target.closest('video')||e.target.closest('.playov')||e.target.closest('a')))return;var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(Math.abs(dx)>28&&Math.abs(dx)>Math.abs(dy)*1.2){lastSwipe=Date.now();e.preventDefault();if(dx<0){next();}else{prev();}}},{passive:false});addEventListener('click',function(e){if(Date.now()-lastSwipe<600){e.stopImmediatePropagation();e.preventDefault();}},true);})();
 </script>
 </body></html>

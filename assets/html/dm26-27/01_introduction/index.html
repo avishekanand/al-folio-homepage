@@ -201,7 +201,7 @@
   @media print{
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     html,body{height:auto;overflow:visible}
-    #home,#hint,#num,#bar,.secmark,#theme,#grid,#overview{display:none !important}
+    #home,#hint,#num,#bar,.secmark,#theme,#grid,#overview,#fs{display:none !important}
     .slide{position:relative !important;display:flex !important;inset:auto !important;
       width:1600px;height:900px;break-after:page;page-break-after:always;animation:none !important}
     .slide:last-child{break-after:auto;page-break-after:auto}
@@ -225,11 +225,15 @@
   .ovstage{position:absolute;inset:0;overflow:hidden}
   .ovnum{position:absolute;left:5px;bottom:4px;font-size:11px;color:var(--ink);background:var(--panel);
     border:1px solid var(--line);border-radius:4px;padding:0 5px;z-index:2;opacity:.92}
+
+  #fs{position:fixed;right:118px;top:9px;z-index:6;background:transparent;border:1px solid var(--line);
+    color:var(--muted);border-radius:6px;width:27px;height:24px;cursor:pointer;font-size:13px;line-height:1;padding:0}
+  #fs:hover{color:var(--accent);border-color:var(--accent)}
 </style>
 </head>
 <body>
 <a id="home" href="../index.html" title="All lectures">⌂ Lectures</a>
-<div id="hint">← →/space · tap / swipe to advance · F fullscreen</div><div id="num"></div><button id="grid" title="Slide overview (O)">⊞</button><button id="theme" title="Light / dark (L)">◐</button>
+<div id="hint">← →/space · tap / swipe to advance · F fullscreen</div><div id="num"></div><button id="fs" title="Fullscreen (F)">⛶</button><button id="grid" title="Slide overview (O)">⊞</button><button id="theme" title="Light / dark (L)">◐</button>
 
 <!-- ============== TITLE ============== -->
 <section class="slide title" data-sec="Introduction">
@@ -294,15 +298,16 @@
   <div class="pipe">
     <div class="node">~500,000 scrolls<span class="ntag">an unusable pile</span></div>
     <div class="arrow">→</div>
-    <div class="node dm">The Pinakes catalogue<span class="ntag">author · subject · shelf</span></div>
+    <div class="node dm">The Pinakes catalogue<span class="ntag">genre · author · title</span></div>
     <div class="arrow">→</div>
     <div class="node">Any scroll, found<span class="ntag">information retrieval</span></div>
   </div>
-  <div class="callout"><span class="lab">Same idea, a different question</span>
-    <p>Callimachus catalogued the Library of Alexandria — the <b>Pinakes</b>, arguably the first
-      <b>information-retrieval</b> system: structure the data so any work can be <i>found</i>.</p>
-    <p>Snow found a <b>pattern</b>; the Pinakes found the <b>needle</b> — two different <b>design decisions</b> about
-      what structure to impose on messy data. Both are data mining. <b>This year’s focus: information access.</b></p>
+  <div class="callout"><span class="lab">How the Pinakes organized it</span>
+    <p>Callimachus catalogued the Library of Alexandria — the <b>Pinakes</b> (“tables”), arguably the first
+      <b>information-retrieval</b> system.</p>
+    <p>It split ~half a million scrolls into about <b>ten genres</b> (rhetoric, law, epic, history, medicine…);
+      within each, authors were listed <b>alphabetically</b>, each with a short biography; and every work was recorded
+      by its <b>title, opening line, and line count</b>. Any scroll was now <b>locatable</b> — the first real <b>index</b>.</p>
   </div>
 </section>
 
@@ -783,7 +788,7 @@ addEventListener('keydown',e=>{
   else if(e.key==='Escape'){closeOverview();}
   else if(e.key==='Home')show(0); else if(e.key==='End')show(slides.length-1);
 });
-addEventListener('click',e=>{ if(e.target.closest('video')||e.target.closest('.playov')||e.target.closest('a')||e.target.closest('#theme')||e.target.closest('#grid')||e.target.closest('#overview'))return; next(); });
+addEventListener('click',e=>{ if(e.target.closest('video')||e.target.closest('.playov')||e.target.closest('a')||e.target.closest('#theme')||e.target.closest('#grid')||e.target.closest('#overview')||e.target.closest('#fs'))return; next(); });
 const num=document.getElementById('num'), barfill=document.getElementById('barfill'), sec=document.getElementById('sec');
 function fromHash(){ const n=parseInt((location.hash||'').replace('#',''),10); return isNaN(n)?0:n-1; }
 addEventListener('hashchange',()=>show(fromHash()));
@@ -828,5 +833,8 @@ function closeOverview(){ ovEl.classList.remove('on'); ovEl.innerHTML=''; }
 function toggleOverview(){ ovEl.classList.contains('on')?closeOverview():openOverview(); }
 ovEl.addEventListener('click',function(e){e.stopPropagation(); if(e.target===ovEl||e.target.id==='ovgrid'||e.target.id==='ovhint')closeOverview();});
 var gridBtn=document.getElementById('grid'); if(gridBtn)gridBtn.addEventListener('click',function(e){e.stopPropagation();toggleOverview();});
+
+var fsBtn=document.getElementById('fs');
+if(fsBtn)fsBtn.addEventListener('click',function(e){e.stopPropagation();document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();});
 </script>
 </body></html>

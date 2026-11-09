@@ -76,7 +76,7 @@
   .callout .num{font-family:var(--mono);color:var(--gold);font-size:.95em}
   .punch{margin-top:.8em;color:var(--accent);font-size:1.18rem}
   #num{position:fixed;right:16px;top:12px;color:var(--muted);font-size:.9rem;z-index:5}
-  #hint{position:fixed;left:16px;top:12px;color:var(--muted);font-size:.82rem;z-index:5;opacity:.5}
+  #hint{position:fixed;left:16px;top:40px;color:var(--muted);font-size:.82rem;z-index:5;opacity:.5}
   #bar{position:fixed;left:0;right:0;bottom:0;height:3px;background:var(--grid);z-index:5}
   #barfill{height:100%;background:var(--accent);width:0;transition:width .3s}
   .secmark{position:fixed;left:16px;bottom:12px;color:var(--muted);font-size:.82rem;z-index:5;opacity:.6}
@@ -170,15 +170,20 @@
   @media print{
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     html,body{height:auto;overflow:visible}
-    #hint,#num,#bar,.secmark,#theme{display:none !important}
+    #home,#hint,#num,#bar,.secmark,#theme{display:none !important}
     .slide{position:relative !important;display:flex !important;inset:auto !important;
       width:1600px;height:900px;break-after:page;page-break-after:always;animation:none !important}
     .slide:last-child{break-after:auto;page-break-after:auto}
     .rise{animation:none !important;opacity:1 !important;transform:none !important}
   }
+
+  #home{position:fixed;left:16px;top:8px;z-index:6;background:transparent;border:1px solid var(--line);
+    color:var(--muted);border-radius:999px;padding:.22em .9em;font-size:.82rem;text-decoration:none;line-height:1.7}
+  #home:hover{color:var(--accent);border-color:var(--accent)}
 </style>
 </head>
 <body>
+<a id="home" href="../index.html" title="All lectures">⌂ Lectures</a>
 <div id="hint">← →/space · tap / swipe to advance · F fullscreen</div><div id="num"></div><button id="theme" title="Light / dark (L)">◐</button>
 
 <!-- ============== TITLE ============== -->

@@ -25,7 +25,8 @@
   .meta a{color:var(--cool);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:.12em .7em;white-space:nowrap}
   .meta a:hover{color:var(--accent);border-color:var(--accent)}
   footer{color:var(--muted);font-size:.95rem;margin-top:2.6em;max-width:72ch;line-height:1.5}
-  footer b{color:var(--ink);font-weight:400}
+  footer a{color:var(--cool);text-decoration:none;border-bottom:1px solid currentColor}
+  footer a:hover{color:var(--accent)}
   @media (prefers-color-scheme:light){
     :root{--bg:#f6f1e7;--panel:#fff;--ink:#241f18;--muted:#6b6457;--line:#e2d9c8}
   }
@@ -33,10 +34,9 @@
 </head>
 <body>
   <div class="kicker">CSE2525 · Data Mining · 2026–27</div>
-  <h1>Study decks</h1>
-  <div class="sub">Interactive, self-contained lecture decks — this year with an information-access focus.
-    Open one, then use ← → or click / swipe to advance · <code>F</code> fullscreen · <code>L</code> light/dark.
-    Each deck is also available as a PDF.</div>
+  <h1>Data Mining — lecture slides</h1>
+  <div class="sub">The lecture slides for the Data Mining course (CSE2525) at TU Delft,
+    organised around distances, matrices, and retrieval.</div>
   <div class="rule"></div>
   <div class="grid">
     <div class="card"><a class="cardmain" href="01_introduction/index.html">
@@ -74,6 +74,5 @@
       <p>Jaccard, shingling, MinHash signatures, LSH banding and the S-curve.</p></a>
       <div class="meta"><span>23 slides</span><a href="07_minhash_lsh/07_minhash_lsh.pdf">PDF ↓</a></div></div>
   </div>
-  <footer>A. Anand, with J. Urbano &amp; N. Tömen. Built for exam prep — each deck is a single self-contained page.
-    Best on a laptop; works on mobile too.</footer>
+  <footer>A. Anand, with J. Urbano &amp; N. Tömen · <a href="https://avishekanand.com/teaching/">teaching page</a></footer>
 </body></html>

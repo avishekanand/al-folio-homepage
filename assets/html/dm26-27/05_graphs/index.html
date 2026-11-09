@@ -178,7 +178,7 @@
   @media print{
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     html,body{height:auto;overflow:visible}
-    #home,#hint,#num,#bar,.secmark,#theme{display:none !important}
+    #home,#hint,#num,#bar,.secmark,#theme,#grid,#overview{display:none !important}
     .slide{position:relative !important;display:flex !important;inset:auto !important;
       width:1600px;height:900px;break-after:page;page-break-after:always;animation:none !important}
     .slide:last-child{break-after:auto;page-break-after:auto}
@@ -188,11 +188,25 @@
   #home{position:fixed;left:16px;top:8px;z-index:6;background:transparent;border:1px solid var(--line);
     color:var(--muted);border-radius:999px;padding:.22em .9em;font-size:.82rem;text-decoration:none;line-height:1.7}
   #home:hover{color:var(--accent);border-color:var(--accent)}
+
+  #grid{position:fixed;right:84px;top:9px;z-index:6;background:transparent;border:1px solid var(--line);
+    color:var(--muted);border-radius:6px;width:27px;height:24px;cursor:pointer;font-size:13px;line-height:1;padding:0}
+  #grid:hover{color:var(--accent);border-color:var(--accent)}
+  #overview{position:fixed;inset:0;z-index:20;background:var(--bg);overflow-y:auto;display:none}
+  #overview.on{display:block}
+  #ovhint{text-align:center;color:var(--muted);font-size:.92rem;padding:1.1rem 1rem .5rem;letter-spacing:.02em}
+  #ovgrid{display:grid;grid-template-columns:repeat(auto-fill,240px);gap:15px;justify-content:center;padding:.5rem 1.2rem 2.4rem}
+  .ovtile{position:relative;border:1px solid var(--line);border-radius:7px;overflow:hidden;cursor:pointer;background:var(--bg)}
+  .ovtile:hover{border-color:var(--accent)}
+  .ovtile.cur{outline:2px solid var(--accent);border-color:var(--accent)}
+  .ovstage{position:absolute;inset:0;overflow:hidden}
+  .ovnum{position:absolute;left:5px;bottom:4px;font-size:11px;color:var(--ink);background:var(--panel);
+    border:1px solid var(--line);border-radius:4px;padding:0 5px;z-index:2;opacity:.92}
 </style>
 </head>
 <body>
 <a id="home" href="../index.html" title="All lectures">⌂ Lectures</a>
-<div id="hint">← →/space · tap / swipe to advance · F fullscreen</div><div id="num"></div><button id="theme" title="Light / dark (L)">◐</button>
+<div id="hint">← →/space · tap / swipe to advance · F fullscreen</div><div id="num"></div><button id="grid" title="Slide overview (O)">⊞</button><button id="theme" title="Light / dark (L)">◐</button>
 
 <!-- ============== TITLE ============== -->
 <section class="slide title" data-sec="Graph Mining">
@@ -693,9 +707,11 @@ addEventListener('keydown',e=>{
   else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev();}
   else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
   else if(e.key==='l'||e.key==='L'){toggleTheme();}
+  else if(e.key==='o'||e.key==='O'){toggleOverview();}
+  else if(e.key==='Escape'){closeOverview();}
   else if(e.key==='Home')show(0); else if(e.key==='End')show(slides.length-1);
 });
-addEventListener('click',e=>{ if(e.target.closest('video')||e.target.closest('.playov')||e.target.closest('a')||e.target.closest('#theme'))return; next(); });
+addEventListener('click',e=>{ if(e.target.closest('video')||e.target.closest('.playov')||e.target.closest('a')||e.target.closest('#theme')||e.target.closest('#grid')||e.target.closest('#overview'))return; next(); });
 const num=document.getElementById('num'), barfill=document.getElementById('barfill'), sec=document.getElementById('sec');
 function fromHash(){ const n=parseInt((location.hash||'').replace('#',''),10); return isNaN(n)?0:n-1; }
 addEventListener('hashchange',()=>show(fromHash()));
@@ -714,5 +730,31 @@ show(fromHash());
   var b=document.getElementById('theme');
   if(b)b.addEventListener('click',function(e){e.stopPropagation();toggleTheme();});
 })();
+
+/* slide overview / thumbnail previews */
+var ovEl=document.createElement('div'); ovEl.id='overview'; document.body.appendChild(ovEl);
+var OV_TW=240;
+function buildOverview(){
+  ovEl.innerHTML='<div id="ovhint">Overview — click a slide to jump · Esc to close</div><div id="ovgrid"></div>';
+  var grid=ovEl.querySelector('#ovgrid');
+  var k=OV_TW/window.innerWidth, th=OV_TW*window.innerHeight/window.innerWidth;
+  slides.forEach(function(s,idx){
+    var tile=document.createElement('div'); tile.className='ovtile'+(idx===i?' cur':'');
+    tile.style.width=OV_TW+'px'; tile.style.height=th+'px';
+    var stage=document.createElement('div'); stage.className='ovstage';
+    var c=s.cloneNode(true); c.classList.add('on');
+    c.style.cssText='position:absolute;top:0;left:0;width:100vw;height:100vh;margin:0;animation:none;transform:scale('+k+');transform-origin:top left';
+    c.querySelectorAll('.rise').forEach(function(e){e.classList.remove('rise');e.style.animation='none';e.style.opacity='1';e.style.transform='none';});
+    stage.appendChild(c); tile.appendChild(stage);
+    var n=document.createElement('span'); n.className='ovnum'; n.textContent=idx+1; tile.appendChild(n);
+    tile.addEventListener('click',function(ev){ev.stopPropagation();closeOverview();show(idx);});
+    grid.appendChild(tile);
+  });
+}
+function openOverview(){ buildOverview(); ovEl.classList.add('on'); }
+function closeOverview(){ ovEl.classList.remove('on'); ovEl.innerHTML=''; }
+function toggleOverview(){ ovEl.classList.contains('on')?closeOverview():openOverview(); }
+ovEl.addEventListener('click',function(e){e.stopPropagation(); if(e.target===ovEl||e.target.id==='ovgrid'||e.target.id==='ovhint')closeOverview();});
+var gridBtn=document.getElementById('grid'); if(gridBtn)gridBtn.addEventListener('click',function(e){e.stopPropagation();toggleOverview();});
 </script>
 </body></html>

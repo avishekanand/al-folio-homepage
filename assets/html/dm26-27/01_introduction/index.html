@@ -229,8 +229,9 @@
 <!-- ============== PART II — WHAT IS DATA MINING ============== -->
 <section class="slide title divider" data-sec="Part I · What is data mining?">
   <div class="part">Part I</div>
-  <h1>What is data mining?</h1>
-  <div class="sub">From a cholera map in 1854 to malware graphs today — and where it sits next to machine learning.</div>
+  <h1>There are no correct answers — only correct design decisions</h1>
+  <div class="sub">Data mining is a craft of choices under messy data. The next two stories — a cholera map in 1854
+    and an ancient library — are really <i>design decisions</i> about what structure to look for.</div>
   <div class="rule"></div>
 </section>
 
@@ -270,7 +271,7 @@
   <div class="kicker">One pump explained it all</div>
   <div class="figwrap big"><img class="plate" src="figs/johnsnow_pump.jpg" alt="The death cluster centred on the Broad Street water pump"></div>
   <div class="figcap">The deaths ringed <b>one water pump on Broad Street</b>. Snow had its handle removed — and the
-    outbreak stopped. The cluster was the evidence: <span class="k">data mining before the name existed.</span></div>
+    outbreak stopped. <span class="k">The design decision — plot deaths in <i>space</i>, not in a table — made the cause visible.</span></div>
 </section>
 
 <section class="slide" data-sec="2 · A second origin story">
@@ -286,9 +287,23 @@
   <div class="callout"><span class="lab">Same idea, a different question</span>
     <p>Callimachus catalogued the Library of Alexandria — the <b>Pinakes</b>, arguably the first
       <b>information-retrieval</b> system: structure the data so any work can be <i>found</i>.</p>
-    <p>Snow found a <b>pattern</b> in the data; the Pinakes found the <b>needle</b>. Both are data mining —
-      turning a pile of data into something that answers a question. <b>This year’s focus: information access.</b></p>
+    <p>Snow found a <b>pattern</b>; the Pinakes found the <b>needle</b> — two different <b>design decisions</b> about
+      what structure to impose on messy data. Both are data mining. <b>This year’s focus: information access.</b></p>
   </div>
+</section>
+
+<section class="slide" data-sec="2 · What data mining is">
+  <div class="kicker">The course definition</div>
+  <h1 class="t">What data mining is — in this course</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Working definition</span>
+    Data mining is the <b style="color:var(--ink);border-bottom:1px solid var(--accent)">craft of deciding what
+    structure to look for</b> in <b>large, messy, unlabelled</b> data — and <b>finding it at scale</b>.</div>
+  <ul class="pts">
+    <li><b>Deciding what to look for</b> — the design decision, as in Snow’s map and the Pinakes.</li>
+    <li><b>Large, messy, unlabelled · at scale</b> — the part of the problem this course focuses on.</li>
+  </ul>
+  <div class="ex">A sharper slice of the <b>broader textbook definition</b> (“extract useful information from data”): we
+    emphasise <b>scale</b> and <b>no labels</b>.</div>
 </section>
 
 <section class="slide fig" data-sec="2 · DM in context">
@@ -300,9 +315,9 @@
 </section>
 
 <section class="slide" data-sec="2 · Definition">
-  <div class="kicker">Many phrasings, one idea</div>
-  <h1 class="t">What <i>is</i> data mining?</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">Working definition</span>
+  <div class="kicker">The broader textbook view</div>
+  <h1 class="t">The textbook definition</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Classic definition</span>
     The primary goal of data mining is to <b style="color:var(--ink);border-bottom:1px solid var(--accent)">extract useful
     information from a large volume of data</b> and transform it into an
     <b style="color:var(--ink);border-bottom:1px solid var(--accent)">understandable structure</b> for further use.</div>
@@ -315,8 +330,8 @@
 </section>
 
 <section class="slide" data-sec="2 · DM in action">
-  <div class="kicker">Example 1 of 3 · recommendation</div>
-  <h1 class="t">Netflix: what should you watch next?</h1><div class="rule"></div>
+  <div class="kicker">Guess first · ① recommendation</div>
+  <h1 class="t">How does Spotify know what you’ll like?</h1><div class="rule"></div>
   <div class="vzwrap"><svg viewBox="0 0 100 42" class="vz"><defs><marker id="ar" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
 <rect class="mat" x="5" y="8" width="28" height="24"/><rect class="fill" x="5.0" y="8.0" width="4" height="4"/><rect class="fill" x="9.0" y="8.0" width="4" height="4"/><rect class="fill" x="17.0" y="8.0" width="4" height="4"/><rect class="fill" x="29.0" y="8.0" width="4" height="4"/><rect class="fill" x="9.0" y="12.0" width="4" height="4"/><rect class="fill" x="17.0" y="12.0" width="4" height="4"/><rect class="fill" x="21.0" y="12.0" width="4" height="4"/><rect class="fill" x="5.0" y="16.0" width="4" height="4"/><rect class="fill" x="9.0" y="16.0" width="4" height="4"/><rect class="fill" x="5.0" y="20.0" width="4" height="4"/><rect class="fill" x="13.0" y="20.0" width="4" height="4"/><rect class="fill" x="17.0" y="20.0" width="4" height="4"/><rect class="fill" x="21.0" y="20.0" width="4" height="4"/><rect class="fill" x="25.0" y="20.0" width="4" height="4"/><rect class="fill" x="5.0" y="24.0" width="4" height="4"/><rect class="fill" x="25.0" y="24.0" width="4" height="4"/><rect class="fill" x="29.0" y="24.0" width="4" height="4"/><rect class="fill" x="5.0" y="28.0" width="4" height="4"/><rect class="fill" x="17.0" y="28.0" width="4" height="4"/><rect class="fill" x="29.0" y="28.0" width="4" height="4"/><line x1="5" y1="12" x2="33" y2="12" stroke="var(--line)" stroke-width="0.25"/><line x1="5" y1="16" x2="33" y2="16" stroke="var(--line)" stroke-width="0.25"/><line x1="5" y1="20" x2="33" y2="20" stroke="var(--line)" stroke-width="0.25"/><line x1="5" y1="24" x2="33" y2="24" stroke="var(--line)" stroke-width="0.25"/><line x1="5" y1="28" x2="33" y2="28" stroke="var(--line)" stroke-width="0.25"/><line x1="9" y1="8" x2="9" y2="32" stroke="var(--line)" stroke-width="0.25"/><line x1="13" y1="8" x2="13" y2="32" stroke="var(--line)" stroke-width="0.25"/><line x1="17" y1="8" x2="17" y2="32" stroke="var(--line)" stroke-width="0.25"/><line x1="21" y1="8" x2="21" y2="32" stroke="var(--line)" stroke-width="0.25"/><line x1="25" y1="8" x2="25" y2="32" stroke="var(--line)" stroke-width="0.25"/><line x1="29" y1="8" x2="29" y2="32" stroke="var(--line)" stroke-width="0.25"/>
 <text x="19" y="37" text-anchor="middle">R · ratings (mostly ?)</text>
@@ -325,15 +340,15 @@
 <text x="48" y="37" text-anchor="middle" class="k">U · users</text>
 <text x="55.5" y="21" text-anchor="middle" style="font-style:normal;font-size:4px">×</text>
 <rect class="mat" x="60" y="8" width="28" height="8"/><rect class="fill" x="60.0" y="8.0" width="4" height="4"/><rect class="fill" x="64.0" y="8.0" width="4" height="4"/><rect class="fill" x="68.0" y="8.0" width="4" height="4"/><rect class="fill" x="72.0" y="8.0" width="4" height="4"/><rect class="fill" x="76.0" y="8.0" width="4" height="4"/><rect class="fill" x="80.0" y="8.0" width="4" height="4"/><rect class="fill" x="84.0" y="8.0" width="4" height="4"/><rect class="fill" x="60.0" y="12.0" width="4" height="4"/><rect class="fill" x="64.0" y="12.0" width="4" height="4"/><rect class="fill" x="68.0" y="12.0" width="4" height="4"/><rect class="fill" x="72.0" y="12.0" width="4" height="4"/><rect class="fill" x="76.0" y="12.0" width="4" height="4"/><rect class="fill" x="80.0" y="12.0" width="4" height="4"/><rect class="fill" x="84.0" y="12.0" width="4" height="4"/><line x1="60" y1="12" x2="88" y2="12" stroke="var(--line)" stroke-width="0.25"/><line x1="64" y1="8" x2="64" y2="16" stroke="var(--line)" stroke-width="0.25"/><line x1="68" y1="8" x2="68" y2="16" stroke="var(--line)" stroke-width="0.25"/><line x1="72" y1="8" x2="72" y2="16" stroke="var(--line)" stroke-width="0.25"/><line x1="76" y1="8" x2="76" y2="16" stroke="var(--line)" stroke-width="0.25"/><line x1="80" y1="8" x2="80" y2="16" stroke="var(--line)" stroke-width="0.25"/><line x1="84" y1="8" x2="84" y2="16" stroke="var(--line)" stroke-width="0.25"/>
-<text x="74" y="19" text-anchor="middle" class="g">Vᵀ · movies</text>
-<text x="50" y="41" text-anchor="middle">similar users like similar films</text>
+<text x="74" y="19" text-anchor="middle" class="g">Vᵀ · items</text>
+<text x="50" y="41" text-anchor="middle">similar users like similar items</text>
 </svg></div>
   <div class="chips"><span class="">Distances / similarity</span><span class="a">Embeddings</span><span class="g">Matrix factorization</span><span class="">Clustering</span><span class="">Dimensionality reduction (PCA)</span></div>
 </section>
 
 <section class="slide" data-sec="2 · DM in action">
-  <div class="kicker">Example 2 of 3 · web search</div>
-  <h1 class="t">Google: find &amp; rank the whole web</h1><div class="rule"></div>
+  <div class="kicker">Guess first · ② web search</div>
+  <h1 class="t">How does Google rank the entire web for your query?</h1><div class="rule"></div>
   <div class="vzwrap"><svg viewBox="0 0 100 46" class="vz"><defs><marker id="ar" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
 <line class="edge" x1="12" y1="14" x2="20" y2="28"/><line class="edge" x1="26" y1="9" x2="20" y2="28"/><line class="edge" x1="26" y1="9" x2="36" y2="20"/><line class="edge" x1="9" y1="36" x2="20" y2="28"/><line class="edge" x1="32" y1="34" x2="20" y2="28"/><line class="edge" x1="36" y1="20" x2="20" y2="28"/><line class="edge" x1="32" y1="34" x2="36" y2="20"/><line class="edge" x1="12" y1="14" x2="26" y2="9"/>
 <circle class="node" cx="12" cy="14" r="3.2"/><circle class="node" cx="26" cy="9" r="2.1"/><circle class="nodeh" cx="20" cy="28" r="4.2"/><circle class="node" cx="9" cy="36" r="1.8"/><circle class="node" cx="32" cy="34" r="2.6"/><circle class="node" cx="36" cy="20" r="2.3"/>
@@ -347,8 +362,8 @@
 </section>
 
 <section class="slide" data-sec="2 · DM in action">
-  <div class="kicker">Example 3 of 3 · at scale</div>
-  <h1 class="t">Deduping the web: near-copies among billions</h1><div class="rule"></div>
+  <div class="kicker">Guess first · ③ at scale</div>
+  <h1 class="t">How do you spot near-duplicate pages among billions?</h1><div class="rule"></div>
   <div class="vzwrap"><svg viewBox="0 0 100 44" class="vz"><defs><marker id="ar" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 z" fill="var(--muted)"/></marker></defs>
 <rect class="doch" x="5" y="9" width="12" height="9" rx="1"/><text x="11" y="22" text-anchor="middle" class="a">doc A</text>
 <rect class="doch" x="5" y="24" width="12" height="9" rx="1"/><text x="11" y="37" text-anchor="middle" class="a">doc B</text>
@@ -373,32 +388,30 @@
   <div class="kicker">Same pipeline, three different jobs</div>
   <h1 class="t">Data mining vs. machine learning vs. data management</h1><div class="rule"></div>
   <div class="pipe">
-    <div class="node dmg">Train &amp; test data<span class="ntag">data management</span></div>
+    <div class="node dmg">Raw data<span class="ntag">data management</span></div>
     <div class="arrow">→</div>
-    <div class="node dm">Features<span class="ntag">data mining · input</span></div>
+    <div class="node dm">Explore &amp; form the question<span class="ntag">data mining</span></div>
     <div class="arrow">→</div>
-    <div class="node ml">Learning algorithm<span class="ntag">machine learning</span></div>
+    <div class="node ml">Fit a model<span class="ntag">machine learning</span></div>
     <div class="arrow">→</div>
-    <div class="node ml">Model<span class="ntag">machine learning</span></div>
-    <div class="arrow">→</div>
-    <div class="node dm">Output / insight<span class="ntag">data mining · output</span></div>
+    <div class="node dm">Interpret · insight<span class="ntag">data mining</span></div>
   </div>
   <div class="legend">
     <span><i class="sw-dmg"></i> <b>Data management</b> — store &amp; serve the data</span>
-    <span><i class="sw-ml"></i> <b>Machine learning</b> — the blue core: algorithm &amp; model</span>
-    <span><i class="sw-dm"></i> <b>Data mining</b> — the orange ends: input &amp; output</span>
+    <span><i class="sw-dm"></i> <b>Data mining</b> — exploration &amp; question-formulation (and making sense of the result)</span>
+    <span><i class="sw-ml"></i> <b>Machine learning</b> — fitting the model</span>
   </div>
-  <div class="ex">One shared pipeline — what differs is <b>which stage each field owns</b>.</div>
+  <div class="ex">One shared pipeline — data mining <b>frames the question</b>, machine learning <b>fits the model</b>.</div>
 </section>
 
 <section class="slide" data-sec="2 · DM vs ML vs DB">
   <div class="kicker">Recap</div>
   <h1 class="t">Where data mining lives</h1><div class="rule"></div>
   <div class="callout"><span class="lab">The division of labour</span>
-    <p><b>Data management</b> stores and serves the train/test data. <b>Machine learning</b> owns the
-      <b>blue</b> middle — which algorithm, how to train it, and the resulting model.</p>
-    <p><b>Data mining</b> owns the <b>orange</b> ends: choosing the <b>input</b> features from domain
-      knowledge, and turning the <b>output</b> into insight. Often the learning here is <b>unsupervised</b>.</p>
+    <p><b>Machine learning</b> owns the <b>model-fitting</b> stage — which algorithm, how to train it, the resulting model.</p>
+    <p><b>Data mining</b> owns the <b>exploration and question-formulation</b> stage — deciding what to look for and what
+      “similar”, “structure”, or “relevant” should mean — and then <b>making sense of the result</b>. Often the data is
+      <b>unlabelled</b>, so the learning here is <b>unsupervised</b>.</p>
   </div>
 </section>
 
@@ -499,28 +512,32 @@
 
 <section class="slide" data-sec="1 · Course goals">
   <div class="kicker">What you should walk away with</div>
-  <h1 class="t">Course goals</h1><div class="rule"></div>
+  <h1 class="t">Course goals — three strands in every lecture</h1><div class="rule"></div>
   <div class="defbox"><span class="lab">The promise</span>
-    You learn Data Mining at three levels: the <b style="color:var(--ink);border-bottom:1px solid var(--accent)">algorithms</b>,
-    the <b style="color:var(--ink);border-bottom:1px solid var(--accent)">core concepts</b> behind them, and the
-    <b style="color:var(--ink);border-bottom:1px solid var(--accent)">practical skill</b> of choosing and applying them.</div>
-  <ul class="pts">
-    <li><b>Key algorithms</b> — implement them; know their strengths, weaknesses, and <i>when</i> to use them.</li>
-    <li><b>Core concepts</b> — including the theory, and which concepts fit which data types.</li>
-    <li><b>Practical skills</b> — pick the right method for a problem and make it work on real data.</li>
-  </ul>
+    Each lecture runs three strands at once — the <b style="color:var(--ink);border-bottom:1px solid var(--accent)">concepts</b>,
+    the <b style="color:var(--ink);border-bottom:1px solid var(--accent)">algorithms</b>, and the
+    <b style="color:var(--ink);border-bottom:1px solid var(--accent)">skills</b> to apply them.</div>
+  <div class="cards">
+    <div class="card"><h3>Concepts</h3><ul><li>The ideas &amp; theory</li><li>Which concept fits which data type</li></ul></div>
+    <div class="card cool"><h3>Algorithms</h3><ul><li>Implement them from scratch</li><li>Strengths, weaknesses, and <i>when</i> to use them</li></ul></div>
+    <div class="card gold"><h3>Skills</h3><ul><li>Pick the right method for a problem</li><li>Make it work on real, messy data</li></ul></div>
+  </div>
+  <div class="ex">The <b>skills</b> strand lives mainly in the <b>lab project</b> — where you apply concepts &amp; algorithms end-to-end.</div>
 </section>
 
 <section class="slide" data-sec="1 · The three verticals">
   <div class="kicker">The spine of the whole course</div>
   <h1 class="t">Three verticals: Distances · Matrices · Retrieval</h1><div class="rule"></div>
   <div class="cards">
-    <div class="card"><h3>Distances</h3>
-      <ul><li>Similarity &amp; metrics, DTW</li><li>Text &amp; graph embeddings</li><li>Clustering</li><li>Hashing &amp; MinHash / LSH <small>(counting lives here)</small></li></ul></div>
-    <div class="card cool"><h3>Matrices</h3>
-      <ul><li>Representation, properties, operations</li><li>Factorization &amp; decompositions</li><li>Dimensionality reduction (PCA)</li></ul></div>
-    <div class="card gold"><h3>Retrieval</h3>
-      <ul><li>Indexing &amp; the inverted index</li><li>Ranking</li><li>Evaluation</li><li>Near-duplicate / similar-item search</li></ul></div>
+    <div class="card"><h3>Distances <span style="color:var(--muted);font-size:.68em">· Avishek</span></h3>
+      <p style="color:var(--accent);font-style:italic;margin:.1em 0 .45em;font-size:.95em">“When are two things similar — and who decides?”</p>
+      <ul><li>Similarity &amp; metrics, DTW</li><li>Text &amp; graph embeddings</li><li>Clustering · Hashing · MinHash / LSH</li></ul></div>
+    <div class="card cool"><h3>Matrices <span style="color:var(--muted);font-size:.68em">· Nergis</span></h3>
+      <p style="color:var(--cool);font-style:italic;margin:.1em 0 .45em;font-size:.95em">“What hidden structure explains the data?”</p>
+      <ul><li>Representation &amp; operations</li><li>Factorization &amp; decompositions</li><li>Dimensionality reduction (PCA)</li></ul></div>
+    <div class="card gold"><h3>Retrieval <span style="color:var(--muted);font-size:.68em">· Julian</span></h3>
+      <p style="color:var(--gold);font-style:italic;margin:.1em 0 .45em;font-size:.95em">“How do I find the right thing fast — and how do I know I did?”</p>
+      <ul><li>Indexing &amp; the inverted index</li><li>Ranking · Evaluation</li><li>Near-duplicate / similar-item search</li></ul></div>
   </div>
   <div class="ex">This year’s shift: <b>counting folds into Distances</b>, and <b>Retrieval</b> becomes its own vertical —
     the information-access focus. Every topic hangs off one of these three.</div>
@@ -632,37 +649,15 @@
   </div>
 </section>
 
-<!-- ============== PART III — COURSE CONTENT ============== -->
-<section class="slide title divider" data-sec="Part III · Course content">
+<!-- ============== PART III — A WORD OF CAUTION ============== -->
+<section class="slide title divider" data-sec="Part III · A word of caution">
   <div class="part">Part III</div>
-  <h1>Course content</h1>
-  <div class="sub">Everything, organised under the three verticals.</div>
-  <div class="rule"></div>
-</section>
-
-<section class="slide" data-sec="3 · Content map">
-  <div class="kicker">Distances · Matrices · Retrieval</div>
-  <h1 class="t">The whole course on one map</h1><div class="rule"></div>
-  <div class="cards">
-    <div class="card"><h3>Distances</h3>
-      <ul><li>Similarity, metrics, DTW</li><li>Text &amp; graph embeddings</li><li>Clustering</li><li>Hashing · MinHash / LSH</li></ul></div>
-    <div class="card cool"><h3>Matrices</h3>
-      <ul><li>Representation, properties, operations</li><li>Factorization &amp; decompositions</li><li>Dimensionality reduction (PCA)</li></ul></div>
-    <div class="card gold"><h3>Retrieval</h3>
-      <ul><li>Indexing · inverted index</li><li>Ranking</li><li>Evaluation</li><li>Similar-item / near-duplicate search</li></ul></div>
-  </div>
-  <div class="ex">When a new topic appears, ask: <i>is this fundamentally a distance, a matrix, or a retrieval problem?</i></div>
-</section>
-
-<!-- ============== PART IV — A WORD OF CAUTION ============== -->
-<section class="slide title divider" data-sec="Part IV · A word of caution">
-  <div class="part">Part IV</div>
   <h1>A word of caution</h1>
   <div class="sub">Don’t fool yourself. The rest of this lecture is cautionary tales about results that look great and are wrong.</div>
   <div class="rule"></div>
 </section>
 
-<section class="slide fig" data-sec="4 · Survivorship bias">
+<section class="slide fig" data-sec="3 · Survivorship bias">
   <div class="kicker">WWII · Abraham Wald</div>
   <h1 class="t">Survivorship bias</h1>
   <div class="figwrap"><img class="plate" src="figs/survivorship.png" alt="WWII bomber diagram with bullet holes concentrated on wings and fuselage"></div>
@@ -671,7 +666,7 @@
     Your data is only the survivors.</div>
 </section>
 
-<section class="slide fig" data-sec="4 · Clever Hans">
+<section class="slide fig" data-sec="3 · Clever Hans">
   <div class="kicker">The horse that could “count”</div>
   <h1 class="t">The Clever Hans effect</h1>
   <div class="figwrap"><img src="figs/clever_hans.jpg" alt="Historical photo of Clever Hans the horse and its trainer"></div>
@@ -679,7 +674,7 @@
     Models do this too: <b>right answer, wrong reason.</b></div>
 </section>
 
-<section class="slide" data-sec="4 · Shortcut learning">
+<section class="slide" data-sec="3 · Shortcut learning">
   <div class="kicker">Too good to be true</div>
   <h1 class="t">Shortcuts in learning — Wikipedia citations</h1><div class="rule"></div>
   <div class="defbox"><span class="lab">The task</span>
@@ -692,7 +687,7 @@
   </div>
 </section>
 
-<section class="slide fig" data-sec="4 · Russian tanks">
+<section class="slide fig" data-sec="3 · Russian tanks">
   <div class="kicker">The canonical ML parable</div>
   <h1 class="t">Shortcut learning — the “Russian tanks”</h1>
   <div class="twofig">
@@ -703,7 +698,7 @@
     <b>“if the sky is blue, no tank; otherwise, tank.”</b> <span class="k">It classified the weather, not the tanks.</span></div>
 </section>
 
-<section class="slide fig" data-sec="4 · Image shortcuts">
+<section class="slide fig" data-sec="3 · Image shortcuts">
   <div class="kicker">Explainable AI reveals the trick</div>
   <h1 class="t">Shortcuts in image models</h1>
   <div class="figwrap"><img src="figs/horse_shortcut.png" alt="Horse image with saliency maps highlighting a copyright watermark"></div>
@@ -711,7 +706,7 @@
     it fires on the <b>copyright watermark</b> in the corner. <span class="k">If “© …” → predict horse.</span></div>
 </section>
 
-<section class="slide fig" data-sec="4 · Spurious correlations">
+<section class="slide fig" data-sec="3 · Spurious correlations">
   <div class="kicker">Multiple comparisons</div>
   <h1 class="t">You can always find what you’re looking for</h1>
   <div class="figwrap"><img class="plate" src="figs/spurious_corr.png" alt="Spurious correlation chart: spelling bee word length vs deaths by venomous spiders"></div>

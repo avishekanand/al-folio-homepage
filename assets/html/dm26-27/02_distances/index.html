@@ -194,6 +194,11 @@
   .rt .gedge{stroke:var(--accent);stroke-width:1.3}
   .rt text{fill:var(--ink);font-size:6px;text-anchor:middle;font-family:var(--mono)}
   @media (max-aspect-ratio:1/1){ .rtiles{grid-template-columns:repeat(2,1fr)} }
+  /* metric-axioms reference strip, pinned to the bottom of exercise slides */
+  .axref{position:absolute;left:8vw;right:8vw;bottom:4.5vh;border-top:1px solid var(--line);padding-top:.5em;
+    color:var(--muted);font-size:clamp(.76rem,1.02vw,.95rem);line-height:1.65}
+  .axref b{color:var(--gold);font-weight:400}
+  .axref .mono{color:var(--cool)}
 
   /* ---- light / bright mode ---- */
   :root[data-theme="light"]{
@@ -438,6 +443,46 @@
   </div>
 </section>
 
+<section class="slide" data-sec="2 · Distance 1 — Euclidean">
+  <div class="kicker">Vector space · the straight-line distance</div>
+  <h1 class="t">Euclidean distance</h1><div class="rule"></div>
+  <div class="math">d(x, y) <span class="op">=</span> √( Σ<sub>i</sub> (x<sub>i</sub> − y<sub>i</sub>)² )</div>
+  <div class="defbox"><span class="lab">Worked example</span>
+    x = (1, 2), &nbsp; y = (4, 6).<br>
+    d = √((4 − 1)² + (6 − 2)²) = √(9 + 16) = √25 = <b class="mono" style="color:var(--ink)">5</b>.</div>
+  <div class="ex"><b>Cosine</b> is its sibling for text — it compares <i>direction</i>, not magnitude. We’ll meet both again: where they’re used, and whether they’re metrics.</div>
+</section>
+
+<section class="slide" data-sec="2 · Distance 2 — Jaccard">
+  <div class="kicker">Set · the overlap of two sets</div>
+  <h1 class="t">Jaccard distance</h1><div class="rule"></div>
+  <div class="math">J(A, B) <span class="op">=</span> |A ∩ B| / |A ∪ B| &nbsp;&nbsp;&nbsp; d<sub>J</sub> <span class="op">=</span> 1 − J(A, B)</div>
+  <div class="defbox"><span class="lab">Worked example</span>
+    A = {a, b, c, d}, &nbsp; B = {c, d, e}.<br>
+    A ∩ B = {c, d} → 2, &nbsp; A ∪ B = {a, b, c, d, e} → 5. &nbsp; J = 2/5 = 0.4, &nbsp; d<sub>J</sub> = <b class="mono" style="color:var(--ink)">0.6</b>.</div>
+  <div class="ex">Natural for documents seen as sets of words or shingles. We’ll meet it again — in near-duplicate detection — and ask whether it’s a metric.</div>
+</section>
+
+<section class="slide" data-sec="2 · Distance 3 — Edit">
+  <div class="kicker">Sequence · how many edits apart</div>
+  <h1 class="t">Edit (Levenshtein) distance</h1><div class="rule"></div>
+  <div class="math">d(x, y) <span class="op">=</span> fewest insertions, deletions &amp; substitutions turning x into y</div>
+  <div class="defbox"><span class="lab">Worked example</span>
+    x = <span class="mono">book</span>, &nbsp; y = <span class="mono">back</span>: &nbsp; b·b ✓, &nbsp; o → a, &nbsp; o → c, &nbsp; k·k ✓ &nbsp;→&nbsp; <b class="mono" style="color:var(--ink)">2</b> substitutions.<br>
+    Equal length, substitutions only → this coincides with the <b>Hamming</b> distance. Insertions &amp; deletions let it compare <i>different</i> lengths: <span class="mono">book → books</span> = 1.</div>
+  <div class="ex">We’ll meet Hamming again in Part III — where we prove it <i>is</i> a metric — and in the video case study.</div>
+</section>
+
+<section class="slide" data-sec="2 · Distance 4 — Shortest path">
+  <div class="kicker">Graph · the fewest steps between nodes</div>
+  <h1 class="t">Shortest-path (geodesic) distance</h1><div class="rule"></div>
+  <div class="math">d(u, v) <span class="op">=</span> min over paths u → v of &nbsp;Σ weight(edges)</div>
+  <div class="defbox"><span class="lab">Worked example</span>
+    Edges: A–B = 1, &nbsp; B–C = 1, &nbsp; and a direct A–C = 5.<br>
+    Paths A → C: &nbsp; direct = 5, &nbsp; via B = 1 + 1 = 2. &nbsp; So d(A, C) = <b class="mono" style="color:var(--ink)">2</b> — the shortest path wins.</div>
+  <div class="ex">Unweighted graphs → just count edges. We’ll work this out in full in Part III, and again in graph mining.</div>
+</section>
+
 <section class="slide" data-sec="2 · The decision sequence">
   <div class="kicker">Four decisions, in order</div>
   <h1 class="t">Task → representation → distance → decision</h1><div class="rule"></div>
@@ -516,6 +561,7 @@
     <li>Three are immediate; the <b>triangle inequality</b> is the one that takes an argument — reason <b>position by position</b>.</li>
   </ul>
   <div class="ex">Decide before the next slide: is it a metric, and <i>why</i> does the triangle inequality hold?</div>
+  <div class="axref"><b>Metric axioms to check:</b> &nbsp;non-negativity <span class="mono">d(x,y) ≥ 0</span> &nbsp;·&nbsp; identity <span class="mono">d(x,y)=0 ⇔ x=y</span> &nbsp;·&nbsp; symmetry <span class="mono">d(x,y)=d(y,x)</span> &nbsp;·&nbsp; triangle <span class="mono">d(x,z) ≤ d(x,y)+d(y,z)</span></div>
 </section>
 
 <section class="slide" data-sec="3 · Exercise — solution">
@@ -543,6 +589,7 @@
     <li>Try to build a <b>counterexample</b> using three points on the real line.</li>
   </ul>
   <div class="ex">Hint: place three points in a row and compare the direct jump against the two-step path.</div>
+  <div class="axref"><b>Metric axioms to check:</b> &nbsp;non-negativity <span class="mono">d(x,y) ≥ 0</span> &nbsp;·&nbsp; identity <span class="mono">d(x,y)=0 ⇔ x=y</span> &nbsp;·&nbsp; symmetry <span class="mono">d(x,y)=d(y,x)</span> &nbsp;·&nbsp; triangle <span class="mono">d(x,z) ≤ d(x,y)+d(y,z)</span></div>
 </section>
 
 <section class="slide" data-sec="3 · Exercise — solution">

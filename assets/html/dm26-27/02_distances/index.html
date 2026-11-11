@@ -644,6 +644,21 @@
 <section class="slide" data-sec="3 · Exercise — solution">
   <div class="kicker">Solution</div>
   <h1 class="t">Yes — the Hamming distance is a metric</h1><div class="rule"></div>
+  <div class="split">
+    <div class="colfig">
+      <svg class="mfig" viewBox="0 0 66 66" aria-label="the triangle inequality at a single position" style="width:min(26vw,280px)">
+        <text class="m" x="8" y="16" text-anchor="start">x<tspan baseline-shift="sub">i</tspan></text>
+        <text class="m" x="8" y="38" text-anchor="start">y<tspan baseline-shift="sub">i</tspan></text>
+        <text class="m" x="8" y="60" text-anchor="start">z<tspan baseline-shift="sub">i</tspan></text>
+        <rect class="cell" x="24" y="6"  width="16" height="14" rx="1.5"/><text class="cv" x="32" y="16">a</text>
+        <rect class="cell" x="24" y="28" width="16" height="14" rx="1.5"/><text class="cv" x="32" y="38">a</text>
+        <rect class="cell diff" x="24" y="50" width="16" height="14" rx="1.5"/><text class="cv diff" x="32" y="60">b</text>
+        <text x="50" y="27">=</text>
+        <text x="50" y="49" fill="var(--accent)">&#8800;</text>
+      </svg>
+      <div class="figcapc">At one position: <span class="mono">x<tspan>ᵢ</tspan>=y<tspan>ᵢ</tspan></span> but <span class="mono">y<tspan>ᵢ</tspan>≠z<tspan>ᵢ</tspan></span>, so <span class="mono">x<tspan>ᵢ</tspan>≠z<tspan>ᵢ</tspan></span> — at least one pair always differs.</div>
+    </div>
+    <div class="col">
   <div class="callout"><span class="lab">Proof — verify each axiom</span>
     <p><b>Non-negativity.</b> <span class="mono">d<sub>H</sub></span> is a count of positions, hence <span class="mono">d<sub>H</sub>(x, y) ≥ 0</span>.</p>
     <p><b>Identity.</b> <span class="mono">d<sub>H</sub>(x, y) = 0</span> ⟺ no position differs ⟺ <span class="mono">x = y</span>.</p>
@@ -652,6 +667,8 @@
       cannot both equal <span class="mono">y<sub>i</sub></span>, so <span class="mono">x<sub>i</sub> ≠ y<sub>i</sub></span> <i>or</i> <span class="mono">y<sub>i</sub> ≠ z<sub>i</sub></span>. Hence at each position
       <span class="mono">[x<sub>i</sub>≠z<sub>i</sub>] ≤ [x<sub>i</sub>≠y<sub>i</sub>] + [y<sub>i</sub>≠z<sub>i</sub>]</span>. Summing over all <i>n</i> positions gives
       <span class="mono">d<sub>H</sub>(x, z) ≤ d<sub>H</sub>(x, y) + d<sub>H</sub>(y, z)</span>. &nbsp;∎</p>
+  </div>
+    </div>
   </div>
 </section>
 
@@ -792,6 +809,7 @@
     <li>Keep the two questions apart: is your score a <b>valid metric</b>, and does it <b>capture</b> “same person”?</li>
   </ul>
   <div class="ex">The point of this part: metric properties aren’t pedantry — the <b>triangle inequality</b> is what makes the search feasible at all.</div>
+  <div class="axref"><b>Metric axioms to check:</b> &nbsp;non-negativity <span class="mono">d(x,y) ≥ 0</span> &nbsp;·&nbsp; identity <span class="mono">d(x,y)=0 ⇔ x=y</span> &nbsp;·&nbsp; symmetry <span class="mono">d(x,y)=d(y,x)</span> &nbsp;·&nbsp; triangle <span class="mono">d(x,z) ≤ d(x,y)+d(y,z)</span></div>
 </section>
 
 <!-- ============== PART IV — CASE 1: PRODUCTS ============== -->

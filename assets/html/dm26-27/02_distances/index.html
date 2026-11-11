@@ -156,12 +156,27 @@
   table.gt tr:last-child td{border-bottom:none}
   table.gt b{color:var(--ink);font-weight:400}
   table.gt .hit{color:var(--accent)}
-  .scatter{display:block;margin:.3em auto .2em;max-width:min(66vw,720px);width:100%;height:auto}
+  .scatter{display:block;margin:.2em auto .15em;max-width:min(58vw,640px);max-height:40vh;width:100%;height:auto}
   .scatter circle.a{fill:var(--cool)} .scatter circle.b{fill:var(--gold)}
   .scatter .ring{fill:rgba(210,103,79,.06);stroke:var(--accent);stroke-width:.5;stroke-dasharray:2 1.6}
   .scatter .anom{fill:none;stroke:var(--accent);stroke-width:.9}
   .scatter .star{fill:var(--accent)}
   .scatter text{fill:var(--muted);font-size:3.1px;font-style:italic}
+  /* nearest-neighbour "flip" figure (slide: similar in what sense) */
+  .nnflip{display:block;margin:.1em auto;width:min(38vw,380px);height:auto;max-width:100%}
+  .nnflip .run{fill:var(--cool)} .nnflip .dress{fill:var(--gold)}
+  .nnflip .near{fill:none;stroke:var(--accent);stroke-width:1.1}
+  .nnflip .link{stroke:var(--accent);stroke-width:.8;stroke-dasharray:2 1.4}
+  .nnflip text{fill:var(--muted);font-size:3.3px;text-anchor:middle}
+  .nnflip text.ttl{fill:var(--gold);font-size:3.5px;text-anchor:start;letter-spacing:.03em}
+  .nnflip text.q{fill:var(--accent);font-size:9px;font-style:normal}
+  .mono{font-family:var(--mono);font-size:.95em}
+  /* worked graph-distance figure */
+  .gdist{display:block;margin:.1em auto;width:min(40vw,400px);height:auto;max-width:100%}
+  .gdist .edge{stroke:var(--line);stroke-width:1.2}
+  .gdist .edge.hot{stroke:var(--accent);stroke-width:1.9}
+  .gdist .node circle{fill:var(--panel2);stroke:var(--cool);stroke-width:1.2}
+  .gdist .node text{fill:var(--ink);font-size:5px;text-anchor:middle;font-style:normal;font-family:var(--serif)}
 
   /* ---- light / bright mode ---- */
   :root[data-theme="light"]{
@@ -231,14 +246,15 @@
 </section>
 
 <section class="slide" data-sec="1 · The central idea">
-  <div class="kicker">The one argument of this lecture</div>
-  <h1 class="t">Mining is deciding what belongs together</h1><div class="rule"></div>
-  <div class="callout"><span class="lab">Central idea</span>
-    <p>Data mining discovers patterns by deciding <b>which objects belong together</b>.
-      <b>Representation</b> and <b>distance</b> are what make that decision precise.</p>
-    <p>So the interesting question isn’t “what’s the formula” — it’s <i>which differences we choose to let matter</i>.</p>
+  <div class="kicker">The one idea to hold onto</div>
+  <h1 class="t">Choosing a distance is choosing what counts as similar</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">The whole lecture in one line</span>
+    <p>Every task today — classify, cluster, flag outliers, search — reduces to one question:
+      <b>what is close to what?</b> You answer it by picking a <b>representation</b> and a <b>distance</b>.</p>
+    <p>Change that choice and the answer changes — <i>even though not a single data point moved.</i></p>
   </div>
-  <div class="ex">Provocation to hold onto: <b>can we change the discovered patterns without changing the data?</b></div>
+  <div class="ex">Hold onto this: rank shoes by <b>price</b> and a €120 running shoe’s nearest neighbour is a €120 dress shoe; rank by
+    <b>what it’s for</b> and its neighbour is another running shoe. Same shop, same data — the <b>distance</b> decided the recommendation.</div>
 </section>
 
 <section class="slide" data-sec="1 · One picture, four tasks">
@@ -253,9 +269,9 @@
   <circle class="b" cx="71" cy="12" r="2"/><circle class="b" cx="81" cy="18" r="2"/>
   <circle class="b" cx="74" cy="28" r="2"/><circle class="b" cx="63" cy="24" r="2"/>
   <polygon class="star" points="34,28.5 35.4,32.4 39.5,32.4 36.2,34.9 37.4,38.8 34,36.4 30.6,38.8 31.8,34.9 28.5,32.4 32.6,32.4"/>
-  <circle class="anom" cx="92" cy="49" r="2.3"/>
+  <circle class="anom" cx="90" cy="48" r="2.3"/>
   <text x="34" y="20.5" text-anchor="middle">new object?</text>
-  <text x="92" y="44" text-anchor="middle">far out</text>
+  <text x="86" y="44" text-anchor="end">far out</text>
 </svg>
   <table class="gt">
     <tr><th>Mining task</th><th>The question, expressed through distance</th></tr>
@@ -266,14 +282,58 @@
   </table>
 </section>
 
-<section class="slide" data-sec="1 · A needed caveat">
-  <div class="kicker">Don’t overclaim</div>
-  <h1 class="t">Distance is a common language — not a law</h1><div class="rule"></div>
-  <div class="defbox"><span class="lab">Honest qualification</span>
-    Many methods use distance <b style="color:var(--ink);border-bottom:1px solid var(--accent)">explicitly</b>. Others use
-    related notions — <b>similarity</b>, <b>reconstruction error</b>, <b>divergence</b>. Distance gives a shared
-    vocabulary, but <i>not every method requires a metric</i>.</div>
-  <div class="ex">We’ll still see that changing the distance changes the <b>neighbours</b>, the <b>groups</b>, and what counts as <b>far</b>.</div>
+<section class="slide" data-sec="1 · Similar in what sense?">
+  <div class="kicker">The choice, made concrete</div>
+  <h1 class="t">“Similar” has no default meaning</h1><div class="rule"></div>
+  <div class="split">
+    <div class="colfig">
+      <svg viewBox="0 0 92 64" class="nnflip" aria-label="the same query gets a different nearest neighbour under two distances">
+        <!-- panel 1: ranked by price -->
+        <text class="ttl" x="4" y="7">ranked by price</text>
+        <line class="link" x1="18" y1="16" x2="36" y2="16"/>
+        <circle class="near" cx="36" cy="16" r="4.4"/>
+        <circle class="dress" cx="36" cy="16" r="2.6"/>
+        <circle class="run" cx="80" cy="16" r="2.6"/>
+        <text class="q" x="18" y="18.8" text-anchor="middle">★</text>
+        <text x="18" y="26">query</text>
+        <text x="36" y="26">dress</text>
+        <text x="80" y="26">running</text>
+        <!-- panel 2: ranked by purpose -->
+        <text class="ttl" x="4" y="40">ranked by purpose</text>
+        <line class="link" x1="18" y1="49" x2="36" y2="49"/>
+        <circle class="near" cx="36" cy="49" r="4.4"/>
+        <circle class="run" cx="36" cy="49" r="2.6"/>
+        <circle class="dress" cx="80" cy="49" r="2.6"/>
+        <text class="q" x="18" y="51.8" text-anchor="middle">★</text>
+        <text x="18" y="59">query</text>
+        <text x="36" y="59">running</text>
+        <text x="80" y="59">dress</text>
+      </svg>
+    </div>
+    <div class="col">
+      <ul class="pts">
+        <li>Similar in <b>price</b>? — a running shoe lands next to a dress shoe.</li>
+        <li>Similar in <b>purpose</b>? — it lands next to other running shoes.</li>
+        <li>Similar in <b>description text</b>? — grouped by words, not by use.</li>
+        <li>Similar in <b>who buys it</b>? — you get <i>complements</i>, not substitutes.</li>
+      </ul>
+      <div class="ex">Same two candidates, same query — the <b>nearest neighbour flips</b> with the distance. The <b>task</b> decides which sense you want; the <b>distance</b> is how you encode it.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-sec="1 · Your turn">
+  <div class="kicker">Your turn · 2 min with your neighbour</div>
+  <h1 class="t">Design decision: the “more like this” button</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Scenario</span>
+    <p>A music app wants a <b>“more like this”</b> button on every song. You decide what powers it.</p>
+  </div>
+  <ul class="pts">
+    <li>Which of today’s four questions is this — <b>classification, clustering, anomaly, or similarity search</b>?</li>
+    <li>What should “similar” mean here — same <b>genre</b>, same <b>tempo &amp; mood</b>, or the <b>same listeners</b>?</li>
+    <li>Each answer is a different <b>representation</b>. Which one can you actually compute from the data you have?</li>
+  </ul>
+  <div class="ex">There’s no correct answer — only a design decision you can <b>defend</b>. We’ll compare a few.</div>
 </section>
 
 <!-- ============== PART II — THE MODELLING DECISION ============== -->
@@ -311,6 +371,22 @@
   <div class="ex">And you don’t always need a vector first — <b>trees, strings and sets</b> have distances directly.</div>
 </section>
 
+<section class="slide" data-sec="2 · Your turn">
+  <div class="kicker">Your turn · walk the sequence</div>
+  <h1 class="t">Design decision: spot duplicate news articles</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Scenario</span>
+    <p>A news aggregator scrapes the same story from <b>dozens of sites</b>, each with small edits. You must group the duplicates — fill in the four decisions.</p>
+  </div>
+  <table class="gt">
+    <tr><th>Decision</th><th>Your call for this task</th></tr>
+    <tr><td>Task</td><td>What should “similar” mean — near-identical wording?</td></tr>
+    <tr><td>Representation</td><td>The whole string? a bag of words? a set of word <i>k</i>-grams?</td></tr>
+    <tr><td>Distance</td><td>Edit distance? Jaccard on the sets? cosine on term vectors?</td></tr>
+    <tr><td>Decision rule</td><td>Group two articles when the distance is below <b>which</b> threshold?</td></tr>
+  </table>
+  <div class="ex">Notice the dependency: the <b>representation</b> you pick decides which <b>distances</b> are even available to you.</div>
+</section>
+
 <!-- ============== PART III — METRICS AS GUARANTEES ============== -->
 <section class="slide title divider" data-sec="Part III · Metrics">
   <div class="part">Part III</div>
@@ -319,28 +395,120 @@
   <div class="rule"></div>
 </section>
 
-<section class="slide" data-sec="3 · The four axioms">
-  <div class="kicker">Each axiom buys you something</div>
-  <h1 class="t">The axioms, with their payoff</h1><div class="rule"></div>
+<section class="slide" data-sec="3 · Definition">
+  <div class="kicker">Definition</div>
+  <h1 class="t">When is a distance a <i>metric</i>?</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Metric space</span>
+    A function <b class="mono">d : X × X → ℝ</b> is a <b>metric</b> on a set <i>X</i> if, for every <i>x, y, z ∈ X</i>, it satisfies the four
+    axioms below. The pair <b>(X, d)</b> is then called a <b>metric space</b>.</div>
   <table class="gt">
-    <tr><th>Property</th><th>What it guarantees</th></tr>
-    <tr><td>Non-negativity &nbsp;<small>d(x,y) ≥ 0</small></td><td>Difference has a meaningful <b>zero baseline</b></td></tr>
-    <tr><td>Identity of indiscernibles &nbsp;<small>d(x,y)=0 ⇔ x=y</small></td><td>Distinct objects stay <b>distinguishable</b></td></tr>
-    <tr><td>Symmetry &nbsp;<small>d(x,y)=d(y,x)</small></td><td>Comparing A to B equals B to A</td></tr>
-    <tr><td>Triangle inequality &nbsp;<small>d(x,z) ≤ d(x,y)+d(y,z)</small></td><td>Known distances <b>constrain</b> unknown ones</td></tr>
+    <tr><th>Axiom</th><th>Formal statement</th></tr>
+    <tr><td>Non-negativity</td><td><span class="mono">d(x, y) ≥ 0</span></td></tr>
+    <tr><td>Identity of indiscernibles</td><td><span class="mono">d(x, y) = 0 &nbsp;⟺&nbsp; x = y</span></td></tr>
+    <tr><td>Symmetry</td><td><span class="mono">d(x, y) = d(y, x)</span></td></tr>
+    <tr><td>Triangle inequality</td><td><span class="mono">d(x, z) ≤ d(x, y) + d(y, z)</span></td></tr>
   </table>
 </section>
 
-<section class="slide" data-sec="3 · Triangle payoff">
-  <div class="kicker">Why the triangle inequality earns its keep</div>
-  <h1 class="t">Metric structure lets us skip work</h1><div class="rule"></div>
+<section class="slide" data-sec="3 · Why a metric is useful">
+  <div class="kicker">Why these axioms are worth demanding</div>
+  <h1 class="t">The axioms are guarantees an algorithm can exploit</h1><div class="rule"></div>
+  <ul class="pts">
+    <li><b>Identity</b> and <b>symmetry</b> make “the nearest object” <b>well-defined</b> and independent of comparison order.</li>
+    <li>The <b>triangle inequality</b> lets <b>known</b> distances bound <b>unknown</b> ones, so candidates can be ruled out <i>without</i> measuring them.</li>
+  </ul>
   <div class="defbox"><span class="lab">Pruning with the triangle inequality</span>
-    A query <i>q</i> is distance <span class="num">10</span> from a reference <i>r</i>. A candidate <i>c</i> is distance
-    <span class="num">2</span> from <i>r</i>. Then <i>c</i> must be at least
-    <b style="color:var(--ink);border-bottom:1px solid var(--accent)">10 − 2 = 8</b> from <i>q</i>.</div>
-  <div class="callout"><span class="lab">So</span>
-    <p>If we only want neighbours within distance <span class="num">3</span>, we can <b>discard <i>c</i> without ever computing d(q,c)</b>.</p>
-    <p>That is the computational reason metric structure matters — it powers indexes that avoid the full n² comparisons.</p>
+    Suppose a query <i>q</i> is at distance <span class="num">10</span> from a reference <i>r</i>, and a candidate <i>c</i> is at distance
+    <span class="num">2</span> from <i>r</i>. By the triangle inequality,
+    <b class="mono" style="color:var(--ink)">d(q, c) ≥ |10 − 2| = 8</b>. If we only seek neighbours within distance <span class="num">3</span>, we may
+    discard <i>c</i> <b>without ever computing d(q, c)</b>.</div>
+  <div class="ex">This is what powers metric indexes — ball trees, VP-trees — that avoid the full <b>O(n²)</b> comparisons.</div>
+</section>
+
+<section class="slide" data-sec="3 · Exercise">
+  <div class="kicker">Exercise · check the axioms</div>
+  <h1 class="t">Is the Hamming distance a metric?</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Candidate distance</span>
+    For two strings <i>x, y</i> of equal length <i>n</i> over a fixed alphabet, let <b class="mono">d<sub>H</sub>(x, y)</b> be the number of
+    positions at which they differ. &nbsp;e.g. <span class="mono">d<sub>H</sub>(10110, 11100) = 2</span>.</div>
+  <ul class="pts">
+    <li>Verify each of the four axioms for <b class="mono">d<sub>H</sub></b>.</li>
+    <li>Three are immediate; the <b>triangle inequality</b> is the one that takes an argument — reason <b>position by position</b>.</li>
+  </ul>
+  <div class="ex">Decide before the next slide: is it a metric, and <i>why</i> does the triangle inequality hold?</div>
+</section>
+
+<section class="slide" data-sec="3 · Exercise — solution">
+  <div class="kicker">Solution</div>
+  <h1 class="t">Yes — the Hamming distance is a metric</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Proof — verify each axiom</span>
+    <p><b>Non-negativity.</b> <span class="mono">d<sub>H</sub></span> is a count of positions, hence <span class="mono">d<sub>H</sub>(x, y) ≥ 0</span>.</p>
+    <p><b>Identity.</b> <span class="mono">d<sub>H</sub>(x, y) = 0</span> ⟺ no position differs ⟺ <span class="mono">x = y</span>.</p>
+    <p><b>Symmetry.</b> “position <i>i</i> differs” is the same statement for (x, y) and (y, x), so <span class="mono">d<sub>H</sub>(x, y) = d<sub>H</sub>(y, x)</span>.</p>
+    <p><b>Triangle inequality.</b> Fix a position <i>i</i>. If <span class="mono">x<sub>i</sub> ≠ z<sub>i</sub></span>, then <span class="mono">x<sub>i</sub></span> and <span class="mono">z<sub>i</sub></span>
+      cannot both equal <span class="mono">y<sub>i</sub></span>, so <span class="mono">x<sub>i</sub> ≠ y<sub>i</sub></span> <i>or</i> <span class="mono">y<sub>i</sub> ≠ z<sub>i</sub></span>. Hence at each position
+      <span class="mono">[x<sub>i</sub>≠z<sub>i</sub>] ≤ [x<sub>i</sub>≠y<sub>i</sub>] + [y<sub>i</sub>≠z<sub>i</sub>]</span>. Summing over all <i>n</i> positions gives
+      <span class="mono">d<sub>H</sub>(x, z) ≤ d<sub>H</sub>(x, y) + d<sub>H</sub>(y, z)</span>. &nbsp;∎</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="3 · Exercise">
+  <div class="kicker">Exercise · find the broken axiom</div>
+  <h1 class="t">Is squared Euclidean distance a metric?</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Candidate distance</span>
+    On <span class="mono">ℝⁿ</span>, define <b class="mono">d<sub>sq</sub>(x, y) = ‖x − y‖² = Σ<sub>i</sub> (x<sub>i</sub> − y<sub>i</sub>)²</b> — the <b>squared</b> Euclidean distance
+    (the quantity <i>k</i>-means minimises).</div>
+  <ul class="pts">
+    <li>Three of the four axioms clearly hold. <b>Which one can fail?</b></li>
+    <li>Try to build a <b>counterexample</b> using three points on the real line.</li>
+  </ul>
+  <div class="ex">Hint: place three points in a row and compare the direct jump against the two-step path.</div>
+</section>
+
+<section class="slide" data-sec="3 · Exercise — solution">
+  <div class="kicker">Solution</div>
+  <h1 class="t">No — the triangle inequality fails</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Counterexample on the real line</span>
+    Take <span class="mono">x = 0, &nbsp; y = 1, &nbsp; z = 2</span>. Then
+    <br><span class="mono">d<sub>sq</sub>(x, z) = (2 − 0)² = <b style="color:var(--ink)">4</b></span>, &nbsp; while &nbsp;
+    <span class="mono">d<sub>sq</sub>(x, y) + d<sub>sq</sub>(y, z) = 1² + 1² = <b style="color:var(--ink)">2</b></span>.
+    <br>So <span class="mono">d<sub>sq</sub>(x, z) = 4 &gt; 2 = d<sub>sq</sub>(x, y) + d<sub>sq</sub>(y, z)</span> — the triangle inequality is violated.</div>
+  <div class="callout"><span class="lab">Takeaway</span>
+    <p>Non-negativity, identity and symmetry all hold, yet <span class="mono">d<sub>sq</sub></span> is <b>not</b> a metric. Squaring breaks the triangle
+      inequality — which is exactly why the <b>Euclidean</b> distance (its square root) is used wherever metric structure is required.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="3 · Graph distance">
+  <div class="kicker">A metric on objects that are not vectors</div>
+  <h1 class="t">Worked example: shortest-path distance on a graph</h1><div class="rule"></div>
+  <div class="split">
+    <div class="colfig">
+      <svg viewBox="0 0 100 64" class="gdist" aria-label="small graph with the shortest path from A to D highlighted">
+        <line class="edge hot" x1="12" y1="24" x2="42" y2="12"/>
+        <line class="edge hot" x1="42" y1="12" x2="70" y2="26"/>
+        <line class="edge hot" x1="70" y1="26" x2="90" y2="48"/>
+        <line class="edge" x1="12" y1="24" x2="42" y2="50"/>
+        <line class="edge" x1="42" y1="50" x2="70" y2="26"/>
+        <g class="node"><circle cx="12" cy="24" r="6"/><text x="12" y="25.9">A</text></g>
+        <g class="node"><circle cx="42" cy="12" r="6"/><text x="42" y="13.9">B</text></g>
+        <g class="node"><circle cx="70" cy="26" r="6"/><text x="70" y="27.9">C</text></g>
+        <g class="node"><circle cx="90" cy="48" r="6"/><text x="90" y="49.9">D</text></g>
+        <g class="node"><circle cx="42" cy="50" r="6"/><text x="42" y="51.9">E</text></g>
+      </svg>
+    </div>
+    <div class="col">
+      <div class="defbox"><span class="lab">Definition</span>
+        In a connected graph, <b class="mono">d(u, v)</b> is the number of edges on a <b>shortest path</b> between <i>u</i> and <i>v</i>
+        (the <b>geodesic</b> distance; for weighted graphs, the smallest total edge weight).</div>
+      <ul class="pts">
+        <li><b>BFS from A</b> reads the distance straight off the layer number:</li>
+        <li><span class="mono">layer 0 = {A}, &nbsp;1 = {B, E}, &nbsp;2 = {C}, &nbsp;3 = {D}</span>.</li>
+        <li>So <span class="mono">d(A,D) = 3</span>, along A–B–C–D <i>or</i> A–E–C–D.</li>
+        <li>Triangle check: <span class="mono">d(A,D) = 3 ≤ d(A,C) + d(C,D) = 2 + 1</span>. ✓</li>
+      </ul>
+      <div class="ex">It <b>is</b> a metric: any path through a third node <i>w</i> is itself a valid <i>u→v</i> path, so the shortest cannot be longer — the triangle inequality holds <b>by construction</b>.</div>
+    </div>
   </div>
 </section>
 
@@ -352,6 +520,20 @@
     <p>Neither answer settles the other. A valid metric can be <b>useless</b> for a task; a genuinely useful
       dissimilarity need not satisfy <b>every</b> axiom. We’ll see both in the case studies.</p>
   </div>
+</section>
+
+<section class="slide" data-sec="3 · Your turn">
+  <div class="kicker">Your turn · do you need a metric?</div>
+  <h1 class="t">Design decision: 10 million face photos</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Scenario</span>
+    <p>You must find <b>near-duplicate faces</b> in a 10-million-photo archive — far too many to compare every pair.</p>
+  </div>
+  <ul class="pts">
+    <li>To <b>prune</b> candidates without computing every distance, which axiom must your distance obey — and why that one?</li>
+    <li>Your score gives <b>d(A,B) ≠ d(B,A)</b>. Which axiom breaks, and does it actually matter here?</li>
+    <li>Keep the two questions apart: is your score a <b>valid metric</b>, and does it <b>capture</b> “same person”?</li>
+  </ul>
+  <div class="ex">The point of this part: metric properties aren’t pedantry — the <b>triangle inequality</b> is what makes the search feasible at all.</div>
 </section>
 
 <!-- ============== PART IV — CASE 1: PRODUCTS ============== -->
@@ -386,8 +568,9 @@
   <div class="kicker">Category → a tree</div>
   <h1 class="t">Taxonomy distance = shortest path</h1>
   <div class="figwrap"><img class="plate" src="figs/product_taxonomy.png" alt="Product category taxonomy tree"></div>
-  <div class="figcap">Distance = path length up to a common ancestor and back down. <b>A metric on category nodes.</b>
-    But <span class="k">distinct products in the same category have distance 0</span> — the representation, not the metric, is the limit.</div>
+  <div class="figcap">Distance = path length up to a common ancestor and back down. A <b>tree is a graph</b>, so this is exactly the
+    shortest-path distance from Part III — and it <b>is a metric</b> on category nodes.
+    But <span class="k">distinct products in the same category have distance 0</span>, so the <b>representation</b>, not the metric, is the limit.</div>
 </section>
 
 <section class="slide" data-sec="4 · Text distance">
@@ -442,7 +625,7 @@
   <div class="kicker">From objective to algorithm</div>
   <h1 class="t">Combine distances — weights are priorities</h1><div class="rule"></div>
   <div class="math">d(x,y) <span class="op">=</span> w<sub>c</sub>·d<sub>category</sub> + w<sub>t</sub>·d<sub>text</sub> + w<sub>p</sub>·d<sub>price</sub></div>
-  <div class="callout"><span class="lab">Two warnings that ride together</span>
+  <div class="callout"><span class="lab">Two cautions, linked</span>
     <p>The terms must be on <b>comparable scales</b> before you add them — exactly the standardization point again.</p>
     <p>The weights <b>w</b> encode <b>priorities</b>; they are the model’s hyperparameters. Standardization does not choose them for you —
       <b>you</b> decide what should matter. Then rank the top-k neighbours and evaluate against real clicks/purchases.</p>
@@ -490,7 +673,7 @@
   <h1 class="t">Count the differing bits</h1><div class="rule"></div>
   <div class="math">a = 1011<b style="color:var(--accent)">0</b>010 &nbsp; b = 1011<b style="color:var(--accent)">1</b>010 &nbsp;→&nbsp; d<sub>Hamming</sub> = 1</div>
   <div class="callout"><span class="lab">Back to Part III</span>
-    <p>Hamming distance <b>is a proper metric</b> on fingerprints — all four axioms hold.</p>
+    <p>Hamming distance <b>is a proper metric</b> on fingerprints — we verified all four axioms in Part III.</p>
     <p>Yet <b>distinct videos can share a fingerprint</b>. A metric <i>in the representation space</i> does not guarantee the
       <b>originals</b> are distinguishable — the same lesson as taxonomy-distance on products.</p>
   </div>
@@ -511,7 +694,7 @@
   <div class="kicker">Make it scale</div>
   <h1 class="t">Fast filter → slow check</h1><div class="rule"></div>
   <div class="math" style="font-size:clamp(1rem,1.9vw,1.5rem)">cheap candidate generation &nbsp;→&nbsp; expensive exact verification</div>
-  <div class="callout"><span class="lab">The recipe (you’ll see it again)</span>
+  <div class="callout"><span class="lab">A recurring pattern — fast filter, slow check</span>
     <p>Generate a small candidate set cheaply (fingerprint buckets / LSH), then verify the few survivors with the
       expensive comparison. <b>Never materialise all n² distances.</b></p>
     <p>The same shape powers web search, retrieval and question answering — a recurring pattern this year.</p>

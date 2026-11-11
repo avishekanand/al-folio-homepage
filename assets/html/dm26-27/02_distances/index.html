@@ -177,6 +177,23 @@
   .gdist .edge.hot{stroke:var(--accent);stroke-width:1.9}
   .gdist .node circle{fill:var(--panel2);stroke:var(--cool);stroke-width:1.2}
   .gdist .node text{fill:var(--ink);font-size:5px;text-anchor:middle;font-style:normal;font-family:var(--serif)}
+  /* representation-space tiles */
+  .rtiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1em;margin-top:.6em}
+  .rtile{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:.8em .8em .9em;text-align:center}
+  .rtile h3{margin:.45em 0 .15em;font-size:clamp(1rem,1.5vw,1.25rem);color:var(--ink);font-weight:400}
+  .rtile .rtobj{color:var(--muted);font-size:clamp(.86rem,1.15vw,1.02rem);line-height:1.34}
+  .rtile .rtd{color:var(--cool);font-size:clamp(.8rem,1.05vw,.95rem);margin-top:.4em;font-family:var(--mono)}
+  .rt{display:block;width:100%;height:auto;max-width:140px;margin:.1em auto .2em}
+  .rt .ax{stroke:var(--muted);stroke-width:1}
+  .rt .pt{fill:var(--accent)}
+  .rt .dash{stroke:var(--accent);stroke-width:.8;stroke-dasharray:2 1.5}
+  .rt .setc{fill:rgba(122,167,164,.12);stroke:var(--cool);stroke-width:1}
+  .rt .setc2{fill:rgba(201,162,92,.12);stroke:var(--gold);stroke-width:1}
+  .rt .box{fill:var(--panel);stroke:var(--line);stroke-width:1}
+  .rt .gnode{fill:var(--panel);stroke:var(--cool);stroke-width:1.2}
+  .rt .gedge{stroke:var(--accent);stroke-width:1.3}
+  .rt text{fill:var(--ink);font-size:6px;text-anchor:middle;font-family:var(--mono)}
+  @media (max-aspect-ratio:1/1){ .rtiles{grid-template-columns:repeat(2,1fr)} }
 
   /* ---- light / bright mode ---- */
   :root[data-theme="light"]{
@@ -355,6 +372,69 @@
   <div class="callout"><span class="lab">Consequence</span>
     <p>Different features give <b>different neighbours</b>. Picking the feature and the distance <i>is</i> picking the model —
       this is the most important idea in the lecture, so we put it first.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="2 · Representation space">
+  <div class="kicker">Before the distance comes the encoding</div>
+  <h1 class="t">What is a <i>representation space</i>?</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Definition</span>
+    A <b>representation</b> encodes each object as an element of a chosen space <b class="mono">ℛ</b> — a vector, a set, a sequence,
+    a node in a graph. Every later step sees <b>only</b> what ℛ records, so two objects identical in ℛ are
+    <b>indistinguishable</b> to the distance. Choosing ℛ is the <b>first</b> modelling decision.</div>
+  <div class="rtiles">
+    <div class="rtile">
+      <svg class="rt" viewBox="0 0 60 40" aria-label="a point in a 2-D vector space">
+        <line class="ax" x1="12" y1="34" x2="12" y2="6"/>
+        <line class="ax" x1="12" y1="34" x2="52" y2="34"/>
+        <line class="dash" x1="38" y1="16" x2="12" y2="16"/>
+        <line class="dash" x1="38" y1="16" x2="38" y2="34"/>
+        <circle class="pt" cx="38" cy="16" r="2.8"/>
+      </svg>
+      <h3>Vector · ℝⁿ</h3>
+      <div class="rtobj">object → a point of numeric features</div>
+      <div class="rtd">Euclidean · cosine</div>
+    </div>
+    <div class="rtile">
+      <svg class="rt" viewBox="0 0 60 40" aria-label="two overlapping sets of elements">
+        <circle class="setc" cx="25" cy="20" r="13"/>
+        <circle class="setc2" cx="37" cy="20" r="13"/>
+        <circle cx="19" cy="18" r="1.7" fill="var(--cool)"/>
+        <circle cx="22" cy="25" r="1.7" fill="var(--cool)"/>
+        <circle cx="31" cy="20" r="1.7" fill="var(--ink)"/>
+        <circle cx="43" cy="18" r="1.7" fill="var(--gold)"/>
+        <circle cx="40" cy="25" r="1.7" fill="var(--gold)"/>
+      </svg>
+      <h3>Set</h3>
+      <div class="rtobj">object → a set of elements (words, shingles)</div>
+      <div class="rtd">Jaccard</div>
+    </div>
+    <div class="rtile">
+      <svg class="rt" viewBox="0 0 60 40" aria-label="an ordered sequence of symbols">
+        <rect class="box" x="6" y="14" width="9" height="12" rx="1.5"/><text x="10.5" y="23">1</text>
+        <rect class="box" x="16" y="14" width="9" height="12" rx="1.5"/><text x="20.5" y="23">0</text>
+        <rect class="box" x="26" y="14" width="9" height="12" rx="1.5"/><text x="30.5" y="23">1</text>
+        <rect class="box" x="36" y="14" width="9" height="12" rx="1.5"/><text x="40.5" y="23">1</text>
+        <rect class="box" x="46" y="14" width="9" height="12" rx="1.5"/><text x="50.5" y="23">0</text>
+      </svg>
+      <h3>Sequence</h3>
+      <div class="rtobj">object → an ordered string of symbols</div>
+      <div class="rtd">edit · Hamming</div>
+    </div>
+    <div class="rtile">
+      <svg class="rt" viewBox="0 0 60 40" aria-label="a node in a graph">
+        <line class="gedge" x1="14" y1="12" x2="30" y2="22"/>
+        <line class="gedge" x1="30" y1="22" x2="46" y2="12"/>
+        <line class="gedge" x1="30" y1="22" x2="30" y2="34"/>
+        <circle class="gnode" cx="14" cy="12" r="4.6"/>
+        <circle class="gnode" cx="46" cy="12" r="4.6"/>
+        <circle class="gnode" cx="30" cy="34" r="4.6"/>
+        <circle class="gnode" cx="30" cy="22" r="4.6"/>
+      </svg>
+      <h3>Graph / tree</h3>
+      <div class="rtobj">object → a node in a graph</div>
+      <div class="rtd">shortest path</div>
+    </div>
   </div>
 </section>
 
@@ -766,7 +846,7 @@ function show(n){
   if(v){ v.currentTime=0; if(ov)ov.style.display='flex'; }
   reveal(s);
 }
-const ANIM_SEL='.kicker,h1.t,.title h1,.divider h1,.sub,.rule,.lead,.defbox,ul.pts,.callout,.math,.ex,table.sched,table.g,.figwrap,.figcap,.card,.twofig,.punch,.by,.part';
+const ANIM_SEL='.kicker,h1.t,.title h1,.divider h1,.sub,.rule,.lead,.defbox,ul.pts,.callout,.math,.ex,table.sched,table.g,.figwrap,.figcap,.card,.rtiles,.twofig,.punch,.by,.part';
 function reveal(s){ s.querySelectorAll(ANIM_SEL).forEach((el,k)=>{ el.classList.remove('rise'); void el.offsetWidth; el.style.setProperty('--d',(k*65)+'ms'); el.classList.add('rise'); }); }
 function next(){show(i+1)} function prev(){show(i-1)}
 addEventListener('keydown',e=>{

@@ -27,6 +27,10 @@
   footer{color:var(--muted);font-size:.95rem;margin-top:2.6em;max-width:72ch;line-height:1.5}
   footer a{color:var(--cool);text-decoration:none;border-bottom:1px solid currentColor}
   footer a:hover{color:var(--accent)}
+  .links{margin:-0.7em 0 2.1em;font-size:clamp(1rem,1.5vw,1.12rem)}
+  .links a{color:var(--cool);text-decoration:none;border-bottom:1px solid currentColor}
+  .links a:hover{color:var(--accent)}
+  .links .sep{color:var(--line);margin:0 .55em}
   @media (prefers-color-scheme:light){
     :root{--bg:#f6f1e7;--panel:#fff;--ink:#241f18;--muted:#6b6457;--line:#e2d9c8}
   }
@@ -38,6 +42,7 @@
   <div class="sub">The lecture slides for the Data Mining course (CSE2525) at TU Delft,
     organised around distances, matrices, and retrieval.</div>
   <div class="rule"></div>
+  <p class="links"><a href="https://studyguide.tudelft.nl/opleidingen/study-guide/educations/33233#/details/33531" target="_blank" rel="noopener">Official TU Delft study guide ↗</a></p>
   <div class="grid">
     <div class="card"><a class="cardmain" href="01_introduction/index.html">
       <div class="n">Lecture 1</div><h2>Introduction</h2>
@@ -47,7 +52,7 @@
     <div class="card"><a class="cardmain" href="02_distances/index.html">
       <div class="n">Lecture 2</div><h2>Distances &amp; Similarity</h2>
       <p>Metrics, cosine / Euclidean / Hamming, and two case studies.</p></a>
-      <div class="meta"><span>32 slides</span><a href="02_distances/02_distances.pdf">PDF ↓</a></div></div>
+      <div class="meta"><span>49 slides</span><a href="02_distances/02_distances.pdf">PDF ↓</a></div></div>
 
     <div class="card"><a class="cardmain" href="03_embeddings/index.html">
       <div class="n">Lecture 3</div><h2>Embeddings</h2>

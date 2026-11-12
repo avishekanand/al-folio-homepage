@@ -24,6 +24,12 @@
     .rise{animation:rise .52s both cubic-bezier(.22,.68,.24,1);animation-delay:var(--d,0ms)}
     .rule.rise{transform-origin:left center;animation:rise .52s both cubic-bezier(.22,.68,.24,1),growrule .5s both ease;animation-delay:var(--d,0ms)}
   }
+  /* click/keystroke-revealed fragments (e.g. the answer on a "your turn" slide) */
+  .frag{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+  .frag.shown{opacity:1;transform:none}
+  #fhint{position:fixed;right:18px;bottom:40px;color:var(--accent);font-size:.82rem;opacity:.72;
+    z-index:5;letter-spacing:.03em;display:none;font-style:italic}
+  #fhint.on{display:block}
   .kicker{color:var(--accent);font-size:1.0rem;letter-spacing:.09em;text-transform:uppercase}
   h1.t{font-size:2.6rem;line-height:1.12;margin:.06em 0 .10em;font-weight:400;letter-spacing:-.01em}
   .sub{color:var(--muted);font-style:italic;font-size:1.22rem;margin:0 0 .15em}
@@ -216,7 +222,15 @@
   .mfig .cv{fill:var(--ink);font-family:var(--mono);font-size:6px;text-anchor:middle}
   .mfig .cv.diff{fill:var(--accent)}
   .mfig .quad{stroke:var(--line);stroke-width:1.1}
-  .figcapc{color:var(--muted);font-size:clamp(.85rem,1.15vw,1.02rem);line-height:1.4;text-align:center;margin-top:.3em;max-width:30ch}
+  .figcapc{color:var(--muted);font-size:clamp(.85rem,1.15vw,1.02rem);line-height:1.4;text-align:center;margin-top:.3em;max-width:32ch}
+  .mfig .leg{stroke:var(--muted);stroke-width:1;stroke-dasharray:2.5 2;fill:none}
+  .mfig .hyp{stroke:var(--accent);stroke-width:1.9;fill:none}
+  .mfig .setA{fill:rgba(122,167,164,.14);stroke:var(--cool);stroke-width:1.1}
+  .mfig .setB{fill:rgba(201,162,92,.14);stroke:var(--gold);stroke-width:1.1}
+  .mfig .gn{fill:var(--panel);stroke:var(--cool);stroke-width:1.2}
+  .mfig .ge{stroke:var(--line);stroke-width:1.3}
+  .mfig .ge.hot{stroke:var(--accent);stroke-width:1.9}
+  .mfig text.w{fill:var(--gold);font-family:var(--mono);font-size:4.6px}
 
   /* ---- light / bright mode ---- */
   :root[data-theme="light"]{
@@ -232,11 +246,12 @@
   @media print{
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     html,body{height:auto;overflow:visible}
-    #home,#hint,#num,#bar,.secmark,#theme,#grid,#overview,#fs{display:none !important}
+    #home,#hint,#num,#bar,.secmark,#theme,#grid,#overview,#fs,#fhint{display:none !important}
     .slide{position:relative !important;display:flex !important;inset:auto !important;
       width:1600px;height:900px;break-after:page;page-break-after:always;animation:none !important}
     .slide:last-child{break-after:auto;page-break-after:auto}
     .rise{animation:none !important;opacity:1 !important;transform:none !important}
+    .frag{opacity:1 !important;transform:none !important}
   }
 
   #home{position:fixed;left:16px;top:8px;z-index:6;background:transparent;border:1px solid var(--line);
@@ -364,7 +379,7 @@
     <li>What should “similar” mean here — same <b>genre</b>, same <b>tempo &amp; mood</b>, or the <b>same listeners</b>?</li>
     <li>Each answer is a different <b>representation</b>. Which one can you actually compute from the data you have?</li>
   </ul>
-  <div class="ex">There’s no correct answer — only a design decision you can <b>defend</b>. We’ll compare a few.</div>
+  <div class="ex frag">There’s no correct answer — only a design decision you can <b>defend</b>. We’ll compare a few.</div>
 </section>
 
 <!-- ============== PART II — THE MODELLING DECISION ============== -->
@@ -375,18 +390,15 @@
   <div class="rule"></div>
 </section>
 
-<section class="slide" data-sec="2 · Similar how?">
-  <div class="kicker">“Similar” is ambiguous on purpose</div>
-  <h1 class="t">Close in what sense?</h1><div class="rule"></div>
-  <ul class="pts">
-    <li>Two shoes can be <b>close in price</b> but <b>different in purpose</b>.</li>
-    <li>Two products can have <b>similar descriptions</b> but very <b>different prices</b>.</li>
-    <li>Two visually similar products may be <b>substitutes</b>; two bought-together products may be <b>complements</b>.</li>
-  </ul>
-  <div class="callout"><span class="lab">Consequence</span>
-    <p>Different features give <b>different neighbours</b>. Picking the feature and the distance <i>is</i> picking the model —
-      this is the most important idea in the lecture, so we put it first.</p>
+<section class="slide" data-sec="2 · Features &amp; models">
+  <div class="kicker">From intuition to vocabulary</div>
+  <h1 class="t">Features, and what we mean by a “model”</h1><div class="rule"></div>
+  <div class="cards">
+    <div class="card cool"><h3>Feature</h3><ul><li>A <b>measurable property</b> of an object — its price, its category, the words in its description, who buys it.</li></ul></div>
+    <div class="card"><h3>Representation</h3><ul><li>The features you <b>choose</b> to describe an object — its encoding. We formalise this as a <b>representation space</b> next.</li></ul></div>
+    <div class="card gold"><h3>Model (here)</h3><ul><li><b>Representation + distance + decision rule.</b> Choosing the features and the distance <i>is</i> choosing the model.</li></ul></div>
   </div>
+  <div class="ex">Different features give <b>different neighbours</b> — so the modelling decision begins by <b>choosing features</b>, which we assemble into a representation space next.</div>
 </section>
 
 <section class="slide" data-sec="2 · Representation space">
@@ -455,41 +467,117 @@
 <section class="slide" data-sec="2 · Distance 1 — Euclidean">
   <div class="kicker">Vector space · the straight-line distance</div>
   <h1 class="t">Euclidean distance</h1><div class="rule"></div>
-  <div class="math">d(x, y) <span class="op">=</span> √( Σ<sub>i</sub> (x<sub>i</sub> − y<sub>i</sub>)² )</div>
-  <div class="defbox"><span class="lab">Worked example</span>
-    x = (1, 2), &nbsp; y = (4, 6).<br>
-    d = √((4 − 1)² + (6 − 2)²) = √(9 + 16) = √25 = <b class="mono" style="color:var(--ink)">5</b>.</div>
-  <div class="ex"><b>Cosine</b> is its sibling for text — it compares <i>direction</i>, not magnitude. We’ll meet both again: where they’re used, and whether they’re metrics.</div>
+  <div class="split">
+    <div class="colfig">
+      <svg class="mfig" viewBox="0 0 76 62" aria-label="Euclidean distance as the hypotenuse of a right triangle" style="width:min(30vw,320px)">
+        <line class="leg" x1="16" y1="50" x2="46" y2="50"/>
+        <line class="leg" x1="46" y1="50" x2="46" y2="10"/>
+        <line class="hyp" x1="16" y1="50" x2="46" y2="10"/>
+        <path class="leg" d="M41,50 L41,45 L46,45"/>
+        <circle class="pA" cx="16" cy="50" r="2.8"/>
+        <circle class="pB" cx="46" cy="10" r="2.8"/>
+        <text x="11" y="54">x</text>
+        <text x="51" y="10">y</text>
+        <text class="m" x="31" y="58">Δx = 3</text>
+        <text class="m" x="60" y="32">Δy = 4</text>
+        <text class="m" x="22" y="27" fill="var(--accent)">d = 5</text>
+      </svg>
+      <div class="figcapc">The distance is the <b>hypotenuse</b>: √(3² + 4²) = 5.</div>
+    </div>
+    <div class="col">
+      <div class="math">d(x, y) <span class="op">=</span> √( Σ<sub>i</sub> (x<sub>i</sub> − y<sub>i</sub>)² )</div>
+      <div class="defbox"><span class="lab">Worked example</span>
+        x = (1, 2), &nbsp; y = (4, 6).<br>
+        d = √((4 − 1)² + (6 − 2)²) = √(9 + 16) = √25 = <b class="mono" style="color:var(--ink)">5</b>.</div>
+      <div class="ex"><b>Cosine</b> is its sibling for text — it compares <i>direction</i>, not magnitude. We’ll meet both again: where they’re used, and whether they’re metrics.</div>
+    </div>
+  </div>
 </section>
 
 <section class="slide" data-sec="2 · Distance 2 — Jaccard">
   <div class="kicker">Set · the overlap of two sets</div>
   <h1 class="t">Jaccard distance</h1><div class="rule"></div>
-  <div class="math">J(A, B) <span class="op">=</span> |A ∩ B| / |A ∪ B| &nbsp;&nbsp;&nbsp; d<sub>J</sub> <span class="op">=</span> 1 − J(A, B)</div>
-  <div class="defbox"><span class="lab">Worked example</span>
-    A = {a, b, c, d}, &nbsp; B = {c, d, e}.<br>
-    A ∩ B = {c, d} → 2, &nbsp; A ∪ B = {a, b, c, d, e} → 5. &nbsp; J = 2/5 = 0.4, &nbsp; d<sub>J</sub> = <b class="mono" style="color:var(--ink)">0.6</b>.</div>
-  <div class="ex">Natural for documents seen as sets of words or shingles. We’ll meet it again — in near-duplicate detection — and ask whether it’s a metric.</div>
+  <div class="split">
+    <div class="colfig">
+      <svg class="mfig" viewBox="0 0 88 58" aria-label="Jaccard: intersection over union of two sets" style="width:min(34vw,360px)">
+        <circle class="setA" cx="32" cy="32" r="18"/>
+        <circle class="setB" cx="54" cy="32" r="18"/>
+        <text x="16" y="12" fill="var(--cool)">A</text>
+        <text x="70" y="12" fill="var(--gold)">B</text>
+        <text x="22" y="30">a</text>
+        <text x="24" y="42">b</text>
+        <text x="43" y="29">c</text>
+        <text x="43" y="42">d</text>
+        <text x="65" y="35">e</text>
+      </svg>
+      <div class="figcapc"><b>∩</b> = {c, d} = 2 &nbsp;·&nbsp; <b>∪</b> = 5 &nbsp;→&nbsp; J = 0.4, d = 0.6.</div>
+    </div>
+    <div class="col">
+      <div class="math">J(A, B) <span class="op">=</span> |A ∩ B| / |A ∪ B| &nbsp;&nbsp;&nbsp; d<sub>J</sub> <span class="op">=</span> 1 − J(A, B)</div>
+      <div class="defbox"><span class="lab">Worked example</span>
+        A = {a, b, c, d}, &nbsp; B = {c, d, e}.<br>
+        A ∩ B = {c, d} → 2, &nbsp; A ∪ B = {a, b, c, d, e} → 5. &nbsp; J = 2/5 = 0.4, &nbsp; d<sub>J</sub> = <b class="mono" style="color:var(--ink)">0.6</b>.</div>
+      <div class="ex">Natural for documents seen as sets of words or shingles. We’ll meet it again — in near-duplicate detection — and ask whether it’s a metric.</div>
+    </div>
+  </div>
 </section>
 
 <section class="slide" data-sec="2 · Distance 3 — Edit">
   <div class="kicker">Sequence · how many edits apart</div>
   <h1 class="t">Edit (Levenshtein) distance</h1><div class="rule"></div>
-  <div class="math">d(x, y) <span class="op">=</span> fewest insertions, deletions &amp; substitutions turning x into y</div>
-  <div class="defbox"><span class="lab">Worked example</span>
-    x = <span class="mono">book</span>, &nbsp; y = <span class="mono">back</span>: &nbsp; b·b ✓, &nbsp; o → a, &nbsp; o → c, &nbsp; k·k ✓ &nbsp;→&nbsp; <b class="mono" style="color:var(--ink)">2</b> substitutions.<br>
-    Equal length, substitutions only → this coincides with the <b>Hamming</b> distance. Insertions &amp; deletions let it compare <i>different</i> lengths: <span class="mono">book → books</span> = 1.</div>
-  <div class="ex">We’ll meet Hamming again in Part III — where we prove it <i>is</i> a metric — and in the video case study.</div>
+  <div class="split">
+    <div class="colfig">
+      <svg class="mfig" viewBox="0 0 66 42" aria-label="aligning book and back, two letters differ" style="width:min(30vw,300px)">
+        <text class="m" x="4" y="15" text-anchor="start">x</text>
+        <text class="m" x="4" y="32" text-anchor="start">y</text>
+        <rect class="cell" x="13" y="6"  width="12" height="12" rx="1.5"/><text class="cv" x="19" y="15">b</text>
+        <rect class="cell diff" x="26" y="6" width="12" height="12" rx="1.5"/><text class="cv diff" x="32" y="15">o</text>
+        <rect class="cell diff" x="39" y="6" width="12" height="12" rx="1.5"/><text class="cv diff" x="45" y="15">o</text>
+        <rect class="cell" x="52" y="6"  width="12" height="12" rx="1.5"/><text class="cv" x="58" y="15">k</text>
+        <rect class="cell" x="13" y="23" width="12" height="12" rx="1.5"/><text class="cv" x="19" y="32">b</text>
+        <rect class="cell diff" x="26" y="23" width="12" height="12" rx="1.5"/><text class="cv diff" x="32" y="32">a</text>
+        <rect class="cell diff" x="39" y="23" width="12" height="12" rx="1.5"/><text class="cv diff" x="45" y="32">c</text>
+        <rect class="cell" x="52" y="23" width="12" height="12" rx="1.5"/><text class="cv" x="58" y="32">k</text>
+        <text class="lab" x="38" y="41">2 letters change</text>
+      </svg>
+      <div class="figcapc"><span class="mono">book → back</span>: two substitutions → <b>2 edits</b>.</div>
+    </div>
+    <div class="col">
+      <div class="math">d(x, y) <span class="op">=</span> fewest insertions, deletions &amp; substitutions turning x into y</div>
+      <div class="defbox"><span class="lab">Worked example</span>
+        <span class="mono">book → back</span>: &nbsp; b·b ✓, &nbsp; o → a, &nbsp; o → c, &nbsp; k·k ✓ &nbsp;→&nbsp; <b class="mono" style="color:var(--ink)">2</b> substitutions.<br>
+        Equal length, substitutions only → this coincides with the <b>Hamming</b> distance. Insertions &amp; deletions let it compare <i>different</i> lengths: <span class="mono">book → books</span> = 1.</div>
+      <div class="ex">We’ll meet Hamming again in Part III — where we prove it <i>is</i> a metric — and in the video case study.</div>
+    </div>
+  </div>
 </section>
 
 <section class="slide" data-sec="2 · Distance 4 — Shortest path">
   <div class="kicker">Graph · the fewest steps between nodes</div>
   <h1 class="t">Shortest-path (geodesic) distance</h1><div class="rule"></div>
-  <div class="math">d(u, v) <span class="op">=</span> min over paths u → v of &nbsp;Σ weight(edges)</div>
-  <div class="defbox"><span class="lab">Worked example</span>
-    Edges: A–B = 1, &nbsp; B–C = 1, &nbsp; and a direct A–C = 5.<br>
-    Paths A → C: &nbsp; direct = 5, &nbsp; via B = 1 + 1 = 2. &nbsp; So d(A, C) = <b class="mono" style="color:var(--ink)">2</b> — the shortest path wins.</div>
-  <div class="ex">Unweighted graphs → just count edges. We’ll work this out in full in Part III, and again in graph mining.</div>
+  <div class="split">
+    <div class="colfig">
+      <svg class="mfig" viewBox="0 0 84 56" aria-label="shortest path beats the direct edge" style="width:min(32vw,340px)">
+        <line class="ge" x1="14" y1="42" x2="70" y2="42"/>
+        <line class="ge hot" x1="14" y1="42" x2="42" y2="12"/>
+        <line class="ge hot" x1="42" y1="12" x2="70" y2="42"/>
+        <circle class="gn" cx="14" cy="42" r="5.2"/><text x="14" y="43.9">A</text>
+        <circle class="gn" cx="42" cy="12" r="5.2"/><text x="42" y="13.9">B</text>
+        <circle class="gn" cx="70" cy="42" r="5.2"/><text x="70" y="43.9">C</text>
+        <text class="w" x="23" y="25">1</text>
+        <text class="w" x="61" y="25">1</text>
+        <text class="w" x="42" y="51">5</text>
+      </svg>
+      <div class="figcapc">Direct A–C = 5, but A–B–C = 1 + 1 = <b>2</b> wins.</div>
+    </div>
+    <div class="col">
+      <div class="math">d(u, v) <span class="op">=</span> min over paths u → v of &nbsp;Σ weight(edges)</div>
+      <div class="defbox"><span class="lab">Worked example</span>
+        Edges: A–B = 1, &nbsp; B–C = 1, &nbsp; and a direct A–C = 5.<br>
+        Paths A → C: &nbsp; direct = 5, &nbsp; via B = 1 + 1 = 2. &nbsp; So d(A, C) = <b class="mono" style="color:var(--ink)">2</b> — the shortest path wins.</div>
+      <div class="ex">Unweighted graphs → just count edges. We’ll work this out in full in Part III, and again in graph mining.</div>
+    </div>
+  </div>
 </section>
 
 <section class="slide" data-sec="2 · The decision sequence">
@@ -518,7 +606,7 @@
     <tr><td>Distance</td><td>Edit distance? Jaccard on the sets? cosine on term vectors?</td></tr>
     <tr><td>Decision rule</td><td>Group two articles when the distance is below <b>which</b> threshold?</td></tr>
   </table>
-  <div class="ex">Notice the dependency: the <b>representation</b> you pick decides which <b>distances</b> are even available to you.</div>
+  <div class="ex frag">Notice the dependency: the <b>representation</b> you pick decides which <b>distances</b> are even available to you.</div>
 </section>
 
 <!-- ============== PART III — METRICS AS GUARANTEES ============== -->
@@ -799,7 +887,7 @@
     <li>Your score gives <b>d(A,B) ≠ d(B,A)</b>. Which axiom breaks, and does it actually matter here?</li>
     <li>Keep the two questions apart: is your score a <b>valid metric</b>, and does it <b>capture</b> “same person”?</li>
   </ul>
-  <div class="ex">The point of this part: metric properties aren’t pedantry — the <b>triangle inequality</b> is what makes the search feasible at all.</div>
+  <div class="ex frag">The point of this part: metric properties aren’t pedantry — the <b>triangle inequality</b> is what makes the search feasible at all.</div>
   <div class="axref"><b>Metric axioms to check:</b> &nbsp;non-negativity <span class="mono">d(x,y) ≥ 0</span> &nbsp;·&nbsp; identity <span class="mono">d(x,y)=0 ⇔ x=y</span> &nbsp;·&nbsp; symmetry <span class="mono">d(x,y)=d(y,x)</span> &nbsp;·&nbsp; triangle <span class="mono">d(x,z) ≤ d(x,y)+d(y,z)</span></div>
 </section>
 
@@ -1008,7 +1096,10 @@
 <div id="bar"><div id="barfill"></div></div>
 <script>
 const slides=[...document.querySelectorAll('.slide')];
-let i=0;
+let i=0, fragN=0;
+function slideFrags(s){ return [].slice.call(s.querySelectorAll('.frag')); }
+var fhintEl=document.createElement('div'); fhintEl.id='fhint'; fhintEl.textContent='▸ press → to reveal'; document.body.appendChild(fhintEl);
+function updateFhint(){ var fr=slideFrags(slides[i]); fhintEl.classList.toggle('on', fragN < fr.length); }
 slides.forEach(s=>{ const w=document.createElement('div'); w.className='wrap';
   while(s.firstChild) w.appendChild(s.firstChild); s.appendChild(w); });
 slides.forEach(s=>{
@@ -1022,7 +1113,7 @@ slides.forEach(s=>{
   v.addEventListener('playing',()=>ov.style.display='none');
   v.addEventListener('pause',()=>{ if(!v.ended) ov.style.display='flex'; });
 });
-function show(n){
+function show(n, revealAll){
   const cur0=slides[i]; const v0=cur0&&cur0.querySelector('video'); if(v0)v0.pause();
   i=Math.max(0,Math.min(slides.length-1,n));
   slides.forEach((s,k)=>s.classList.toggle('on',k===i));
@@ -1032,10 +1123,15 @@ function show(n){
   const s=slides[i], v=s.querySelector('video'), ov=s.querySelector('.playov');
   if(v){ v.currentTime=0; if(ov)ov.style.display='flex'; }
   reveal(s);
+  const fr=slideFrags(s);
+  if(revealAll){ fr.forEach(el=>el.classList.add('shown')); fragN=fr.length; }
+  else { fr.forEach(el=>el.classList.remove('shown')); fragN=0; }
+  updateFhint();
 }
 const ANIM_SEL='.kicker,h1.t,.title h1,.divider h1,.sub,.rule,.lead,.defbox,ul.pts,.callout,.math,.ex,table.sched,table.g,.figwrap,.figcap,.card,.rtiles,.twofig,.punch,.by,.part';
-function reveal(s){ s.querySelectorAll(ANIM_SEL).forEach((el,k)=>{ el.classList.remove('rise'); void el.offsetWidth; el.style.setProperty('--d',(k*65)+'ms'); el.classList.add('rise'); }); }
-function next(){show(i+1)} function prev(){show(i-1)}
+function reveal(s){ s.querySelectorAll(ANIM_SEL).forEach((el,k)=>{ if(el.classList.contains('frag'))return; el.classList.remove('rise'); void el.offsetWidth; el.style.setProperty('--d',(k*65)+'ms'); el.classList.add('rise'); }); }
+function next(){ const fr=slideFrags(slides[i]); if(fragN<fr.length){ fr[fragN].classList.add('shown'); fragN++; updateFhint(); } else show(i+1,false); }
+function prev(){ const fr=slideFrags(slides[i]); if(fragN>0){ fragN--; fr[fragN].classList.remove('shown'); updateFhint(); } else show(i-1,true); }
 addEventListener('keydown',e=>{
   if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next();}
   else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev();}
@@ -1043,13 +1139,13 @@ addEventListener('keydown',e=>{
   else if(e.key==='l'||e.key==='L'){toggleTheme();}
   else if(e.key==='o'||e.key==='O'){toggleOverview();}
   else if(e.key==='Escape'){closeOverview();}
-  else if(e.key==='Home')show(0); else if(e.key==='End')show(slides.length-1);
+  else if(e.key==='Home')show(0,false); else if(e.key==='End')show(slides.length-1,true);
 });
 addEventListener('click',e=>{ if(e.target.closest('video')||e.target.closest('.playov')||e.target.closest('a')||e.target.closest('#theme')||e.target.closest('#grid')||e.target.closest('#overview')||e.target.closest('#fs'))return; next(); });
 const num=document.getElementById('num'), barfill=document.getElementById('barfill'), sec=document.getElementById('sec');
 function fromHash(){ const n=parseInt((location.hash||'').replace('#',''),10); return isNaN(n)?0:n-1; }
-addEventListener('hashchange',()=>show(fromHash()));
-show(fromHash());
+addEventListener('hashchange',()=>show(fromHash(),true));
+show(fromHash(),true);
 
 
 /* mobile swipe nav (tight) */
@@ -1079,9 +1175,10 @@ function buildOverview(){
     var c=s.cloneNode(true); c.classList.add('on');
     c.style.cssText='position:absolute;top:0;left:0;width:100vw;height:100vh;margin:0;animation:none;transform:scale('+k+');transform-origin:top left';
     c.querySelectorAll('.rise').forEach(function(e){e.classList.remove('rise');e.style.animation='none';e.style.opacity='1';e.style.transform='none';});
+    c.querySelectorAll('.frag').forEach(function(e){e.style.opacity='1';e.style.transform='none';});
     stage.appendChild(c); tile.appendChild(stage);
     var n=document.createElement('span'); n.className='ovnum'; n.textContent=idx+1; tile.appendChild(n);
-    tile.addEventListener('click',function(ev){ev.stopPropagation();closeOverview();show(idx);});
+    tile.addEventListener('click',function(ev){ev.stopPropagation();closeOverview();show(idx,true);});
     grid.appendChild(tile);
   });
 }

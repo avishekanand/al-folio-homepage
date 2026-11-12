@@ -292,6 +292,19 @@
   <div class="by">A. Anand · study deck</div>
 </section>
 
+<section class="slide" data-sec="In this lecture">
+  <div class="kicker">In this lecture</div>
+  <h1 class="t">Distances &amp; similarity — the roadmap</h1><div class="rule"></div>
+  <div class="lead">Almost every mining task — classify, cluster, flag outliers, search — reduces to one question:
+    <b>what is close to what?</b> This lecture is about the decision hiding behind it: the <b>distance</b>.</div>
+  <ul class="pts">
+    <li><b>Design decisions:</b> task → representation → distance → decision rule — and why choosing them <i>is</i> choosing the model.</li>
+    <li><b>Metrics:</b> the four axioms, why metric structure helps (pruning), and the pitfalls — cosine and squared-Euclidean are <i>not</i> true metrics.</li>
+    <li><b>Representations:</b> vector, set, sequence, graph — each with its own distance (even text can be a dense vector).</li>
+    <li><b>Two real-world case studies:</b> product recommendation (which differences <i>matter</i>) and near-duplicate detection (which to <i>ignore</i>).</li>
+  </ul>
+</section>
+
 <!-- ============== PART I — WHY DISTANCE ============== -->
 <section class="slide title divider" data-sec="Part I · Why distance">
   <div class="part">Part I</div>
@@ -1039,10 +1052,29 @@
   <div class="kicker">Text → direction of a term vector</div>
   <h1 class="t">Cosine: similar wording, any length</h1><div class="rule"></div>
   <div class="math">cos(θ) <span class="op">=</span> (a · b) / (‖a‖ ‖b‖) &nbsp;&nbsp; d<sub>cos</sub> <span class="op">=</span> 1 − cos(θ)</div>
-  <div class="callout"><span class="lab">Read it carefully</span>
-    <p>Only the <b>direction</b> of the term vectors matters, never their length — great for descriptions of different sizes.</p>
-    <p><b>Mind two traps:</b> distance 0 means <b>same direction, not identical</b> (proportional vectors collapse to 0);
-      and <b>1 − cos θ is not a true metric</b> — it can violate the triangle inequality. Useful, but not a metric.</p>
+  <div class="split">
+    <div class="colfig">
+      <svg class="mfig" viewBox="0 0 82 62" aria-label="two documents with no shared terms give orthogonal vectors" style="width:min(30vw,320px)">
+        <line class="axis" x1="14" y1="50" x2="76" y2="50"/>
+        <line class="axis" x1="14" y1="50" x2="14" y2="6"/>
+        <line class="hyp" x1="14" y1="50" x2="58" y2="50"/>
+        <polygon class="pA" points="58,50 52,47 52,53"/>
+        <line style="stroke:var(--cool);stroke-width:1.9" x1="14" y1="50" x2="14" y2="12"/>
+        <polygon class="pB" points="14,12 11,18 17,18"/>
+        <path class="leg" d="M14,44 L20,44 L20,50"/>
+        <text class="m" x="42" y="30">θ = 90° → cos = 0</text>
+        <text style="text-anchor:start" x="44" y="58" fill="var(--accent)">doc A: “car”</text>
+        <text style="text-anchor:start" x="19" y="9" fill="var(--cool)">doc B: “automobile”</text>
+      </svg>
+      <div class="figcapc">Same meaning, <b>different words</b> → no shared terms → the vectors are <b>orthogonal</b>, cosine similarity <b>0</b>.</div>
+    </div>
+    <div class="col">
+      <div class="callout"><span class="lab">Read it carefully</span>
+        <p>Only the <b>direction</b> of the term vectors matters, never their length — good for descriptions of different sizes.</p>
+        <p><b>Blind to synonyms:</b> “car” and “automobile” share no terms, so cosine sees them as <b>unrelated</b> even though the docs mean the same thing. Dense <b>embeddings</b> (next lecture) fix this.</p>
+        <p><b>Also:</b> distance 0 means <b>same direction, not identical</b>; and <b>1 − cos θ is not a true metric</b>.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1060,6 +1092,38 @@
   <div class="figwrap"><img class="plate" src="figs/reviews_hist.png" alt="Histogram of review counts / ratings"></div>
   <div class="figcap">Most products have <b>few reviews</b>; brand-new ones have <b>none</b> (cold start).
     The distance must degrade gracefully when a representation is <span class="k">missing or thin</span>.</div>
+</section>
+
+<section class="slide" data-sec="4 · Review distance">
+  <div class="kicker">Reviews → a distribution over ratings</div>
+  <h1 class="t">A distance over customer reviews</h1><div class="rule"></div>
+  <div class="split">
+    <div class="colfig">
+      <svg class="mfig" viewBox="0 0 88 60" aria-label="rating histograms of two items with similar reviews" style="width:min(32vw,340px)">
+        <line class="axis" x1="4" y1="48" x2="86" y2="48"/>
+        <rect class="bar" x="6" y="3" width="5" height="5"/><text style="text-anchor:start" x="13" y="7.5">item A</text>
+        <rect class="bar2" x="40" y="3" width="5" height="5"/><text style="text-anchor:start" x="47" y="7.5">item B</text>
+        <rect class="bar" x="5"  y="43" width="6" height="5"/><rect class="bar2" x="13" y="41" width="6" height="7"/>
+        <rect class="bar" x="21" y="40" width="6" height="8"/><rect class="bar2" x="29" y="42" width="6" height="6"/>
+        <rect class="bar" x="37" y="36" width="6" height="12"/><rect class="bar2" x="45" y="34" width="6" height="14"/>
+        <rect class="bar" x="53" y="22" width="6" height="26"/><rect class="bar2" x="61" y="24" width="6" height="24"/>
+        <rect class="bar" x="69" y="14" width="6" height="34"/><rect class="bar2" x="77" y="12" width="6" height="36"/>
+        <text x="12" y="56">1★</text><text x="28" y="56">2★</text><text x="44" y="56">3★</text><text x="60" y="56">4★</text><text x="76" y="56">5★</text>
+      </svg>
+      <div class="figcapc">Each item → its <b>rating distribution</b>; the distance compares the two histograms.</div>
+    </div>
+    <div class="col">
+      <div class="defbox"><span class="lab">Representation + distance</span>
+        Encode each item by its <b>rating distribution</b> <span class="mono">p = (p₁, …, p₅)</span> — the fraction of reviews at each
+        star level. Then <b class="mono">d(A, B)</b> is a distance between the two histograms.</div>
+      <ul class="pts">
+        <li><b>Average rating alone is too lossy</b> — very different distributions can share a mean.</li>
+        <li><b>L1 / Euclidean</b> on the histograms is simple, but treats every star as equally far apart.</li>
+        <li><b>Earth Mover’s (Wasserstein)</b> respects order — 4★ vs 5★ is closer than 1★ vs 5★.</li>
+      </ul>
+      <div class="ex">Two items have <b>“similar reviews”</b> when their <b>distributions match</b> — and few-review (cold-start) items need smoothing toward a prior.</div>
+    </div>
+  </div>
 </section>
 
 <section class="slide question" data-sec="4 · Worked comparison">

@@ -305,6 +305,7 @@
   <h1 class="t">Choosing a distance is choosing what’s similar</h1><div class="rule"></div>
   <div class="lead">Every task today — classify, cluster, flag outliers, search — reduces to one question:
     <b>what is close to what?</b> Change the distance and the answer changes, though <i>no data point moved.</i></div>
+  <div class="frag">
   <div class="split">
     <div class="colfig">
       <svg viewBox="0 0 92 64" class="nnflip" aria-label="the same query gets a different nearest neighbour under two distances">
@@ -340,6 +341,7 @@
       </ul>
       <div class="ex">Same two candidates, same query — the <b>nearest neighbour flips</b> with the distance. The <b>task</b> decides which sense you want; the <b>distance</b> is how you encode it.</div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -814,6 +816,20 @@
 <section class="slide" data-sec="3 · Exercise">
   <div class="kicker">Exercise · find the broken axiom</div>
   <h1 class="t">Is squared Euclidean distance a metric?</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Candidate distance</span>
+    On <span class="mono">ℝⁿ</span>, define <b class="mono">d<sub>sq</sub>(x, y) = ‖x − y‖² = Σ<sub>i</sub> (x<sub>i</sub> − y<sub>i</sub>)²</b> — the <b>squared</b> Euclidean
+    distance (the quantity <i>k</i>-means minimises).</div>
+  <ul class="pts">
+    <li>Three of the four axioms clearly hold. <b>Which one can fail?</b></li>
+    <li>Try to build a <b>counterexample</b> that breaks it.</li>
+  </ul>
+  <div class="ex">Work on it first — the next slide gives a hint, and the one after that the full solution.</div>
+  <div class="axref"><b>Metric axioms to check:</b> &nbsp;non-negativity <span class="mono">d(x,y) ≥ 0</span> &nbsp;·&nbsp; identity <span class="mono">d(x,y)=0 ⇔ x=y</span> &nbsp;·&nbsp; symmetry <span class="mono">d(x,y)=d(y,x)</span> &nbsp;·&nbsp; triangle <span class="mono">d(x,z) ≤ d(x,y)+d(y,z)</span></div>
+</section>
+
+<section class="slide" data-sec="3 · Exercise — hint">
+  <div class="kicker">Hint</div>
+  <h1 class="t">Try three points on a line</h1><div class="rule"></div>
   <div class="split">
     <div class="colfig">
       <svg class="mfig" viewBox="0 0 84 40" aria-label="three points on a number line">
@@ -830,14 +846,12 @@
       <div class="figcapc">Compare the <b>direct</b> jump x→z against the <b>two-step</b> path x→y→z.</div>
     </div>
     <div class="col">
-      <div class="defbox"><span class="lab">Candidate distance</span>
-        On <span class="mono">ℝⁿ</span>, define <b class="mono">d<sub>sq</sub>(x, y) = ‖x − y‖² = Σ<sub>i</sub> (x<sub>i</sub> − y<sub>i</sub>)²</b> — the <b>squared</b> Euclidean
-        distance (the quantity <i>k</i>-means minimises).</div>
-      <ul class="pts">
-        <li>Three of the four axioms clearly hold. <b>Which one can fail?</b></li>
-        <li>Build a <b>counterexample</b> using the three points on the line.</li>
-      </ul>
-      <div class="ex">Hint: compare the direct jump against the two-step path.</div>
+      <div class="callout"><span class="lab">Hint</span>
+        <p>Put three points <b class="mono">x = 0, y = 1, z = 2</b> on the real line.</p>
+        <p>Work out the <b>direct</b> squared distance <span class="mono">d<sub>sq</sub>(x, z)</span> and the <b>two-step</b> sum
+          <span class="mono">d<sub>sq</sub>(x, y) + d<sub>sq</sub>(y, z)</span> — then compare them.</p>
+      </div>
+      <div class="ex">Which of the four axioms does that comparison test?</div>
     </div>
   </div>
   <div class="axref"><b>Metric axioms to check:</b> &nbsp;non-negativity <span class="mono">d(x,y) ≥ 0</span> &nbsp;·&nbsp; identity <span class="mono">d(x,y)=0 ⇔ x=y</span> &nbsp;·&nbsp; symmetry <span class="mono">d(x,y)=d(y,x)</span> &nbsp;·&nbsp; triangle <span class="mono">d(x,z) ≤ d(x,y)+d(y,z)</span></div>
@@ -939,16 +953,49 @@
 <section class="slide" data-sec="3 · Your turn">
   <div class="kicker">Your turn · do you need a metric?</div>
   <h1 class="t">Design decision: 10 million face photos</h1><div class="rule"></div>
-  <div class="callout"><span class="lab">Scenario</span>
-    <p>You must find <b>near-duplicate faces</b> in a 10-million-photo archive — far too many to compare every pair.</p>
+  <div class="split">
+    <div class="colfig">
+      <svg class="mfig" viewBox="0 0 70 56" aria-label="a photo archive with a near-duplicate pair highlighted" style="width:min(30vw,320px)">
+        <rect class="cell" x="2" y="4" width="14" height="14" rx="2"/>
+        <rect class="cell diff" x="18" y="4" width="14" height="14" rx="2"/>
+        <rect class="cell diff" x="34" y="4" width="14" height="14" rx="2"/>
+        <rect class="cell" x="50" y="4" width="14" height="14" rx="2"/>
+        <rect class="cell" x="2" y="21" width="14" height="14" rx="2"/>
+        <rect class="cell" x="18" y="21" width="14" height="14" rx="2"/>
+        <rect class="cell" x="34" y="21" width="14" height="14" rx="2"/>
+        <rect class="cell" x="50" y="21" width="14" height="14" rx="2"/>
+        <rect class="cell" x="2" y="38" width="14" height="14" rx="2"/>
+        <rect class="cell" x="18" y="38" width="14" height="14" rx="2"/>
+        <rect class="cell" x="34" y="38" width="14" height="14" rx="2"/>
+        <rect class="cell" x="50" y="38" width="14" height="14" rx="2"/>
+        <text x="33" y="13.5" fill="var(--accent)" style="font-size:8px">≈</text>
+      </svg>
+      <div class="figcapc">Among millions of photos, find the <b>near-duplicate</b> pairs.</div>
+    </div>
+    <div class="col">
+      <div class="callout"><span class="lab">Scenario</span>
+        <p>You must find <b>near-duplicate faces</b> in a 10-million-photo archive — far too many to compare every pair.</p>
+      </div>
+      <ul class="pts">
+        <li>To <b>prune</b> candidates without computing every distance, which axiom must your distance obey — and why?</li>
+        <li>Your score gives <b>d(A,B) ≠ d(B,A)</b>. Which axiom breaks, and does it actually matter here?</li>
+        <li>Keep two questions apart: is your score a <b>valid metric</b>, and does it <b>capture</b> “same person”?</li>
+      </ul>
+    </div>
   </div>
-  <ul class="pts">
-    <li>To <b>prune</b> candidates without computing every distance, which axiom must your distance obey — and why that one?</li>
-    <li>Your score gives <b>d(A,B) ≠ d(B,A)</b>. Which axiom breaks, and does it actually matter here?</li>
-    <li>Keep the two questions apart: is your score a <b>valid metric</b>, and does it <b>capture</b> “same person”?</li>
-  </ul>
-  <div class="ex frag">The point of this part: metric properties aren’t pedantry — the <b>triangle inequality</b> is what makes the search feasible at all.</div>
   <div class="axref"><b>Metric axioms to check:</b> &nbsp;non-negativity <span class="mono">d(x,y) ≥ 0</span> &nbsp;·&nbsp; identity <span class="mono">d(x,y)=0 ⇔ x=y</span> &nbsp;·&nbsp; symmetry <span class="mono">d(x,y)=d(y,x)</span> &nbsp;·&nbsp; triangle <span class="mono">d(x,z) ≤ d(x,y)+d(y,z)</span></div>
+</section>
+
+<section class="slide" data-sec="3 · Your turn — answers">
+  <div class="kicker">Answers · do you need a metric?</div>
+  <h1 class="t">10 million face photos — the calls</h1><div class="rule"></div>
+  <table class="gt">
+    <tr><th>Question</th><th>The call</th></tr>
+    <tr><td>Prune without measuring every pair?</td><td>Needs the <b>triangle inequality</b> — known distances bound unknown ones, so far-away candidates are skipped unmeasured.</td></tr>
+    <tr><td><span class="mono">d(A,B) ≠ d(B,A)</span>?</td><td><b>Symmetry</b> breaks. “A is a duplicate of B” should equal the reverse — so <b>symmetrise</b> the score (e.g. average the two).</td></tr>
+    <tr><td>Valid metric vs. captures “same person”?</td><td>Two <b>separate</b> questions. A metric buys <b>speed</b> (indexing); only a task-fitted score buys <b>correctness</b>. You want both.</td></tr>
+  </table>
+  <div class="ex">The point of this part: metric properties aren’t pedantry — the <b>triangle inequality</b> is what makes the search feasible at all.</div>
 </section>
 
 <!-- ============== PART IV — CASE 1: PRODUCTS ============== -->

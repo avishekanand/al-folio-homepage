@@ -201,8 +201,8 @@
   .rt text{fill:var(--ink);font-size:6px;text-anchor:middle;font-family:var(--mono)}
   @media (max-aspect-ratio:1/1){ .rtiles{grid-template-columns:repeat(2,1fr)} }
   /* metric-axioms reference strip, pinned to the bottom of exercise slides */
-  .axref{position:absolute;left:8vw;right:8vw;bottom:4.5vh;border-top:1px solid var(--line);padding-top:.5em;
-    color:var(--muted);font-size:clamp(.76rem,1.02vw,.95rem);line-height:1.65}
+  .axref{position:absolute;left:8vw;right:8vw;bottom:4vh;border-top:1px solid var(--line);padding-top:.5em;
+    color:var(--muted);font-size:clamp(1.05rem,1.55vw,1.5rem);line-height:1.7;text-align:center}
   .axref b{color:var(--gold);font-weight:400}
   .axref .mono{color:var(--cool)}
   /* metric intuition figures */
@@ -464,6 +464,65 @@
   </div>
 </section>
 
+<section class="slide" data-sec="2 · Your turn — match the data">
+  <div class="kicker">Your turn · match the data to the space</div>
+  <h1 class="t">What is a <i>representation space</i>?</h1><div class="rule"></div>
+  <div class="defbox"><span class="lab">Question</span>
+    You’ve met four spaces — <b>vector, set, sequence, graph</b>. For each, name a kind of data that fits it best.
+    Then the twist: could the <i>same</i> object live in more than one?</div>
+  <div class="rtiles">
+    <div class="rtile">
+      <svg class="rt" viewBox="0 0 60 40" aria-label="a point in a 2-D vector space">
+        <line class="ax" x1="12" y1="34" x2="12" y2="6"/>
+        <line class="ax" x1="12" y1="34" x2="52" y2="34"/>
+        <line class="dash" x1="38" y1="16" x2="12" y2="16"/>
+        <line class="dash" x1="38" y1="16" x2="38" y2="34"/>
+        <circle class="pt" cx="38" cy="16" r="2.8"/>
+      </svg>
+      <h3>Vector · ℝⁿ</h3>
+      <div class="rtobj frag">numeric data — sensor readings, pixels</div>
+    </div>
+    <div class="rtile">
+      <svg class="rt" viewBox="0 0 60 40" aria-label="two overlapping sets of elements">
+        <circle class="setc" cx="25" cy="20" r="13"/>
+        <circle class="setc2" cx="37" cy="20" r="13"/>
+        <circle cx="19" cy="18" r="1.7" fill="var(--cool)"/>
+        <circle cx="22" cy="25" r="1.7" fill="var(--cool)"/>
+        <circle cx="31" cy="20" r="1.7" fill="var(--ink)"/>
+        <circle cx="43" cy="18" r="1.7" fill="var(--gold)"/>
+        <circle cx="40" cy="25" r="1.7" fill="var(--gold)"/>
+      </svg>
+      <h3>Set</h3>
+      <div class="rtobj frag">the words in a document</div>
+    </div>
+    <div class="rtile">
+      <svg class="rt" viewBox="0 0 60 40" aria-label="an ordered sequence of symbols">
+        <rect class="box" x="6" y="14" width="9" height="12" rx="1.5"/><text x="10.5" y="23">1</text>
+        <rect class="box" x="16" y="14" width="9" height="12" rx="1.5"/><text x="20.5" y="23">0</text>
+        <rect class="box" x="26" y="14" width="9" height="12" rx="1.5"/><text x="30.5" y="23">1</text>
+        <rect class="box" x="36" y="14" width="9" height="12" rx="1.5"/><text x="40.5" y="23">1</text>
+        <rect class="box" x="46" y="14" width="9" height="12" rx="1.5"/><text x="50.5" y="23">0</text>
+      </svg>
+      <h3>Sequence</h3>
+      <div class="rtobj frag">a time series · text characters</div>
+    </div>
+    <div class="rtile">
+      <svg class="rt" viewBox="0 0 60 40" aria-label="a node in a graph">
+        <line class="gedge" x1="14" y1="12" x2="30" y2="22"/>
+        <line class="gedge" x1="30" y1="22" x2="46" y2="12"/>
+        <line class="gedge" x1="30" y1="22" x2="30" y2="34"/>
+        <circle class="gnode" cx="14" cy="12" r="4.6"/>
+        <circle class="gnode" cx="46" cy="12" r="4.6"/>
+        <circle class="gnode" cx="30" cy="34" r="4.6"/>
+        <circle class="gnode" cx="30" cy="22" r="4.6"/>
+      </svg>
+      <h3>Graph / tree</h3>
+      <div class="rtobj frag">a social network · the web</div>
+    </div>
+  </div>
+  <div class="ex frag">The catch: the <i>same</i> text is a <b>set</b> of words, a <b>sequence</b> of characters — <b>or a dense vector</b> (embeddings, next lecture). The representation is a <b>choice</b>, not a given.</div>
+</section>
+
 <section class="slide" data-sec="2 · Distance 1 — Euclidean">
   <div class="kicker">Vector space · the straight-line distance</div>
   <h1 class="t">Euclidean distance</h1><div class="rule"></div>
@@ -602,8 +661,8 @@
   <table class="gt">
     <tr><th>Decision</th><th>Your call for this task</th></tr>
     <tr><td>Task</td><td>What should “similar” mean — near-identical wording?</td></tr>
-    <tr><td>Representation</td><td>The whole string? a bag of words? a set of word <i>k</i>-grams?</td></tr>
-    <tr><td>Distance</td><td>Edit distance? Jaccard on the sets? cosine on term vectors?</td></tr>
+    <tr><td>Representation</td><td>A <b>set</b> of words/<i>k</i>-grams? a <b>vector</b> of the text? or the whole <b>string</b> (a sequence)?</td></tr>
+    <tr><td>Distance</td><td>Each representation brings its own: <b>Jaccard</b> (set) · <b>cosine</b> (vector) · <b>edit distance</b> (string).</td></tr>
     <tr><td>Decision rule</td><td>Group two articles when the distance is below <b>which</b> threshold?</td></tr>
   </table>
   <div class="ex frag">Notice the dependency: the <b>representation</b> you pick decides which <b>distances</b> are even available to you.</div>
@@ -678,9 +737,9 @@
       </ul>
       <div class="defbox"><span class="lab">Pruning with the triangle inequality</span>
         <i>q</i> is at distance <span class="num">10</span> from a reference <i>r</i>; a candidate <i>c</i> is at distance
-        <span class="num">2</span> from <i>r</i>. By the triangle inequality,
-        <b class="mono" style="color:var(--ink)">d(q, c) ≥ |10 − 2| = 8</b>. Seeking only neighbours within <span class="num">3</span>, we
-        discard <i>c</i> <b>without ever computing d(q, c)</b>.</div>
+        <span class="num">2</span> from <i>r</i>. The triangle inequality forces a <b>lower bound</b>:
+        <b class="mono" style="color:var(--ink)">d(q, c) ≥ |10 − 2| = 8</b>. Since <b>8 &gt; 3</b>, <i>c</i> cannot be within <span class="num">3</span> of <i>q</i> —
+        discard it <b>without ever computing d(q, c)</b>.</div>
       <div class="ex">This powers metric indexes — ball trees, VP-trees — that avoid the full <b>O(n²)</b> comparisons.</div>
     </div>
   </div>
@@ -711,10 +770,10 @@
       <div class="defbox"><span class="lab">Candidate distance</span>
         For strings <i>x, y</i> of equal length <i>n</i>, let <b class="mono">d<sub>H</sub>(x, y)</b> be the number of positions at which they differ.</div>
       <ul class="pts">
-        <li>Verify each of the four axioms for <b class="mono">d<sub>H</sub></b>.</li>
-        <li>Three are immediate; the <b>triangle inequality</b> takes an argument — reason <b>position by position</b>.</li>
+        <li>Work through <b>each</b> of the four axioms for <b class="mono">d<sub>H</sub></b> — does it hold?</li>
+        <li>For the ones that hold, give the <b>reason</b>; for any that fails, a <b>counterexample</b>.</li>
       </ul>
-      <div class="ex">Decide before the next slide: is it a metric, and <i>why</i> does the triangle inequality hold?</div>
+      <div class="ex">Decide for yourself: is <b class="mono">d<sub>H</sub></b> a metric? We’ll work it through together on the next slide.</div>
     </div>
   </div>
   <div class="axref"><b>Metric axioms to check:</b> &nbsp;non-negativity <span class="mono">d(x,y) ≥ 0</span> &nbsp;·&nbsp; identity <span class="mono">d(x,y)=0 ⇔ x=y</span> &nbsp;·&nbsp; symmetry <span class="mono">d(x,y)=d(y,x)</span> &nbsp;·&nbsp; triangle <span class="mono">d(x,z) ≤ d(x,y)+d(y,z)</span></div>
@@ -749,6 +808,7 @@
   </div>
     </div>
   </div>
+  <div class="ex">At each index the distance is at most <b>1</b> (0 if equal, 1 if different), and <span class="mono">[x<sub>i</sub>≠z<sub>i</sub>] ≤ [x<sub>i</sub>≠y<sub>i</sub>] + [y<sub>i</sub>≠z<sub>i</sub>]</span> holds index by index — so summing over all indices, the total <b class="mono">d(x,z) ≤ d(x,y) + d(y,z)</b>.</div>
 </section>
 
 <section class="slide" data-sec="3 · Exercise">

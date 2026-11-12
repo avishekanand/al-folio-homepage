@@ -1186,12 +1186,37 @@
 <section class="slide" data-sec="5 · Perceptual fingerprint">
   <div class="kicker">Construct the right representation</div>
   <h1 class="t">Perceptual hashing (pHash)</h1><div class="rule"></div>
-  <div class="callout"><span class="lab">The general idea</span>
-    <p>Reduce each frame to a short <b>fingerprint</b> that survives re-encoding and minor edits — typically from
-      low-frequency structure, so cosmetic changes don’t move it.</p>
-    <p><b>Keep the idea separate from any one scheme.</b> Code length, keyed behaviour and non-invertibility are
-      properties of <i>particular</i> hashes, not defining features of perceptual hashing in general.</p>
-  </div>
+  <svg class="mfig" viewBox="0 0 128 50" aria-label="a frame is reduced to a short fingerprint by a black-box perceptual hash" style="width:min(64vw,840px);max-height:40vh">
+    <!-- frame -->
+    <rect x="4" y="8" width="28" height="26" rx="2.5" style="fill:var(--panel);stroke:var(--line);stroke-width:1"/>
+    <rect x="6" y="10" width="24" height="12" style="fill:rgba(122,167,164,.40)"/>
+    <circle cx="26" cy="15" r="3" style="fill:var(--gold)"/>
+    <rect x="6" y="22" width="24" height="10" style="fill:rgba(108,160,160,.22)"/>
+    <polygon points="6,32 16,19 26,32" style="fill:var(--accent);opacity:.8"/>
+    <text x="18" y="44">a frame</text>
+    <!-- arrow 1 -->
+    <line class="axis" x1="34" y1="21" x2="45" y2="21"/>
+    <polygon class="pA" points="46,21 41,18.5 41,23.5"/>
+    <!-- black box -->
+    <rect x="48" y="6" width="32" height="30" rx="3" style="fill:var(--panel2);stroke:var(--accent);stroke-width:1.3;stroke-dasharray:3 2"/>
+    <text x="64" y="15" style="font-size:4.2px;text-anchor:middle">perceptual</text>
+    <text x="64" y="20" style="font-size:4.2px;text-anchor:middle">hash</text>
+    <text x="64" y="33" style="font-size:12px;fill:var(--accent);text-anchor:middle;font-style:normal">?</text>
+    <text class="lab" x="64" y="44">black box — don’t open it</text>
+    <!-- arrow 2 -->
+    <line class="axis" x1="82" y1="21" x2="93" y2="21"/>
+    <polygon class="pA" points="94,21 89,18.5 89,23.5"/>
+    <!-- fingerprint -->
+    <rect class="cell" x="96"  y="15" width="4.4" height="11" rx="1"/><text class="cv" x="98.2"  y="23" style="font-size:5px">1</text>
+    <rect class="cell" x="101" y="15" width="4.4" height="11" rx="1"/><text class="cv" x="103.2" y="23" style="font-size:5px">0</text>
+    <rect class="cell" x="106" y="15" width="4.4" height="11" rx="1"/><text class="cv" x="108.2" y="23" style="font-size:5px">1</text>
+    <rect class="cell" x="111" y="15" width="4.4" height="11" rx="1"/><text class="cv" x="113.2" y="23" style="font-size:5px">1</text>
+    <rect class="cell" x="116" y="15" width="4.4" height="11" rx="1"/><text class="cv" x="118.2" y="23" style="font-size:5px">0</text>
+    <rect class="cell" x="121" y="15" width="4.4" height="11" rx="1"/><text class="cv" x="123.2" y="23" style="font-size:5px">0</text>
+    <text x="110" y="44">fingerprint</text>
+  </svg>
+  <div class="figcapc" style="max-width:62ch">Each frame becomes a short <b>fingerprint</b>. We take the hash on faith — <i>how</i> it is computed is a <b>black box</b> here; all we need to <b>trust</b> is that <b>similar frames give similar fingerprints</b>.</div>
+  <div class="ex" style="text-align:center;max-width:none">The fingerprint survives re-encoding, small crops and overlays — so near-duplicate frames land on near-identical codes. <b>We compare those codes next.</b></div>
 </section>
 
 <section class="slide" data-sec="5 · Compare fingerprints">

@@ -287,44 +287,9 @@
 
 <section class="slide" data-sec="1 · The central idea">
   <div class="kicker">The one idea to hold onto</div>
-  <h1 class="t">Choosing a distance is choosing what counts as similar</h1><div class="rule"></div>
-  <div class="callout"><span class="lab">The whole lecture in one line</span>
-    <p>Every task today — classify, cluster, flag outliers, search — reduces to one question:
-      <b>what is close to what?</b> You answer it by picking a <b>representation</b> and a <b>distance</b>.</p>
-    <p>Change that choice and the answer changes — <i>even though not a single data point moved.</i></p>
-  </div>
-  <div class="ex">Hold onto this: rank shoes by <b>price</b> and a €120 running shoe’s nearest neighbour is a €120 dress shoe; rank by
-    <b>what it’s for</b> and its neighbour is another running shoe. Same shop, same data — the <b>distance</b> decided the recommendation.</div>
-</section>
-
-<section class="slide" data-sec="1 · One picture, four tasks">
-  <div class="kicker">Distance is a shared building block</div>
-  <h1 class="t">One dataset — four questions</h1><div class="rule"></div>
-  <svg viewBox="0 0 100 56" class="scatter" aria-label="points with a query, its neighbourhood, two groups and an outlier">
-  <circle class="ring" cx="34" cy="33" r="15"/>
-  <circle class="a" cx="18" cy="40" r="2"/><circle class="a" cx="26" cy="31" r="2"/>
-  <circle class="a" cx="22" cy="44" r="2"/><circle class="a" cx="30" cy="38" r="2"/>
-  <circle class="a" cx="15" cy="31" r="2"/><circle class="a" cx="40" cy="42" r="2"/>
-  <circle class="b" cx="68" cy="18" r="2"/><circle class="b" cx="76" cy="23" r="2"/>
-  <circle class="b" cx="71" cy="12" r="2"/><circle class="b" cx="81" cy="18" r="2"/>
-  <circle class="b" cx="74" cy="28" r="2"/><circle class="b" cx="63" cy="24" r="2"/>
-  <polygon class="star" points="34,28.5 35.4,32.4 39.5,32.4 36.2,34.9 37.4,38.8 34,36.4 30.6,38.8 31.8,34.9 28.5,32.4 32.6,32.4"/>
-  <circle class="anom" cx="90" cy="48" r="2.3"/>
-  <text x="34" y="20.5" text-anchor="middle">new object?</text>
-  <text x="86" y="44" text-anchor="end">far out</text>
-</svg>
-  <table class="gt">
-    <tr><th>Mining task</th><th>The question, expressed through distance</th></tr>
-    <tr><td>Classification</td><td>Which <b>labelled</b> examples are <b>closest</b> to this new object?</td></tr>
-    <tr><td>Clustering</td><td>Which objects are <b>close enough</b> to form groups?</td></tr>
-    <tr><td>Anomaly detection</td><td>Which objects are <b>far</b> from the usual observations?</td></tr>
-    <tr><td>Similarity search</td><td>Which existing objects are <b>closest</b> to this query?</td></tr>
-  </table>
-</section>
-
-<section class="slide" data-sec="1 · Similar in what sense?">
-  <div class="kicker">The choice, made concrete</div>
-  <h1 class="t">“Similar” has no default meaning</h1><div class="rule"></div>
+  <h1 class="t">Choosing a distance is choosing what’s similar</h1><div class="rule"></div>
+  <div class="lead">Every task today — classify, cluster, flag outliers, search — reduces to one question:
+    <b>what is close to what?</b> Change the distance and the answer changes, though <i>no data point moved.</i></div>
   <div class="split">
     <div class="colfig">
       <svg viewBox="0 0 92 64" class="nnflip" aria-label="the same query gets a different nearest neighbour under two distances">
@@ -351,6 +316,7 @@
       </svg>
     </div>
     <div class="col">
+      <div style="color:var(--ink);font-size:clamp(1.05rem,1.65vw,1.42rem);margin:0 0 .35em">“Similar” has <b>no default meaning</b> — it depends what you measure:</div>
       <ul class="pts">
         <li>Similar in <b>price</b>? — a running shoe lands next to a dress shoe.</li>
         <li>Similar in <b>purpose</b>? — it lands next to other running shoes.</li>
@@ -360,6 +326,31 @@
       <div class="ex">Same two candidates, same query — the <b>nearest neighbour flips</b> with the distance. The <b>task</b> decides which sense you want; the <b>distance</b> is how you encode it.</div>
     </div>
   </div>
+</section>
+
+<section class="slide" data-sec="1 · One picture, four tasks">
+  <div class="kicker">Distance is a shared building block</div>
+  <h1 class="t">One dataset — four questions</h1><div class="rule"></div>
+  <svg viewBox="0 0 100 56" class="scatter" aria-label="points with a query, its neighbourhood, two groups and an outlier">
+  <circle class="ring" cx="34" cy="33" r="15"/>
+  <circle class="a" cx="18" cy="40" r="2"/><circle class="a" cx="26" cy="31" r="2"/>
+  <circle class="a" cx="22" cy="44" r="2"/><circle class="a" cx="30" cy="38" r="2"/>
+  <circle class="a" cx="15" cy="31" r="2"/><circle class="a" cx="40" cy="42" r="2"/>
+  <circle class="b" cx="68" cy="18" r="2"/><circle class="b" cx="76" cy="23" r="2"/>
+  <circle class="b" cx="71" cy="12" r="2"/><circle class="b" cx="81" cy="18" r="2"/>
+  <circle class="b" cx="74" cy="28" r="2"/><circle class="b" cx="63" cy="24" r="2"/>
+  <polygon class="star" points="34,28.5 35.4,32.4 39.5,32.4 36.2,34.9 37.4,38.8 34,36.4 30.6,38.8 31.8,34.9 28.5,32.4 32.6,32.4"/>
+  <circle class="anom" cx="90" cy="48" r="2.3"/>
+  <text x="34" y="20.5" text-anchor="middle">new object?</text>
+  <text x="86" y="44" text-anchor="end">far out</text>
+</svg>
+  <table class="gt">
+    <tr><th>Mining task</th><th>The question, expressed through distance</th></tr>
+    <tr><td>Classification</td><td>Which <b>labelled</b> examples are <b>closest</b> to this new object?</td></tr>
+    <tr><td>Clustering</td><td>Which objects are <b>close enough</b> to form groups?</td></tr>
+    <tr><td>Anomaly detection</td><td>Which objects are <b>far</b> from the usual observations?</td></tr>
+    <tr><td>Similarity search</td><td>Which existing objects are <b>closest</b> to this query?</td></tr>
+  </table>
 </section>
 
 <section class="slide" data-sec="1 · Your turn">

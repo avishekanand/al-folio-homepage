@@ -91,23 +91,20 @@
     <div class="grid">
       <a class="card" href="projects/NLP_course_project.pdf"><h3>GP Consultation Summaries (SOAP)</h3><p>LLM summarisation + an LLM-as-judge benchmark + human-eval alignment.</p><div class="f"><span class="flag">flagship</span></div></a>
       <a class="card" href="projects/project5.pdf"><h3>Characterising Toxicity in LLMs</h3><p>Generate → score → attribution → lexical/syntactic analysis.</p></a>
-      <a class="card" href="projects/project6.pdf"><h3>Model Leakage: attack &amp; defend GPT-2</h3><p>Membership-inference / extraction attacks and defences.</p></a>
-      <a class="card" href="projects/project4.pdf"><h3>Numerical &amp; Temporal Fact Checking</h3><p>Improve NLI veracity prediction + claim decomposition.</p></a>
+      <a class="card" href="projects/project6.pdf"><h3>Memorization: attack &amp; defend LMs</h3><p>Membership-inference &amp; extraction attacks and defences on a small fine-tuned LM (Enron).</p></a>
+      <a class="card" href="projects/project4.pdf"><h3>RAG for Open-Domain Complex QA</h3><p>How context quality shapes RAG on multi-hop QA; hard-negative dense retrieval with <b>ADORE</b> (2WikiMultiHopQA).</p></a>
+      <div class="card"><h3>Propose your own project</h3><p>Browse the briefs above for the kind of scope we expect, then propose your own NLP project — send a short proposal to the teaching team by <b>10 December</b>.</p></div>
     </div>
   </section>
 
   <section id="data">
-    <div class="sh"><h2>Data &amp; starter</h2><span class="note">Data is a public Kaggle competition; models come from HuggingFace</span></div>
+    <div class="sh"><h2>Data &amp; starter</h2><span class="note">Each assignment ships a self-contained starter kit; each project names its own dataset</span></div>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">
-      <a class="card" href="https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification" target="_blank" rel="noopener"><div class="tag">↗ Kaggle</div><h3>Jigsaw Unintended Bias in Toxicity</h3><p>Join the competition to get the data. Binary toxicity + identity subgroups; comment text for LM work.</p></a>
-      <a class="card" href="data/dsait4090-starter.zip"><div class="tag">⬇︎ starter.zip</div><h3>Starter code</h3><p>Kaggle data loader, submission checker, requirements.</p></a>
+      <div class="card"><div class="tag">kit</div><h3>Assignment starter kits</h3><p>Every assignment ships with a kit — a data sample, loaders, and a submission checker. A1 uses a <b>WikiText-103</b> sample bundled in the kit, so there is nothing to download.</p></div>
+      <div class="card"><div class="tag">TULIP</div><h3>TU Delft LLM service</h3><p>Large models are served on <b>TULIP</b> (OpenAI-compatible, over eduVPN with your personal key); smaller models come from HuggingFace.</p></div>
+      <div class="card"><div class="tag">projects</div><h3>Project datasets</h3><p>Each project brief names and links its own data — e.g. Enron e-mails (memorization), 2WikiMultiHopQA (RAG), Jigsaw toxicity, GP consultation notes (SOAP).</p></div>
     </div>
-    <p style="margin-top:12px;color:var(--muted);font-size:13px">Join the Kaggle competition, set up API credentials, then the starter loader derives the splits:</p>
-    <pre>from load_data import load_textclf, load_lm   # starter.zip
-data = load_textclf()          # train / validation / test  (toxicity + identity subgroups)
-train, heldout = load_lm()     # raw comment text for language-model work
-# models come from HuggingFace as usual (transformers)</pre>
-    <p style="color:var(--muted);font-size:12.5px">Content note: the comments can contain offensive language.</p>
+    <p style="margin-top:12px;color:var(--muted);font-size:12.5px">Content note: some datasets (e.g. toxicity comments, Enron e-mails) contain offensive or sensitive material — handle with care.</p>
   </section>
 
   <footer>DSAIT4090 Natural Language Processing · TU Delft · <a href="https://avishekanand.com">avishekanand.com</a></footer>

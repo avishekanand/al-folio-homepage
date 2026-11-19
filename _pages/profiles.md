@@ -22,6 +22,11 @@ profiles:
     content: about_hannah.md
     image_circular: false
 
+  - align: right
+    image: mengju.png
+    content: about_mengju.md
+    image_circular: false # crops the image to make it circular
+
   - align: left
     content: graduated.md
 ---

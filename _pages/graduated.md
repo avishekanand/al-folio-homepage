@@ -20,7 +20,7 @@ I have been lucky to have worked with the following past PhD students and PostDo
 
 [Yumeng Wang](https://www.universiteitleiden.nl/en/staffmembers/yumeng-wang#tab-3) (now at Leiden University)
 
-[Jurek Leonhardt](https://jleo.net) (now at TU Delft)
+[Jurek Leonhardt](https://jleo.net) (now at Aleph Alpha)
 
 [Maximillian Idahl](https://www.linkedin.com/in/maximilianidahl/?originalSubdomain=de) (now at Ellamind)
 

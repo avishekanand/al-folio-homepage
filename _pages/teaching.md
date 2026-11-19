@@ -7,48 +7,136 @@ nav: true
 nav_order: 6
 ---
 
-### Data Mining
+<style>
+  .course-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:18px;
+    margin:10px 0 8px;
+  }
+  .tcard{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+    padding:20px 20px 18px;
+    border:1px solid var(--global-divider-color);
+    border-radius:14px;
+    background:var(--global-card-bg-color);
+    box-shadow:0 1px 2px rgba(20,30,50,.05),0 4px 14px rgba(20,30,50,.05);
+    transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+  }
+  .tcard:hover{
+    transform:translateY(-3px);
+    border-color:var(--global-theme-color);
+    box-shadow:0 2px 6px rgba(20,30,50,.08),0 12px 28px rgba(20,30,50,.10);
+  }
+  .tcard .level{
+    display:inline-block;
+    align-self:flex-start;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--global-theme-color);
+    background:color-mix(in srgb, var(--global-theme-color) 12%, transparent);
+    padding:3px 9px;
+    border-radius:999px;
+  }
+  .tcard h3{
+    margin:0;
+    font-size:19px;
+    line-height:1.25;
+    color:var(--global-text-color);
+  }
+  .tcard .co{
+    margin:0;
+    font-size:13px;
+    color:var(--global-text-color-light);
+  }
+  .tcard .desc{
+    margin:0;
+    font-size:13.5px;
+    line-height:1.5;
+    color:var(--global-text-color-light);
+  }
+  .tcard .foot{
+    margin-top:auto;
+    padding-top:6px;
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px 14px;
+  }
+  /* stretched link: the whole card is clickable to the dedicated page */
+  .tcard .go{
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--global-theme-color);
+  }
+  .tcard .go::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:14px;
+  }
+  /* secondary links sit above the stretched overlay and stay clickable */
+  .tcard .chip{
+    position:relative;
+    z-index:1;
+    font-size:12px;
+    font-weight:600;
+    color:var(--global-text-color-light);
+    border:1px solid var(--global-divider-color);
+    padding:3px 9px;
+    border-radius:999px;
+    text-decoration:none;
+  }
+  .tcard .chip:hover{
+    color:var(--global-theme-color);
+    border-color:var(--global-theme-color);
+  }
+  .tcard a{text-decoration:none;}
+</style>
 
-**Level**: Bachelors  
-**Co-taught with**: Sicco Verwer, Nergin Tömen
+<div class="course-grid">
 
-This course introduces students to the fundamental concepts and techniques of data mining. Topics include data preprocessing, probabilistic counting, dimensionality reduction, clustering, anomaly detection, and mining text and graph data. The course also includes practical sessions where students apply these techniques using popular data mining tools and software.
+  <div class="tcard">
+    <span class="level">Bachelor's</span>
+    <h3>Data Mining</h3>
+    <p class="co">with Sicco Verwer, Nergin Tömen</p>
+    <p class="desc">Fundamental concepts and techniques of data mining — preprocessing, probabilistic counting, dimensionality reduction, clustering, anomaly detection, and mining text and graph data, with hands-on sessions.</p>
+    <div class="foot">
+      <a class="go" href="{{ '/assets/html/dm26-27/' | relative_url }}">Course page &rarr;</a>
+      <a class="chip" href="https://studiegids.tudelft.nl/opleidingen/study-guide/educations/13603#/details/14273" target="_blank" rel="noopener">Study guide</a>
+      <a class="chip" href="https://brightspace.tudelft.nl/d2l/home/774633" target="_blank" rel="noopener">Brightspace</a>
+    </div>
+  </div>
 
-[Interactive study decks (2026–27)]({{ '/assets/html/dm26-27/' | relative_url }}) — animated, self-contained lecture decks for exam prep.
+  <div class="tcard">
+    <span class="level">Master's</span>
+    <h3>Natural Language Processing</h3>
+    <p class="co">with Jie Yang</p>
+    <p class="desc">Theory and practice of NLP — text processing, language modeling, syntactic and semantic analysis, and large language models — with an emphasis on hands-on projects and real-world applications.</p>
+    <div class="foot">
+      <a class="go" href="{{ '/assets/teaching/nlp/' | relative_url }}">Course page &rarr;</a>
+      <a class="chip" href="https://studiegids.tudelft.nl/courses/study-guide/educations/14803" target="_blank" rel="noopener">Study guide</a>
+      <a class="chip" href="https://brightspace.tudelft.nl/d2l/home/864611" target="_blank" rel="noopener">Brightspace</a>
+    </div>
+  </div>
 
-[Studyguide Link](https://studiegids.tudelft.nl/opleidingen/study-guide/educations/13603#/details/14273)
+  <div class="tcard">
+    <span class="level">Master's</span>
+    <h3>Information Retrieval</h3>
+    <p class="co">with Sole Pera, Jie Yang</p>
+    <p class="desc">Principles and practice of information retrieval — search engine design, text indexing, query processing, and evaluation — with special topics in learning-to-rank, neural ranking models, and recommender systems.</p>
+    <div class="foot">
+      <a class="go" href="https://studiegids.tudelft.nl/courses/study-guide/educations/14768" target="_blank" rel="noopener">Study guide &rarr;</a>
+      <a class="chip" href="https://brightspace.tudelft.nl/d2l/home/774748" target="_blank" rel="noopener">Brightspace</a>
+    </div>
+  </div>
 
-[Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774633)
-
----
-
-### Information Retrieval
-
-**Level**: Masters
-
-**Co-taught with**: Sole Pera, Jie Yang
-
-In this course, students explore the principles and practices of information retrieval. The syllabus covers the design and implementation of search engines, text indexing, query processing, and evaluation of information retrieval systems. Special topics include learning-to-rank, neural ranking models, and recommender systems.
-
-[Studyguide Link](https://studiegids.tudelft.nl/courses/study-guide/educations/14768)
-
-[Brightspace 2026](https://brightspace.tudelft.nl/d2l/home/774748)
-
----
-
-### Natural Language Processing (NLP)
-
-**Level**: Masters
-
-**Co-taught with**: Jie Yang
-
-This course delves into the field of Natural Language Processing, covering both the theoretical and practical aspects. Students learn about text processing, language modeling, syntactic and semantic analysis, and large-language models. The course emphasizes hands-on projects and applications of NLP techniques in real-world scenarios.
-
-[Course materials &amp; schedule]({{ '/assets/teaching/nlp/' | relative_url }})
-
-[Studyguide Link](https://studiegids.tudelft.nl/courses/study-guide/educations/14803)
-
-[Brightspace 2026-27](https://brightspace.tudelft.nl/d2l/home/864611)
+</div>
 
 ---
 

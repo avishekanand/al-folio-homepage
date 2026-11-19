@@ -904,21 +904,19 @@
     <li><b>5 · Generate &amp; compare.</b> One continuation per prompt from your n-gram and from TULIP (temperature 1.0).</li>
   </ul>
   <div class="callout"><span class="lab">One command</span>
-    <p><span class="mono">python a1.py --student-number &lt;yours&gt;</span> — about <b>5 minutes</b> on a laptop, no GPU. Your student number fixes your personal held-out set.</p>
+    <p><span class="mono">python a1.py --student-number &lt;yours&gt;</span> — about <b>2–3 minutes</b> on a laptop, no GPU. Your student number fixes your personal held-out set.</p>
   </div>
 </section>
 
 <section class="slide" data-sec="14 · Assignment 1 · findings &amp; grading">
   <div class="kicker">Your turn · A1 — findings &amp; grading</div>
-  <h1 class="t">Four questions about your own numbers</h1><div class="rule"></div>
+  <h1 class="t">Two questions about your own numbers</h1><div class="rule"></div>
   <ul class="pts">
-    <li><b>Q1.</b> Token vs byte counts, and check the identity <span class="tex" data-tex="\ln\mathrm{PPL}_{\text{byte}}=\ln\mathrm{PPL}_{\text{token}}\cdot N_{\text{tokens}}/N_{\text{bytes}}"></span> holds for your run.</li>
-    <li><b>Q2.</b> Rank 257-vocab n-gram, 8k n-gram and TULIP by per-token <i>then</i> per-byte PPL — why do the rankings disagree?</li>
-    <li><b>Q3.</b> Same text, yet per-byte PPL changes across the sweep — what does a bigger vocabulary help, and what does it hurt?</li>
-    <li><b>Q4.</b> One concrete fluency failure in your samples, tied to what the model can see; how many times better is TULIP per byte, and why?</li>
+    <li><b>Q1.</b> Rank 257-vocab n-gram, 8k n-gram and TULIP by per-token <i>then</i> per-byte PPL — why do the rankings disagree, and which is the fair comparison?</li>
+    <li><b>Q2.</b> Compare your 8k n-gram and TULIP <b>per byte</b> — is it what you expected from a bigram vs a large neural model? Give two reasons, each backed by your own evidence (the 10 most surprising tokens, or how the samples read).</li>
   </ul>
-  <div class="callout"><span class="lab">How it's graded</span>
-    <p><b>Correctness (automatic):</b> your numbers are <b>recomputed on your own held-out set</b> — no hidden reference, nothing compared to a classmate. <b>Understanding (TA):</b> answers that use <i>your</i> numbers score high; generic ones score low.</p>
+  <div class="callout"><span class="lab">How it's graded — 10 points</span>
+    <p><b>Correctness (automatic) · 5</b> — your numbers are <b>recomputed on your own held-out set</b> (n-gram 2 · TULIP scoring 2 · sweep &amp; counts 1); no hidden reference, nothing compared to a classmate. <b>Understanding (TA) · 5</b> — findings Q1–Q2 (3) + reflection (2); answers that use <i>your</i> numbers score high.</p>
   </div>
 </section>
 
@@ -926,7 +924,7 @@
   <div class="kicker">Your turn · A1 — how to submit</div>
   <h1 class="t">Submitting your work</h1><div class="rule"></div>
   <div class="defbox"><span class="lab">One zip to Brightspace · A1_&lt;studentnumber&gt;.zip</span>
-    <span class="math" style="margin:0">a1_results.json · tokenizer.json · sweep/ · samples.txt · findings.md (Q1–Q4) · reflection.md + AI-use · code/</span></div>
+    <span class="math" style="margin:0">a1_results.json · tokenizer.json · sweep/ · samples.txt · findings.md (Q1–Q2) · reflection.md + AI-use · code/</span></div>
   <ul class="pts">
     <li><b>Build it with</b> <span class="mono">python make_zip.py &lt;studentnumber&gt;</span> — it runs the format checker; fix every <b style="color:var(--wrong)">error</b> before you upload.</li>
     <li><b>Do not include</b> the dataset, your <span class="mono">.env</span> file, or the TULIP cache. Use the <i>same</i> student number you passed to <span class="mono">load_lm</span>.</li>

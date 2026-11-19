@@ -41,6 +41,11 @@
   pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;overflow-x:auto;font-size:12.5px}
   .legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:10px}
   .sw{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:5px}
+  .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+  .vgrid figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+  .vgrid video{display:block;width:100%;height:auto;background:#000;aspect-ratio:16/9}
+  .vgrid figcaption{padding:10px 14px;font-size:13px;color:var(--ink)}
+  .vgrid figcaption small{display:block;color:var(--muted);font-weight:400;margin-top:2px}
   footer{margin-top:38px;color:var(--muted);font-size:12px;text-align:center}
 </style>
 </head>
@@ -50,6 +55,7 @@
   <nav class="ql">
     <a class="chip" href="https://brightspace.tudelft.nl/d2l/home/864611" target="_blank" rel="noopener">Brightspace</a>
     <a class="chip" href="https://studiegids.tudelft.nl/courses/study-guide/educations/14803" target="_blank" rel="noopener">Study guide</a>
+    <a class="chip" href="#videos">Videos</a>
     <a class="chip" href="#data">Data</a>
     <a class="chip" href="https://avishekanand.com/teaching/">← Teaching</a>
   </nav>
@@ -105,6 +111,14 @@
       <a class="card" href="https://docs.tulip.tudelft.nl/" target="_blank" rel="noopener"><div class="tag">↗ docs</div><h3>TULIP — TU Delft LLM service</h3><p>We are running a <b>TULIP pilot</b> for the course: large models served OpenAI-compatibly over eduVPN with your personal key. Docs at <b>docs.tulip.tudelft.nl</b>.</p></a>
     </div>
     <p style="margin-top:12px;color:var(--muted);font-size:12.5px">Content note: some datasets (e.g. toxicity comments, Enron e-mails) contain offensive or sensitive material — handle with care.</p>
+  </section>
+
+  <section id="videos">
+    <div class="sh"><h2>Explainer videos</h2><span class="note">Short narrated walkthroughs · example lecture material</span></div>
+    <div class="vgrid">
+      <figure><video controls preload="metadata" src="../../video/nlp/01_language_models_narrated.mp4"></video><figcaption>Language Modelling<small>Narrated explainer · what a language model is and how it assigns probabilities to text.</small></figcaption></figure>
+      <figure><video controls preload="metadata" src="../../video/nlp/03_tokenization_narrated.mp4"></video><figcaption>Tokenization<small>Narrated explainer · how raw text is split into tokens, and why BPE is used.</small></figcaption></figure>
+    </div>
   </section>
 
   <footer>DSAIT4090 Natural Language Processing · TU Delft · <a href="https://avishekanand.com">avishekanand.com</a></footer>

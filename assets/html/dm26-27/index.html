@@ -1,83 +1,149 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Data Mining · CSE2525 · study decks</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSE2525 · Data Mining</title>
 <style>
-  :root{--bg:#17140f;--panel:#1f1b15;--ink:#ece7dd;--muted:#9a9488;--line:#352f26;
-    --accent:#d2674f;--cool:#79aba8;--gold:#c89a5c;--serif:Georgia,'Iowan Old Style','Times New Roman',serif}
-  *{box-sizing:border-box} html,body{margin:0}
-  body{background:var(--bg);color:var(--ink);font-family:var(--serif);
-    min-height:100vh;padding:clamp(2rem,7vw,5rem) clamp(1.1rem,6vw,5rem)}
-  .kicker{color:var(--accent);letter-spacing:.11em;text-transform:uppercase;font-size:clamp(.8rem,1.3vw,1rem)}
-  h1{font-weight:400;font-size:clamp(2rem,5.5vw,3.6rem);margin:.15em 0 .1em;letter-spacing:-.01em}
-  .sub{color:var(--muted);font-style:italic;font-size:clamp(1.05rem,2vw,1.4rem);max-width:62ch;margin:.2em 0 0}
-  .rule{width:120px;height:2px;background:var(--accent);margin:1.1em 0 2em}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1em;max-width:1100px}
-  .card{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--accent);
-    border-radius:12px;padding:1.1em 1.25em;transition:transform .15s ease,border-color .15s ease;display:flex;flex-direction:column}
-  .card:nth-child(3n+2){border-top-color:var(--cool)} .card:nth-child(3n){border-top-color:var(--gold)}
-  .card:hover{transform:translateY(-3px);border-color:var(--accent)}
-  a.cardmain{display:block;text-decoration:none;color:inherit;flex:1}
-  .card .n{color:var(--muted);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
-  .card h2{font-weight:400;font-size:clamp(1.3rem,2.4vw,1.7rem);margin:.25em 0 .3em}
-  .card p{color:var(--muted);font-size:1rem;line-height:1.45;margin:0}
-  .meta{color:var(--muted);font-size:.9rem;margin-top:.9em;display:flex;justify-content:space-between;align-items:center;gap:1em}
-  .meta a{color:var(--cool);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:.12em .7em;white-space:nowrap}
-  .meta a:hover{color:var(--accent);border-color:var(--accent)}
-  footer{color:var(--muted);font-size:.95rem;margin-top:2.6em;max-width:72ch;line-height:1.5}
-  footer a{color:var(--cool);text-decoration:none;border-bottom:1px solid currentColor}
-  footer a:hover{color:var(--accent)}
-  .links{margin:-0.7em 0 2.1em;font-size:clamp(1rem,1.5vw,1.12rem)}
-  .links a{color:var(--cool);text-decoration:none;border-bottom:1px solid currentColor}
-  .links a:hover{color:var(--accent)}
-  .links .sep{color:var(--line);margin:0 .55em}
-  @media (prefers-color-scheme:light){
-    :root{--bg:#f6f1e7;--panel:#fff;--ink:#241f18;--muted:#6b6457;--line:#e2d9c8}
-  }
+  :root{--bg:#f6f7f9;--panel:#fff;--ink:#1a1d21;--muted:#5b6672;--line:#e3e7ec;--accent:#2f6df6;--soft:#eaf1ff;
+    --avi:#2f6df6;--jul:#7a52d6;--ner:#0e9b9b;--gue:#cf4d8f;--tbd:#c7881a;
+    --shadow:0 1px 2px rgba(20,30,50,.06),0 4px 16px rgba(20,30,50,.05)}
+  @media(prefers-color-scheme:dark){:root{--bg:#0f1216;--panel:#171b21;--ink:#e7ebf0;--muted:#9aa6b2;--line:#262c35;
+    --accent:#5b8dff;--soft:#1a2436;--avi:#5b8dff;--jul:#a98cf0;--ner:#2bb3b3;--gue:#e06aa6;--tbd:#e0a84a;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.35)}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 64px}
+  header.top{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  .top-in{max-width:1000px;margin:0 auto;padding:13px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .brand{font-weight:700} .brand small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+  .ql{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .chip{padding:6px 11px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:13px;font-weight:600}
+  .hero{padding:26px 0 6px} .hero h1{margin:0 0 4px;font-size:25px;letter-spacing:-.3px} .hero p{margin:0 0 6px;color:var(--muted)}
+  section{margin-top:30px} .sh{display:flex;align-items:baseline;gap:12px;margin:0 0 12px}
+  .sh h2{margin:0;font-size:18px} .sh .note{color:var(--muted);font-size:13px}
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel);box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}
+  th,td{text-align:left;padding:6px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--bg)}
+  tbody tr:last-child td{border-bottom:none}
+  .date{font-weight:700;white-space:nowrap}
+  .slot{display:block;padding:4px 9px;border-radius:6px;border-left:3px solid var(--line)}
+  .slot a{color:inherit;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:2px}
+  .by-avi{background:rgba(47,109,246,.10);border-left-color:var(--avi)}
+  .by-jul{background:rgba(122,82,214,.11);border-left-color:var(--jul)}
+  .by-ner{background:rgba(14,155,155,.12);border-left-color:var(--ner)}
+  .by-gue{background:rgba(207,77,143,.11);border-left-color:var(--gue)}
+  .by-tbd{background:rgba(199,136,26,.13);border-left-color:var(--tbd)}
+  .who{font-size:11px;color:var(--muted);margin-left:5px}
+  .room{display:block;font-size:10.5px;color:var(--muted);margin-top:1px}
+  .room::before{content:"📍 "}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:600;background:var(--soft);color:var(--accent)}
+  .pill.tent{background:transparent;border:1px dashed var(--line);color:var(--muted)}
+  .pill.lab{background:rgba(31,157,87,.14);color:#1f9d57}
+  @media(prefers-color-scheme:dark){.pill.lab{color:#4cc585}}
+  tr.breakrow td{background:var(--bg);color:var(--muted);font-style:italic;font-size:13px}
+  tr.examrow td{background:var(--soft);color:var(--accent);font-size:13px;font-weight:600}
+  .dash{color:var(--muted)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:10px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:13px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:7px}
+  .card h3{margin:0;font-size:14.5px;line-height:1.35} .card p{margin:0;color:var(--muted);font-size:12.5px}
+  .card .f{margin-top:auto;padding-top:6px;display:flex;align-items:center;gap:10px;font-size:12px}
+  .tag{font-size:12px;font-weight:700;color:var(--accent)}
+  footer{margin-top:38px;color:var(--muted);font-size:12px;text-align:center}
 </style>
 </head>
 <body>
-  <div class="kicker">CSE2525 · Data Mining · 2026–27</div>
-  <h1>Data Mining — lecture slides</h1>
-  <div class="sub">The lecture slides for the Data Mining course (CSE2525) at TU Delft,
-    organised around distances, matrices, and retrieval.</div>
-  <div class="rule"></div>
-  <p class="links"><a href="https://studyguide.tudelft.nl/opleidingen/study-guide/educations/33233#/details/33531" target="_blank" rel="noopener">Official TU Delft study guide ↗</a></p>
-  <div class="grid">
-    <div class="card"><a class="cardmain" href="01_introduction/index.html">
-      <div class="n">Lecture 1</div><h2>Introduction</h2>
-      <p>What data mining is · DM vs ML vs data management · John Snow &amp; famous examples · a word of caution.</p></a>
-      <div class="meta"><span>41 slides</span><a href="01_introduction/01_introduction.pdf">PDF ↓</a></div></div>
+<header class="top"><div class="top-in">
+  <div class="brand">CSE2525 · Data Mining <small>BSc CSE · TU Delft · 2026–2027 · Period 2</small></div>
+  <nav class="ql">
+    <a class="chip" href="https://brightspace.tudelft.nl/d2l/home/774633" target="_blank" rel="noopener">Brightspace</a>
+    <a class="chip" href="https://studiegids2526.tudelft.nl/courses/deeplink?code=CSE2525" target="_blank" rel="noopener">Study guide</a>
+    <a class="chip" href="#schedule">Schedule</a>
+    <a class="chip" href="#decks">Study decks</a>
+    <a class="chip" href="https://avishekanand.com/teaching/">← Teaching</a>
+  </nav>
+</div></header>
 
-    <div class="card"><a class="cardmain" href="02_distances/index.html">
-      <div class="n">Lecture 2</div><h2>Distances &amp; Similarity</h2>
-      <p>Metrics, cosine / Euclidean / Hamming, and two case studies.</p></a>
-      <div class="meta"><span>49 slides</span><a href="02_distances/02_distances.pdf">PDF ↓</a></div></div>
-
-    <div class="card"><a class="cardmain" href="03_embeddings/index.html">
-      <div class="n">Lecture 3</div><h2>Embeddings</h2>
-      <p>From raw data to vectors · word2vec · graph embeddings (DeepWalk / node2vec).</p></a>
-      <div class="meta"><span>39 slides</span><a href="03_embeddings/03_embeddings.pdf">PDF ↓</a></div></div>
-
-    <div class="card"><a class="cardmain" href="04_indexing/index.html">
-      <div class="n">Lecture 4</div><h2>Indexing Text</h2>
-      <p>Inverted index, query processing, TF-IDF, index construction.</p></a>
-      <div class="meta"><span>28 slides</span><a href="04_indexing/04_indexing.pdf">PDF ↓</a></div></div>
-
-    <div class="card"><a class="cardmain" href="05_graphs/index.html">
-      <div class="n">Lecture 5</div><h2>Graph Mining</h2>
-      <p>Properties, centrality, Girvan–Newman, spectral clustering, node embeddings.</p></a>
-      <div class="meta"><span>40 slides</span><a href="05_graphs/05_graphs.pdf">PDF ↓</a></div></div>
-
-    <div class="card"><a class="cardmain" href="06_wrap/index.html">
-      <div class="n">Wrap-up</div><h2>Exam Prep</h2>
-      <p>Recap across embeddings · graphs · indexing, with exam-material checklists.</p></a>
-      <div class="meta"><span>19 slides</span><a href="06_wrap/06_wrap.pdf">PDF ↓</a></div></div>
-
-    <div class="card"><a class="cardmain" href="07_minhash_lsh/index.html">
-      <div class="n">Lecture 7</div><h2>MinHashing &amp; LSH</h2>
-      <p>Jaccard, shingling, MinHash signatures, LSH banding and the S-curve.</p></a>
-      <div class="meta"><span>23 slides</span><a href="07_minhash_lsh/07_minhash_lsh.pdf">PDF ↓</a></div></div>
+<div class="wrap">
+  <div class="hero">
+    <h1>Course materials</h1>
+    <p>A bachelor's course on the foundations of <b>data mining</b> — how we represent, compare, index, and mine large collections of data. This year the course has an <b>information-access focus</b>, building from distances and similarity through embeddings, matrices, graphs, recommenders, and hashing.</p>
+    <p>Mondays 13:45 &amp; Thursdays 10:45 · EEMCS Lecture Hall Ampere · labs Tuesdays 08:45 · exam Monday 25 January, 13:30. Teaching team: A. Anand, J. Urbano, N. Tömen, with guest lecturers.</p>
   </div>
-  <footer>A. Anand, with J. Urbano &amp; N. Tömen · <a href="https://avishekanand.com/teaching/">teaching page</a></footer>
-</body></html>
+
+  <section id="schedule">
+    <div class="sh"><h2>Schedule</h2><span class="note">Mondays 13:45 &amp; Thursdays 10:45 · EEMCS Lecture Hall Ampere</span></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Week</th><th>Monday 13:45</th><th>Thursday 10:45</th><th>Lab · Tue 08:45</th><th>Admin</th></tr></thead>
+      <tbody>
+        <tr><td class="date">9 Nov</td>
+          <td><span class="slot by-avi"><a href="01_introduction/index.html">Introduction</a><span class="who">Anand + Urbano</span></span></td>
+          <td><span class="slot by-avi"><a href="02_distances/index.html">Distances</a><span class="who">Anand</span></span></td>
+          <td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+        <tr><td class="date">16 Nov</td>
+          <td><span class="slot by-jul">Retrieval<span class="who">Urbano</span></span></td>
+          <td><span class="slot by-ner">Matrices &amp; PCA<span class="who">Tömen</span></span></td>
+          <td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+        <tr><td class="date">23 Nov</td>
+          <td><span class="slot by-jul">Rankings<span class="who">Urbano</span></span></td>
+          <td><span class="slot by-jul">Evaluation<span class="who">Urbano</span></span></td>
+          <td><span class="dash">—</span></td><td><span class="pill">Assignment published</span></td></tr>
+        <tr><td class="date">30 Nov</td>
+          <td><span class="slot by-avi"><a href="03_embeddings/index.html">Embeddings</a><span class="who">Anand</span></span></td>
+          <td><span class="slot by-ner">Matrix decomposition<span class="who">Tömen</span></span></td>
+          <td><span class="dash">—</span></td><td><span class="pill">Lab announced</span></td></tr>
+        <tr><td class="date">7 Dec</td>
+          <td><span class="dash">No lecture</span></td>
+          <td><span class="slot by-ner">Recommender systems<span class="who">Tömen</span></span></td>
+          <td><span class="pill lab">8 Dec · Implement NMF</span></td><td><span class="dash">—</span></td></tr>
+        <tr><td class="date">14 Dec</td>
+          <td><span class="slot by-avi"><a href="07_minhash_lsh/index.html">Hashing</a><span class="who">Anand</span></span></td>
+          <td><span class="slot by-gue">Sketching<span class="who">guest</span></span></td>
+          <td><span class="pill lab">15 Dec · Implement MinHash</span></td><td><span class="pill">Practice exam</span></td></tr>
+        <tr class="breakrow"><td class="date">21 Dec–1 Jan</td><td colspan="4">❄ Christmas break — no teaching</td></tr>
+        <tr><td class="date">4 Jan</td>
+          <td><span class="slot by-tbd">Invited lecture (TBD)<span class="who">guest</span></span></td>
+          <td><span class="slot by-jul"><a href="04_indexing/index.html">Indexing</a><span class="who">Urbano</span></span></td>
+          <td><span class="dash">—</span></td><td><span class="pill">Assignment due</span></td></tr>
+        <tr><td class="date">11 Jan</td>
+          <td><span class="slot by-avi"><a href="05_graphs/index.html">Graphs</a><span class="who">Anand</span></span></td>
+          <td><span class="slot by-gue">Bias &amp; explanations<span class="who">guest</span></span></td>
+          <td><span class="pill lab">12 Jan · Practice exam</span></td><td><span class="dash">—</span></td></tr>
+        <tr><td class="date">18 Jan</td>
+          <td><span class="slot by-ner"><a href="06_wrap/index.html">Exam preparation</a><span class="who">Tömen</span></span></td>
+          <td><span class="dash">No lecture</span></td>
+          <td><span class="dash">—</span></td><td><span class="dash">—</span></td></tr>
+        <tr class="examrow"><td class="date">25 Jan</td><td colspan="4">📝 Data Mining exam · Monday 25 January, 13:30 · Period 2 exam week</td></tr>
+      </tbody>
+    </table></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--avi)"></i>Anand</span>
+      <span><i class="sw" style="background:var(--jul)"></i>Urbano</span>
+      <span><i class="sw" style="background:var(--ner)"></i>Tömen</span>
+      <span><i class="sw" style="background:var(--gue)"></i>guest</span>
+      <span><i class="sw" style="background:var(--tbd)"></i>TBD</span>
+    </div>
+  </section>
+
+  <section id="decks">
+    <div class="sh"><h2>Interactive study decks</h2><span class="note">Animated, self-contained browser decks — open a deck, then use ← → to advance; or download the PDF</span></div>
+    <div class="grid">
+      <div class="card"><div class="tag">1</div><h3>Introduction</h3><p>What data mining is · DM vs ML vs data management · John Snow &amp; famous examples · a word of caution.</p><div class="f"><a href="01_introduction/index.html">Open deck</a><a href="01_introduction/01_introduction.pdf">PDF ↓</a></div></div>
+      <div class="card"><div class="tag">2</div><h3>Distances &amp; Similarity</h3><p>Metrics, cosine / Euclidean / Hamming, and a near-duplicate case study.</p><div class="f"><a href="02_distances/index.html">Open deck</a><a href="02_distances/02_distances.pdf">PDF ↓</a></div></div>
+      <div class="card"><div class="tag">3</div><h3>Embeddings</h3><p>From raw data to vectors · word2vec · graph embeddings (DeepWalk / node2vec).</p><div class="f"><a href="03_embeddings/index.html">Open deck</a><a href="03_embeddings/03_embeddings.pdf">PDF ↓</a></div></div>
+      <div class="card"><div class="tag">4</div><h3>Indexing Text</h3><p>Inverted index, query processing, TF-IDF, index construction.</p><div class="f"><a href="04_indexing/index.html">Open deck</a><a href="04_indexing/04_indexing.pdf">PDF ↓</a></div></div>
+      <div class="card"><div class="tag">5</div><h3>Graph Mining</h3><p>Properties, centrality, Girvan–Newman, spectral clustering, node embeddings.</p><div class="f"><a href="05_graphs/index.html">Open deck</a><a href="05_graphs/05_graphs.pdf">PDF ↓</a></div></div>
+      <div class="card"><div class="tag">7</div><h3>MinHashing &amp; LSH</h3><p>Jaccard, shingling, MinHash signatures, LSH banding and the S-curve.</p><div class="f"><a href="07_minhash_lsh/index.html">Open deck</a><a href="07_minhash_lsh/07_minhash_lsh.pdf">PDF ↓</a></div></div>
+      <div class="card"><div class="tag">✦</div><h3>Wrap-up &amp; Exam Prep</h3><p>Recap across embeddings · graphs · indexing, with exam-material checklists.</p><div class="f"><a href="06_wrap/index.html">Open deck</a><a href="06_wrap/06_wrap.pdf">PDF ↓</a></div></div>
+    </div>
+  </section>
+
+  <footer>CSE2525 Data Mining · TU Delft · <a href="https://avishekanand.com">avishekanand.com</a></footer>
+</div>
+</body>
+</html>

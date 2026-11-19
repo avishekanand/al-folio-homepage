@@ -104,7 +104,7 @@ nav_order: 6
   <div class="tcard">
     <span class="level">Bachelor's</span>
     <h3>Data Mining</h3>
-    <p class="co">with Sicco Verwer, Nergin Tömen</p>
+    <p class="co">with Julian Urbano, Nergis Tömen</p>
     <p class="desc">Fundamental concepts and techniques of data mining — preprocessing, probabilistic counting, dimensionality reduction, clustering, anomaly detection, and mining text and graph data, with hands-on sessions.</p>
     <div class="foot">
       <a class="go" href="{{ '/assets/html/dm26-27/' | relative_url }}">Course page &rarr;</a>

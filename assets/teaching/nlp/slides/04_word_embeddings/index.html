@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4 · Word embeddings — study deck</title>
+<style>/* deck.css (inlined) */
+:root{
+    /* matched to the explainer videos (explainer/style.py): BG #14161B, Manim palette, Times serif, Menlo */
+    --bg:#14161B; --panel:#1c1f27; --panel2:#20242e; --ink:#e9e9ea; --muted:#bbbbbb;
+    --line:#2d323d; --grid:#242831;
+    --accent:#58c4dd;   /* BLUE_C */
+    --cool:#5cd0b3;     /* TEAL_C */
+    --gold:#e8c11c;     /* YELLOW_D */
+    --true:#83c167; --wrong:#fc6255; --hi:#ffff00;
+    --serif:"Times New Roman",Times,Tinos,"Liberation Serif",serif;
+    --mono:Menlo,"SF Mono",ui-monospace,Consolas,monospace;
+  }
+  h1.t,.title h1{color:#fff}
+  *{box-sizing:border-box} html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);overflow:hidden}
+  .slide{position:fixed;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:5.5vh 8vw;animation:fade .32s ease}
+  .slide.on{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .kicker{color:var(--accent);font-size:1.0rem;letter-spacing:.09em;text-transform:uppercase}
+  h1.t{font-size:2.6rem;line-height:1.12;margin:.06em 0 .10em;font-weight:400;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-style:italic;font-size:1.22rem;margin:0 0 .15em}
+  .rule{width:118px;height:2px;background:var(--accent);margin:.5em 0 .9em}
+  .lead{font-size:1.32rem;line-height:1.5;max-width:66ch;margin:.1em 0 .5em}
+  .lead b{color:var(--ink);font-weight:400;border-bottom:1px solid var(--accent)}
+  ul.pts{list-style:none;margin:.2em 0 0;padding:0;max-width:70ch}
+  ul.pts li{position:relative;padding-left:1.3em;margin:.42em 0;font-size:1.2rem;line-height:1.4}
+  ul.pts li::before{content:"—";position:absolute;left:0;color:var(--cool)}
+  ul.pts li small{color:var(--muted);font-size:.92em}
+  ul.pts li b{color:var(--cool);font-weight:400}
+  .defbox{background:var(--panel);border:1px solid var(--line);border-radius:9px;
+    padding:.7em 1em;margin:.2em 0;font-size:1.12rem;line-height:1.45;max-width:70ch}
+  .defbox .lab{color:var(--gold);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.2em}
+  .math{font-style:italic;font-size:1.4rem;margin:.3em 0;line-height:1.5}
+  .math .op{font-style:normal;color:var(--muted)}
+  .frac{display:inline-block;text-align:center;font-size:.9em;vertical-align:middle}
+  .frac .d{border-top:1px solid var(--muted);padding-top:1px}
+  .ex{color:var(--muted);font-size:1.1rem;margin-top:.45em;max-width:70ch} .ex b{color:var(--cool);font-weight:400}
+  .mono{font-family:var(--mono);color:var(--cool);font-size:1.02rem;line-height:1.7}
+  table.g{border-collapse:collapse;margin-top:.4em;font-size:1.15rem}
+  table.g td{padding:4px 22px 4px 0} table.g td.h{color:var(--muted);font-style:italic}
+  table{border-collapse:collapse;margin-top:.5em;font-size:1.12rem}
+  th,td{text-align:left;padding:5px 20px 5px 0;border-bottom:1px solid var(--line)}
+  thead th{color:var(--gold);font-weight:400;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+  .num{font-family:var(--mono);color:var(--gold)}
+  .title{justify-content:center}
+  .title .kicker{font-size:1.1rem} .title h1{font-size:3.8rem;margin:.08em 0;font-weight:400}
+  .title .by{color:var(--muted);margin-top:1.0em;font-size:1.12rem}
+  .question{align-items:center;justify-content:center;text-align:center}
+  .question .qlab{color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-size:.95rem;
+    display:flex;align-items:center;gap:.55em}
+  .question .qlab::before,.question .qlab::after{content:"";width:46px;height:1px;background:var(--accent);opacity:.6}
+  .question .q{font-size:2.35rem;line-height:1.3;max-width:24ch;margin:.7em auto .2em;font-weight:400}
+  .question .qsub{color:var(--muted);font-style:italic;font-size:1.18rem;max-width:52ch;margin:.3em auto 0}
+  .question .think{margin-top:1.8em;color:var(--muted);font-size:.95rem;opacity:.75;letter-spacing:.03em}
+  .question .think b{color:var(--cool);font-weight:400}
+  .cliplink{display:inline-block;margin-top:.6em;color:var(--cool);font-size:1.0rem;text-decoration:none;border-bottom:1px solid var(--line)}
+  .cliplink:hover{border-color:var(--cool)} .cliplink::before{content:"▶ ";color:var(--accent)}
+  .callout{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:9px;padding:.85em 1.15em;margin:.55em 0;max-width:72ch}
+  .callout .lab{color:var(--accent);font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;display:block;margin-bottom:.3em}
+  .callout p{margin:.15em 0;font-size:1.16rem;line-height:1.46}
+  .callout b{color:var(--cool);font-weight:400}
+  .callout .num{font-family:var(--mono);color:var(--gold);font-size:.95em}
+  .punch{margin-top:.8em;color:var(--accent);font-size:1.18rem}
+  #num{position:fixed;right:16px;top:12px;color:var(--muted);font-size:.9rem;z-index:5}
+  #hint{position:fixed;left:16px;top:12px;color:var(--muted);font-size:.82rem;z-index:5;opacity:.5}
+  #bar{position:fixed;left:0;right:0;bottom:0;height:3px;background:var(--grid);z-index:5}
+  #barfill{height:100%;background:var(--accent);width:0;transition:width .3s}
+  .secmark{position:fixed;left:16px;bottom:12px;color:var(--muted);font-size:.82rem;z-index:5;opacity:.6}
+
+  /* ---- centered, responsive fill ---- */
+  .slide{padding:clamp(1.3rem,4.5vh,3.4rem) clamp(1rem,4vw,3rem);align-items:stretch}
+  .wrap{width:min(1500px,90vw);margin-inline:auto}
+  .question .wrap,.title .wrap{width:min(1340px,90vw)}
+  .kicker{font-size:clamp(.85rem,1.25vw,1.05rem)}
+  h1.t{font-size:clamp(1.7rem,3.6vw,3.4rem)}
+  .title h1{font-size:clamp(2.4rem,6vw,4.8rem)}
+  .sub{font-size:clamp(1.02rem,1.7vw,1.5rem)}
+  .lead{font-size:clamp(1.1rem,2.05vw,1.78rem);max-width:none}
+  .defbox{font-size:clamp(1.05rem,1.75vw,1.55rem);max-width:none}
+  ul.pts{max-width:none}
+  ul.pts li{font-size:clamp(1.05rem,1.9vw,1.65rem)}
+  .math{font-size:clamp(1.1rem,2.15vw,1.9rem)}
+  table.g,table{font-size:clamp(1.02rem,1.75vw,1.45rem)}
+  .ex{font-size:clamp(.96rem,1.5vw,1.28rem);max-width:none}
+  .callout{max-width:none}
+  .callout p{font-size:clamp(1.05rem,1.85vw,1.6rem)}
+  .punch{font-size:clamp(1.05rem,1.8vw,1.5rem)}
+  .question .q{font-size:clamp(1.6rem,4vw,3.4rem);max-width:20ch}
+  .question .qsub{font-size:clamp(1.02rem,1.7vw,1.45rem)}
+
+  /* still images lifted from the explainer videos */
+  .still{justify-content:center}
+  .still .shot{display:block;margin:.3em auto 0;max-width:min(84vw,1200px);max-height:68vh;
+    border-radius:10px;border:1px solid var(--line);box-shadow:0 10px 36px rgba(0,0,0,.45)}
+  .still .cap{color:var(--muted);font-size:clamp(.9rem,1.4vw,1.15rem);margin-top:.6em;text-align:center}
+  .still .cap b{color:var(--accent);font-weight:400}
+
+  /* ============================================================
+     Redrawn figures — crisp native replacements for raster video
+     stills. Palette = explainer video (accent/cool/gold/true/wrong).
+     ============================================================ */
+  .figwrap{display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:.7em;margin-top:.3em;max-height:70vh}
+  .figwrap .fnote{color:var(--muted);font-style:italic;font-size:clamp(.9rem,1.45vw,1.2rem);text-align:center}
+  .figwrap .blab{color:var(--muted);font-size:clamp(.9rem,1.4vw,1.15rem)}
+  /* question prompt line above a chart */
+  .qprompt{font-size:clamp(1.1rem,2.1vw,1.7rem);color:var(--ink)}
+  .qprompt i{font-style:italic}
+  .qprompt .blank{color:var(--gold);letter-spacing:.12em;border-bottom:2px solid var(--gold)}
+  /* probability bars: label | track | value */
+  .bars{display:grid;grid-template-columns:auto 1fr auto;gap:.5em .9em;align-items:center;width:min(720px,86vw)}
+  .bars .lab{font-family:var(--mono);text-align:right;color:var(--ink);font-size:clamp(1rem,1.9vw,1.5rem)}
+  .bars .lab.hi{color:var(--gold)}
+  .bars .track{height:clamp(18px,2.5vw,30px);border-radius:4px;background:var(--gold);justify-self:start;min-width:4px}
+  .bars .track.teal{background:var(--cool)}
+  .bars .val{font-family:var(--mono);color:var(--muted);font-size:clamp(.95rem,1.65vw,1.3rem)}
+  /* token strip */
+  .toks{display:flex;flex-wrap:wrap;gap:.45em;justify-content:center;align-items:center}
+  .tok{font-family:var(--mono);font-size:clamp(.95rem,1.8vw,1.42rem);color:var(--ink);
+    border:1.5px solid var(--cool);border-radius:9px;padding:.2em .55em;background:rgba(92,208,179,.10);line-height:1}
+  .tok.bos{border-color:var(--accent);background:rgba(88,196,221,.13)}
+  .tok.hi{border-color:var(--gold);background:rgba(232,193,28,.15);color:var(--gold)}
+  /* corpus block */
+  .dcols{display:flex;gap:2.2em;align-items:center;flex-wrap:wrap;justify-content:center}
+  .corpus{font-family:var(--mono);font-size:clamp(.95rem,1.7vw,1.38rem);line-height:1.95;color:var(--ink)}
+  .corpus .h2{color:var(--muted);font-style:italic;margin-bottom:.15em}
+  .corpus b{color:var(--gold);font-weight:400}
+  /* n-gram ladder */
+  .ngrid{display:grid;grid-template-columns:auto auto 1fr;gap:.45em 1.2em;align-items:center}
+  .ngrid .nm{font-family:var(--mono);color:var(--cool);font-size:clamp(.95rem,1.6vw,1.3rem)}
+  .ngrid .nt{color:var(--muted);font-style:italic;font-size:clamp(.9rem,1.45vw,1.18rem)}
+  .ngrid .nt.bad{color:var(--wrong)}
+  /* factor product + math stacks (KaTeX inherits currentColor) */
+  .mathrows{display:flex;flex-direction:column;gap:.7em;align-items:center;text-align:center}
+  .mathrows .r{font-size:clamp(1rem,1.9vw,1.5rem);color:var(--ink)}
+  .mathrows .r.note{color:var(--muted);font-style:italic}
+  .mathrows .r.bad{color:var(--wrong)}
+  .mathrows .r.good{color:var(--true)}
+  /* two columns (smoothing vs backoff) */
+  .cols{display:flex;gap:1.6em;flex-wrap:wrap;justify-content:center;align-items:stretch}
+  .cols .col{background:var(--panel);border:1px solid var(--line);border-radius:11px;
+    padding:.85em 1.15em;min-width:270px;max-width:400px}
+  .cols .col h4{margin:.1em 0 .45em;color:var(--accent);font-weight:400;font-size:clamp(1.02rem,1.75vw,1.38rem)}
+  .cols .col p{margin:.3em 0;font-size:clamp(.98rem,1.6vw,1.28rem);line-height:1.4}
+  .cols .col .big{font-family:var(--mono);color:var(--gold);font-size:clamp(1.05rem,1.9vw,1.5rem)}
+  /* tags row */
+  .ptags{display:flex;gap:1.4em;flex-wrap:wrap;justify-content:center;font-size:clamp(.95rem,1.6vw,1.3rem)}
+  .ptags .hi{color:var(--gold)} .ptags .muted{color:var(--muted)}
+  /* colored recap list */
+  .recaplist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55em;
+    font-size:clamp(1.02rem,1.95vw,1.55rem);text-align:left}
+  .recaplist li{color:var(--ink)} .recaplist b{color:var(--gold);font-weight:400}
+
+  /* ---- tokenization-family figure primitives ---- */
+  .tok.sm{padding:.12em .36em;font-size:.86em;border-radius:6px}
+  .cx{font-family:var(--mono);color:var(--muted);margin-right:.5em;font-size:clamp(.85rem,1.4vw,1.15rem)}
+  .bpe-row{display:flex;align-items:center;gap:.26em;margin:.18em 0;justify-content:center}
+  .pipe{display:flex;align-items:center;gap:.4em;flex-wrap:wrap;justify-content:center}
+  .pipe .st{font-family:var(--mono);border:1.5px solid var(--line);border-radius:8px;padding:.24em .64em;color:var(--ink);font-size:clamp(.9rem,1.6vw,1.3rem)}
+  .pipe .st.in{border-color:var(--cool);background:rgba(92,208,179,.08)}
+  .pipe .st.out{border-color:var(--accent);background:rgba(88,196,221,.08)}
+  .pipe .ar{color:var(--muted)}
+  .merges{font-family:var(--mono);font-size:clamp(.9rem,1.55vw,1.26rem);color:var(--ink);
+    display:grid;grid-template-columns:auto auto;gap:.26em 1.4em;text-align:left;align-items:center}
+  .merges .n{color:var(--muted)}
+  .hexrow{display:flex;gap:.3em;flex-wrap:wrap;justify-content:center}
+  .hex{font-family:var(--mono);border:1px solid var(--line);border-radius:5px;padding:.12em .42em;color:var(--muted);font-size:clamp(.82rem,1.4vw,1.1rem)}
+  .tokcol{display:inline-flex;flex-direction:column;align-items:center;gap:.18em}
+  .tokcol .id{font-family:var(--mono);color:var(--muted);font-size:.72em}
+  td.gold{color:var(--gold)} td.wrong{color:var(--wrong)}
+  td.g2{color:var(--muted)} td.g4{color:var(--cool)} td.g4o{color:var(--gold)}
+  .ematrix{width:min(440px,72vw);height:clamp(84px,15vh,140px);border:1.5px solid var(--line);border-radius:6px;position:relative;margin:.3em 0 .2em;
+    background:repeating-linear-gradient(to bottom,transparent,transparent 12px,rgba(232,193,28,.16) 12px,rgba(232,193,28,.16) 13px)}
+  .ematrix .el{position:absolute;left:-1.5em;top:50%;transform:translateY(-50%);font-style:italic;color:var(--ink);font-size:1.2em}
+  .ematrix .er{position:absolute;right:.4em;bottom:.25em;color:var(--muted);font-size:.78rem;font-style:italic}
+  .xvec{display:flex;gap:.34em;align-items:flex-end;justify-content:center;height:clamp(34px,6vh,54px)}
+  .xvec .xb{width:clamp(10px,1.5vw,15px);background:var(--cool);border-radius:2px 2px 0 0}
+
+  /* ---- softmax/CE primitives ---- */
+  .hsb{display:grid;grid-template-columns:auto 1fr auto;gap:.55em .9em;align-items:center;width:min(560px,86vw)}
+  .hsb .lab{font-family:var(--mono);text-align:right;color:var(--ink);font-size:clamp(1rem,1.7vw,1.4rem)}
+  .hsb .lab.hi{color:var(--gold)}
+  .hsb .track{position:relative;height:24px}
+  .hsb .track::before{content:"";position:absolute;left:35%;top:-7px;bottom:-7px;border-left:1px dashed var(--muted)}
+  .hsb .pos{position:absolute;left:35%;height:20px;top:2px;background:var(--cool);border-radius:0 4px 4px 0}
+  .hsb .neg{position:absolute;height:20px;top:2px;background:var(--wrong);border-radius:4px 0 0 4px}
+  .hsb .val{font-family:var(--mono);color:var(--muted);font-size:clamp(.95rem,1.6vw,1.3rem)}
+  .hsb .val.wrong{color:var(--wrong)}
+  .bars .track.green{background:var(--true)}
+  .bars .lab.true{color:var(--true)}
+  td.raise{color:var(--true)} td.lower{color:var(--wrong)}
+  .logcurve{max-width:min(460px,80vw)}
+
+  /* embedded explainer clip (used where a static figure can't show a process) */
+  .clipvid{display:block;margin:.3em auto 0;max-width:min(84vw,1100px);max-height:62vh;
+    border-radius:10px;border:1px solid var(--line);box-shadow:0 10px 36px rgba(0,0,0,.45);background:#000}
+
+  /* click-to-play link card (clip is hosted off-repo; see CLIP_BASE in deck.js) */
+  .playcard{display:inline-flex;align-items:center;gap:.9em;cursor:pointer;
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:.9em 1.4em;margin:.4em auto 0;color:var(--ink);font-family:var(--serif);
+    box-shadow:0 10px 30px rgba(0,0,0,.4);transition:border-color .15s,transform .1s}
+  .playcard:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .playcard .pc-icon{display:inline-grid;place-items:center;flex:0 0 auto;
+    width:clamp(42px,6vw,56px);height:clamp(42px,6vw,56px);border-radius:50%;
+    background:var(--accent);color:#0b0d12;font-size:clamp(1.05rem,1.9vw,1.5rem);padding-left:3px}
+  .playcard .pc-txt{display:flex;flex-direction:column;align-items:flex-start;font-size:clamp(1.05rem,1.9vw,1.5rem)}
+  .playcard .pc-txt small{color:var(--muted);font-size:.66em;margin-top:.15em}
+
+</style>
+</head>
+<body>
+<div id="hint">← →/space · click bg to advance · F fullscreen</div><div id="num"></div>
+
+<!-- ============ TITLE ============ -->
+<section class="slide title" data-sec="Word embeddings">
+  <div class="kicker">NLP23 · Lexical processing &amp; representation</div>
+  <h1>Word Embeddings</h1>
+  <div class="sub">Turning words into dense vectors that capture meaning — by learning to predict the company they keep.</div>
+  <div class="rule"></div>
+  <div class="by">A. Anand · study deck</div>
+</section>
+
+<!-- ============ 1 · WORDS INTO NUMBERS (clips 01, 02) ============ -->
+<section class="slide question" data-sec="1 · Words into numbers">
+  <div class="qlab">Question</div>
+  <div class="q">A network can only do arithmetic. So every word must become a <i>vector</i> — but which numbers, and where do they come from?</div>
+  <div class="qsub">Recall from tokenization: a token ID picks one row of a table. Which table, and what is in its rows?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="1 · Words into numbers">
+  <div class="kicker">Recap</div>
+  <h1 class="t">A lookup that just moves the question</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Key idea</span>
+    <p>The token <i>telescope</i> has an ID; that ID picks one <b>row of the embedding matrix E</b>, and that row becomes the word's vector <b>x</b>. Lookup is trivial.</p>
+    <p>The real question is <b>what the rows should contain</b>. A random row says nothing about meaning. Today: what makes a row good, and how good rows are <b>learned</b>.</p>
+  </div>
+</section>
+
+<!-- ============ 2 · ONE-HOT & BAG OF WORDS (clips 03, 04) ============ -->
+<section class="slide question" data-sec="2 · One-hot &amp; bag of words">
+  <div class="qlab">Question</div>
+  <div class="q">Simplest idea: give each of our <i>22</i> vocabulary words its own slot — a <b>1</b> in that slot, <b>0</b> elsewhere. What does such a vector know about meaning?</div>
+  <div class="qsub">And if we sum them to represent a whole sentence, what do we gain — and lose?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="2 · One-hot &amp; bag of words">
+  <div class="kicker">Recap</div>
+  <h1 class="t">Sparse vectors that are blind to meaning</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Two dead ends</span>
+    <p><b>One-hot:</b> the dot product of any two different words is always <span class="num">0</span> — every pair is orthogonal. <i>planet</i> is as unlike <i>moon</i> as it is unlike <i>bill</i>. It knows nothing about meaning.</p>
+    <p><b>Bag of words</b> (sum of one-hots): forgets <b>order</b> (read our headline backwards → identical vector), and is as long as the vocabulary — <span class="num">22</span> here, but <span class="num">200,019</span> with the GPT-4o tokenizer, almost all zeros.</p>
+  </div>
+</section>
+
+<!-- ============ 3 · DISTRIBUTIONAL HYPOTHESIS (clip 05) ============ -->
+<section class="slide question" data-sec="3 · The company a word keeps">
+  <div class="qlab">Question</div>
+  <div class="q">If we never label anything, where could meaning possibly come from — using only raw text?</div>
+  <div class="qsub">Firth, 1957: "You shall know a word by the company it keeps." What is a word's <i>company</i>?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="3 · The company a word keeps">
+  <div class="kicker">Recap</div>
+  <h1 class="t">Meaning, for free, from context</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">The distributional hypothesis</span>
+    <p>A word's <b>company</b> = every word within <b>2 positions</b> on either side. Count it: <i>planet</i> sits next to <i>a</i> twice, <i>distant</i> once, <i>cold</i> once — and <i>moon</i> has the <b>same counts</b>. <i>bill</i> keeps different company: <i>new, climate, tax</i>.</p>
+    <p>Use those count rows as vectors: cosine(<i>planet</i>, <i>moon</i>) = <span class="num">1</span>, cosine(<i>planet</i>, <i>bill</i>) = <span class="num">0</span>. Nobody said planets and moons are related — the vectors learned it from the company words keep.</p>
+  </div>
+</section>
+
+<!-- ============ 4 · WORD2VEC = ONE BIG CLASSIFIER (clip 06) ============ -->
+<section class="slide question" data-sec="4 · Word2vec = one big classifier">
+  <div class="qlab">Question</div>
+  <div class="q">Counting the context table is itself vocabulary-sized and mostly zeros. How do we get <i>short, dense</i> vectors instead?</div>
+  <div class="qsub">Idea: turn "company" into a <b>prediction task</b>. Predict what, from what — and how many classes?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="4 · Word2vec = one big classifier">
+  <div class="kicker">Recap</div>
+  <h1 class="t">Prediction turns text into training data</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Key idea</span>
+    <p><b>Skip-gram:</b> take a center word (<i>water</i>) and predict each word in its window — here 4 pairs: <i>water→telescope, →spots, →on, →a</i>. Slide the window over every sentence and raw text becomes labelled data, <b>no annotation needed</b>. <b>CBOW</b> is the mirror: from the surrounding words, predict the middle one.</p>
+    <p>The whole model is <b>one big classifier</b>: a word goes in, a context word comes out — but there is <b>one class for every word in the vocabulary</b>. A very large output.</p>
+  </div>
+</section>
+
+<!-- ============ 5 · BOTTLENECK & SOFTMAX (clips 07, 08) ============ -->
+<section class="slide" data-sec="5 · The bottleneck &amp; the softmax">
+  <div class="kicker">The model, as one picture</div>
+  <h1 class="t">One-hot → E → embedding → U → softmax</h1><div class="rule"></div>
+  <div class="math" style="font-size:1.15rem">one-hot <span class="op">·</span> E → <b>v</b> &nbsp;<span class="op">→</span>&nbsp; score<sub>c</sub> = u<sub>c</sub> · v &nbsp;<span class="op">→</span>&nbsp; softmax over |V|</div>
+  <div class="defbox"><span class="lab">The softmax over the whole vocabulary</span>
+    <span class="math" style="margin:0">P(c | w) <span class="op">=</span>
+      <span class="frac">exp(u<sub>c</sub> · v)<br><span class="d">∑<sub>w'∈V</sub> exp(u<sub>w'</sub> · v)</span></span></span></div>
+  <ul class="pts">
+    <li>Loss = <b>cross-entropy</b> = −log P(real context word), e.g. −log P(spots | water).</li>
+    <li>Gradient w.r.t. the scores is, once again, <b>p − y</b>.</li>
+  </ul>
+</section>
+
+<section class="slide question" data-sec="5 · The bottleneck &amp; the softmax">
+  <div class="qlab">Question</div>
+  <div class="q">Where in this network <i>is</i> the embedding — and why is the denominator of that softmax a problem?</div>
+  <div class="qsub">Trace it: one-hot for <i>water</i> goes in. What does multiplying by E actually do?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="5 · The bottleneck &amp; the softmax">
+  <div class="kicker">Recap</div>
+  <h1 class="t">Two tables and a bottleneck</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Key idea</span>
+    <p>one-hot <b>× E</b> simply <b>selects one row</b> = the word's embedding <b>v</b> (the narrow bottleneck). It fans back out: score <b>v</b> against every row of <b>U</b>, then softmax → distribution over <i>all</i> words. The real neighbour <i>spots</i> should top it.</p>
+    <p>The whole model is <b>two tables</b>: input embeddings <b>E</b> in, output embeddings <b>U</b> out, embedding in between. It is a <b>massive multi-class classification</b> — one class per word. The catch: that softmax <b>denominator</b> sums over the whole vocabulary.</p>
+  </div>
+</section>
+
+<!-- ============ 6 · TWO MATRICES E AND U (clip 09) ============ -->
+<section class="slide question" data-sec="6 · The two matrices E and U">
+  <div class="qlab">Question</div>
+  <div class="q">The model "learns" vectors — but exactly <i>which</i> parameters are stored, and what shape are they?</div>
+  <div class="qsub">Every word appears both as a center word and as a context word. Does it get one vector, or two?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="6 · The two matrices E and U">
+  <div class="kicker">Recap</div>
+  <h1 class="t">Two vectors per word</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Method</span>
+    <p>Word2vec keeps <b>two</b> matrices, both <span class="num">|V| × d</span> (here d = <span class="num">2</span>): <b>E</b> holds a word's vector as a <i>center</i> word, <b>U</b> as a <i>context</i> word. Look up <i>water</i> in E → v<sub>water</sub> = (<span class="num">0.5</span>, <span class="num">0.2</span>). Score of context word c = <b>u<sub>c</sub> · v<sub>water</sub></b>; a big dot product means a likely neighbour.</p>
+    <p>The catch: to compute the softmax denominator, <b>every training pair touches all rows of U</b> — and all of them get a gradient.</p>
+  </div>
+</section>
+
+<!-- ============ 7 · NEGATIVE SAMPLING (clips 10, 11, 12) ============ -->
+<section class="slide question" data-sec="7 · Negative sampling">
+  <div class="qlab">Question</div>
+  <div class="q">The Google News model has <b>~3 million</b> words — that is 3M dot products and exponentials for <i>every</i> pair. How do we make a single step cheap?</div>
+  <div class="qsub">For the pair (water, spots), how much do the other 3 million words really matter?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="7 · Negative sampling">
+  <div class="kicker">Recap</div>
+  <h1 class="t">A yes/no question, k + 1 dot products</h1><div class="rule"></div>
+  <div class="math" style="font-size:1.08rem">L <span class="op">=</span> −log σ(u<sub>o</sub> · v<sub>c</sub>) <span class="op">−</span> ∑<sub>k fakes</sub> log σ(−u<sub>k</sub> · v<sub>c</sub>)</div>
+  <div class="callout"><span class="lab">Key idea</span>
+    <p>Instead of "which word out of millions?", ask "is this pair <b>real or fake</b>?" Keep only the real neighbour + <b>k</b> random fakes → just <span class="num">k + 1</span> scores instead of |V|.</p>
+    <p>−log σ(u<sub>o</sub>·v<sub>c</sub>) pushes the <b>real pair together</b>; the sum (note the <b>minus</b> inside, −u<sub>k</sub>·v) pushes the <b>fakes apart</b>. No sum over the vocabulary any more — that is where all the savings come from.</p>
+  </div>
+</section>
+
+<!-- ============ 8 · WHICH FAKES, HOW MANY (clip 13) ============ -->
+<section class="slide question" data-sec="8 · Which fakes, how many">
+  <div class="qlab">Question</div>
+  <div class="q">Which words do we draw as fakes — and how many? If we drew uniformly, what would go wrong?</div>
+  <div class="qsub">Words like <i>the</i> and <i>of</i> are everywhere. Should every negative be one of them?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="8 · Which fakes, how many">
+  <div class="kicker">Recap</div>
+  <h1 class="t">Flatten the frequencies, pick a small k</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Method</span>
+    <p>Draw fakes by corpus frequency <b>raised to the power 3/4</b>. Frequent words lose a little (<i>on</i>: <span class="num">0.115</span> → <span class="num">0.093</span>), rarer words gain. In real text a word <span class="num">5,000×</span> more frequent is only ~<span class="num">595×</span> more likely to be drawn — so negatives aren't all <i>the</i> and <i>of</i>.</p>
+    <p>Our draw with k = <span class="num">2</span>: <i>votes</i> and <i>tax</i> — clearly not neighbours of <i>water</i>. How big is k? <span class="num">5–20</span> for small datasets, <span class="num">2–5</span> for large ones.</p>
+  </div>
+</section>
+
+<!-- ============ 9 · ONE TRAINING STEP (clips 14, 15, 16) ============ -->
+<section class="slide" data-sec="9 · One training step">
+  <div class="kicker">Worked example</div>
+  <h1 class="t">One real pair, two fakes, by hand</h1><div class="rule"></div>
+  <ul class="pts">
+    <li>Real pair <b>(water, spots)</b>; fakes <b>votes</b>, <b>tax</b>. Four toy vectors, d = <span class="num">2</span>.</li>
+    <li>Forward per row: a dot product, then <b>σ</b>. Loss term = −log σ (real), −log(1−σ) (fakes).</li>
+    <li>Backward per score: gradient = <b>σ − target</b> — the same <b>p − y</b> from the softmax video.</li>
+  </ul>
+</section>
+
+<section class="slide question" data-sec="9 · One training step">
+  <div class="qlab">Question</div>
+  <div class="q">Run the forward pass on an <i>untrained</i> model. What do the three σ values look like — and which parameters will the update actually touch?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="9 · One training step">
+  <div class="kicker">Recap</div>
+  <h1 class="t">θ ← θ − η · ∇, and only four rows move</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Result</span>
+    <p><b>Forward:</b> σ = <span class="num">0.56</span>, <span class="num">0.5</span>, <span class="num">0.53</span> — an untrained model can't tell real from fake; loss = <span class="num">2.05</span>. <b>Backward:</b> grad = σ − target (for <i>spots</i>: <span class="num">0.56 − 1 = −0.44</span>), then chain rule gives each vector's update.</p>
+    <p><b>Update:</b> θ ← θ − η·∇ with η = <span class="num">0.5</span>; <i>spots</i> moves toward <i>water</i>, <i>votes</i>/<i>tax</i> away → loss falls to <span class="num">1.94</span>. Only <span class="num">4</span> rows changed: <b>1 of E + k+1 = 3 of U</b>. The full softmax would have updated all <span class="num">22</span> rows (millions, at scale).</p>
+  </div>
+</section>
+
+<!-- ============ 10 · WATCHING THE SPACE ORGANIZE (clips 17, 18) ============ -->
+<section class="slide question" data-sec="10 · The space organizes itself">
+  <div class="qlab">Question</div>
+  <div class="q">Repeat that tiny step over every pair, thousands of times. What happens to the cloud of 2-D vectors?</div>
+  <div class="qsub">Starting loss is <b>3.09 = ln 22</b> — the loss of pure guessing. Can it get much below that?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="10 · The space organizes itself">
+  <div class="kicker">Recap</div>
+  <h1 class="t">Structure nobody put there by hand</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Result</span>
+    <p>Over <span class="num">600</span> epochs the loss falls <span class="num">3.09 → 2.24</span> (it can't reach 0 — every word has several possible neighbours). Science words drift from politics words; words with the same company land together: <i>planet–moon</i>, <i>water–ice</i>, <i>parliament–senate</i> each at cosine <span class="num">+1</span>; <i>planet–bill</i> point apart at <span class="num">−0.85</span>.</p>
+    <p>These learned rows <b>are</b> the embeddings. The matrix <b>E is nothing more than the first layer of the network</b>, trained like any other weight.</p>
+  </div>
+</section>
+
+<!-- ============ 11 · USING THE EMBEDDINGS (clip 19) ============ -->
+<section class="slide question" data-sec="11 · Using the embeddings">
+  <div class="qlab">Question</div>
+  <div class="q">We now have trained vectors. The softmax classifier started from some input <b>x</b> — so where does <i>x</i> for a whole sentence come from?</div>
+  <div class="qsub">And at scale, do these directions mean anything, e.g. <i>king − man + woman</i> = ?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="11 · Using the embeddings">
+  <div class="kicker">Recap</div>
+  <h1 class="t">From words, to vectors, to a decision</h1><div class="rule"></div>
+  <div class="callout"><span class="lab">Method</span>
+    <p>At scale, directions carry meaning: <b>king − man + woman</b> lands near <b>queen</b> — a direction for "royal".</p>
+    <p>To classify our headline: look up each word's row of E, <b>average</b> the 8 vectors → x = (<span class="num">−0.89</span>, <span class="num">−0.66</span>), on the science side. Score each class, softmax → <b>Science wins at <span class="num">0.71</span></b>. Training it is the softmax video again — cross-entropy, p − y — and that gradient can even <b>flow back into E</b> to fine-tune the embeddings.</p>
+  </div>
+</section>
+
+<!-- ============ 12 · STATIC LIMIT & BRIDGE (clips 20, 21) ============ -->
+<section class="slide question" data-sec="12 · The static limit">
+  <div class="qlab">Question</div>
+  <div class="q"><i>telescope spots water</i> (spots = sees) vs <i>a leopard's spots</i> (spots = dots). What vector does a word2vec embedding give <i>spots</i> in each?</div>
+  <div class="qsub">One vector per word, fixed. What does that fail to capture — and what would fix it?</div>
+  <div class="think"><b>Think</b> — then press → to watch the reveal.</div>
+</section>
+
+<section class="slide" data-sec="12 · The static limit">
+  <div class="kicker">Recap</div>
+  <h1 class="t">Word embeddings</h1><div class="rule"></div>
+  <ul class="pts">
+    <li><b>One-hot</b> → everything orthogonal; <b>bag of words</b> → counts, but order-blind and huge.</li>
+    <li><b>Company</b> gives meaning; <b>word2vec</b> learns it as the rows of <b>E</b> via a prediction task.</li>
+    <li><b>Negative sampling</b> makes it cheap: one real pair vs k fakes, one small update at a time.</li>
+    <li>Average a sentence's vectors → feed the softmax classifier.</li>
+  </ul>
+  <div class="callout"><span class="lab">The limit → the bridge</span>
+    <p>These vectors are <b>static</b>: one vector per word, averaged over the whole corpus — so <i>spots</i> gets a single arrow whatever it means. A word's vector must instead <b>depend on the words around it in this sentence</b>.</p>
+  </div>
+  <div class="punch">Next: attention &amp; the transformer — making a word's vector depend on its context.</div>
+</section>
+
+<div id="bar"><div id="barfill"></div></div>
+<div class="secmark" id="sec"></div>
+<script>/* deck.js (inlined) */
+// DSAIT4090 study deck — keyboard/click slide engine (no embedded video).
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+slides.forEach(s=>{ const w=document.createElement('div'); w.className='wrap';
+  while(s.firstChild) w.appendChild(s.firstChild); s.appendChild(w); });
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  num.textContent=(i+1)+' / '+slides.length;
+  barfill.style.width=(i/(slides.length-1)*100)+'%';
+  sec.textContent=slides[i].dataset.sec||'';
+}
+function next(){show(i+1)} function prev(){show(i-1)}
+addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+  else if(e.key==='Home')show(0); else if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{ if(e.target.closest('a'))return; next(); });
+const num=document.getElementById('num'), barfill=document.getElementById('barfill'), sec=document.getElementById('sec');
+show(0);
+
+// ---- explainer clips are LINKED, not embedded ----
+// Set CLIP_BASE to wherever the clips are hosted (e.g. your homepage). ONE place for every deck.
+// Leave empty to play from a local ./clips/ folder during development.
+window.CLIP_BASE = window.CLIP_BASE || "";
+function clipURL(name){ const b = window.CLIP_BASE ? window.CLIP_BASE.replace(/\/?$/,'/') : 'clips/'; return b+name; }
+// A .playcard[data-clip] is a click-to-play link: it expands into the hosted clip in place.
+document.querySelectorAll('.playcard[data-clip]').forEach(card=>{
+  card.addEventListener('click',e=>{
+    e.stopPropagation();
+    const v=document.createElement('video');
+    v.className='clipvid'; v.controls=true; v.autoplay=true; v.playsInline=true;
+    v.src=clipURL(card.dataset.clip);
+    v.addEventListener('click',ev=>ev.stopPropagation());
+    card.replaceWith(v);
+  });
+});
+
+</script>
+</body></html>
